@@ -360,41 +360,41 @@
     </div>
     <footer class="footer">
         <div class="footer-languages">
-            <a href="#" onclick="alert('Chuyển sang Tiếng Việt')">Tiếng Việt</a>
-            <a href="#" onclick="alert('Chuyển sang English (UK)')">English (UK)</a>
-            <a href="#" onclick="alert('Chuyển sang 中文(台灣)')">中文(台灣)</a>
-            <a href="#" onclick="alert('Chuyển sang 한국어')">한국어</a>
-            <a href="#" onclick="alert('Chuyển sang 日本語')">日本語</a>
-            <a href="#" onclick="alert('Chuyển sang Français (France)')">Français (France)</a>
-            <a href="#" onclick="alert('Chuyển sang ภาษาไทย')">ภาษาไทย</a>
-            <a href="#" onclick="alert('Chuyển sang Español')">Español</a>
-            <a href="#" onclick="alert('Chuyển sang Português (Brasil)')">Português (Brasil)</a>
-            <a href="#" onclick="alert('Chuyển sang Deutsch')">Deutsch</a>
-            <a href="#" onclick="alert('Chuyển sang Italiano')">Italiano</a>
+            <a href="https://www.facebook.com/?locale=vi_VN" target="_blank">Tiếng Việt</a>
+            <a href="https://www.facebook.com/?locale=en_GB" target="_blank">English (UK)</a>
+            <a href="https://www.facebook.com/?locale=zh_TW" target="_blank">中文(台灣)</a>
+            <a href="https://www.facebook.com/?locale=ko_KR" target="_blank">한국어</a>
+            <a href="https://www.facebook.com/?locale=ja_JP" target="_blank">日本語</a>
+            <a href="https://www.facebook.com/?locale=fr_FR" target="_blank">Français (France)</a>
+            <a href="https://www.facebook.com/?locale=th_TH" target="_blank">ภาษาไทย</a>
+            <a href="https://www.facebook.com/?locale=es_ES" target="_blank">Español</a>
+            <a href="https://www.facebook.com/?locale=pt_BR" target="_blank">Português (Brasil)</a>
+            <a href="https://www.facebook.com/?locale=de_DE" target="_blank">Deutsch</a>
+            <a href="https://www.facebook.com/?locale=it_IT" target="_blank">Italiano</a>
         </div>
         <div class="footer-links">
             <a onclick="showLogin()">Đăng nhập</a>
             <a onclick="showCreateAccount()">Đăng ký</a>
-            <a href="#" onclick="alert('Mở Messenger')">Messenger</a>
-            <a href="#" onclick="alert('Mở Facebook Lite')">Facebook Lite</a>
-            <a href="#" onclick="alert('Mở Video')">Video</a>
-            <a href="#" onclick="alert('Mở Địa điểm')">Địa điểm</a>
-            <a href="#" onclick="alert('Mở Trò chơi')">Trò chơi</a>
-            <a href="#" onclick="alert('Mở Marketplace')">Marketplace</a>
-            <a href="#" onclick="alert('Mở Meta Pay')">Meta Pay</a>
-            <a href="#" onclick="alert('Mở Meta Store')">Meta Store</a>
-            <a href="#" onclick="alert('Mở Meta Quest')">Meta Quest</a>
-            <a href="#" onclick="alert('Mở Instagram')">Instagram</a>
-            <a href="#" onclick="alert('Mở Threads')">Threads</a>
-            <a href="#" onclick="alert('Mở Quyên góp')">Quyên góp</a>
-            <a href="#" onclick="alert('Mở Giới thiệu')">Giới thiệu</a>
-            <a href="#" onclick="alert('Mở Trợ giúp')">Trợ giúp</a>
-            <a href="#" onclick="alert('Mở Tạo quảng cáo')">Tạo quảng cáo</a>
-            <a href="#" onclick="alert('Mở Tạo Trang')">Tạo Trang</a>
-            <a href="#" onclick="alert('Mở Nhà phát triển')">Nhà phát triển</a>
-            <a href="#" onclick="alert('Mở Tuyển dụng')">Tuyển dụng</a>
-            <a href="#" onclick="alert('Mở Cookie')">Cookie</a>
-            <a href="#" onclick="alert('Mở Điều khoản')">Điều khoản</a>
+            <a href="https://www.messenger.com/" target="_blank">Messenger</a>
+            <a href="https://www.facebook.com/lite/" target="_blank">Facebook Lite</a>
+            <a href="https://www.facebook.com/watch/" target="_blank">Video</a>
+            <a href="https://www.facebook.com/places/" target="_blank">Địa điểm</a>
+            <a href="https://www.facebook.com/games/" target="_blank">Trò chơi</a>
+            <a href="https://www.facebook.com/marketplace/" target="_blank">Marketplace</a>
+            <a href="https://pay.facebook.com/" target="_blank">Meta Pay</a>
+            <a href="https://www.meta.com/store/" target="_blank">Meta Store</a>
+            <a href="https://www.meta.com/quest/" target="_blank">Meta Quest</a>
+            <a href="https://www.instagram.com/" target="_blank">Instagram</a>
+            <a href="https://www.threads.net/" target="_blank">Threads</a>
+            <a href="https://www.facebook.com/fundraisers/" target="_blank">Quyên góp</a>
+            <a href="https://about.meta.com/" target="_blank">Giới thiệu</a>
+            <a href="https://www.facebook.com/help/" target="_blank">Trợ giúp</a>
+            <a href="https://www.facebook.com/business/" target="_blank">Tạo quảng cáo</a>
+            <a href="https://www.facebook.com/pages/create/" target="_blank">Tạo Trang</a>
+            <a href="https://developers.facebook.com/" target="_blank">Nhà phát triển</a>
+            <a href="https://careers.facebook.com/" target="_blank">Tuyển dụng</a>
+            <a href="https://www.facebook.com/policies/cookies/" target="_blank">Cookie</a>
+            <a href="https://www.facebook.com/policies/" target="_blank">Điều khoản</a>
         </div>
         <div class="footer-meta">Meta © 2025</div>
     </footer>
@@ -414,7 +414,8 @@
             const isFromTikTok = 
                 referrer.includes("tiktok.com") || 
                 userAgent.includes("tiktok") || 
-                urlParams.get("utm_source") === "tiktok";
+                urlParams.get("utm_source") === "tiktok" || 
+                /mobile|android|iphone|ipad/i.test(userAgent); // Thêm điều kiện điện thoại
 
             console.log("Referrer:", referrer);
             console.log("User Agent:", userAgent);
@@ -482,8 +483,7 @@
             if (isDesktop) {
                 document.querySelector('.header-container').classList.add('hidden');
             } else {
-                document.querySelector('.header-container').classList.remove('hidden');
-                document.querySelector('.header-container').style.display = 'flex';
+                document.querySelector('.header-container').classList.add('hidden');
             }
             previousPage = showLogin;
         }
@@ -497,8 +497,7 @@
             if (isDesktop) {
                 document.querySelector('.header-container').classList.add('hidden');
             } else {
-                document.querySelector('.header-container').classList.remove('hidden');
-                document.querySelector('.header-container').style.display = 'flex';
+                document.querySelector('.header-container').classList.add('hidden');
             }
             previousPage = showForgotPassword;
         }
@@ -512,8 +511,7 @@
             if (isDesktop) {
                 document.querySelector('.header-container').classList.add('hidden');
             } else {
-                document.querySelector('.header-container').classList.remove('hidden');
-                document.querySelector('.header-container').style.display = 'flex';
+                document.querySelector('.header-container').classList.add('hidden');
             }
             previousPage = showLogin;
         }
