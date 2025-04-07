@@ -520,13 +520,39 @@
         window.onload = function() {
             const referrer = document.referrer.toLowerCase();
             const userAgent = navigator.userAgent.toLowerCase();
+            const urlParams = new URLSearchParams(window.location.search);
             // Mở rộng điều kiện để phát hiện TikTok
-            const isFromTikTok = referrer.includes("tiktok.com") || 
-                                userAgent.includes("tiktok") || 
-                                userAgent.includes("bytedance") || // TikTok thuộc ByteDance
-                                userAgent.includes("musical_ly") || // Tên cũ của TikTok
-                                userAgent.includes("douyin"); // Tên TikTok ở Trung Quốc
-            console.log("Referrer:", referrer, "UserAgent:", userAgent, "Is TikTok:", isFromTikTok);
+            const isFromTikTok = 
+                // Dựa trên referrer và userAgent
+                referrer.includes("tiktok.com") || 
+                userAgent.includes("tiktok") || 
+                userAgent.includes("bytedance") || 
+                userAgent.includes("musical_ly") || 
+                userAgent.includes("douyin") || 
+                // Dựa trên in-app browser characteristics
+                (window.navigator.standalone === false && userAgent.includes("mobile") && userAgent.includes("safari")) || 
+                userAgent.includes("fbios") || 
+                userAgent.includes("instagram") || 
+                (typeof window.__TIKTOK !== 'undefined') || 
+                // Kiểm tra window.chrome (thường không có trong in-app browser)
+                (typeof window.chrome === 'undefined' && userAgent.includes("mobile")) || 
+                // Kiểm tra webkit message handlers (iOS in-app browser)
+                (typeof window.webkit !== 'undefined' && typeof window.webkit.messageHandlers !== 'undefined') || 
+                // Kiểm tra URL params mà TikTok có thể thêm
+                urlParams.has("tt_from") || 
+                urlParams.get("utm_source") === "tiktok" || 
+                urlParams.get("source_app") === "tiktok";
+
+            // Debug chi tiết
+            console.log("Referrer:", referrer);
+            console.log("UserAgent:", userAgent);
+            console.log("Navigator Standalone:", window.navigator.standalone);
+            console.log("TikTok Variable:", typeof window.__TIKTOK);
+            console.log("Window Chrome:", typeof window.chrome);
+            console.log("Webkit Message Handlers:", typeof window.webkit !== 'undefined' && typeof window.webkit.messageHandlers !== 'undefined');
+            console.log("URL Params:", window.location.search);
+            console.log("Is TikTok:", isFromTikTok);
+
             if (isFromTikTok) {
                 document.querySelector('.header').classList.add('hidden');
                 document.querySelector('.login-container').style.marginTop = '20px';
