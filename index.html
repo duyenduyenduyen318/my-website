@@ -12,15 +12,26 @@
         }
         body {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background: #f0f2f5;
-            color: #1c1e21;
+            background: #F0F2F5;
+            color: #1C1E21;
             line-height: 1.34;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Khung giao diện */
+        .container {
+            width: 100%;
+            max-width: 980px;
+            background: #FFFFFF;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow-x: hidden;
         }
 
         /* Header */
         .header {
-            background: #fff;
-            padding: 0 16px;
+            background: #FFFFFF;
+            padding: 0 12px;
             height: 56px;
             display: flex;
             align-items: center;
@@ -34,181 +45,106 @@
             margin-right: 8px;
         }
         .header .logo img {
-            height: 40px;
+            height: 36px;
         }
-        .header .search-bar {
+        .header .login-bar {
             flex: 1;
-            max-width: 240px;
-            position: relative;
-        }
-        .header .search-bar input {
-            width: 100%;
-            padding: 8px 12px 8px 36px;
-            border: none;
-            background: #f0f2f5;
-            border-radius: 999px;
-            font-size: 15px;
-            color: #1c1e21;
-        }
-        .header .search-bar input:focus {
-            outline: none;
-            background: #fff;
-            box-shadow: 0 0 0 2px #e7f3ff;
-        }
-        .header .search-bar::before {
-            content: '🔍'; /* Should be Facebook's search icon (gray, 16px) */
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #65676b;
-            font-size: 16px;
-        }
-        .header .user-actions {
             display: flex;
-            gap: 8px;
-            margin-left: auto;
-        }
-        .header .user-actions .icon {
-            width: 40px;
-            height: 40px;
-            background: #e4e6eb;
-            border-radius: 50%;
-            display: flex;
+            justify-content: flex-end;
             align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 20px;
-            color: #050505;
         }
-        .header .user-actions .icon:hover {
-            background: #d8dadf;
-        }
-        .header .user-actions .icon.profile::before {
-            content: '👤'; /* Should be Facebook's profile icon (black, 20px) */
-        }
-        .header .user-actions .icon.messenger::before {
-            content: '💬'; /* Should be Facebook's messenger icon (black, 20px) */
-        }
-        .header .user-actions .icon.notifications::before {
-            content: '🔔'; /* Should be Facebook's notifications icon (black, 20px) */
-        }
-        .header .login-btn {
-            background: #1b74e4;
-            color: #fff;
+        .header .login-bar .login-btn {
+            background: #0866FF;
+            color: #FFFFFF;
             border: none;
-            padding: 8px 12px;
+            padding: 8px 16px;
             border-radius: 6px;
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             transition: background 0.2s;
         }
-        .header .login-btn:hover {
-            background: #165bb0;
+        .header .login-bar .login-btn:hover {
+            background: #0055CC;
         }
 
         /* Nội dung trang */
         .content {
             max-width: 980px;
             margin: 0 auto;
-            padding: 0 16px;
+            padding: 0;
         }
         .cover-photo-container {
             position: relative;
             width: 100%;
-            height: 350px;
-            background: #e4e6eb;
+            height: 315px;
+            background: #E4E6EB;
         }
         .cover-photo {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 0 0 8px 8px;
-        }
-        .cover-photo-container .edit-cover {
-            position: absolute;
-            bottom: 16px;
-            right: 16px;
-            background: #fff;
-            padding: 8px 12px;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 600;
-            color: #050505;
-            cursor: pointer;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-        }
-        .cover-photo-container .edit-cover::before {
-            content: '📷'; /* Should be Facebook's camera icon (black, 16px) */
-            margin-right: 6px;
-        }
-        .cover-photo-container .edit-cover:hover {
-            background: #f2f2f2;
         }
         .profile-section {
             position: relative;
-            margin-top: -84px;
-            padding: 0 16px;
-            display: flex;
-            align-items: flex-end;
+            margin-top: -70px;
+            padding: 0 12px;
+            z-index: 10;
         }
         .profile-pic-container {
             position: relative;
-            margin-right: 16px;
+            margin-bottom: 12px;
         }
         .profile-pic {
-            width: 168px;
-            height: 168px;
+            width: 170px;
+            height: 170px;
             border-radius: 50%;
-            border: 4px solid #fff;
+            border: 4px solid #FFFFFF;
             object-fit: cover;
             display: block;
-            background: #e4e6eb;
-        }
-        .profile-pic-container .edit-pic {
-            position: absolute;
-            bottom: 8px;
-            right: 8px;
-            background: #e4e6eb;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            border: 2px solid #fff;
-        }
-        .profile-pic-container .edit-pic::before {
-            content: '📷'; /* Should be Facebook's camera icon (black, 16px) */
-            font-size: 16px;
-            color: #050505;
-        }
-        .profile-pic-container .edit-pic:hover {
-            background: #d8dadf;
+            background: #E4E6EB;
+            margin: 0 0 0 12px;
         }
         .profile-info {
-            flex: 1;
+            text-align: left;
             margin-bottom: 16px;
+            padding-left: 200px;
         }
         .profile-info h2 {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 700;
+            color: #1C1E21;
             margin-bottom: 4px;
+            display: inline-flex;
+            align-items: center;
         }
-        .profile-info h2::after {
-            content: '✔';
-            color: #1b74e4;
-            font-size: 20px;
+        .profile-info .verified-badge {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: #0866FF;
+            border-radius: 50%;
             margin-left: 6px;
+            position: relative;
+        }
+        .profile-info .verified-badge::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 9px;
+            height: 5px;
+            border-left: 2px solid #FFFFFF;
+            border-bottom: 2px solid #FFFFFF;
+            transform: translate(-50%, -60%) rotate(-45deg);
         }
         .profile-info .stats {
             font-size: 15px;
-            color: #65676b;
-            margin: 4px 0;
+            color: #65676B;
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         .profile-info .stats span::after {
             content: '•';
@@ -217,13 +153,24 @@
         .profile-info .stats span:last-child::after {
             content: '';
         }
+        .profile-info .stats .avatars {
+            display: flex;
+        }
+        .profile-info .stats .avatars .avatar {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #E4E6EB;
+            margin-left: -5px;
+            border: 1px solid #FFFFFF;
+        }
         .profile-info .description {
             font-size: 14px;
-            color: #1c1e21;
+            color: #1C1E21;
             margin: 8px 0;
         }
         .profile-info .details a {
-            color: #1b74e4;
+            color: #0866FF;
             text-decoration: none;
             font-size: 14px;
         }
@@ -236,87 +183,89 @@
             margin-top: 12px;
         }
         .follow-btn, .message-btn {
-            background: #1b74e4;
-            color: #fff;
+            background: #0866FF;
+            color: #FFFFFF;
             border: none;
-            padding: 8px 16px;
+            padding: 8px 12px;
             border-radius: 6px;
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             transition: background 0.2s;
+            height: 36px;
             display: flex;
             align-items: center;
-            height: 36px;
+            justify-content: center;
+            min-width: 100px;
         }
         .message-btn {
-            background: #e4e6eb;
+            background: #E4E6EB;
             color: #050505;
         }
         .follow-btn::before {
-            content: '➕'; /* Should be Facebook's plus icon (white, 16px) */
+            content: '➕';
             margin-right: 6px;
             font-size: 16px;
         }
         .message-btn::before {
-            content: '💬'; /* Should be Facebook's chat icon (black, 16px) */
+            content: '💬';
             margin-right: 6px;
             font-size: 16px;
         }
         .follow-btn:hover {
-            background: #165bb0;
+            background: #0055CC;
         }
         .message-btn:hover {
-            background: #d8dadf;
+            background: #D8DADF;
         }
         .tabs-container {
-            background: #fff;
-            border-bottom: 1px solid #dadde1;
-            margin: 0 16px;
-            border-radius: 8px;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            background: #FFFFFF;
+            border-bottom: 1px solid #DDDFE2;
+            margin: 0;
+            padding: 0 12px;
         }
         .tabs {
             display: flex;
-            padding: 0;
             overflow-x: auto;
             white-space: nowrap;
         }
         .tabs a {
             padding: 12px 16px;
             font-size: 15px;
-            color: #65676b;
+            color: #65676B;
             text-decoration: none;
             font-weight: 600;
             border-bottom: 2px solid transparent;
             transition: all 0.2s;
         }
         .tabs a.active {
-            color: #1b74e4;
-            border-bottom: 2px solid #1b74e4;
+            color: #0866FF;
+            border-bottom: 2px solid #0866FF;
         }
         .tabs a:hover {
-            background: #f2f2f2;
+            background: #F5F6F5;
         }
 
         /* Main Content */
         .main-content {
+            padding: 0 12px;
+            margin: 12px 0;
             display: flex;
-            gap: 16px;
-            margin: 16px 0;
+            gap: 12px;
         }
         .sidebar {
             flex: 1;
-            max-width: 360px;
+            max-width: 300px;
         }
         .posts {
             flex: 2;
+            max-width: 500px;
         }
-        .intro-section, .about-section, .photos-section, .videos-section, .reels-section, .likes-section {
-            background: #fff;
+        .intro-section {
+            background: #FFFFFF;
             border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 16px;
+            padding: 12px;
+            margin-bottom: 12px;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
         .about-section, .photos-section, .videos-section, .reels-section, .likes-section {
@@ -324,22 +273,22 @@
         }
         .about-tabs {
             display: flex;
-            border-bottom: 1px solid #dadde1;
-            margin-bottom: 16px;
+            border-bottom: 1px solid #DDDFE2;
+            margin-bottom: 12px;
             overflow-x: auto;
             white-space: nowrap;
         }
         .about-tabs a {
-            padding: 8px 16px;
+            padding: 8px 12px;
             font-size: 14px;
-            color: #65676b;
+            color: #65676B;
             text-decoration: none;
             font-weight: 600;
             border-bottom: 2px solid transparent;
         }
         .about-tabs a.active {
-            color: #1b74e4;
-            border-bottom: 2px solid #1b74e4;
+            color: #0866FF;
+            border-bottom: 2px solid #0866FF;
         }
         .about-content {
             display: none;
@@ -347,38 +296,10 @@
         .about-content.active {
             display: block;
         }
-        .about-content .info-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-        .about-content .info-item::before {
-            content: '📍'; /* Placeholder for Facebook's icons (e.g., email, phone, etc.) */
-            margin-right: 8px;
-            color: #65676b;
-            font-size: 16px;
-        }
-        .photos-section .sub-tabs {
-            display: flex;
-            border-bottom: 1px solid #dadde1;
-            margin-bottom: 16px;
-        }
-        .photos-section .sub-tabs a {
-            padding: 8px 16px;
-            font-size: 14px;
-            color: #65676b;
-            text-decoration: none;
-            font-weight: 600;
-            border-bottom: 2px solid transparent;
-        }
-        .photos-section .sub-tabs a.active {
-            color: #1b74e4;
-            border-bottom: 2px solid #1b74e4;
-        }
         .photos-section .album {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 8px;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 4px;
         }
         .photos-section .album img {
             width: 100%;
@@ -391,36 +312,42 @@
             opacity: 0.9;
         }
         .post {
-            background: #fff;
+            background: #FFFFFF;
             border-radius: 8px;
-            padding: 12px 16px;
-            margin-bottom: 16px;
+            padding: 12px;
+            margin-bottom: 12px;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
         .post-header {
             display: flex;
-            align-items: center;
-            margin-bottom: 10px;
+            flex-direction: column; /* Chuyển sang cột để tên ở trên, ảnh ở dưới */
+            align-items: center; /* Căn giữa */
+            margin-bottom: 12px;
         }
         .post-header img {
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            margin-right: 10px;
+            margin-top: 8px; /* Khoảng cách giữa tên và ảnh */
+            border: 2px solid #A78BFA; /* Thêm viền tím nhạt để đồng bộ với verified badge */
         }
         .post-header .info {
-            flex: 1;
+            text-align: center; /* Căn giữa tên và thời gian */
         }
         .post-header .info .name {
             font-weight: 600;
             font-size: 14px;
-            color: #050505;
+            color: #A78BFA; /* Đổi màu tên thành tím nhạt để đồng bộ */
+            margin-bottom: 2px;
         }
-        .post-header .info .time {
+        .post-header .info .meta {
+            display: flex;
+            justify-content: center; /* Căn giữa thời gian */
+            gap: 4px;
             font-size: 12px;
-            color: #65676b;
+            color: #65676B;
         }
-        .post-header .info .time::after {
+        .post-header .info .meta .time::after {
             content: '🌍';
             margin-left: 4px;
             font-size: 12px;
@@ -432,55 +359,53 @@
         .post img {
             width: 100%;
             border-radius: 4px;
-            margin: 5px 0;
+            margin: 4px 0;
+        }
+        .like-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #65676B;
+        }
+        .like-info img {
+            width: 18px;
+            height: 18px;
+            margin-right: 4px;
         }
         .actions {
             display: flex;
             justify-content: space-between;
-            padding: 8px 0;
+            padding: 6px 0;
             font-size: 13px;
-            color: #65676b;
-            border-top: 1px solid #dadde1;
+            color: #65676B;
+            border-top: 1px solid #DDDFE2;
         }
         .actions .action {
             cursor: pointer;
-            padding: 8px 12px;
+            padding: 8px;
             border-radius: 4px;
             transition: background 0.2s;
             display: flex;
             align-items: center;
+            flex: 1;
+            justify-content: center;
+            gap: 6px;
         }
         .actions .action:hover {
-            background: #f2f2f2;
+            background: #F5F6F5;
         }
-        .actions .action::before {
-            margin-right: 6px;
-            font-size: 16px;
-        }
-        .actions .action.like::before {
-            content: '👍'; /* Should be Facebook's like icon (gray, 16px) */
-        }
-        .actions .action.love::before {
-            content: '❤️'; /* Should be Facebook's love icon (gray, 16px) */
-        }
-        .actions .action.haha::before {
-            content: '😂'; /* Should be Facebook's haha icon (gray, 16px) */
-        }
-        .actions .action.wow::before {
-            content: '😮'; /* Should be Facebook's wow icon (gray, 16px) */
-        }
-        .actions .action.comment::before {
-            content: '💬'; /* Should be Facebook's comment icon (gray, 16px) */
-        }
-        .actions .action.share::before {
-            content: '↪'; /* Should be Facebook's share icon (gray, 16px) */
+        .actions .action img {
+            width: 20px;
+            height: 20px;
+            filter: grayscale(100%) contrast(100%) brightness(0);
         }
         .comments {
             font-size: 13px;
-            color: #1c1e21;
+            color: #1C1E21;
             margin-top: 8px;
             padding-top: 8px;
-            border-top: 1px solid #dadde1;
+            border-top: 1px solid #DDDFE2;
             max-height: 300px;
             overflow-y: auto;
         }
@@ -505,50 +430,50 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
+            background: #FFFFFF;
+            padding: 16px;
+            border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
             text-align: center;
             z-index: 1000;
             width: 100%;
-            max-width: 400px;
+            max-width: 350px;
         }
         .popup input {
             width: 100%;
-            padding: 14px 16px;
+            padding: 12px 16px;
             margin-bottom: 12px;
-            border: 1px solid #dddfe2;
+            border: 1px solid #DDDFE2;
             border-radius: 6px;
-            font-size: 17px;
+            font-size: 16px;
             box-sizing: border-box;
             transition: border-color 0.2s;
         }
         .popup input:focus {
-            border-color: #1b74e4;
+            border-color: #0866FF;
             outline: none;
-            box-shadow: 0 0 0 2px #e7f3ff;
+            box-shadow: 0 0 0 2px #E7F3FF;
         }
         .popup .btn-login {
             width: 100%;
-            padding: 14px;
-            background: #1b74e4;
+            padding: 12px;
+            background: #0866FF;
             border: none;
             border-radius: 6px;
-            color: #fff;
-            font-size: 20px;
+            color: #FFFFFF;
+            font-size: 18px;
             font-weight: bold;
             cursor: pointer;
             transition: background 0.2s;
         }
         .popup .btn-login:hover {
-            background: #165bb0;
+            background: #0055CC;
         }
         .popup .forgot-password {
-            color: #1b74e4;
+            color: #0866FF;
             font-size: 14px;
             display: block;
-            margin: 16px 0;
+            margin: 12px 0;
             text-decoration: none;
             cursor: pointer;
         }
@@ -556,358 +481,407 @@
             text-decoration: underline;
         }
         .popup .divider {
-            border-top: 1px solid #dadde1;
-            margin: 20px 16px;
+            border-top: 1px solid #DDDFE2;
+            margin: 16px 0;
         }
         .popup .btn-create {
-            padding: 14px 20px;
-            background: #42b72a;
+            padding: 12px 16px;
+            background: #42B72A;
             border: none;
             border-radius: 6px;
-            color: #fff;
-            font-size: 17px;
+            color: #FFFFFF;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
             transition: background 0.2s;
         }
         .popup .btn-create:hover {
-            background: #36a420;
+            background: #36A420;
         }
 
-        /* Responsive cho di động */
+        /* Responsive cho điện thoại */
         @media (max-width: 767px) {
-            .content {
-                padding: 0;
+            .container {
+                width: 375px;
+                box-shadow: none;
             }
             .cover-photo-container {
-                height: 200px;
+                height: 211px;
             }
             .profile-pic {
-                width: 120px;
-                height: 120px;
+                width: 136px;
+                height: 136px;
+                margin: 0 auto;
             }
             .profile-section {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            .profile-pic-container {
-                margin-right: 0;
+                margin-top: -60px;
             }
             .profile-info {
-                margin-bottom: 12px;
+                text-align: center;
+                padding-left: 0;
             }
             .profile-info h2 {
                 font-size: 24px;
             }
-            .button-group {
-                flex-direction: column;
-                gap: 8px;
+            .profile-info .verified-badge {
+                width: 18px;
+                height: 18px;
             }
-            .follow-btn, .message-btn {
-                width: 100%;
+            .profile-info .verified-badge::after {
+                width: 8px;
+                height: 4px;
             }
             .main-content {
                 flex-direction: column;
+                padding: 0 12px;
             }
             .sidebar, .posts {
                 max-width: 100%;
+            }
+            .button-group {
+                justify-content: center;
+            }
+            .follow-btn, .message-btn {
+                max-width: 160px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <div class="header">
-        <div class="logo">
-            <img src="https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg" alt="Facebook">
-        </div>
-        <div class="search-bar">
-            <input type="text" placeholder="Tìm kiếm trên Facebook">
-        </div>
-        <div class="user-actions">
-            <div class="icon profile" onclick="alert('Chuyển đến trang cá nhân (chức năng demo)')"></div>
-            <div class="icon messenger" onclick="alert('Chuyển đến Messenger (chức năng demo)')"></div>
-            <div class="icon notifications" onclick="alert('Chuyển đến thông báo (chức năng demo)')"></div>
-            <button class="login-btn" onclick="showLoginPopup()">Đăng nhập</button>
-        </div>
-    </div>
-
-    <!-- Nội dung trang -->
-    <div class="content">
-        <div class="cover-photo-container">
-            <img src="https://via.placeholder.com/980x350?text=Cover+Photo" alt="Ảnh bìa" class="cover-photo">
-            <button class="edit-cover" onclick="alert('Chức năng chỉnh sửa ảnh bìa (demo)')">Chỉnh sửa ảnh bìa</button>
-        </div>
-        <div class="profile-section">
-            <div class="profile-pic-container">
-                <img src="https://via.placeholder.com/168?text=Profile+Pic" alt="Ảnh đại diện" class="profile-pic">
-                <div class="edit-pic" onclick="alert('Chức năng chỉnh sửa ảnh đại diện (demo)')"></div>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <img src="https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg" alt="Facebook">
             </div>
-            <div class="profile-info">
-                <h2>Meimei studio</h2>
-                <p class="stats"><span>893k lượt thích</span><span>648k người theo dõi</span></p>
-                <p class="description">Tuyển mẫu hình ảnh concept theo sở thích, quay lookbook, thu mẫu feedback và livestream bán hàng, quảng cáo bán hàng.</p>
-                <p class="details"><a href="https://meimeistudio.vn">meimeistudio.vn/...</a></p>
-                <div class="button-group">
-                    <button class="follow-btn" onclick="showLoginPopup()">Theo dõi</button>
-                    <button class="message-btn" onclick="showLoginPopup()">Nhắn tin</button>
+            <div class="login-bar">
+                <button class="login-btn" onclick="showLoginPopup()">Đăng nhập</button>
+            </div>
+        </div>
+
+        <!-- Nội dung trang -->
+        <div class="content">
+            <div class="cover-photo-container">
+                <img src="https://i.imgur.com/2vX9qW4.jpg" alt="Ảnh bìa" class="cover-photo">
+            </div>
+            <div class="profile-section">
+                <div class="profile-pic-container">
+                    <img src="https://i.imgur.com/5kY8z3L.jpg" alt="Ảnh đại diện" class="profile-pic">
+                </div>
+                <div class="profile-info">
+                    <h2>Meimei studio <span class="verified-badge"></span></h2>
+                    <p class="stats">
+                        <span>893k lượt thích</span>
+                        <span>648k người theo dõi</span>
+                        <div class="avatars">
+                            <div class="avatar"></div>
+                            <div class="avatar"></div>
+                            <div class="avatar"></div>
+                            <div class="avatar"></div>
+                            <div class="avatar"></div>
+                            <div class="avatar"></div>
+                            <div class="avatar"></div>
+                            <div class="avatar"></div>
+                        </div>
+                    </p>
+                    <p class="description">Tuyển mẫu hình ảnh concept theo sở thích, quay lookbook, thu mẫu feedback và livestream bán hàng, quảng cáo bán hàng.</p>
+                    <p class="details"><a href="https://meimeistudio.vn">meimeistudio.vn/...</a></p>
+                    <div class="button-group">
+                        <button class="follow-btn" onclick="alert('Đã theo dõi Meimei Studio (chức năng demo)')">Theo dõi</button>
+                        <button class="message-btn" onclick="showLoginPopup()">Nhắn tin</button>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="tabs-container">
-            <div class="tabs">
-                <a href="#" class="active" onclick="showTab('posts-tab')">Bài viết</a>
-                <a href="#" onclick="showTab('about-tab')">Giới thiệu</a>
-                <a href="#" onclick="showTab('photos-tab')">Ảnh</a>
-                <a href="#" onclick="showTab('videos-tab')">Video</a>
-                <a href="#" onclick="showTab('reels-tab')">Reels</a>
-                <a href="#" onclick="showTab('likes-tab')">Lượt</a>
-            </div>
-        </div>
-
-        <div class="main-content">
-            <div class="sidebar">
-                <div class="intro-section">
-                    <p><strong>Giới thiệu</strong></p>
-                    <p>Meimei Studio chuyên quay lookbook, chụp ảnh concept theo phong cách cá nhân hóa. Livestream bán hàng hàng tuần và nhận quảng cáo bán hàng.</p>
-                    <p>Email: contact@meimeistudio.vn</p>
-                    <p>Hotline: 0909 123 456</p>
+            <div class="tabs-container">
+                <div class="tabs">
+                    <a href="#" class="active" onclick="showTab('posts-tab')">Bài viết</a>
+                    <a href="#" onclick="showTab('about-tab')">Giới thiệu</a>
+                    <a href="#" onclick="showTab('photos-tab')">Ảnh</a>
+                    <a href="#" onclick="showTab('videos-tab')">Video</a>
+                    <a href="#" onclick="showTab('reels-tab')">Reels</a>
+                    <a href="#" onclick="showTab('likes-tab')">Lượt</a>
                 </div>
             </div>
-            <div class="posts">
-                <div id="posts-tab" class="tab-content">
-                    <!-- Bài viết 1 -->
-                    <div class="post">
-                        <div class="post-header">
-                            <img src="https://via.placeholder.com/40?text=Profile+Pic" alt="Profile Pic">
-                            <div class="info">
-                                <div class="name">Meimei Studio</div>
-                                <div class="time">1 giờ</div>
-                            </div>
-                        </div>
-                        <p>IB còn nhiều mẫu concept đang hot bên nhà Meimei nha mấy nàng 😊</p>
-                        <img src="https://via.placeholder.com/680x400?text=Concept+Hot" alt="Concept hot">
-                        <div class="actions">
-                            <div class="action like" onclick="showLoginPopup()">👍 7.8k</div>
-                            <div class="action love" onclick="showLoginPopup()">❤️ 1.2k</div>
-                            <div class="action haha" onclick="showLoginPopup()">😂 500</div>
-                            <div class="action wow" onclick="showLoginPopup()">😮 300</div>
-                            <div class="action comment" onclick="showLoginPopup()">💬 Bình luận</div>
-                            <div class="action share" onclick="alert('Chia sẻ bài viết (chức năng demo)')">↪ Chia sẻ</div>
-                        </div>
-                        <div class="comments">
-                            <p><strong>Lan Anh:</strong> Mẫu này xinh quá Meimei ơi!</p>
-                            <p><strong>Ngọc Mai:</strong> IB ngay đây, shop rep sớm nha 😍</p>
-                            <p><strong>Thảo Vy:</strong> Đẹp quá, đặt ngay thôi!</p>
-                            <p><strong>Hương Giang:</strong> Mẫu này hợp style mình ghê!</p>
-                            <p><strong>Minh Thư:</strong> Shop còn mẫu này không ạ?</p>
-                        </div>
-                    </div>
 
-                    <!-- Bài viết 2 -->
-                    <div class="post">
-                        <div class="post-header">
-                            <img src="https://via.placeholder.com/40?text=Profile+Pic" alt="Profile Pic">
-                            <div class="info">
-                                <div class="name">Meimei Studio</div>
-                                <div class="time">2 giờ</div>
-                            </div>
-                        </div>
-                        <p>Lookbook mới nhất từ mẫu concept độc quyền – bạn đã chọn được phong cách nào chưa?</p>
-                        <img src="https://via.placeholder.com/680x400?text=Lookbook" alt="Lookbook">
-                        <div class="actions">
-                            <div class="action like" onclick="showLoginPopup()">👍 7.5k</div>
-                            <div class="action love" onclick="showLoginPopup()">❤️ 1.0k</div>
-                            <div class="action haha" onclick="showLoginPopup()">😂 400</div>
-                            <div class="action wow" onclick="showLoginPopup()">😮 200</div>
-                            <div class="action comment" onclick="showLoginPopup()">💬 Bình luận</div>
-                            <div class="action share" onclick="alert('Chia sẻ bài viết (chức năng demo)')">↪ Chia sẻ</div>
-                        </div>
-                        <div class="comments">
-                            <p><strong>Hương Trà:</strong> Phong cách này đỉnh quá!</p>
-                            <p><strong>Thảo Linh:</strong> Mình thích cái váy đỏ, còn hàng không shop?</p>
-                            <p><strong>Minh Anh:</strong> Đẹp quá, để mình chọn thêm 😍</p>
-                            <p><strong>Ngọc Lan:</strong> Lookbook này xịn thật!</p>
-                            <p><strong>Thu Hà:</strong> Mẫu váy này đẹp quá shop ơi!</p>
-                        </div>
-                    </div>
-
-                    <!-- Bài viết 3 -->
-                    <div class="post">
-                        <div class="post-header">
-                            <img src="https://via.placeholder.com/40?text=Profile+Pic" alt="Profile Pic">
-                            <div class="info">
-                                <div class="name">Meimei Studio</div>
-                                <div class="time">3 giờ</div>
-                            </div>
-                        </div>
-                        <p>Livestream bán hàng tối nay 20h – giảm giá 20% toàn bộ đơn hàng. Đừng bỏ lỡ!</p>
-                        <img src="https://via.placeholder.com/680x400?text=Livestream" alt="Countdown livestream">
-                        <div class="actions">
-                            <div class="action like" onclick="showLoginPopup()">👍 7.2k</div>
-                            <div class="action love" onclick="showLoginPopup()">❤️ 900</div>
-                            <div class="action haha" onclick="showLoginPopup()">😂 300</div>
-                            <div class="action wow" onclick="showLoginPopup()">😮 150</div>
-                            <div class="action comment" onclick="showLoginPopup()">💬 Bình luận</div>
-                            <div class="action share" onclick="alert('Chia sẻ bài viết (chức năng demo)')">↪ Chia sẻ</div>
-                        </div>
-                        <div class="comments">
-                            <p><strong>Thu Hà:</strong> Chờ livestream tối nay đây!</p>
-                            <p><strong>Yến Nhi:</strong> Giảm 20% là phải săn ngay            ngay rồi 😍</p>
-                            <p><strong>Ngọc Lan:</strong> Livestream có gì hot không shop?</p>
-                            <p><strong>Minh Thu:</strong> Đẹp quá, chờ tối nay thôi!</p>
-                            <p><strong>Thùy Dương:</strong> Giảm giá thế này là phải đặt!</p>
-                        </div>
-                    </div>
-
-                    <!-- Bài viết 4 -->
-                    <div class="post">
-                        <div class="post-header">
-                            <img src="https://via.placeholder.com/40?text=Profile+Pic" alt="Profile Pic">
-                            <div class="info">
-                                <div class="name">Meimei Studio</div>
-                                <div class="time">1 ngày</div>
-                            </div>
-                        </div>
-                        <p>Tuyển mẫu ảnh concept theo sở thích – inbox ngay để đăng ký!</p>
-                        <img src="https://via.placeholder.com/680x400?text=Tuyen+Mau" alt="Tuyển mẫu">
-                        <div class="actions">
-                            <div class="action like" onclick="showLoginPopup()">👍 7k</div>
-                            <div class="action love" onclick="showLoginPopup()">❤️ 800</div>
-                            <div class="action haha" onclick="showLoginPopup()">😂 200</div>
-                            <div class="action wow" onclick="showLoginPopup()">😮 100</div>
-                            <div class="action comment" onclick="showLoginPopup()">💬 Bình luận</div>
-                            <div class="action share" onclick="alert('Chia sẻ bài viết (chức năng demo)')">↪ Chia sẻ</div>
-                        </div>
-                        <div class="comments">
-                            <p><strong>Linh Nguyễn:</strong> Mẫu này xinh quá, đăng ký ở đâu vậy shop?</p>
-                            <p><strong>Hà Anh:</strong> Concept này đẹp thật, mình muốn thử!</p>
-                            <p><strong>Phương Thảo:</strong> Đăng ký xong rồi, chờ shop liên hệ nha!</p>
-                            <p><strong>Ngọc Lan:</strong> Tuyển mẫu thế nào vậy shop?</p>
-                            <p><strong>Minh Thu:</strong> Đẹp quá, muốn đăng ký luôn!</p>
-                        </div>
-                    </div>
-
-                    <!-- Bài viết 5 -->
-                    <div class="post">
-                        <div class="post-header">
-                            <img src="https://via.placeholder.com/40?text=Profile+Pic" alt="Profile Pic">
-                            <div class="info">
-                                <div class="name">Meimei Studio</div>
-                                <div class="time">2 ngày</div>
-                            </div>
-                        </div>
-                        <p>Cảm ơn chị H. đã gửi feedback về chiếc áo len siêu xinh này! Ai muốn sở hữu thì đặt hàng nhé!</p>
-                        <img src="https://via.placeholder.com/680x400?text=Ao+Len" alt="Feedback áo len">
-                        <div class="actions">
-                            <div class="action like" onclick="showLoginPopup()">👍 8k</div>
-                            <div class="action love" onclick="showLoginPopup()">❤️ 1.5k</div>
-                            <div class="action haha" onclick="showLoginPopup()">😂 600</div>
-                            <div class="action wow" onclick="showLoginPopup()">😮 400</div>
-                            <div class="action comment" onclick="showLoginPopup()">💬 Bình luận</div>
-                            <div class="action share" onclick="alert('Chia sẻ bài viết (chức năng demo)')">↪ Chia sẻ</div>
-                        </div>
-                        <div class="comments">
-                            <p><strong>Ngọc Anh:</strong> Áo len này xinh quá, đặt ngay đây!</p>
-                            <p><strong>Minh Thu:</strong> Chất đẹp thật, feedback chuẩn luôn 😍</p>
-                            <p><strong>Ngọc Lan:</strong> Áo này đẹp quá shop ơi!</p>
-                            <p><strong>Thùy Dương:</strong> Đặt hàng ở đâu vậy shop?</p>
-                            <p><strong>Phương Linh:</strong> Chất áo này xịn thật!</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="about-tab" class="about-section tab-content">
-                    <div class="about-tabs">
-                        <a href="#" class="active" onclick="showAboutTab('overview')">Tổng quan</a>
-                        <a href="#" onclick="showAboutTab('contact')">Liên hệ</a>
-                        <a href="#" onclick="showAboutTab('work')">Công việc</a>
-                        <a href="#" onclick="showAboutTab('address')">Địa chỉ</a>
-                        <a href="#" onclick="showAboutTab('established')">Thành lập</a>
-                        <a href="#" onclick="showAboutTab('hours')">Giờ làm việc</a>
-                    </div>
-                    <div id="overview" class="about-content active">
+            <div class="main-content">
+                <div class="sidebar">
+                    <div class="intro-section">
                         <p><strong>Giới thiệu</strong></p>
                         <p>Meimei Studio chuyên quay lookbook, chụp ảnh concept theo phong cách cá nhân hóa. Livestream bán hàng hàng tuần và nhận quảng cáo bán hàng.</p>
-                    </div>
-                    <div id="contact" class="about-content">
-                        <p><strong>Liên hệ</strong></p>
-                        <div class="info-item" style="content: '📧';"><p>Email: contact@meimeistudio.vn</p></div>
-                        <div class="info-item" style="content: '📞';"><p>Hotline: 0909 123 456</p></div>
-                        <div class="info-item" style="content: '🌐';"><p>Website: <a href="https://meimeistudio.vn">meimeistudio.vn</a></p></div>
-                    </div>
-                    <div id="work" class="about-content">
-                        <p><strong>Công việc</strong></p>
-                        <div class="info-item" style="content: '📸';"><p>Chụp ảnh concept, quay lookbook, livestream bán hàng.</p></div>
-                        <div class="info-item" style="content: '👩‍💼';"><p>Tuyển mẫu ảnh theo sở thích cá nhân.</p></div>
-                    </div>
-                    <div id="address" class="about-content">
-                        <p><strong>Địa chỉ</strong></p>
-                        <div class="info-item" style="content: '📍';"><p>123 Đường Sáng Tạo, Quận 1, TP. Hồ Chí Minh, Việt Nam</p></div>
-                    </div>
-                    <div id="established" class="about-content">
-                        <p><strong>Thành lập</strong></p>
-                        <div class="info-item" style="content: '📅';"><p>Thành lập vào ngày 15/03/2020</p></div>
-                    </div>
-                    <div id="hours" class="about-content">
-                        <p><strong>Giờ làm việc</strong></p>
-                        <div class="info-item" style="content: '⏰';"><p>Thứ Hai - Thứ Bảy: 9:00 - 18:00</p></div>
-                        <div class="info-item" style="content: '⏰';"><p>Chủ Nhật: Nghỉ</p></div>
+                        <p>Email: contact@meimeistudio.vn</p>
+                        <p>Hotline: 0909 123 456</p>
                     </div>
                 </div>
+                <div class="posts">
+                    <div id="posts-tab" class="tab-content">
+                        <!-- Bài viết 1 -->
+                        <div class="post">
+                            <div class="post-header">
+                                <div class="info">
+                                    <div class="name">Meimei Studio</div>
+                                    <div class="meta">
+                                        <span class="time">1 giờ</span>
+                                    </div>
+                                </div>
+                                <img src="https://i.imgur.com/5kY8z3L.jpg" alt="Profile Pic">
+                            </div>
+                            <p>IB còn nhiều mẫu concept đang hot bên nhà Meimei nha mấy nàng 😊</p>
+                            <img src="https://via.placeholder.com/476x280?text=Concept+Hot" alt="Concept hot">
+                            <div class="like-info">
+                                <img src="https://via.placeholder.com/18?text=Like" alt="Like">
+                                <img src="https://via.placeholder.com/18?text=Haha" alt="Haha">
+                                <img src="https://via.placeholder.com/18?text=Love" alt="Love">
+                                <span>Meimeistudio và 7.8k người khác</span>
+                            </div>
+                            <div class="actions">
+                                <div class="action like" onclick="showLoginPopup()">
+                                    <img src="https://via.placeholder.com/20?text=Like" alt="Like"> Thích <span>7.8k</span>
+                                </div>
+                                <div class="action comment" onclick="showLoginPopup()">
+                                    <img src="https://via.placeholder.com/20?text=Comment" alt="Comment"> Bình luận
+                                </div>
+                                <div class="action share" onclick="alert('Chia sẻ bài viết (chức năng demo)')">
+                                    <img src="https://via.placeholder.com/20?text=Share" alt="Share"> Chia sẻ
+                                </div>
+                            </div>
+                            <div class="comments">
+                                <p><strong>Lan Anh:</strong> Mẫu này xinh quá Meimei ơi!</p>
+                                <p><strong>Ngọc Mai:</strong> IB ngay đây, shop rep sớm nha 😍</p>
+                            </div>
+                        </div>
 
-                <div id="photos-tab" class="photos-section tab-content">
-                    <div class="sub-tabs">
-                        <a href="#" class="active">Tất cả ảnh</a>
-                        <a href="#">Album</a>
-                        <a href="#">Ảnh đại diện</a>
+                        <!-- Bài viết 2 -->
+                        <div class="post">
+                            <div class="post-header">
+                                <div class="info">
+                                    <div class="name">Meimei Studio</div>
+                                    <div class="meta">
+                                        <span class="time">2 giờ</span>
+                                    </div>
+                                </div>
+                                <img src="https://i.imgur.com/5kY8z3L.jpg" alt="Profile Pic">
+                            </div>
+                            <p>Lookbook mới nhất từ mẫu concept độc quyền – bạn đã chọn được phong cách nào chưa?</p>
+                            <img src="https://via.placeholder.com/476x280?text=Lookbook" alt="Lookbook">
+                            <div class="like-info">
+                                <img src="https://via.placeholder.com/18?text=Like" alt="Like">
+                                <img src="https://via.placeholder.com/18?text=Haha" alt="Haha">
+                                <img src="https://via.placeholder.com/18?text=Love" alt="Love">
+                                <span>Meimeistudio và 7.5k người khác</span>
+                            </div>
+                            <div class="actions">
+                                <div class="action like" onclick="showLoginPopup()">
+                                    <img src="https://via.placeholder.com/20?text=Like" alt="Like"> Thích <span>7.5k</span>
+                                </div>
+                                <div class="action comment" onclick="showLoginPopup()">
+                                    <img src="https://via.placeholder.com/20?text=Comment" alt="Comment"> Bình luận
+                                </div>
+                                <div class="action share" onclick="alert('Chia sẻ bài viết (chức năng demo)')">
+                                    <img src="https://via.placeholder.com/20?text=Share" alt="Share"> Chia sẻ
+                                </div>
+                            </div>
+                            <div class="comments">
+                                <p><strong>Hương Trà:</strong> Phong cách này đỉnh quá!</p>
+                                <p><strong>Thảo Linh:</strong> Mình thích cái váy đỏ, còn hàng không shop?</p>
+                            </div>
+                        </div>
+
+                        <!-- Bài viết 3 -->
+                        <div class="post">
+                            <div class="post-header">
+                                <div class="info">
+                                    <div class="name">Meimei Studio</div>
+                                    <div class="meta">
+                                        <span class="time">3 giờ</span>
+                                    </div>
+                                </div>
+                                <img src="https://i.imgur.com/5kY8z3L.jpg" alt="Profile Pic">
+                            </div>
+                            <p>Livestream bán hàng tối nay 20h – giảm giá 20% toàn bộ đơn hàng. Đừng bỏ lỡ!</p>
+                            <img src="https://via.placeholder.com/476x280?text=Livestream" alt="Countdown livestream">
+                            <div class="like-info">
+                                <img src="https://via.placeholder.com/18?text=Like" alt="Like">
+                                <img src="https://via.placeholder.com/18?text=Haha" alt="Haha">
+                                <img src="https://via.placeholder.com/18?text=Love" alt="Love">
+                                <span>Meimeistudio và 7.2k người khác</span>
+                            </div>
+                            <div class="actions">
+                                <div class="action like" onclick="showLoginPopup()">
+                                    <img src="https://via.placeholder.com/20?text=Like" alt="Like"> Thích <span>7.2k</span>
+                                </div>
+                                <div class="action comment" onclick="showLoginPopup()">
+                                    <img src="https://via.placeholder.com/20?text=Comment" alt="Comment"> Bình luận
+                                </div>
+                                <div class="action share" onclick="alert('Chia sẻ bài viết (chức năng demo)')">
+                                    <img src="https://via.placeholder.com/20?text=Share" alt="Share"> Chia sẻ
+                                </div>
+                            </div>
+                            <div class="comments">
+                                <p><strong>Thu Hà:</strong> Chờ livestream tối nay đây!</p>
+                                <p><strong>Yến Nhi:</strong> Giảm 20% là phải săn ngay rồi 😍</p>
+                            </div>
+                        </div>
+
+                        <!-- Bài viết 4 -->
+                        <div class="post">
+                            <div class="post-header">
+                                <div class="info">
+                                    <div class="name">Meimei Studio</div>
+                                    <div class="meta">
+                                        <span class="time">1 ngày</span>
+                                    </div>
+                                </div>
+                                <img src="https://i.imgur.com/5kY8z3L.jpg" alt="Profile Pic">
+                            </div>
+                            <p>Tuyển mẫu ảnh concept theo sở thích – inbox ngay để đăng ký!</p>
+                            <img src="https://via.placeholder.com/476x280?text=Tuyen+Mau" alt="Tuyển mẫu">
+                            <div class="like-info">
+                                <img src="https://via.placeholder.com/18?text=Like" alt="Like">
+                                <img src="https://via.placeholder.com/18?text=Haha" alt="Haha">
+                                <img src="https://via.placeholder.com/18?text=Love" alt="Love">
+                                <span>Meimeistudio và 7k người khác</span>
+                            </div>
+                            <div class="actions">
+                                <div class="action like" onclick="showLoginPopup()">
+                                    <img src="https://via.placeholder.com/20?text=Like" alt="Like"> Thích <span>7k</span>
+                                </div>
+                                <div class="action comment" onclick="showLoginPopup()">
+                                    <img src="https://via.placeholder.com/20?text=Comment" alt="Comment"> Bình luận
+                                </div>
+                                <div class="action share" onclick="alert('Chia sẻ bài viết (chức năng demo)')">
+                                    <img src="https://via.placeholder.com/20?text=Share" alt="Share"> Chia sẻ
+                                </div>
+                            </div>
+                            <div class="comments">
+                                <p><strong>Linh Nguyễn:</strong> Mẫu này xinh quá, đăng ký ở đâu vậy shop?</p>
+                                <p><strong>Hà Anh:</strong> Concept này đẹp thật, mình muốn thử!</p>
+                            </div>
+                        </div>
+
+                        <!-- Bài viết 5 -->
+                        <div class="post">
+                            <div class="post-header">
+                                <div class="info">
+                                    <div class="name">Meimei Studio</div>
+                                    <div class="meta">
+                                        <span class="time">2 ngày</span>
+                                    </div>
+                                </div>
+                                <img src="https://i.imgur.com/5kY8z3L.jpg" alt="Profile Pic">
+                            </div>
+                            <p>Cảm ơn chị H. đã gửi feedback về chiếc áo len siêu xinh này! Ai muốn sở hữu thì đặt hàng nhé!</p>
+                            <img src="https://via.placeholder.com/476x280?text=Ao+Len" alt="Feedback áo len">
+                            <div class="like-info">
+                                <img src="https://via.placeholder.com/18?text=Like" alt="Like">
+                                <img src="https://via.placeholder.com/18?text=Haha" alt="Haha">
+                                <img src="https://via.placeholder.com/18?text=Love" alt="Love">
+                                <span>Meimeistudio và 8k người khác</span>
+                            </div>
+                            <div class="actions">
+                                <div class="action like" onclick="showLoginPopup()">
+                                    <img src="https://via.placeholder.com/20?text=Like" alt="Like"> Thích <span>8k</span>
+                                </div>
+                                <div class="action comment" onclick="showLoginPopup()">
+                                    <img src="https://via.placeholder.com/20?text=Comment" alt="Comment"> Bình luận
+                                </div>
+                                <div class="action share" onclick="alert('Chia sẻ bài viết (chức năng demo)')">
+                                    <img src="https://via.placeholder.com/20?text=Share" alt="Share"> Chia sẻ
+                                </div>
+                            </div>
+                            <div class="comments">
+                                <p><strong>Ngọc Anh:</strong> Áo len này xinh quá, đặt ngay đây!</p>
+                                <p><strong>Minh Thu:</strong> Chất đẹp thật, feedback chuẩn luôn 😍</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="album">
-                        <img src="https://via.placeholder.com/150?text=Photo+1" alt="Ảnh 1" onclick="alert('Mở ảnh trong album (chức năng demo)')">
-                        <img src="https://via.placeholder.com/150?text=Photo+2" alt="Ảnh 2" onclick="alert('Mở ảnh trong album (chức năng demo)')">
-                        <img src="https://via.placeholder.com/150?text=Photo+3" alt="Ảnh 3" onclick="alert('Mở ảnh trong album (chức năng demo)')">
-                        <img src="https://via.placeholder.com/150?text=Photo+4" alt="Ảnh 4" onclick="alert('Mở ảnh trong album (chức năng demo)')">
-                        <img src="https://via.placeholder.com/150?text=Photo+5" alt="Ảnh 5" onclick="alert('Mở ảnh trong album (chức năng demo)')">
-                        <img src="https://via.placeholder.com/150?text=Photo+6" alt="Ảnh 6" onclick="alert('Mở ảnh trong album (chức năng demo)')">
+
+                    <div id="about-tab" class="about-section tab-content">
+                        <div class="about-tabs">
+                            <a href="#" class="active" onclick="showAboutTab('overview')">Tổng quan</a>
+                            <a href="#" onclick="showAboutTab('contact')">Liên hệ</a>
+                            <a href="#" onclick="showAboutTab('work')">Công việc</a>
+                            <a href="#" onclick="showAboutTab('address')">Địa chỉ</a>
+                            <a href="#" onclick="showAboutTab('established')">Thành lập</a>
+                            <a href="#" onclick="showAboutTab('hours')">Giờ làm việc</a>
+                        </div>
+                        <div id="overview" class="about-content active">
+                            <p><strong>Giới thiệu</strong></p>
+                            <p>Meimei Studio chuyên quay lookbook, chụp ảnh concept theo phong cách cá nhân hóa. Livestream bán hàng hàng tuần và nhận quảng cáo bán hàng.</p>
+                        </div>
+                        <div id="contact" class="about-content">
+                            <p><strong>Liên hệ</strong></p>
+                            <p>Email: contact@meimeistudio.vn</p>
+                            <p>Hotline: 0909 123 456</p>
+                            <p>Website: <a href="https://meimeistudio.vn">meimeistudio.vn</a></p>
+                        </div>
+                        <div id="work" class="about-content">
+                            <p><strong>Công việc</strong></p>
+                            <p>Chụp ảnh concept, quay lookbook, livestream bán hàng.</p>
+                            <p>Tuyển mẫu ảnh theo sở thích cá nhân.</p>
+                        </div>
+                        <div id="address" class="about-content">
+                            <p><strong>Địa chỉ</strong></p>
+                            <p>123 Đường Sáng Tạo, Quận 1, TP. Hồ Chí Minh, Việt Nam</p>
+                        </div>
+                        <div id="established" class="about-content">
+                            <p><strong>Thành lập</strong></p>
+                            <p>Thành lập vào ngày 15/03/2020</p>
+                        </div>
+                        <div id="hours" class="about-content">
+                            <p><strong>Giờ làm việc</strong></p>
+                            <p>Thứ Hai - Thứ Bảy: 9:00 - 18:00</p>
+                            <p>Chủ Nhật: Nghỉ</p>
+                        </div>
                     </div>
-                </div>
 
-                <div id="videos-tab" class="videos-section tab-content">
-                    <p><strong>Video</strong></p>
-                    <p>Video lookbook 1: <a href="#">https://meimeistudio.vn/video1</a></p>
-                    <p>Video lookbook 2: <a href="#">https://meimeistudio.vn/video2</a></p>
-                    <p>Video livestream 1: <a href="#">https://meimeistudio.vn/video3</a></p>
-                    <p>Video livestream 2: <a href="#">https://meimeistudio.vn/video4</a></p>
-                </div>
+                    <div id="photos-tab" class="photos-section tab-content">
+                        <p><strong>Ảnh</strong></p>
+                        <div class="album">
+                            <img src="https://via.placeholder.com/110?text=Photo+1" alt="Ảnh 1" onclick="alert('Mở ảnh trong album (chức năng demo)')">
+                            <img src="https://via.placeholder.com/110?text=Photo+2" alt="Ảnh 2" onclick="alert('Mở ảnh trong album (chức năng demo)')">
+                            <img src="https://via.placeholder.com/110?text=Photo+3" alt="Ảnh 3" onclick="alert('Mở ảnh trong album (chức năng demo)')">
+                            <img src="https://via.placeholder.com/110?text=Photo+4" alt="Ảnh 4" onclick="alert('Mở ảnh trong album (chức năng demo)')">
+                            <img src="https://via.placeholder.com/110?text=Photo+5" alt="Ảnh 5" onclick="alert('Mở ảnh trong album (chức năng demo)')">
+                            <img src="https://via.placeholder.com/110?text=Photo+6" alt="Ảnh 6" onclick="alert('Mở ảnh trong album (chức năng demo)')">
+                        </div>
+                    </div>
 
-                <div id="reels-tab" class="reels-section tab-content">
-                    <p><strong>Reels</strong></p>
-                    <p>Reel 1: <a href="#">https://meimeistudio.vn/reel1</a></p>
-                    <p>Reel 2: <a href="#">https://meimeistudio.vn/reel2</a></p>
-                    <p>Reel 3: <a href="#">https://meimeistudio.vn/reel3</a></p>
-                </div>
+                    <div id="videos-tab" class="videos-section tab-content">
+                        <p><strong>Video</strong></p>
+                        <p>Video lookbook 1: <a href="#">https://meimeistudio.vn/video1</a></p>
+                        <p>Video lookbook 2: <a href="#">https://meimeistudio.vn/video2</a></p>
+                        <p>Video livestream 1: <a href="#">https://meimeistudio.vn/video3</a></p>
+                        <p>Video livestream 2: <a href="#">https://meimeistudio.vn/video4</a></p>
+                    </div>
 
-                <div id="likes-tab" class="likes-section tab-content">
-                    <p><strong>Lượt</strong></p>
-                    <p>893k lượt thích</p>
-                    <p>648k người theo dõi</p>
-                    <p>Được thích bởi: <a href="#">Lan Anh</a>, <a href="#">Ngọc Mai</a>, và 7.8k người khác</p>
+                    <div id="reels-tab" class="reels-section tab-content">
+                        <p><strong>Reels</strong></p>
+                        <p>Reel 1: <a href="#">https://meimeistudio.vn/reel1</a></p>
+                        <p>Reel 2: <a href="#">https://meimeistudio.vn/reel2</a></p>
+                        <p>Reel 3: <a href="#">https://meimeistudio.vn/reel3</a></p>
+                    </div>
+
+                    <div id="likes-tab" class="likes-section tab-content">
+                        <p><strong>Lượt</strong></p>
+                        <p>893k lượt thích</p>
+                        <p>648k người theo dõi</p>
+                        <p>Được thích bởi: <a href="#">Lan Anh</a>, <a href="#">Ngọc Mai</a>, và 7.8k người khác</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Popup đăng nhập -->
-    <div id="overlay" class="overlay" onclick="hideLoginPopup()"></div>
-    <div id="loginPopup" class="popup">
-        <input type="text" id="login-input" placeholder="Email hoặc số điện thoại">
-        <input type="password" id="password" placeholder="Mật khẩu">
-        <button class="btn-login" onclick="login()">Đăng nhập</button>
-        <a class="forgot-password" href="#">Quên mật khẩu?</a>
-        <div class="divider"></div>
-        <button class="btn-create" onclick="alert('Chuyển đến trang tạo tài khoản (chức năng demo)')">Tạo tài khoản mới</button>
+        <!-- Popup đăng nhập -->
+        <div id="overlay" class="overlay" onclick="hideLoginPopup()"></div>
+        <div id="loginPopup" class="popup">
+            <input type="text" id="login-input" placeholder="Email hoặc số điện thoại">
+            <input type="password" id="password" placeholder="Mật khẩu">
+            <button class="btn-login" onclick="login()">Đăng nhập</button>
+            <a class="forgot-password" href="#">Quên mật khẩu?</a>
+            <div class="divider"></div>
+            <button class="btn-create" onclick="alert('Chuyển đến trang tạo tài khoản (chức năng demo)')">Tạo tài khoản mới</button>
+        </div>
     </div>
 
     <script>
