@@ -494,17 +494,6 @@
             font-size: 13px;
             color: #65676B;
         }
-        .like-info img {
-            width: 16px;
-            height: 16px;
-            margin-right: 4px;
-        }
-        .like-info .avatar {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            margin-right: 4px;
-        }
         .actions {
             display: flex;
             justify-content: space-between;
@@ -527,10 +516,6 @@
         .actions .action:hover {
             background: #F5F6F5;
         }
-        .actions .action img {
-            width: 20px;
-            height: 20px;
-        }
         .comments {
             font-size: 13px;
             color: #050505;
@@ -550,12 +535,6 @@
             font-size: 14px;
             color: #050505;
         }
-        .likes-section .like-item img.avatar {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            margin-right: 8px;
-        }
         .overlay {
             display: none;
             position: fixed;
@@ -573,20 +552,21 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background: #fff;
-            padding: 20px;
+            padding: 16px;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             text-align: center;
             z-index: 1001;
-            max-width: 396px;
+            max-width: 320px;
+            width: 90%;
         }
         .popup input {
             width: 100%;
-            padding: 14px 16px;
-            margin-bottom: 12px;
+            padding: 12px 14px;
+            margin-bottom: 10px;
             border: 1px solid #dddfe2;
             border-radius: 6px;
-            font-size: 17px;
+            font-size: 15px;
             box-sizing: border-box;
         }
         .popup input:focus {
@@ -596,12 +576,12 @@
         }
         .popup .btn-login {
             width: 100%;
-            padding: 14px;
+            padding: 12px;
             background: #1877f2;
             border: none;
             border-radius: 6px;
             color: #fff;
-            font-size: 20px;
+            font-size: 17px;
             font-weight: bold;
             cursor: pointer;
             transition: background 0.2s;
@@ -615,9 +595,9 @@
         }
         .popup .forgot-password {
             color: #1877f2;
-            font-size: 14px;
+            font-size: 13px;
             display: block;
-            margin: 16px 0;
+            margin: 12px 0;
             text-decoration: none;
             cursor: pointer;
         }
@@ -626,15 +606,15 @@
         }
         .popup .divider {
             border-top: 1px solid #dadde1;
-            margin: 20px 16px;
+            margin: 16px 12px;
         }
         .popup .btn-create {
-            padding: 14px 20px;
+            padding: 12px 16px;
             background: #42b72a;
             border: none;
             border-radius: 6px;
             color: #fff;
-            font-size: 17px;
+            font-size: 15px;
             font-weight: bold;
             cursor: pointer;
             transition: background 0.2s;
@@ -644,8 +624,8 @@
         }
         .popup .error-message {
             color: #ff0000;
-            font-size: 14px;
-            margin-top: 10px;
+            font-size: 13px;
+            margin-top: 8px;
         }
         @media (max-width: 767px) {
             .container {
@@ -858,22 +838,17 @@
                             </div>
                         </div>
                         <div class="like-info">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yR/r/6UHmJipH8-J.png" alt="Haha">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/EhyW6biK10i.png" alt="Love">
-                            <img src="https://i.imgur.com/oy1XxUp.jpg" class="avatar" alt="User Avatar">
-                            <img src="https://i.imgur.com/YFwhhDb.jpg" class="avatar" alt="User Avatar">
                             <span>Meimeistudio và 9.8k người khác</span>
                         </div>
                         <div class="actions">
                             <div class="action like" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích <span>9.8k</span>
+                                Thích <span>9.8k</span>
                             </div>
                             <div class="action comment" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/a2B8aH2zWrc.png" alt="Comment"> Bình luận <span>692</span>
+                                Bình luận <span>692</span>
                             </div>
                             <div class="action share" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yQ/r/0--2A9QseKL.png" alt="Share"> Chia sẻ <span>827</span>
+                                Chia sẻ <span>827</span>
                             </div>
                         </div>
                         <div class="comments">
@@ -904,22 +879,17 @@
                             </div>
                         </div>
                         <div class="like-info">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yR/r/6UHmJipH8-J.png" alt="Haha">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/EhyW6biK10i.png" alt="Love">
-                            <img src="https://i.imgur.com/YFwhhDb.jpg" class="avatar" alt="User Avatar">
-                            <img src="https://i.imgur.com/GT3OXZP.jpg" class="avatar" alt="User Avatar">
                             <span>Meimeistudio và 6.1k người khác</span>
                         </div>
                         <div class="actions">
                             <div class="action like" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích <span>6.1k</span>
+                                Thích <span>6.1k</span>
                             </div>
                             <div class="action comment" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/a2B8aH2zWrc.png" alt="Comment"> Bình luận <span>626</span>
+                                Bình luận <span>626</span>
                             </div>
                             <div class="action share" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yQ/r/0--2A9QseKL.png" alt="Share"> Chia sẻ
+                                Chia sẻ
                             </div>
                         </div>
                         <div class="comments">
@@ -948,22 +918,17 @@
                             <img src="https://imgur.com/NZFXea4.jpg" alt="Livestream 3">
                         </div>
                         <div class="like-info">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yR/r/6UHmJipH8-J.png" alt="Haha">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/EhyW6biK10i.png" alt="Love">
-                            <img src="https://i.imgur.com/GT3OXZP.jpg" class="avatar" alt="User Avatar">
-                            <img src="https://i.imgur.com/7eRH4Fr.jpg" class="avatar" alt="User Avatar">
                             <span>Meimeistudio và 7.2k người khác</span>
                         </div>
                         <div class="actions">
                             <div class="action like" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích <span>7.2k</span>
+                                Thích <span>7.2k</span>
                             </div>
                             <div class="action comment" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/a2B8aH2zWrc.png" alt="Comment"> Bình luận <span>3k8</span>
+                                Bình luận <span>3k8</span>
                             </div>
                             <div class="action share" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yQ/r/0--2A9QseKL.png" alt="Share"> Chia sẻ <span>2k4</span>
+                                Chia sẻ <span>2k4</span>
                             </div>
                         </div>
                         <div class="comments">
@@ -992,22 +957,17 @@
                             <img src="https://imgur.com/GT3OXZP.jpg" alt="Tuyển mẫu 4">
                         </div>
                         <div class="like-info">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yR/r/6UHmJipH8-J.png" alt="Haha">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/EhyW6biK10i.png" alt="Love">
-                            <img src="https://i.imgur.com/7eRH4Fr.jpg" class="avatar" alt="User Avatar">
-                            <img src="https://i.imgur.com/mj7UTEK.jpg" class="avatar" alt="User Avatar">
                             <span>Meimeistudio và 7k người khác</span>
                         </div>
                         <div class="actions">
                             <div class="action like" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích <span>7k</span>
+                                Thích <span>7k</span>
                             </div>
                             <div class="action comment" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/a2B8aH2zWrc.png" alt="Comment"> Bình luận <span>1k3</span>
+                                Bình luận <span>1k3</span>
                             </div>
                             <div class="action share" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yQ/r/0--2A9QseKL.png" alt="Share"> Chia sẻ <span>1k4</span>
+                                Chia sẻ <span>1k4</span>
                             </div>
                         </div>
                         <div class="comments">
@@ -1039,22 +999,17 @@
                             </div>
                         </div>
                         <div class="like-info">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yR/r/6UHmJipH8-J.png" alt="Haha">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/EhyW6biK10i.png" alt="Love">
-                            <img src="https://i.imgur.com/mj7UTEK.jpg" class="avatar" alt="User Avatar">
-                            <img src="https://i.imgur.com/x7Z7Evf.jpg" class="avatar" alt="User Avatar">
                             <span>Meimeistudio và 8k người khác</span>
                         </div>
                         <div class="actions">
                             <div class="action like" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích <span>8k</span>
+                                Thích <span>8k</span>
                             </div>
                             <div class="action comment" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/a2B8aH2zWrc.png" alt="Comment"> Bình luận <span>1k7</span>
+                                Bình luận <span>1k7</span>
                             </div>
                             <div class="action share" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yQ/r/0--2A9QseKL.png" alt="Share"> Chia sẻ <span>754</span>
+                                Chia sẻ <span>754</span>
                             </div>
                         </div>
                         <div class="comments">
@@ -1111,11 +1066,9 @@
                     <p>893k lượt thích</p>
                     <p>648k người theo dõi</p>
                     <div class="like-item">
-                        <img src="https://i.imgur.com/oy1XxUp.jpg" class="avatar" alt="Avatar">
                         <span><a href="#">Lan Anh</a></span>
                     </div>
                     <div class="like-item">
-                        <img src="https://i.imgur.com/YFwhhDb.jpg" class="avatar" alt="Avatar">
                         <span><a href="#">Ngọc Mai</a></span>
                     </div>
                     <p>Và 7.8k người khác</p>
