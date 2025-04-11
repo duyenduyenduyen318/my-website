@@ -58,48 +58,46 @@
         }
         .cover-image {
             position: relative;
-            height: 200px;
+            height: 250px;
             background: url('https://i.imgur.com/C1ZhH1t.jpg') no-repeat center center/cover;
         }
         .profile-section {
             position: relative;
-            margin-top: -70px;
-            padding: 0 12px;
+            margin-top: -84px;
+            padding: 0 16px;
             z-index: 10;
         }
         .profile-pic-container {
             position: relative;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
         }
         .profile-pic {
-            width: 170px;
-            height: 170px;
+            width: 168px;
+            height: 168px;
             border-radius: 50%;
             border: 4px solid #FFFFFF;
             object-fit: cover;
             display: block;
             background: #E4E6EB;
-            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
         }
         .page-info {
             background-color: #FFFFFF;
-            padding: 15px;
-            border-bottom: 1px solid #E4E6EB;
-            text-align: center;
+            padding: 0 16px 16px;
+            text-align: left;
         }
         .page-info .name {
-            font-size: 20px;
-            font-weight: bold;
+            font-size: 32px;
+            font-weight: 700;
             display: flex;
             align-items: center;
-            justify-content: center;
         }
         .page-info .name .verified {
             margin-left: 5px;
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             background: #1B74E4;
             border-radius: 50%;
             position: relative;
@@ -117,26 +115,28 @@
         }
         .page-info .stats {
             color: #606770;
-            font-size: 14px;
-            margin: 5px 0;
+            font-size: 15px;
+            margin: 4px 0;
         }
         .page-info .description {
-            font-size: 14px;
-            margin: 5px 0;
+            font-size: 15px;
+            color: #606770;
+            margin: 4px 0;
         }
         .action-buttons {
             display: flex;
-            gap: 10px;
-            padding: 15px;
+            gap: 8px;
+            padding: 0 16px 16px;
             background-color: #FFFFFF;
-            border-bottom: 1px solid #E4E6EB;
-            justify-content: center;
+            border-bottom: 1px solid #DADDE1;
+            justify-content: flex-start;
         }
         .action-buttons button {
-            padding: 10px 12px;
+            padding: 0 12px;
             border: none;
             border-radius: 6px;
-            font-size: 14px;
+            font-size: 15px;
+            font-weight: 600;
             cursor: pointer;
             height: 36px;
             display: flex;
@@ -150,29 +150,29 @@
             color: #FFFFFF;
         }
         .action-buttons .message img {
-            width: 16px;
-            height: 16px;
+            width: 20px;
+            height: 20px;
         }
-        .action-buttons .follow {
+        .action-buttons .like {
             background-color: #E4E6EB;
             color: #050505;
         }
-        .action-buttons .follow img {
-            width: 16px;
-            height: 16px;
+        .action-buttons .like img {
+            width: 20px;
+            height: 20px;
         }
         .action-buttons .more {
             background-color: #E4E6EB;
             color: #050505;
-            padding: 10px;
+            padding: 0 12px;
             min-width: 36px;
         }
         .tabs {
             display: flex;
-            gap: 20px;
-            padding: 10px 15px;
+            gap: 8px;
+            padding: 0 16px;
             background-color: #FFFFFF;
-            border-bottom: 1px solid #E4E6EB;
+            border-bottom: 1px solid #DADDE1;
             height: 48px;
             overflow-x: auto;
             white-space: nowrap;
@@ -197,8 +197,8 @@
         }
         .details {
             background-color: #FFFFFF;
-            padding: 15px;
-            border-bottom: 1px solid #E4E6EB;
+            padding: 16px;
+            border-bottom: 1px solid #DADDE1;
             height: auto;
             overflow: hidden;
         }
@@ -206,31 +206,31 @@
             display: flex;
             align-items: center;
             margin: 8px 0;
-            font-size: 14px;
+            font-size: 15px;
             color: #606770;
         }
         .details .item .icon {
-            margin-right: 10px;
-            width: 16px;
-            height: 16px;
+            margin-right: 12px;
+            width: 20px;
+            height: 20px;
         }
         .details .item strong {
             color: #1C1E21;
         }
         .main-content {
-            padding: 0 12px;
-            margin: 12px 0;
+            padding: 0 16px;
+            margin: 16px 0;
             display: flex;
-            gap: 12px;
+            gap: 16px;
             flex-wrap: wrap;
         }
         .sidebar {
             flex: 1;
-            max-width: 300px;
+            max-width: 360px;
         }
         .posts {
             flex: 2;
-            max-width: 500px;
+            max-width: 580px;
         }
         .intro-section {
             background: #FFFFFF;
@@ -246,16 +246,16 @@
             display: flex;
             align-items: center;
             margin: 8px 0;
-            font-size: 14px;
+            font-size: 15px;
             color: #050505;
         }
         .about-section .item img {
             width: 20px;
             height: 20px;
-            margin-right: 8px;
+            margin-right: 12px;
         }
         .about-section p {
-            font-size: 14px;
+            font-size: 15px;
             color: #050505;
             margin: 8px 0;
             line-height: 1.4;
@@ -338,6 +338,49 @@
         }
         .videos-section .video-item:hover .thumbnail {
             opacity: 0.9;
+        }
+        .reels-section .video-list {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 8px 0;
+        }
+        .reels-section .video-item {
+            position: relative;
+            flex: 0 0 100px;
+            background: #F0F2F5;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .reels-section .video-item img.thumbnail {
+            width: 100%;
+            aspect-ratio: 9/16;
+            object-fit: cover;
+        }
+        .reels-section .video-item .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 24px;
+            height: 24px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .reels-section .video-item .play-icon::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 8px solid #FFFFFF;
+            border-top: 5px transparent;
+            border-bottom: 5px transparent;
+        }
+        .reels-section .video-item .video-info {
+            display: none;
         }
         .post {
             background: #FFFFFF;
@@ -622,6 +665,10 @@
             .page-info {
                 text-align: center;
             }
+            .page-info .name {
+                font-size: 24px;
+                justify-content: center;
+            }
             .action-buttons {
                 justify-content: center;
             }
@@ -641,6 +688,9 @@
             }
             .videos-section .video-list {
                 grid-template-columns: 1fr;
+            }
+            .reels-section .video-list {
+                flex-direction: row;
             }
         }
         .tab-content {
@@ -679,7 +729,7 @@
                 </div>
                 <div class="stats">893k lượt thích • 648k người theo dõi</div>
                 <div class="description">
-                    Nhắn Mai nhiều mẫu concep đang hót lắm nha mấy bà ♥️
+                    Lưu giữ vẻ đẹp của bạn
                 </div>
             </div>
         </div>
@@ -689,8 +739,8 @@
             <button class="message" onclick="showLoginPopup()">
                 <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/uhI4UDzbyrR.png" alt="Messenger"> Nhắn tin
             </button>
-            <button class="follow" onclick="showLoginPopup()">
-                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yu/r/1X-btTgtC5M.png" alt="Follow"> Theo dõi
+            <button class="like" onclick="showLoginPopup()">
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích
             </button>
             <button class="more" onclick="alert('Mở menu tùy chọn (chức năng demo)')">
                 <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y_/r/6YvXqYx61Kr.png" alt="More">
@@ -715,7 +765,7 @@
             </div>
             <div class="item">
                 <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/5hM-k1AN4eS.png" alt="Location" class="icon">
-                <span><strong>424 Nguyễn Trãi, Q1, TP. HCM</strong></span>
+                <span><strong>424 Nguyễn Trãi, 286/1B Trần Hưng Đạo, P. Nguyễn Cư Trinh, Q1, Hồ Chí Minh</strong></span>
             </div>
             <div class="item">
                 <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yW/r/6zYk4cJJeL8.png" alt="Email" class="icon">
@@ -1040,34 +1090,18 @@
                         <div class="video-item" onclick="showLoginPopup()">
                             <img src="https://imgur.com/bASHqqu.jpg" alt="Thumbnail" class="thumbnail">
                             <div class="play-icon"></div>
-                            <div class="video-info">
-                                <div class="title">Reel 1 - Meimei Studio</div>
-                                <div class="meta">10/04/2025 • 0:15</div>
-                            </div>
                         </div>
                         <div class="video-item" onclick="showLoginPopup()">
                             <img src="https://imgur.com/Fw9t5Ih.jpg" alt="Thumbnail" class="thumbnail">
                             <div class="play-icon"></div>
-                            <div class="video-info">
-                                <div class="title">Reel 2 - Meimei Studio</div>
-                                <div class="meta">10/04/2025 • 0:20</div>
-                            </div>
                         </div>
                         <div class="video-item" onclick="showLoginPopup()">
                             <img src="https://imgur.com/zCaD2w9.jpg" alt="Thumbnail" class="thumbnail">
                             <div class="play-icon"></div>
-                            <div class="video-info">
-                                <div class="title">Reel 3 - Meimei Studio</div>
-                                <div class="meta">10/04/2025 • 0:25</div>
-                            </div>
                         </div>
                         <div class="video-item" onclick="showLoginPopup()">
                             <img src="https://imgur.com/6WGS0H9.jpg" alt="Thumbnail" class="thumbnail">
                             <div class="play-icon"></div>
-                            <div class="video-info">
-                                <div class="title">Reel 4 - Meimei Studio</div>
-                                <div class="meta">10/04/2025 • 0:30</div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -1089,7 +1123,7 @@
             </div>
         </div>
 
-        <!-- Popup đăng nhập gốc -->
+        <!-- Popup đăng nhập -->
         <div id="overlay" class="overlay" onclick="hideLoginPopup()"></div>
         <div id="loginPopup" class="popup">
             <input type="text" id="login-input" placeholder="Email hoặc số điện thoại">
@@ -1153,7 +1187,7 @@
                 document.querySelector('.posts').style.maxWidth = '100%';
                 document.querySelector('.sidebar').style.display = 'none';
             } else {
-                document.querySelector('.posts').style.maxWidth = '500px';
+                document.querySelector('.posts').style.maxWidth = '580px';
                 document.querySelector('.sidebar').style.display = 'block';
             }
         }
