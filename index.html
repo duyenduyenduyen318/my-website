@@ -161,6 +161,14 @@
             width: 20px;
             height: 20px;
         }
+        .action-buttons .share {
+            background-color: #E4E6EB;
+            color: #050505;
+        }
+        .action-buttons .share img {
+            width: 20px;
+            height: 20px;
+        }
         .tabs {
             display: flex;
             gap: 8px;
@@ -692,6 +700,90 @@
             margin-top: 8px;
             display: none;
         }
+        .suggestions-section {
+            background: #FFFFFF;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .suggestions-section p {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .suggestion-item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            font-size: 14px;
+            color: #050505;
+        }
+        .suggestion-item .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .reviews-section {
+            background: #FFFFFF;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .reviews-section p {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .rating {
+            font-size: 15px;
+            color: #050505;
+            margin-bottom: 8px;
+        }
+        .rating span:nth-child(2) {
+            color: #606770;
+            font-size: 13px;
+            margin-left: 8px;
+        }
+        .review-item {
+            display: flex;
+            margin: 8px 0;
+            font-size: 14px;
+            color: #050505;
+        }
+        .review-item .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .review-item div {
+            flex: 1;
+        }
+        .review-item p {
+            font-size: 13px;
+            color: #606770;
+            margin-top: 4px;
+        }
+        .see-all {
+            padding: 8px 16px;
+            background: #E4E6EB;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+        .about-subsection {
+            margin-bottom: 16px;
+        }
+        .about-subsection p:first-child {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
         @media (max-width: 767px) {
             .container {
                 width: 100%;
@@ -756,6 +848,7 @@
             </div>
             <div class="title">Meimei Studio</div>
             <div>
+                <img src="https://imgur.com/pCHb488.jpg" alt="Notifications" class="icon" onclick="alert('Xem thông báo')">
                 <img src="https://imgur.com/hCCEW3P.jpg" alt="Menu" class="icon">
             </div>
         </div>
@@ -786,6 +879,9 @@
             </button>
             <button class="message" onclick="showLoginPopup()">
                 <img src="https://imgur.com/vRIDZSy.jpg" alt="Messenger"> Nhắn tin
+            </button>
+            <button class="share" onclick="showLoginPopup()">
+                <img src="https://imgur.com/ncN22Za.jpg" alt="Share"> Chia sẻ
             </button>
         </div>
 
@@ -843,6 +939,40 @@
                         <img src="https://imgur.com/mj7UTEK.jpg" alt="Ảnh 6" onclick="showLoginPopup()">
                         <img src="https://imgur.com/7eRH4Fr.jpg" alt="Ảnh 7" onclick="showLoginPopup()">
                     </div>
+                </div>
+                <div class="suggestions-section">
+                    <p>Đề xuất</p>
+                    <div class="suggestion-item">
+                        <img src="https://i.imgur.com/oy1XxUp.jpg" alt="Studio A" class="avatar">
+                        <span><a href="#">Studio A</a></span>
+                    </div>
+                    <div class="suggestion-item">
+                        <img src="https://i.imgur.com/YFwhhDb.jpg" alt="Studio B" class="avatar">
+                        <span><a href="#">Studio B</a></span>
+                    </div>
+                    <button class="see-all" onclick="alert('Xem tất cả đề xuất')">Xem tất cả</button>
+                </div>
+                <div class="reviews-section">
+                    <p>Đánh giá</p>
+                    <div class="rating">
+                        <span>4.8 ★★★★★</span>
+                        <span>(120 đánh giá)</span>
+                    </div>
+                    <div class="review-item">
+                        <img src="https://i.imgur.com/GT3OXZP.jpg" alt="Lan Anh" class="avatar">
+                        <div>
+                            <span><strong>Lan Anh</strong></span>
+                            <p>Chụp ảnh rất đẹp, chuyên nghiệp!</p>
+                        </div>
+                    </div>
+                    <div class="review-item">
+                        <img src="https://i.imgur.com/7eRH4Fr.jpg" alt="Ngọc Mai" class="avatar">
+                        <div>
+                            <span><strong>Ngọc Mai</strong></span>
+                            <p>Nhân viên thân thiện, sẽ quay lại!</p>
+                        </div>
+                    </div>
+                    <button class="see-all" onclick="alert('Xem tất cả đánh giá')">Xem tất cả</button>
                 </div>
             </div>
             <div class="posts">
@@ -1022,7 +1152,7 @@
                         </div>
                         <div class="actions">
                             <div class="action like" onclick="showLoginPopup()">
-                                <img src=""https://imgur.com/Y2gdw8r.jpg" alt="Like"> Thích <span>7k</span>
+                                <img src="https://imgur.com/Y2gdw8r.jpg" alt="Like"> Thích <span>7k</span>
                             </div>
                             <div class="action comment" onclick="showLoginPopup()">
                                 <img src="https://imgur.com/pCHb488.jpg" alt="Comment"> Bình luận <span>1k3</span>
@@ -1097,29 +1227,39 @@
 
                 <div id="about-tab" class="intro-section about-section tab-content">
                     <p><strong>Giới thiệu</strong></p>
-                    <div class="item">
-                        <img src="https://imgur.com/x7s5fHO.jpg" alt="Page" class="icon">
-                        <span>Studio chụp ảnh</span>
+                    <div class="about-subsection">
+                        <p><strong>Tổng quan</strong></p>
+                        <p>Meimei Studio - Lưu giữ vẻ đẹp của bạn. Chúng tôi chuyên cung cấp dịch vụ chụp ảnh nghệ thuật, lookbook, và sản phẩm với đội ngũ chuyên nghiệp.</p>
                     </div>
-                    <div class="item">
-                        <img src="https://imgur.com/f4Jyh5V.jpg" alt="Website" class="icon">
-                        <span><a href="https://www.tiktok.com/@meimeimodel_vision">tiktok.com/@meimeimodel_vision</a></span>
+                    <div class="about-subsection">
+                        <p><strong>Thông tin liên hệ</strong></p>
+                        <div class="item">
+                            <img src="https://imgur.com/70ptpsF.jpg" alt="Email" class="icon">
+                            <span>contact@meimeistudio.vn</span>
+                        </div>
+                        <div class="item">
+                            <img src="https://imgur.com/UI5roIM.jpg" alt="Location" class="icon">
+                            <span>424 Nguyễn Trãi, Quận 1, TP. Hồ Chí Minh</span>
+                        </div>
+                        <div class="item">
+                            <img src="https://imgur.com/1iXfcdp.jpg" alt="Hours" class="icon">
+                            <span>Mở cửa: 9:00 - 21:00</span>
+                        </div>
                     </div>
-                    <div class="item">
-                        <img src="https://imgur.com/70ptpsF.jpg" alt="Email" class="icon">
-                        <span>contact@meimeistudio.vn</span>
-                    </div>
-                    <div class="item">
-                        <img src="https://imgur.com/UI5roIM.jpg" alt="Location" class="icon">
-                        <span>424 Nguyễn Trãi, Quận 1, TP. Hồ Chí Minh</span>
-                    </div>
-                    <div class="item">
-                        <img src="https://imgur.com/1iXfcdp.jpg" alt="Hours" class="icon">
-                        <span>Mở cửa: 9:00 - 21:00</span>
-                    </div>
-                    <div class="item">
-                        <img src="https://imgur.com/hZMlNQJ.jpg" alt="Social" class="icon">
-                        <span><a href="https://instagram.com/meimeistudio">instagram.com/meimeistudio</a></span>
+                    <div class="about-subsection">
+                        <p><strong>Thông tin bổ sung</strong></p>
+                        <div class="item">
+                            <img src="https://imgur.com/x7s5fHO.jpg" alt="Page" class="icon">
+                            <span>Studio chụp ảnh</span>
+                        </div>
+                        <div class="item">
+                            <img src="https://imgur.com/f4Jyh5V.jpg" alt="Website" class="icon">
+                            <span><a href="https://www.tiktok.com/@meimeimodel_vision">tiktok.com/@meimeimodel_vision</a></span>
+                        </div>
+                        <div class="item">
+                            <img src="https://imgur.com/hZMlNQJ.jpg" alt="Social" class="icon">
+                            <span><a href="https://instagram.com/meimeistudio">instagram.com/meimeistudio</a></span>
+                        </div>
                     </div>
                 </div>
 
