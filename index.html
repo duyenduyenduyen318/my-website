@@ -129,7 +129,7 @@
             padding: 0 16px 16px;
             background-color: #FFFFFF;
             border-bottom: 1px solid #DADDE1;
-            justify-content: flex-start;
+            justify-content: flex-end;
         }
         .action-buttons button {
             padding: 0 12px;
@@ -161,12 +161,6 @@
             width: 20px;
             height: 20px;
         }
-        .action-buttons .more {
-            background-color: #E4E6EB;
-            color: #050505;
-            padding: 0 12px;
-            min-width: 36px;
-        }
         .tabs {
             display: flex;
             gap: 8px;
@@ -186,6 +180,9 @@
             font-size: 15px;
             padding: 0 16px 12px;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
         .tabs a.active {
             color: #1877F2;
@@ -194,6 +191,10 @@
         .tabs a:hover {
             background: #F2F3F5;
             border-radius: 8px;
+        }
+        .tabs a img {
+            width: 20px;
+            height: 20px;
         }
         .details {
             background-color: #FFFFFF;
@@ -264,7 +265,7 @@
             margin-bottom: 12px;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
-        .about-section, .photos-section, .videos-section, .reels-section, .likes-section {
+        .about-section, .photos-section, .videos-section, .reels-section, .likes-section, .friends-section, .events-section {
             display: none;
         }
         .about-section .item {
@@ -503,6 +504,7 @@
             margin-bottom: 8px;
             font-size: 13px;
             color: #65676B;
+            flex-wrap: wrap;
         }
         .like-info img {
             width: 16px;
@@ -517,7 +519,7 @@
         }
         .actions {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             padding: 6px 0;
             font-size: 13px;
             color: #65676B;
@@ -530,9 +532,8 @@
             transition: background 0.2s;
             display: flex;
             align-items: center;
-            flex: 1;
-            justify-content: center;
             gap: 6px;
+            margin-left: 10px;
         }
         .actions .action:hover {
             background: #F5F6F5;
@@ -550,8 +551,16 @@
             max-height: 300px;
             overflow-y: auto;
         }
-        .comments p {
+        .comments .comment-item {
+            display: flex;
+            align-items: center;
             margin-bottom: 5px;
+        }
+        .comments .comment-item img.avatar {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            margin-right: 8px;
         }
         .likes-section .like-item {
             display: flex;
@@ -561,9 +570,35 @@
             color: #050505;
         }
         .likes-section .like-item img.avatar {
-            width: 20px;
-            height: 20px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
+            margin-right: 8px;
+        }
+        .friends-section .friend-item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            font-size: 14px;
+            color: #050505;
+        }
+        .friends-section .friend-item img.avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .events-section .event-item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            font-size: 14px;
+            color: #050505;
+        }
+        .events-section .event-item img {
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
             margin-right: 8px;
         }
         .overlay {
@@ -747,25 +782,40 @@
 
         <!-- Action Buttons -->
         <div class="action-buttons">
-            <button class="message" onclick="showLoginPopup()">
-                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/uhI4UDzbyrR.png" alt="Messenger"> Nhắn tin
-            </button>
             <button class="like" onclick="showLoginPopup()">
                 <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích
             </button>
-            <button class="more" onclick="alert('Mở menu tùy chọn (chức năng demo)')">
-                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y_/r/6YvXqYx61Kr.png" alt="More">
+            <button class="message" onclick="showLoginPopup()">
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/uhI4UDzbyrR.png" alt="Messenger"> Nhắn tin
             </button>
         </div>
 
         <!-- Tabs -->
         <div class="tabs">
-            <a href="#" class="active" onclick="showTab('posts-tab')">Bài viết</a>
-            <a href="#" onclick="showTab('about-tab')">Giới thiệu</a>
-            <a href="#" onclick="showTab('photos-tab')">Ảnh</a>
-            <a href="#" onclick="showTab('videos-tab')">Video</a>
-            <a href="#" onclick="showTab('reels-tab')">Reels</a>
-            <a href="#" onclick="showTab('likes-tab')">Lượt</a>
+            <a href="#" class="active" onclick="showTab('posts-tab')">
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/a2B8aH2zWrc.png" alt="Posts"> Bài viết
+            </a>
+            <a href="#" onclick="showTab('about-tab'); showLoginPopup()">
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/4r5pN3v2aN5.png" alt="About"> Giới thiệu
+            </a>
+            <a href="#" onclick="showTab('photos-tab')">
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yb/r/5uH7TXzWENM.png" alt="Photos"> Ảnh
+            </a>
+            <a href="#" onclick="showTab('videos-tab')">
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/5hM-k1AN4eS.png" alt="Videos"> Video
+            </a>
+            <a href="#" onclick="showTab('reels-tab')">
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yW/r/6zYk4cJJeL8.png" alt="Reels"> Reels
+            </a>
+            <a href="#" onclick="showTab('friends-tab')">
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yU/r/u7v2q0v-KuV.png" alt="Friends"> Bạn bè
+            </a>
+            <a href="#" onclick="showTab('events-tab')">
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y_/r/6YvXqYx61Kr.png" alt="Events"> Sự kiện
+            </a>
+            <a href="#" onclick="showTab('likes-tab'); showLoginPopup()">
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Likes"> Lượt thích
+            </a>
         </div>
 
         <!-- Details -->
@@ -788,11 +838,15 @@
             </div>
             <div class="item">
                 <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yU/r/u7v2q0v-KuV.png" alt="Hours" class="icon">
-                <span><strong>Lưu mở cửa</strong></span>
+                <span><strong>Mở cửa: 9:00 - 21:00</strong></span>
+            </div>
+            <div class="item">
+                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y_/r/6YvXqYx61Kr.png" alt="Social" class="icon">
+                <span><strong><a href="https://instagram.com/meimeistudio">instagram.com/meimeistudio</a></strong></span>
             </div>
         </div>
 
-        <!-- Album Section (Fixed on the left) -->
+        <!-- Main Content -->
         <div class="main-content">
             <div class="sidebar">
                 <div class="album-section">
@@ -809,7 +863,7 @@
                 </div>
             </div>
             <div class="posts">
-                <div id="posts-tab" class="tab-content">
+                <div id="posts-tab" class="tab-content active">
                     <!-- Bài viết 1 -->
                     <div class="post">
                         <div class="post-header">
@@ -835,24 +889,31 @@
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like">
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yR/r/6UHmJipH8-J.png" alt="Haha">
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/EhyW6biK10i.png" alt="Love">
-                            <img src="https://i.imgur.com/oy1XxUp.jpg" class="avatar" alt="User Avatar">
-                            <img src="https://i.imgur.com/YFwhhDb.jpg" class="avatar" alt="User Avatar">
-                            <span>Meimeistudio và 9.8k người khác</span>
+                            <img src="https://i.imgur.com/oy1XxUp.jpg" class="avatar" alt="Lan Anh">
+                            <img src="https://i.imgur.com/YFwhhDb.jpg" class="avatar" alt="Ngọc Mai">
+                            <img src="https://i.imgur.com/GT3OXZP.jpg" class="avatar" alt="Minh Tuấn">
+                            <span>Lan Anh, Ngọc Mai, Minh Tuấn và 9.8k người khác</span>
                         </div>
                         <div class="actions">
-                            <div class="action like" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích <span>9.8k</span>
+                            <div class="action share" onclick="showLoginPopup()">
+                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yQ/r/0--2A9QseKL.png" alt="Share"> Chia sẻ <span>827</span>
                             </div>
                             <div class="action comment" onclick="showLoginPopup()">
                                 <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/a2B8aH2zWrc.png" alt="Comment"> Bình luận <span>692</span>
                             </div>
-                            <div class="action share" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yQ/r/0--2A9QseKL.png" alt="Share"> Chia sẻ <span>827</span>
+                            <div class="action like" onclick="showLoginPopup()">
+                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích <span>9.8k</span>
                             </div>
                         </div>
                         <div class="comments">
-                            <p><strong>Lan Anh:</strong> Mẫu này xinh quá Meimei ơi!</p>
-                            <p><strong>Ngọc Mai:</strong> IB ngay đây, shop rep sớm nha 😍</p>
+                            <div class="comment-item">
+                                <img src="https://i.imgur.com/oy1XxUp.jpg" class="avatar" alt="Lan Anh">
+                                <p><strong>Lan Anh:</strong> Mẫu này xinh quá Meimei ơi!</p>
+                            </div>
+                            <div class="comment-item">
+                                <img src="https://i.imgur.com/YFwhhDb.jpg" class="avatar" alt="Ngọc Mai">
+                                <p><strong>Ngọc Mai:</strong> IB ngay đây, shop rep sớm nha 😍</p>
+                            </div>
                         </div>
                     </div>
 
@@ -881,24 +942,31 @@
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like">
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yR/r/6UHmJipH8-J.png" alt="Haha">
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/EhyW6biK10i.png" alt="Love">
-                            <img src="https://i.imgur.com/YFwhhDb.jpg" class="avatar" alt="User Avatar">
-                            <img src="https://i.imgur.com/GT3OXZP.jpg" class="avatar" alt="User Avatar">
-                            <span>Meimeistudio và 6.1k người khác</span>
+                            <img src="https://i.imgur.com/YFwhhDb.jpg" class="avatar" alt="Ngọc Mai">
+                            <img src="https://i.imgur.com/GT3OXZP.jpg" class="avatar" alt="Minh Tuấn">
+                            <img src="https://i.imgur.com/7eRH4Fr.jpg" class="avatar" alt="Hương Trà">
+                            <span>Ngọc Mai, Minh Tuấn, Hương Trà và 6.1k người khác</span>
                         </div>
                         <div class="actions">
-                            <div class="action like" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích <span>6.1k</span>
+                            <div class="action share" onclick="showLoginPopup()">
+                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yQ/r/0--2A9QseKL.png" alt="Share"> Chia sẻ
                             </div>
                             <div class="action comment" onclick="showLoginPopup()">
                                 <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/a2B8aH2zWrc.png" alt="Comment"> Bình luận <span>626</span>
                             </div>
-                            <div class="action share" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yQ/r/0--2A9QseKL.png" alt="Share"> Chia sẻ
+                            <div class="action like" onclick="showLoginPopup()">
+                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích <span>6.1k</span>
                             </div>
                         </div>
                         <div class="comments">
-                            <p><strong>Hương Trà:</strong> Rép ib em với chị ơi!</p>
-                            <p><strong>Thảo Linh:</strong> Bên mình còn tuyển mẫu feedback không ạ?</p>
+                            <div class="comment-item">
+                                <img src="https://i.imgur.com/7eRH4Fr.jpg" class="avatar" alt="Hương Trà">
+                                <p><strong>Hương Trà:</strong> Rép ib em với chị ơi!</p>
+                            </div>
+                            <div class="comment-item">
+                                <img src="https://i.imgur.com/mj7UTEK.jpg" class="avatar" alt="Thảo Linh">
+                                <p><strong>Thảo Linh:</strong> Bên mình còn tuyển mẫu feedback không ạ?</p>
+                            </div>
                         </div>
                     </div>
 
@@ -925,24 +993,31 @@
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like">
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yR/r/6UHmJipH8-J.png" alt="Haha">
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/EhyW6biK10i.png" alt="Love">
-                            <img src="https://i.imgur.com/GT3OXZP.jpg" class="avatar" alt="User Avatar">
-                            <img src="https://i.imgur.com/7eRH4Fr.jpg" class="avatar" alt="User Avatar">
-                            <span>Meimeistudio và 7.2k người khác</span>
+                            <img src="https://i.imgur.com/GT3OXZP.jpg" class="avatar" alt="Minh Tuấn">
+                            <img src="https://i.imgur.com/7eRH4Fr.jpg" class="avatar" alt="Hương Trà">
+                            <img src="https://i.imgur.com/mj7UTEK.jpg" class="avatar" alt="Thu Hà">
+                            <span>Minh Tuấn, Hương Trà, Thu Hà và 7.2k người khác</span>
                         </div>
                         <div class="actions">
-                            <div class="action like" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích <span>7.2k</span>
+                            <div class="action share" onclick="showLoginPopup()">
+                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yQ/r/0--2A9QseKL.png" alt="Share"> Chia sẻ <span>2k4</span>
                             </div>
                             <div class="action comment" onclick="showLoginPopup()">
                                 <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/a2B8aH2zWrc.png" alt="Comment"> Bình luận <span>3k8</span>
                             </div>
-                            <div class="action share" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yQ/r/0--2A9QseKL.png" alt="Share"> Chia sẻ <span>2k4</span>
+                            <div class="action like" onclick="showLoginPopup()">
+                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích <span>7.2k</span>
                             </div>
                         </div>
                         <div class="comments">
-                            <p><strong>Thu Hà:</strong> Đã hợp tác với shop Meimei, mong được lần sau, tks shop nha!</p>
-                            <p><strong>Yến Nhi:</strong> Ước được chụp ảnh bên shop Meimei 😍</p>
+                            <div class="comment-item">
+                                <img src="https://i.imgur.com/mj7UTEK.jpg" class="avatar" alt="Thu Hà">
+                                <p><strong>Thu Hà:</strong> Đã hợp tác với shop Meimei, mong được lần sau, tks shop nha!</p>
+                            </div>
+                            <div class="comment-item">
+                                <img src="https://i.imgur.com/x7Z7Evf.jpg" class="avatar" alt="Yến Nhi">
+                                <p><strong>Yến Nhi:</strong> Ước được chụp ảnh bên shop Meimei 😍</p>
+                            </div>
                         </div>
                     </div>
 
@@ -969,24 +1044,31 @@
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like">
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yR/r/6UHmJipH8-J.png" alt="Haha">
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/EhyW6biK10i.png" alt="Love">
-                            <img src="https://i.imgur.com/7eRH4Fr.jpg" class="avatar" alt="User Avatar">
-                            <img src="https://i.imgur.com/mj7UTEK.jpg" class="avatar" alt="User Avatar">
-                            <span>Meimeistudio và 7k người khác</span>
+                            <img src="https://i.imgur.com/7eRH4Fr.jpg" class="avatar" alt="Hương Trà">
+                            <img src="https://i.imgur.com/mj7UTEK.jpg" class="avatar" alt="Thu Hà">
+                            <img src="https://i.imgur.com/x7Z7Evf.jpg" class="avatar" alt="Linh Nguyễn">
+                            <span>Hương Trà, Thu Hà, Linh Nguyễn và 7k người khác</span>
                         </div>
                         <div class="actions">
-                            <div class="action like" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích <span>7k</span>
+                            <div class="action share" onclick="showLoginPopup()">
+                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yQ/r/0--2A9QseKL.png" alt="Share"> Chia sẻ <span>1k4</span>
                             </div>
                             <div class="action comment" onclick="showLoginPopup()">
                                 <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/a2B8aH2zWrc.png" alt="Comment"> Bình luận <span>1k3</span>
                             </div>
-                            <div class="action share" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yQ/r/0--2A9QseKL.png" alt="Share"> Chia sẻ <span>1k4</span>
+                            <div class="action like" onclick="showLoginPopup()">
+                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích <span>7k</span>
                             </div>
                         </div>
                         <div class="comments">
-                            <p><strong>Linh Nguyễn:</strong> Mẫu này xinh quá, đăng ký ở đâu vậy shop?</p>
-                            <p><strong>Hà Anh:</strong> Concept này đẹp thật, mình muốn thử!</p>
+                            <div class="comment-item">
+                                <img src="https://i.imgur.com/x7Z7Evf.jpg" class="avatar" alt="Linh Nguyễn">
+                                <p><strong>Linh Nguyễn:</strong> Mẫu này xinh quá, đăng ký ở đâu vậy shop?</p>
+                            </div>
+                            <div class="comment-item">
+                                <img src="https://i.imgur.com/oy1XxUp.jpg" class="avatar" alt="Hà Anh">
+                                <p><strong>Hà Anh:</strong> Concept này đẹp thật, mình muốn thử!</p>
+                            </div>
                         </div>
                     </div>
 
@@ -1016,24 +1098,31 @@
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like">
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yR/r/6UHmJipH8-J.png" alt="Haha">
                             <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/EhyW6biK10i.png" alt="Love">
-                            <img src="https://i.imgur.com/mj7UTEK.jpg" class="avatar" alt="User Avatar">
-                            <img src="https://i.imgur.com/x7Z7Evf.jpg" class="avatar" alt="User Avatar">
-                            <span>Meimeistudio và 8k người khác</span>
+                            <img src="https://i.imgur.com/mj7UTEK.jpg" class="avatar" alt="Thu Hà">
+                            <img src="https://i.imgur.com/x7Z7Evf.jpg" class="avatar" alt="Linh Nguyễn">
+                            <img src="https://i.imgur.com/oy1XxUp.jpg" class="avatar" alt="Lan Anh">
+                            <span>Thu Hà, Linh Nguyễn, Lan Anh và 8k người khác</span>
                         </div>
                         <div class="actions">
-                            <div class="action like" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích <span>8k</span>
+                            <div class="action share" onclick="showLoginPopup()">
+                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yQ/r/0--2A9QseKL.png" alt="Share"> Chia sẻ <span>754</span>
                             </div>
                             <div class="action comment" onclick="showLoginPopup()">
                                 <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/a2B8aH2zWrc.png" alt="Comment"> Bình luận <span>1k7</span>
                             </div>
-                            <div class="action share" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yQ/r/0--2A9QseKL.png" alt="Share"> Chia sẻ <span>754</span>
+                            <div class="action like" onclick="showLoginPopup()">
+                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích <span>8k</span>
                             </div>
                         </div>
                         <div class="comments">
-                            <p><strong>Ngọc Anh:</strong> Shop này uy tín ở Hà Nội này, chụp ảnh cứ gọi là tuyệt vời nha!</p>
-                            <p><strong>Minh Thu:</strong> Chụp ảnh đẹp thật, feedback chuẩn luôn 😍</p>
+                            <div class="comment-item">
+                                <img src="https://i.imgur.com/YFwhhDb.jpg" class="avatar" alt="Ngọc Anh">
+                                <p><strong>Ngọc Anh:</strong> Shop này uy tín ở Hà Nội này, chụp ảnh cứ gọi là tuyệt vời nha!</p>
+                            </div>
+                            <div class="comment-item">
+                                <img src="https://i.imgur.com/GT3OXZP.jpg" class="avatar" alt="Minh Thu">
+                                <p><strong>Minh Thu:</strong> Chụp ảnh đẹp thật, feedback chuẩn luôn 😍</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1055,6 +1144,14 @@
                     <div class="item">
                         <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/5hM-k1AN4eS.png" alt="Location" class="icon">
                         <span>424 Nguyễn Trãi, Quận 1, TP. Hồ Chí Minh</span>
+                    </div>
+                    <div class="item">
+                        <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yU/r/u7v2q0v-KuV.png" alt="Hours" class="icon">
+                        <span>Mở cửa: 9:00 - 21:00</span>
+                    </div>
+                    <div class="item">
+                        <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y_/r/6YvXqYx61Kr.png" alt="Social" class="icon">
+                        <span><a href="https://instagram.com/meimeistudio">instagram.com/meimeistudio</a></span>
                     </div>
                 </div>
 
@@ -1131,17 +1228,66 @@
                     </div>
                 </div>
 
+                <div id="friends-tab" class="friends-section tab-content">
+                    <p><strong>Bạn bè</strong></p>
+                    <div class="friend-item">
+                        <img src="https://i.imgur.com/oy1XxUp.jpg" class="avatar" alt="Lan Anh">
+                        <span><a href="#">Lan Anh</a></span>
+                    </div>
+                    <div class="friend-item">
+                        <img src="https://i.imgur.com/YFwhhDb.jpg" class="avatar" alt="Ngọc Mai">
+                        <span><a href="#">Ngọc Mai</a></span>
+                    </div>
+                    <div class="friend-item">
+                        <img src="https://i.imgur.com/GT3OXZP.jpg" class="avatar" alt="Minh Tuấn">
+                        <span><a href="#">Minh Tuấn</a></span>
+                    </div>
+                    <div class="friend-item">
+                        <img src="https://i.imgur.com/7eRH4Fr.jpg" class="avatar" alt="Hương Trà">
+                        <span><a href="#">Hương Trà</a></span>
+                    </div>
+                    <p>Và 500 người khác</p>
+                </div>
+
+                <div id="events-tab" class="events-section tab-content">
+                    <p><strong>Sự kiện</strong></p>
+                    <div class="event-item">
+                        <img src="https://imgur.com/jYvPFdb.jpg" alt="Event 1">
+                        <span><a href="#">Triển lãm ảnh Xuân 2025</a> - 15/04/2025</span>
+                    </div>
+                    <div class="event-item">
+                        <img src="https://imgur.com/Yua11LC.jpg" alt="Event 2">
+                        <span><a href="#">Workshop chụp ảnh nghệ thuật</a> - 30/05/2025</span>
+                    </div>
+                </div>
+
                 <div id="likes-tab" class="likes-section tab-content">
                     <p><strong>Lượt thích</strong></p>
                     <p>893k lượt thích</p>
                     <p>648k người theo dõi</p>
                     <div class="like-item">
-                        <img src="https://i.imgur.com/oy1XxUp.jpg" class="avatar" alt="Avatar">
+                        <img src="https://i.imgur.com/oy1XxUp.jpg" class="avatar" alt="Lan Anh">
                         <span><a href="#">Lan Anh</a></span>
                     </div>
                     <div class="like-item">
-                        <img src="https://i.imgur.com/YFwhhDb.jpg" class="avatar" alt="Avatar">
+                        <img src="https://i.imgur.com/YFwhhDb.jpg" class="avatar" alt="Ngọc Mai">
                         <span><a href="#">Ngọc Mai</a></span>
+                    </div>
+                    <div class="like-item">
+                        <img src="https://i.imgur.com/GT3OXZP.jpg" class="avatar" alt="Minh Tuấn">
+                        <span><a href="#">Minh Tuấn</a></span>
+                    </div>
+                    <div class="like-item">
+                        <img src="https://i.imgur.com/7eRH4Fr.jpg" class="avatar" alt="Hương Trà">
+                        <span><a href="#">Hương Trà</a></span>
+                    </div>
+                    <div class="like-item">
+                        <img src="https://i.imgur.com/mj7UTEK.jpg" class="avatar" alt="Thu Hà">
+                        <span><a href="#">Thu Hà</a></span>
+                    </div>
+                    <div class="like-item">
+                        <img src="https://i.imgur.com/x7Z7Evf.jpg" class="avatar" alt="Linh Nguyễn">
+                        <span><a href="#">Linh Nguyễn</a></span>
                     </div>
                     <p>Và 7.8k người khác</p>
                 </div>
@@ -1206,9 +1352,10 @@
                 tab.classList.remove('active');
             });
             document.getElementById(tabId).style.display = 'block';
-            document.querySelector(`.tabs a[onclick="showTab('${tabId}')"]`).classList.add('active');
+            document.querySelector(`.tabs a[onclick="showTab('${tabId}')"]`)?.classList.add('active') ||
+            document.querySelector(`.tabs a[onclick="showTab('${tabId}'); showLoginPopup()"]`)?.classList.add('active');
 
-            if (tabId === 'videos-tab' || tabId === 'about-tab' || tabId === 'reels-tab' || tabId === 'photos-tab' || tabId === 'likes-tab') {
+            if (tabId === 'videos-tab' || tabId === 'about-tab' || tabId === 'reels-tab' || tabId === 'photos-tab' || tabId === 'likes-tab' || tabId === 'friends-tab' || tabId === 'events-tab') {
                 document.querySelector('.posts').style.maxWidth = '100%';
                 document.querySelector('.sidebar').style.display = 'none';
             } else {
