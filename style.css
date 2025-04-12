@@ -16,7 +16,6 @@ body {
     flex-direction: column;
     margin: 0;
     padding: 20px;
-    box-sizing: border-box;
 }
 
 /* Login Container */
@@ -27,7 +26,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     width: 300px;
-    max-width: 400px; /* Đảm bảo không vượt quá màn hình */
+    max-width: 400px; /* Đảm bảo không vượt quá màn hình lớn */
     margin: 20px auto;
 }
 
@@ -76,7 +75,7 @@ button:active {
 /* Responsive Design */
 @media (max-width: 767px) {
     .login-container {
-        width: 90%;
+        width: 90%; /* Đảm bảo không vượt quá màn hình nhỏ */
         padding: 15px;
     }
 
@@ -87,5 +86,12 @@ button:active {
     input, button {
         font-size: 14px;
         padding: 8px;
+    }
+}
+
+@media (min-width: 768px) {
+    .login-container {
+        max-width: 400px;
+        padding: 20px;
     }
 }
