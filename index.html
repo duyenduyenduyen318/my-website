@@ -42,6 +42,8 @@
         .header .title {
             font-size: 18px;
             font-weight: bold;
+            flex: 1;
+            text-align: center;
         }
         .header .icon {
             width: 24px;
@@ -55,6 +57,22 @@
         .header .back-section span:nth-child(2) {
             font-size: 14px;
             white-space: nowrap;
+        }
+        .header .search-bar {
+            flex: 2;
+            max-width: 300px;
+        }
+        .header .search-bar input {
+            width: 100%;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 20px;
+            background: #F0F2F5;
+            font-size: 14px;
+            color: #606770;
+        }
+        .header .search-bar input::placeholder {
+            color: #8A8D91;
         }
         .cover-image {
             position: relative;
@@ -152,6 +170,7 @@
         .action-buttons .message img {
             width: 20px;
             height: 20px;
+            filter: brightness(0) invert(1); /* Làm trắng biểu tượng */
         }
         .action-buttons .like {
             background-color: #E4E6EB;
@@ -160,6 +179,7 @@
         .action-buttons .like img {
             width: 20px;
             height: 20px;
+            filter: brightness(0.2); /* Xám đậm hơn để nổi bật */
         }
         .action-buttons .share {
             background-color: #E4E6EB;
@@ -168,6 +188,7 @@
         .action-buttons .share img {
             width: 20px;
             height: 20px;
+            filter: brightness(0.2); /* Xám đậm hơn để nổi bật */
         }
         .tabs {
             display: flex;
@@ -262,12 +283,70 @@
             flex: 2;
             max-width: 580px;
         }
+        .create-post {
+            background: #FFFFFF;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .create-post .input-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .create-post .input-area img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .create-post .input-area input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            background: #F0F2F5;
+            font-size: 15px;
+            color: #050505;
+        }
+        .create-post .input-area input::placeholder {
+            color: #606770;
+        }
+        .create-post .post-button {
+            width: 100%;
+            padding: 10px;
+            background: #1877F2;
+            border: none;
+            border-radius: 6px;
+            color: #FFFFFF;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
         .intro-section {
             background: #FFFFFF;
             border-radius: 8px;
             padding: 12px;
             margin-bottom: 12px;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .community-section {
+            background: #FFFFFF;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .community-section p {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .community-section .stats {
+            font-size: 14px;
+            color: #606770;
+            margin: 4px 0;
         }
         .about-section, .photos-section, .videos-section, .reels-section, .likes-section, .friends-section, .events-section {
             display: none;
@@ -403,6 +482,19 @@
             padding: 12px;
             margin-bottom: 12px;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .post.pinned {
+            border: 2px solid #1877F2;
+            position: relative;
+        }
+        .post.pinned::before {
+            content: '📌 Bài viết nổi bật';
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 12px;
+            color: #1877F2;
+            font-weight: 600;
         }
         .post-header {
             display: flex;
@@ -689,7 +781,7 @@
             font-size: 15px;
             font-weight: bold;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: background: 0.2s;
         }
         .popup .btn-create:hover {
             background: #36a420;
@@ -784,6 +876,64 @@
             font-weight: 600;
             margin-bottom: 8px;
         }
+        .community-section {
+            background: #FFFFFF;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .community-section p {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .community-section .stats {
+            font-size: 14px;
+            color: #606770;
+            margin: 4px 0;
+        }
+        .create-post {
+            background: #FFFFFF;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .create-post .input-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .create-post .input-area img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .create-post .input-area input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            background: #F0F2F5;
+            font-size: 15px;
+            color: #050505;
+        }
+        .create-post .input-area input::placeholder {
+            color: #606770;
+        }
+        .create-post .post-button {
+            width: 100%;
+            padding: 10px;
+            background: #1877F2;
+            border: none;
+            border-radius: 6px;
+            color: #FFFFFF;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
         @media (max-width: 767px) {
             .container {
                 width: 100%;
@@ -829,6 +979,9 @@
             .reels-section .video-list {
                 flex-direction: row;
             }
+            .header .search-bar {
+                display: none;
+            }
         }
         .tab-content {
             display: none;
@@ -845,6 +998,9 @@
             <div class="back-section">
                 <img src="https://imgur.com/qebLOro.jpg" alt="Back" class="icon">
                 <span>Meimei Studio</span>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Tìm kiếm trên Meimei Studio" onclick="alert('Tính năng tìm kiếm (demo)')">
             </div>
             <div class="title">Meimei Studio</div>
             <div>
@@ -875,10 +1031,10 @@
         <!-- Action Buttons -->
         <div class="action-buttons">
             <button class="like" onclick="showLoginPopup()">
-                <img src="https://imgur.com/9evASDf.jpg" alt="Like"> Thích
+                <img src="https://imgur.com/Y2gdw8r.jpg" alt="Like"> Thích
             </button>
             <button class="message" onclick="showLoginPopup()">
-                <img src="https://imgur.com/vRIDZSy.jpg" alt="Messenger"> Nhắn tin
+                <img src="https://imgur.com/pCHb488.jpg" alt="Messenger"> Nhắn tin
             </button>
             <button class="share" onclick="showLoginPopup()">
                 <img src="https://imgur.com/ncN22Za.jpg" alt="Share"> Chia sẻ
@@ -974,9 +1130,59 @@
                     </div>
                     <button class="see-all" onclick="alert('Xem tất cả đánh giá')">Xem tất cả</button>
                 </div>
+                <div class="community-section">
+                    <p>Cộng đồng</p>
+                    <div class="stats">648k người theo dõi</div>
+                    <div class="stats">1.2k bài viết cộng đồng</div>
+                    <button class="see-all" onclick="alert('Xem cộng đồng')">Xem cộng đồng</button>
+                </div>
             </div>
             <div class="posts">
                 <div id="posts-tab" class="tab-content active">
+                    <!-- Khung Tạo Bài Viết -->
+                    <div class="create-post">
+                        <div class="input-area">
+                            <img src="https://i.imgur.com/qAdnBSo.jpg" alt="Profile Pic">
+                            <input type="text" placeholder="Bạn đang nghĩ gì?" onclick="showLoginPopup()">
+                        </div>
+                        <button class="post-button" onclick="showLoginPopup()">Đăng</button>
+                    </div>
+
+                    <!-- Bài viết nổi bật -->
+                    <div class="post pinned">
+                        <div class="post-header">
+                            <img src="https://i.imgur.com/qAdnBSo.jpg" alt="Profile Pic">
+                            <div class="info">
+                                <div class="name">Meimei Studio <span class="verified"></span></div>
+                                <div class="meta">
+                                    <span class="time">01/04/2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="post-content">Chào mừng đến với Meimei Studio!</div>
+                        <p>Chúng tôi rất vui được gặp bạn tại studio chụp ảnh chuyên nghiệp nhất TP. HCM! Hãy theo dõi để cập nhật các concept mới nhé ♥️</p>
+                        <div class="image-gallery">
+                            <img src="https://imgur.com/jYvPFdb.jpg" alt="Welcome 1">
+                            <img src="https://imgur.com/Yua11LC.jpg" alt="Welcome 2">
+                        </div>
+                        <div class="like-info">
+                            <img src="https://i.imgur.com/oy1XxUp.jpg" class="avatar" alt="Lan Anh">
+                            <img src="https://i.imgur.com/YFwhhDb.jpg" class="avatar" alt="Ngọc Mai">
+                            <span>Lan Anh, Ngọc Mai và 12k người khác</span>
+                        </div>
+                        <div class="actions">
+                            <div class="action like" onclick="showLoginPopup()">
+                                <img src="https://imgur.com/Y2gdw8r.jpg" alt="Like"> Thích <span>12k</span>
+                            </div>
+                            <div class="action comment" onclick="showLoginPopup()">
+                                <img src="https://imgur.com/pCHb488.jpg" alt="Comment"> Bình luận <span>1.5k</span>
+                            </div>
+                            <div class="action share" onclick="showLoginPopup()">
+                                <img src="https://imgur.com/ncN22Za.jpg" alt="Share"> Chia sẻ <span>2k</span>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Bài viết 1 -->
                     <div class="post">
                         <div class="post-header">
