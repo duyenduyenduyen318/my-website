@@ -25,7 +25,7 @@
         }
         body {
             background-color: #F0F2F5;
-            color: #1C1E21; /* Đồng bộ với Facebook */
+            color: #1C1E21;
         }
         .container {
             width: 100%;
@@ -37,9 +37,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #FFFFFF;
+            background: linear-gradient(to bottom, #FFFFFF, #F7F8FA); /* Gradient header */
+            border-bottom: 1px solid #DADDE1; /* Viền dưới */
             padding: 10px 15px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Bóng đổ nhẹ */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
             height: 56px;
             position: sticky;
             top: 0;
@@ -55,6 +56,10 @@
             width: 24px;
             height: 24px;
             transition: transform 0.2s;
+        }
+        .header .back-section img {
+            width: 32px; /* Logo lớn hơn */
+            height: 32px;
         }
         .header .icon:hover {
             transform: scale(1.2);
@@ -115,7 +120,7 @@
             background-color: #FFFFFF;
             padding: 0 16px 16px;
             text-align: left;
-            border-radius: 10px; /* Bo tròn */
+            border-radius: 10px;
         }
         .page-info .name {
             font-size: 32px;
@@ -143,9 +148,10 @@
             transform: rotate(-45deg);
         }
         .page-info .stats, .page-info .description {
-            color: #65676B; /* Đồng bộ màu phụ */
+            color: #65676B;
             font-size: 15px;
             margin: 4px 0;
+            line-height: 1.3; /* Tối ưu typography */
         }
         .action-buttons {
             display: flex;
@@ -158,7 +164,7 @@
         .action-buttons button {
             padding: 0 16px;
             border: none;
-            border-radius: 10px; /* Bo tròn hơn */
+            border-radius: 10px;
             font-size: 15px;
             font-weight: 600;
             cursor: pointer;
@@ -177,7 +183,7 @@
             transform: translateY(-2px);
         }
         .action-buttons .message {
-            background: linear-gradient(to bottom, #1877F2, #166FE5); /* Gradient */
+            background: linear-gradient(to bottom, #1877F2, #166FE5);
             color: #FFFFFF;
         }
         .action-buttons .message i, .action-buttons .like i, .action-buttons .share i {
@@ -263,9 +269,10 @@
             object-fit: cover;
             border-radius: 10px;
             cursor: pointer;
+            transition: transform 0.2s;
         }
         .album-section .album img:hover {
-            opacity: 0.9;
+            transform: scale(1.05);
         }
         .main-content {
             padding: 0 16px;
@@ -425,7 +432,7 @@
             font-size: 14px;
             color: #1C1E21;
             margin-bottom: 8px;
-            line-height: 1.4;
+            line-height: 1.3;
         }
         .post .image-gallery {
             display: grid;
@@ -439,6 +446,10 @@
             border-radius: 10px;
             object-fit: cover;
             aspect-ratio: 1;
+            transition: transform 0.2s;
+        }
+        .post .image-gallery img:hover {
+            transform: scale(1.05); /* Phóng to khi hover */
         }
         .post .image-gallery .more-images {
             position: relative;
@@ -502,18 +513,19 @@
             color: #1877F2;
         }
         .comments {
-            font-size: 13px;
+            font-size: 12px; /* Tối ưu typography */
             color: #1C1E21;
             margin-top: 8px;
             padding-top: 8px;
             border-top: 1px solid #CED0D4;
             max-height: 300px;
             overflow-y: auto;
+            line-height: 1.3;
         }
         .comments .comment-item {
             display: flex;
             align-items: center;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
         .comments .comment-item img {
             width: 16px;
@@ -582,19 +594,33 @@
         }
         .popup {
             display: none;
-            position: fixed;
+            position: relative; /* Để đặt nút X */
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             background: #fff;
             padding: 16px;
-            border-radius: 12px; /* Bo tròn hơn */
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); /* Bóng đổ mềm */
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
             text-align: center;
             z-index: 1001;
             max-width: 320px;
             width: 90%;
             animation: fadeIn 0.3s ease-in;
+        }
+        .popup .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #65676B;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .popup .close-btn:hover {
+            color: #1877F2;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translate(-50%, -60%); }
@@ -705,7 +731,7 @@
             font-size: 15px;
             color: #1C1E21;
             margin: 8px 0;
-            line-height: 1.4;
+            line-height: 1.3;
         }
         .about-section p strong {
             font-weight: 600;
@@ -819,6 +845,7 @@
             font-size: 14px;
             color: #65676B;
             margin: 4px 0;
+            line-height: 1.3;
         }
         .about-subsection {
             margin-bottom: 16px;
@@ -827,6 +854,10 @@
             font-size: 16px;
             font-weight: 600;
             margin-bottom: 8px;
+        }
+        /* Sidebar mobile */
+        .sidebar-toggle {
+            display: none;
         }
         @media (max-width: 767px) {
             .container {
@@ -864,14 +895,45 @@
             .sidebar, .posts {
                 max-width: 100%;
             }
-            .post .image-gallery {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            .sidebar {
+                display: none;
+                position: fixed;
+                top: 56px;
+                right: 0;
+                width: 250px;
+                height: 100%;
+                background: #FFFFFF;
+                box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+                z-index: 99;
+                padding: 16px;
+                transform: translateX(100%);
+                transition: transform 0.3s;
             }
-            .videos-section .video-list {
-                grid-template-columns: 1fr;
+            .sidebar.active {
+                display: block;
+                transform: translateX(0);
             }
-            .reels-section .video-list {
-                flex-direction: row;
+            .sidebar-toggle {
+                display: block;
+                position: fixed;
+                top: 60px;
+                right: 16px;
+                background: #1877F2;
+                color: #FFFFFF;
+                border: none;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                cursor: pointer;
+                z-index: 100;
+                font-size: 20px;
+            }
+            .post .image-gallery:has(> img:nth-child(3)) {
+                grid-template-columns: 1fr; /* 1 cột cho ≥3 ảnh */
+            }
+            .post .image-gallery img {
+                aspect-ratio: auto;
+                max-height: 300px;
             }
             .header .search-bar {
                 display: none;
@@ -886,6 +948,9 @@
     </style>
 </head>
 <body>
+    <!-- Sidebar Toggle Button -->
+    <button class="sidebar-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+
     <div class="container">
         <!-- Header -->
         <div class="header">
@@ -1512,6 +1577,7 @@
         <!-- Login Popup -->
         <div id="overlay" class="overlay" onclick="hideLoginPopup()"></div>
         <div id="loginPopup" class="popup">
+            <button class="close-btn" onclick="hideLoginPopup()"><i class="fas fa-times"></i></button>
             <input type="text" id="login-input" placeholder="Email hoặc số điện thoại">
             <input type="password" id="password" placeholder="Mật khẩu">
             <button class="btn-login" onclick="login()">Đăng nhập</button>
@@ -1579,13 +1645,9 @@
             if (tabId === 'videos-tab' || tabId === 'about-tab' || tabId === 'reels-tab' || tabId === 'photos-tab' || tabId === 'likes-tab' || tabId === 'friends-tab' || tabId === 'events-tab') {
                 document.querySelector('.posts').style.maxWidth = '100%';
                 document.querySelector('.sidebar').style.display = 'none';
+                document.querySelector('.sidebar').classList.remove('active');
             } else {
                 document.querySelector('.posts').style.maxWidth = '580px';
                 document.querySelector('.sidebar').style.display = 'block';
             }
         }
-
-        showTab('posts-tab');
-    </script>
-</body>
-</html>
